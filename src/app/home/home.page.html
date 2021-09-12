@@ -1,0 +1,41 @@
+
+
+
+<ion-header [translucent]="true"  class="ion-no-border">
+  <ion-toolbar [ngClass]="isTop?'transparent':''">
+    <ion-buttons slot="end">
+      <ion-menu-button class="ion-hide-md-up" color="light"></ion-menu-button>
+       <div class="ion-hide-md-down">
+         <ion-button>Home</ion-button>
+         <ion-button>Sign Up</ion-button>
+
+       </div>
+    </ion-buttons>
+    <ion-title>
+      MyTrax
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true" [scrollEvents]="true" (ionScroll)="onScroll($event)" >
+
+
+    <app-landing-banner [isTop]="isTop"></app-landing-banner>
+    <app-section-two></app-section-two>
+    <app-section-one></app-section-one>
+    <app-section-four></app-section-four>
+    <app-section-three></app-section-three>
+
+ 
+    <ion-footer>
+      <ion-toolbar>
+        <ion-button  color="light" fill="clear" [disabled]="true">©2020 MyTrax</ion-button>
+        <ion-button slot="end" color="medium" fill="clear">Contact</ion-button>
+
+      </ion-toolbar>
+    </ion-footer>
+</ion-content>
+
+
+

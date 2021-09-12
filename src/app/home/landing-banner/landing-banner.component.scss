@@ -1,0 +1,172 @@
+@media (max-width: 768px) {
+  .center-text h1{
+font-size:34px!important;
+  }
+  .banner ion-col{
+    padding:20px!important;
+    img {
+      width:130px!important;
+      margin-top:-30px;
+    }
+  }
+}
+@media (min-width: 1000px) {
+  .first-col{
+    padding-left:100px!important;
+  }
+}
+
+.background-image{
+  background-image: url("/assets/img/myTraxBakesBackground.jpg");
+    background-size:cover;
+    height:calc(100vh);
+    opacity:0.5;
+    width:100%;
+    position: absolute;
+    top:0px;
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    animation: zoomin 6s 1;
+    -webkit-animation: zoomin 6s 1;
+}
+ion-row{
+  height:calc(100vh - 56px);
+  width:100%;
+  max-width:2000px;
+  margin-left:auto;
+  margin-right: auto;
+}
+
+.banner ion-col {
+
+  img{
+   width:220px;
+    transform: translateY(600px);
+    animation: slideUp 2s ease-in-out forwards 0s;
+    -webkit-animation: slideUp 2s ease-in-out forwards 0s;
+  }
+}
+.center-text {
+ 
+    
+  h1{
+      margin:0px;
+      color:white;
+      font-size:70px;
+      font-weight: bold;
+  }
+
+}
+
+.bottom{
+  position: absolute;
+  bottom:10px;
+  width:50%;
+  text-align: center;
+  margin-left:25%;
+  animation: fadeIn ease 3s;
+    -webkit-animation: fadeIn ease 3s;
+  p{
+    margin:0px;
+  }
+  ion-icon{
+    font-size:30px;
+  }
+}
+
+.first-col{
+  padding:60px 0px 50px 50px;
+}
+.second-col{
+  padding:60px 50px 50px 0px;
+}
+
+.info {
+  animation: show 1s 2s forwards;
+  -webkit-animation:show 1s 2s forwards;
+  opacity: 0; 
+  p{
+    font-size:20px;
+  }
+}
+
+.fade-in-now {
+    animation: fadeIn ease 2s;
+    -webkit-animation: fadeIn ease 2s;
+}
+   
+
+  .fade-in {
+    animation:show 0s 0.5s forwards;
+    opacity: 0; 
+}
+
+  .fade-in-next {
+
+    animation: show 0s 1.0s forwards;
+    opacity: 0; 
+    
+  }
+  .fade-in-last {
+    animation: show 0s 2s forwards;
+    opacity: 0; 
+  }
+
+  @keyframes show {
+    to   { opacity: 1; }
+  }
+  
+  @-webkit-keyframes show {
+    to   { opacity: 1; }
+  }
+  @keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+
+  @keyframes zoomin {
+    0% {
+        -webkit-transform: scale(1.6);
+    }
+    100% {
+        -webkit-transform: scale(1);
+    }
+  }
+  @-webkit-keyframes zoomin {
+    0% {
+        -webkit-transform: scale(1.6);
+    }
+    100% {
+        -webkit-transform: scale(1);
+    }
+  }
+
+  
+ 
+  
+  @-webkit-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+
+  @keyframes slideUp {
+    0% {
+      transform: translateY(600px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+
+  .scroll{
+    position: absolute;
+    bottom:20px;
+  }
