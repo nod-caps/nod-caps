@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component,  OnInit,  } from '@angular/core';
 
 @Component({
   selector: 'app-section-two',
@@ -9,32 +9,21 @@ export class SectionTwoComponent implements OnInit {
 
   constructor() { }
 
+caps = [1,2,3,4,5,6,7,8]
 
-
-  checkOnScreen(){
-    const section2 = document.querySelector('.section2');
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.intersectionRatio > 0) {
-          entry.target.classList.add('intersect2');
-          observer.unobserve(entry.target);
-        } else {
-          entry.target.classList.remove('intersect2');
-        }
-      });
-    });
-    
-    observer.observe(section2);
-    
-  }
+ 
+slideOpts = {
+  initialSlide: 0,
+  slidesPerView: 4.5,
+  speed: 400
+};
   
 
 
 
 
   ngOnInit() {
-    this.checkOnScreen();
+    
 
   }
 

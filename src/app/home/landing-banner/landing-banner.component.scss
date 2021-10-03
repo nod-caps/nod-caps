@@ -10,31 +10,35 @@ font-size:34px!important;
     }
   }
 }
-@media (min-width: 1000px) {
-  .first-col{
-    padding-left:100px!important;
-  }
-}
 
-.background-image{
-  background-image: url("/assets/img/myTraxBakesBackground.jpg");
-    background-size:cover;
-    height:calc(100vh);
-    opacity:0.5;
-    width:100%;
-    position: absolute;
-    top:0px;
-    filter: blur(5px);
-    -webkit-filter: blur(5px);
-    animation: zoomin 6s 1;
-    -webkit-animation: zoomin 6s 1;
-}
+
 ion-row{
-  height:calc(100vh - 56px);
   width:100%;
   max-width:2000px;
   margin-left:auto;
   margin-right: auto;
+  margin-bottom:100px;
+}
+
+.custom-shape-divider-bottom-1633272370 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1633272370 svg {
+  position: relative;
+  display: block;
+  width: calc(119% + 1.3px);
+  height: 98px;
+}
+
+.custom-shape-divider-bottom-1633272370 .shape-fill {
+  fill: #3BA931;
 }
 
 .banner ion-col {
@@ -51,8 +55,7 @@ ion-row{
     
   h1{
       margin:0px;
-      color:white;
-      font-size:70px;
+      font-size:50px;
       font-weight: bold;
   }
 
@@ -73,17 +76,43 @@ ion-row{
     font-size:30px;
   }
 }
+.custom-shape-divider-top-1633286628 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
 
+.custom-shape-divider-top-1633286628 svg {
+  position: relative;
+  display: block;
+  width: calc(139% + 1.3px);
+  height: 124px;
+}
+
+.custom-shape-divider-top-1633286628 .shape-fill {
+  fill: #C7FFC1;
+}
+
+ion-row{
+  padding:0px 40px;
+  margin-top:20px;
+}
 .first-col{
-  padding:60px 0px 50px 50px;
+  padding:50px;
+   background: #e3dcff;
+  border: 0.5px solid #d4d4d4;
+  border-radius:6px;
 }
 .second-col{
   padding:60px 50px 50px 0px;
 }
 
 .info {
-  animation: show 1s 2s forwards;
-  -webkit-animation:show 1s 2s forwards;
+  animation: show 0.5s 1s forwards;
+  -webkit-animation:show 0.5s 1s forwards;
   opacity: 0; 
   p{
     font-size:20px;
@@ -91,24 +120,24 @@ ion-row{
 }
 
 .fade-in-now {
-    animation: fadeIn ease 2s;
-    -webkit-animation: fadeIn ease 2s;
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
 }
    
 
   .fade-in {
-    animation:show 0s 0.5s forwards;
+    animation:show 0s 0.2s forwards;
     opacity: 0; 
 }
 
   .fade-in-next {
 
-    animation: show 0s 1.0s forwards;
+    animation: show 0s 0.5s forwards;
     opacity: 0; 
     
   }
   .fade-in-last {
-    animation: show 0s 2s forwards;
+    animation: show 0s 1s forwards;
     opacity: 0; 
   }
 

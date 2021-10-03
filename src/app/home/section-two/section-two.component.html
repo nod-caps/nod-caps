@@ -1,17 +1,35 @@
 <div class="section2">
   <ion-row class="row">
-    <ion-col size="12" size-md="6" class="col-img">
-      <div class="image">
-        <img src='/assets/img/featuresmyTrax16-12.png'  alt=""/>
-      </div>
-    </ion-col>
-    <ion-col size="12" size-md="6" class="col">
-      <div>
-        <h1>The content you've been looking for</h1>
-        <p>
-          Watch videos from your favourite artists and discover new music based on your specific tastes.
-        </p>
-      </div>
-    </ion-col>
+    <div class="custom-shape-divider-top-1633273712">
+      <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
+      </svg>
+  </div>
+   
+
+
+      <ion-slides [options]="slideOpts">
+        <ion-slide *ngFor="let cap of caps" >
+          <ion-card>
+            <img src="/assets/img/cap-image.jpg">
+            <ion-card-header>
+              <ion-card-title>Madison, WI</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              Founded in 1829 on an isthmus between Lake Monona
+            </ion-card-content>
+          </ion-card>
+        </ion-slide>
+      </ion-slides>
+
+
+
+    <div class="custom-shape-divider-bottom-1633272642">
+      <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
+      </svg>
+  </div>
   </ion-row>
+
+
 </div>

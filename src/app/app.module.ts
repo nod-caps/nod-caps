@@ -14,6 +14,7 @@ import {AngularFireModule} from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { SwiperModule } from 'swiper/angular';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
      AngularFireModule.initializeApp(environment.firebaseConfig), 
      AngularFirestoreModule,
      AngularFireAuthModule, 
-     AngularFireStorageModule,],
+     AngularFireStorageModule,
+    SwiperModule],
   providers: [
     StatusBar,
     SplashScreen,

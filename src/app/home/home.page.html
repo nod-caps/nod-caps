@@ -1,41 +1,38 @@
 
 
+<app-banner-swiper [ngClass]="isTop?'fade-in':'fade-out'" ></app-banner-swiper>
 
-<ion-header [translucent]="true"  class="ion-no-border">
-  <ion-toolbar [ngClass]="isTop?'transparent':''">
+
+<ion-header   class="ion-no-border">
+  <ion-toolbar [ngClass]="isTop? '':'transparent'">
     <ion-buttons slot="end">
       <ion-menu-button class="ion-hide-md-up" color="light"></ion-menu-button>
        <div class="ion-hide-md-down">
-         <ion-button>Home</ion-button>
-         <ion-button>Sign Up</ion-button>
+         <ion-button ><strong>HOME</strong></ion-button>
+         <ion-button><strong>SHOP</strong></ion-button>
 
        </div>
     </ion-buttons>
     <ion-title>
-      MyTrax
+      <strong>Cap Shop</strong>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 
-<ion-content [fullscreen]="true" [scrollEvents]="true" (ionScroll)="onScroll($event)" >
+<ion-content  [scrollEvents]="true" (ionScroll)="onScroll($event)" >
 
 
     <app-landing-banner [isTop]="isTop"></app-landing-banner>
-    <app-section-two></app-section-two>
-    <app-section-one></app-section-one>
-    <app-section-four></app-section-four>
-    <app-section-three></app-section-three>
-
+    <app-section-two [ngClass]="isTop?'toptop':''" class="background2"></app-section-two>
+    
  
     <ion-footer>
       <ion-toolbar>
-        <ion-button  color="light" fill="clear" [disabled]="true">©2020 MyTrax</ion-button>
+        <ion-button  color="light" fill="clear" [disabled]="true">©2021 Cap Shop</ion-button>
         <ion-button slot="end" color="medium" fill="clear">Contact</ion-button>
-
       </ion-toolbar>
     </ion-footer>
 </ion-content>
-
 
 

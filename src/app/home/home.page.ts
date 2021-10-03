@@ -27,7 +27,7 @@ export class HomePage implements OnInit {
   }
 
   onScroll(event: any) {
-if (event.detail.scrollTop === 0){
+if (event.detail.scrollTop < 30){
 this.isTop = true;
 } else {
 this.isTop=false;
