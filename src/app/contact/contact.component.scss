@@ -1,0 +1,21 @@
+.form-holder{
+    background:white;
+    width:40%;
+    margin-left:30%;
+    padding: 1px 30px 30px 30px;
+    border-radius: 2px;
+    margin-top:30px;
+}
+
+ion-button{
+    margin-top:25px;
+}
+
+.button-holder{
+    text-align:right;
+}
+
+ion-content{
+    --background: linear-gradient(180deg, #013328 50%, rgba(0,0,0,0) 30%), linear-gradient(180deg, #994836 60%, #013328 60%)!important;
+
+}

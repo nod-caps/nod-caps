@@ -17,7 +17,12 @@ ion-row{
   max-width:2000px;
   margin-left:auto;
   margin-right: auto;
-  margin-bottom:100px;
+  margin-bottom:50px;
+  background: linear-gradient(
+    -75deg, #013328 35%, rgba(0, 0, 0, 0) 35%), url('../../../assets/img/hiking-header.jpg'); 
+  background-position: center;
+  background-size: cover;
+  color: white;
 }
 
 .custom-shape-divider-bottom-1633272370 {
@@ -93,18 +98,16 @@ ion-row{
 }
 
 .custom-shape-divider-top-1633286628 .shape-fill {
-  fill: #C7FFC1;
+  fill: #013328;
 }
 
 ion-row{
-  padding:0px 40px;
-  margin-top:20px;
+  padding:5%;
 }
 .first-col{
   padding:50px;
-   background: #e3dcff;
-  border: 0.5px solid #d4d4d4;
-  border-radius:6px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 5px;
 }
 .second-col{
   padding:60px 50px 50px 0px;

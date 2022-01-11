@@ -3,21 +3,6 @@
 <app-banner-swiper [ngClass]="isTop?'fade-in':'fade-out'" ></app-banner-swiper>
 
 
-<ion-header   class="ion-no-border">
-  <ion-toolbar [ngClass]="isTop? '':'transparent'">
-    <ion-buttons slot="end">
-      <ion-menu-button class="ion-hide-md-up" color="light"></ion-menu-button>
-       <div class="ion-hide-md-down">
-         <ion-button ><strong>HOME</strong></ion-button>
-         <ion-button><strong>SHOP</strong></ion-button>
-
-       </div>
-    </ion-buttons>
-    <ion-title>
-      <strong>Cap Shop</strong>
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
 
 
 <ion-content  [scrollEvents]="true" (ionScroll)="onScroll($event)" >
@@ -25,12 +10,13 @@
 
     <app-landing-banner [isTop]="isTop"></app-landing-banner>
     <app-section-two [ngClass]="isTop?'toptop':''" class="background2"></app-section-two>
+    <app-section-three></app-section-three>
     
  
     <ion-footer>
       <ion-toolbar>
         <ion-button  color="light" fill="clear" [disabled]="true">©2021 Cap Shop</ion-button>
-        <ion-button slot="end" color="medium" fill="clear">Contact</ion-button>
+        <ion-button slot="end" color="dark" fill="clear">Contact</ion-button>
       </ion-toolbar>
     </ion-footer>
 </ion-content>

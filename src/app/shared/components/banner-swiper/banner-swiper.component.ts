@@ -18,7 +18,7 @@ export class BannerSwiperComponent implements OnInit {
     slidesPerView: 1,
     autoplay:true,
     loop: true,
-    speed: 400
+    speed: 1500
   };
   ngOnInit() {}
 

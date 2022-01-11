@@ -1,0 +1,130 @@
+ion-content{
+    --background: white!important;
+}
+
+.preview-images {
+    text-align: end;
+    img{
+    max-height:100px;
+    border: 1px solid #013328;
+    border-radius: 3px;
+}
+}
+ion-row{ margin-top:40px
+}
+
+.main-image{
+    text-align: center;
+    img{
+        max-height:500px;
+    }
+}
+
+.description-col{
+    padding: 0px 40px;
+    .star{
+        color:#ecaf01;
+        margin-bottom:-2px;
+    }
+    h2{
+        font-size:16px;
+        margin-top:0px;
+        display: inline-block;
+        margin-right: 10px;
+    }
+    .review-count{
+        color:#ecaf01;
+        font-size:14px;
+    }
+    h1{
+        color: #013328;
+        margin-top: 0px;
+        font-weight: bold;
+    }
+    .price{
+        font-style:italic
+    }
+    p{
+        color: #737373;
+    }
+
+}
+
+.extras-box{
+    border: 1px solid #737373;
+    padding: 10px;
+    margin: 20px 0px;
+    border-radius: 3px;
+    ion-icon{
+        margin-right:10px;
+    }
+    ion-item{
+        font-size:14px;
+    }
+    .delivery{
+        ion-icon{
+            color:black;
+        }
+    }
+    .plant-tree{
+        ion-icon{
+            color:green;
+        }
+    }
+}
+
+.learn-more{
+    margin-bottom:100px;
+    ion-col{
+        display: flex!important;
+        align-content: center!important;
+        align-items: center!important;
+        padding:40px;
+    }
+}
+.learn-more-header{
+    background: #013328;
+    h1{
+        font-size:40px;
+        font-weight: bold;
+        margin: auto;
+        color:white;
+    }
+}
+.learn-more-section{
+    background:#efefef;
+    border-radius: 0px 5px 5px 0px;
+    p{
+        color:#222;
+        text-align: center;
+    }
+}
+
+
+
+.other-info{
+    margin-bottom:50px;
+    ion-col{
+        display: flex!important;
+        align-content: center!important;
+        align-items: center!important;
+        padding:40px;
+    }
+}
+.other-info-header{
+  background:#994836;
+    h1{
+        font-size:40px;
+        font-weight: bold;
+        margin: auto;
+        color:white;
+    }
+}
+.other-info-section{
+    background:#efefef;
+    border-radius: 5px 0px 0px 5px;
+    p{
+        color:#222;
+        text-align: center;
+    }
+}

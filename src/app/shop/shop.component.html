@@ -1,0 +1,23 @@
+
+<ion-content>
+
+  <div class="top-text">
+    <h1>Our first collection is here!</h1>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>  
+  </div>
+ 
+    <ion-row>
+      <ion-col size="12" size-md="3" *ngFor="let cap of caps">
+        <ion-card (click)="goToHat()">
+          <img src="/assets/img/cap-image.jpg">
+          <ion-card-header>
+            <ion-card-title>Madison, WI</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Founded in 1829 on an isthmus between Lake Monona
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+</ion-content>

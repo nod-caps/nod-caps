@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { trigger, style, animate, transition, state } from '@angular/animations';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing-banner',
@@ -19,11 +20,12 @@ export class LandingBannerComponent implements OnInit {
 
   @Input() isTop: any;
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
-  scrollTo(){
-    const sec = document.querySelector('.scroll')
-    sec.scrollIntoView({ behavior: 'smooth'})
+  goToShop(){
+    this.router.navigateByUrl('/shop');
   }
 
   ngOnInit() {}

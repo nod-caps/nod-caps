@@ -15,6 +15,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { SwiperModule } from 'swiper/angular';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { SwiperModule } from 'swiper/angular';
      AngularFirestoreModule,
      AngularFireAuthModule, 
      AngularFireStorageModule,
+     SharedModule,
     SwiperModule],
   providers: [
     StatusBar,
