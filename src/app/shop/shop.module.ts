@@ -6,6 +6,9 @@ import { ShopComponent } from './shop.component';
 import { SharedModule } from '../shared/shared.module';
 import { ShopRoutingModule } from './shop-routing.module';
 import { HatPageComponent } from './hat-page/hat-page.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { BasketComponent } from './basket/basket.component';
+import { ThankYouComponent } from './thank-you/thank-you.component';
 
 
 @NgModule({
@@ -13,10 +16,10 @@ import { HatPageComponent } from './hat-page/hat-page.component';
     CommonModule,
     FormsModule,
     IonicModule,
-   ShopRoutingModule,
+    ShopRoutingModule,
     SharedModule
   ],
-  declarations: [ShopComponent, HatPageComponent]
+  declarations: [ShopComponent, HatPageComponent, BasketComponent, CheckoutComponent, ThankYouComponent]
 })
 export class ShopModule {}
 

@@ -1,0 +1,29 @@
+ion-content{
+    --background: white;
+}
+h1{    margin-top: 50px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #cccc;
+    padding-bottom: 20px;
+}
+.basket-container{
+    max-width: 800px;
+    margin-left: auto;
+    margin-right:auto;
+}
+
+.basket-item{
+    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    ion-col{
+        padding:0px;
+    }
+    img{
+        height:235px;
+    }
+    .quantity{
+        width:150px;
+    }
+}
