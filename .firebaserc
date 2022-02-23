@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "projecttwo-c4839"
+  },
+  "targets": {
+    "projecttwo-c4839": {
+      "hosting": {
+        "app": [
+          "projecttwo-c4839"
+        ]
+      }
+    }
   }
 }

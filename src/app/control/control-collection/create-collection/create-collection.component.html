@@ -1,0 +1,56 @@
+<ion-content>
+  <ion-button (click)="goBack()" fill="outline">
+    Go Back 
+  </ion-button>
+  <div class="page-container">
+    <h1>
+     Create Collection
+    </h1>
+    <form [formGroup]="collectionForm">
+      <ion-list>
+        <ion-item>
+        <ion-label position="stacked">Collection Name</ion-label>
+        <ion-input formControlName="name" placeholder="Enter collection name..."></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.name">
+        <ng-container *ngIf="name?.hasError(error.type) && (name?.dirty || name?.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+      <ion-item>
+        <ion-label position="stacked">Collection Description</ion-label>
+        <ion-textarea formControlName="description" placeholder="Enter description..." rows="6"></ion-textarea>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.description">
+        <ng-container *ngIf="description?.hasError(error.type) && (description?.dirty || description?.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+      <ion-item>
+        <ion-label position="stacked">
+          Banner image
+        </ion-label>
+        <input type="file" name="myImage" accept="image/png, image/gif, image/jpeg" />
+      </ion-item>
+    </ion-list>
+    </form>
+
+  
+    <ion-button fill="outline">
+      Preview
+    </ion-button>
+    <ion-button (click)="save()">
+      Save
+    </ion-button>
+    <ion-button fill="outline"  *ngIf = "editPage">
+      Remove
+     </ion-button>
+    <ion-button color="success">
+      Put Live
+    </ion-button>
+  
+  
+  </div>  
+
+ 
+</ion-content>

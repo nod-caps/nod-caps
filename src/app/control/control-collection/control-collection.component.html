@@ -1,0 +1,25 @@
+<ion-content>
+  <ion-button fill="outline" (click)="goTo('control')">
+      Go To Control
+  </ion-button>
+
+<div class="page-container">
+  <h1>Collections</h1>
+
+<ion-item *ngFor="let collection of collections" (click)="goTo('control/collections/' + collection.collectionRef)">
+  <ion-label> {{collection.name}} 
+    <span class="live" *ngIf="collection.isLive">[LIVE]</span>
+    <span class="not-live" *ngIf="!collection.isLive">[NOT LIVE]</span>
+
+  </ion-label>
+</ion-item>
+
+    <ion-button (click)="goTo('control/create-collection')">
+      Add New Collection<ion-icon name="add-circle-outline"></ion-icon>
+    </ion-button>
+
+
+</div>
+
+
+</ion-content> 

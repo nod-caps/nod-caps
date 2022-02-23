@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { FirebaseService } from 'src/app/services/fb.service';
 
 @Component({
   selector: 'app-hat-page',
@@ -7,8 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HatPageComponent implements OnInit {
 
-  constructor() { }
+  cap: any;
+  capRef: any;
 
-  ngOnInit() {}
+  constructor(
+    private route: ActivatedRoute,
+    private fb: FirebaseService
+  ) { }
+
+  getCap(){
+    this.fb.getSingleCap(this.capRef).then(data => {
+      this.cap = data
+    });
+  }
+
+  ngOnInit() {
+     const collectionRef = this.route.snapshot.paramMap.get('collectionRef');
+     const capName = this.route.snapshot.paramMap.get('capNameHyphenated');
+     this.capRef = collectionRef + '_' + capName;
+
+  }
 
 }

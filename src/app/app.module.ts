@@ -10,24 +10,28 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from '../environments/environment';
-import {AngularFireModule} from '@angular/fire/compat';
+// import {AngularFireModule} from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { SwiperModule } from 'swiper/angular';
 import { SharedModule } from './shared/shared.module';
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,BrowserAnimationsModule,
-     AngularFireModule.initializeApp(environment.firebaseConfig), 
+    //  AngularFireModule.initializeApp(environment.firebaseConfig), 
      AngularFirestoreModule,
      AngularFireAuthModule, 
      AngularFireStorageModule,
      SharedModule,
-    SwiperModule],
+    SwiperModule, 
+  provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+  provideFirestore(() => getFirestore())],
   providers: [
     StatusBar,
     SplashScreen,

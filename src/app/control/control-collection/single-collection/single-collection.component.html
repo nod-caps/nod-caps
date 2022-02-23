@@ -1,0 +1,49 @@
+<ion-content>
+  <ion-button fill="outline" (click)="backTo()">
+    Back to collections
+  </ion-button>
+  <div class="page-container">
+
+    <ion-item>
+      <ion-label>
+        Pub Collection <span class="live">[LIVE]</span>
+      </ion-label>
+      <ion-buttons slot="end">
+        <ion-button>
+         Preview
+        </ion-button>
+        <ion-button (click)="editCollection()">
+          Edit
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+    
+    <swiper [config]="config">
+    <ng-template swiperSlide *ngFor="let cap of caps" >
+      <ion-card>
+        <img src="/assets/img/cap-image.jpg">
+        <ion-card-header>
+          <ion-card-subtitle>Destination</ion-card-subtitle>
+          <ion-card-title>Madison, WI</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named
+          </ion-card-content>
+         
+          <ion-button fill="outline" class="top-right-button" (click)="editCap(cap.capRef)">
+            Edit
+          </ion-button>
+      </ion-card>
+    </ng-template>
+  
+    <ng-template swiperSlide>
+      <ion-card (click)="addCap()">
+        <ion-card-header>
+          <ion-card-title>Add Cap</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </ng-template>
+   
+  </swiper>
+  </div>
+</ion-content>>

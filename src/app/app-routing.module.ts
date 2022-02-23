@@ -3,6 +3,9 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './admin/about/about.component';
 import { ReturnsComponent } from './admin/returns/returns.component';
 import { TermsComponent } from './admin/terms/terms.component';
+import { BasketComponent } from './shop/basket/basket.component';
+import { CheckoutComponent } from './shop/checkout/checkout.component';
+import { ThankYouComponent } from './shop/thank-you/thank-you.component';
 
 const routes: Routes = [
   {
@@ -22,6 +25,10 @@ const routes: Routes = [
     loadChildren: () => import('./admin/admin.module').then( m => m.AdminModule)
   },
   {
+    path: 'control',
+    loadChildren: () => import('./control/control.module').then( m => m.ControlModule)
+  },
+  {
     path: 'terms',
     component: TermsComponent,
   },
@@ -32,6 +39,18 @@ const routes: Routes = [
   {
     path: 'about',
     component: AboutComponent,
+  },
+  {
+    path: 'basket',
+    component: BasketComponent,
+  },
+  {
+    path: 'checkout',
+    component: CheckoutComponent,
+  },
+  {
+    path: 'cheers',
+    component: ThankYouComponent,
   },
 
   {

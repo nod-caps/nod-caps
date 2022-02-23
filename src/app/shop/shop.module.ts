@@ -9,6 +9,7 @@ import { HatPageComponent } from './hat-page/hat-page.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { BasketComponent } from './basket/basket.component';
 import { ThankYouComponent } from './thank-you/thank-you.component';
+import { CollectionComponent } from './collection/collection.component';
 
 
 @NgModule({
@@ -17,9 +18,10 @@ import { ThankYouComponent } from './thank-you/thank-you.component';
     FormsModule,
     IonicModule,
     ShopRoutingModule,
-    SharedModule
+    SharedModule,
+    
   ],
-  declarations: [ShopComponent, HatPageComponent, BasketComponent, CheckoutComponent, ThankYouComponent]
+  declarations: [ShopComponent, HatPageComponent, BasketComponent, CheckoutComponent, ThankYouComponent, CollectionComponent]
 })
 export class ShopModule {}
 

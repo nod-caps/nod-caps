@@ -1,0 +1,58 @@
+<ion-content>
+  <ion-button (click)="goBack()" fill="outline">
+    Go Back 
+  </ion-button>
+<div class="page-container" *ngIf="!editPage">
+  <h1>
+    Create Cap
+  </h1>
+  <form [formGroup]="capForm">
+  <ion-list>
+      <ion-item>
+      <ion-label position="stacked">Cap Name</ion-label>
+      <ion-input formControlName="name" placeholder="Enter cap name..."></ion-input>
+    </ion-item>
+    <div *ngFor="let error of errorMessages.name">
+      <ng-container *ngIf="name?.hasError(error.type) && (name?.dirty || name?.touched)">
+        <small class="error-message">{{error.message}}</small>
+      </ng-container>
+    </div>
+    <ion-item>
+      <ion-label position="stacked">Price</ion-label>
+      <ion-input formControlName="price" placeholder="Enter Price..."></ion-input>
+    </ion-item>
+    <div *ngFor="let error of errorMessages.price">
+      <ng-container *ngIf="price?.hasError(error.type) && (price?.dirty || price?.touched)">
+        <small class="error-message">{{error.message}}</small>
+      </ng-container>
+    </div>
+    <ion-item>
+      <ion-label position="stacked">Cap Description</ion-label>
+      <ion-textarea formControlName="description" placeholder="Enter description..." rows="6"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <div *ngFor="let error of errorMessages.description">
+        <ng-container *ngIf="description?.hasError(error.type) && (description?.dirty || description?.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+      <ion-item>
+        <input type="file" name="myImage" accept="image/png, image/gif, image/jpeg" />
+      </ion-item>
+    </ion-item>
+  </ion-list>
+  </form>
+
+  <ion-button fill="outline">
+    Preview
+  </ion-button>
+  <ion-button fill="outline" *ngIf = "editPage">
+    Remove
+   </ion-button>
+  <ion-button>
+    Save
+  </ion-button>
+
+
+</div> 
+</ion-content>
