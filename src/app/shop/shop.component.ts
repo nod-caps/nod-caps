@@ -22,6 +22,11 @@ goToHat(cap: any){
 this.router.navigateByUrl('shop/' + cap.collectionRef + '/'  + cap.nameHyphenated);
 }
 
+goToCollection(collection: any){
+  console.log('hello', collection);
+  this.router.navigateByUrl('shop/' + collection.collectionRef);
+}
+
   async getAllHats() {
     this.fb.getAllCaps().then(data => {
       this.allCollections = data

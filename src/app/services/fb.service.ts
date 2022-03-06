@@ -47,7 +47,7 @@ export class FirebaseService {
         const qu = query(collection(this.firestore, 'caps'), where("collectionRef", "==", doc.data().collectionRef));
         const querySnapshot = await getDocs(qu);
         const capList=[]
-        const collectionObj  = {name: doc.data().name, capList};
+        const collectionObj  = {name: doc.data().name, collectionRef: doc.data().collectionRef, capList};
         querySnapshot.forEach((doc) => {
          capList.push(doc.data());
       });
