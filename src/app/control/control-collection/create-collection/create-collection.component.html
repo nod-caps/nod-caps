@@ -10,7 +10,9 @@
       <ion-list>
         <ion-item>
         <ion-label position="stacked">Collection Name</ion-label>
-        <ion-input formControlName="name" placeholder="Enter collection name..."></ion-input>
+        <ion-input *ngIf="!editPage" formControlName="name" placeholder="Enter collection name..."></ion-input>
+        <ion-input *ngIf="editPage"disabled="true">{{collection?.name}}</ion-input>
+
       </ion-item>
       <div *ngFor="let error of errorMessages.name">
         <ng-container *ngIf="name?.hasError(error.type) && (name?.dirty || name?.touched)">
@@ -30,24 +32,29 @@
         <ion-label position="stacked">
           Banner image
         </ion-label>
-        <input type="file" name="myImage" accept="image/png, image/gif, image/jpeg" />
+        <input type="file" name="bannerImage" accept="image/png, image/gif, image/jpeg"  #bannerImage (change)="processFile(bannerImage)"/>
+      </ion-item>
+      <ion-item >
+        <ion-label>Put Live?</ion-label>
+        <ion-checkbox  id="putLive" name='putLive'  [checked]="putLive" (ionChange)="onChange($event)" ></ion-checkbox>
       </ion-item>
     </ion-list>
     </form>
 
+    <img class="banner-image" *ngIf="collection?.imageUrl" [src]="collection?.imageUrl">
+    <p *ngIf="!collection?.imageUrl">No image selected yet...</p>
   
     <ion-button fill="outline">
       Preview
     </ion-button>
-    <ion-button (click)="save()">
-      Save
+    <ion-button (click)="save()" [disabled]="!collectionForm.valid || (!editPage && !hasProcessed)">
+     <span *ngIf="!saving">Save</span>
+     <ion-spinner *ngIf="saving"></ion-spinner>
     </ion-button>
-    <ion-button fill="outline"  *ngIf = "editPage">
+    <ion-button fill="outline" color="danger"  *ngIf="editPage" (click)="remove()">
       Remove
      </ion-button>
-    <ion-button color="success">
-      Put Live
-    </ion-button>
+   
   
   
   </div>  

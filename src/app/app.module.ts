@@ -18,13 +18,14 @@ import { SwiperModule } from 'swiper/angular';
 import { SharedModule } from './shared/shared.module';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
 
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,BrowserAnimationsModule,
-    //  AngularFireModule.initializeApp(environment.firebaseConfig), 
+    AngularFireModule.initializeApp(environment.firebaseConfig), 
      AngularFirestoreModule,
      AngularFireAuthModule, 
      AngularFireStorageModule,

@@ -11,6 +11,9 @@ import { ControlCollectionComponent } from './control-collection/control-collect
 import { SwiperModule } from 'swiper/angular';
 import { SingleCollectionComponent } from './control-collection/single-collection/single-collection.component';
 import { CreateCollectionComponent } from './control-collection/create-collection/create-collection.component';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 
 
 
@@ -23,7 +26,10 @@ import { CreateCollectionComponent } from './control-collection/create-collectio
     ControlRoutingModule,
     SwiperModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule, 
+    AngularFirestoreModule,
+    AngularFireAuthModule, 
+    AngularFireStorageModule,
   ],
   declarations: [ControlComponent, CreateCapComponent, OrdersComponent, ControlCollectionComponent, SingleCollectionComponent, CreateCollectionComponent]
 })

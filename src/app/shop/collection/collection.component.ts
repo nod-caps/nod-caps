@@ -15,6 +15,7 @@ export class CollectionComponent implements OnInit {
 public collectionRef: any;
 
 caps: any[] =[]
+collection: any;
   
 
   constructor(
@@ -26,20 +27,32 @@ caps: any[] =[]
 
   async getHats() {
     this.fb.getCollectionCaps(this.collectionRef).then(data => {
-      this.caps = data
+      if(data) {
+        this.caps = data
+      }
     });
   }
 
-goToHat(){
-  this.router.navigateByUrl('shop/' + this.collectionRef + '/hat-name');
+  async getSingleCollection() {
+    this.fb.getSingleCollection(this.collectionRef).then(data => {
+      if(data) {
+        this.collection = data;
+      }
+    })
+  }
+
+goToHat(cap: any){
+  this.router.navigateByUrl('shop/' + this.collectionRef + '/' + cap.nameHyphenated);
   }
 
   ngOnInit() {
     this.collectionRef = this.route.snapshot.paramMap.get('collectionRef');
     if (this.collectionRef) {
+      this.getSingleCollection();
       this.getHats();
     } else {
       this.collectionRef = 'originals';
+      this.getSingleCollection();
       this.getHats();
     }
 

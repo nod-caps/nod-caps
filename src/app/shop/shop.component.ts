@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Router } from '@angular/router';
+import { FirebaseService } from '../services/fb.service';
 
 @Component({
   selector: 'app-shop',
@@ -9,22 +11,26 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ShopComponent implements OnInit {
 
 
-  caps = [1,2,3,4,5,6,7,8]
+  allCollections: any
   
   constructor(
     private router:Router,
+    private fb: FirebaseService, 
   ) { }
 
-goToHat(){
-this.router.navigateByUrl('shop/hat-name');
+goToHat(cap: any){
+this.router.navigateByUrl('shop/' + cap.collectionRef + '/'  + cap.nameHyphenated);
+}
+
+  async getAllHats() {
+    this.fb.getAllCaps().then(data => {
+      this.allCollections = data
+      console.log('hello', this.allCollections);
+     });
 }
 
   ngOnInit() {
-    
-
-
-
-    
+    this.getAllHats()
   }
 
 }

@@ -13,7 +13,7 @@ const routes: Routes = [
     component: ControlComponent,
   },
   {
-          path: 'create-cap', // child route path
+          path: 'create-cap/:collectionRef', // child route path
           component: CreateCapComponent, // child route component that the router renders
 }, 
 {
@@ -25,7 +25,7 @@ const routes: Routes = [
   component: CreateCollectionComponent, // child route component that the router renders
 }, 
 {
-  path: 'edit-cap', // child route path
+  path: 'edit-cap/:collectionRef/:capNameHyphenated', // child route path
   component: CreateCapComponent, // child route component that the router renders
 }, 
 {

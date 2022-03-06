@@ -18,7 +18,7 @@ export class SingleCollectionComponent implements OnInit {
     scrollbar: { draggable: true },
   };
 
-
+  collection: any;
   caps: any;
   collectionRef: any;
 
@@ -29,12 +29,12 @@ export class SingleCollectionComponent implements OnInit {
   ) { }
 
 
-  editCap(capRef: any) {
-    this.router.navigateByUrl('control/edit-cap')
+  editCap(capNameHyp: any) {
+    this.router.navigateByUrl('control/edit-cap/' + this.collectionRef + '/' + capNameHyp)
   }
 
   addCap() {
-    this.router.navigateByUrl('control/create-cap')
+    this.router.navigateByUrl('control/create-cap/' + this.collectionRef)
   }
 
   backTo() {
@@ -46,15 +46,23 @@ export class SingleCollectionComponent implements OnInit {
 
   }
 
-  getCollection(){
+  getCollectionCaps(){
    this.fb.getCollectionCaps(this.collectionRef).then(data => {
     this.caps = data
    });
   }
 
+  getCollection() {
+    this.fb.getSingleCollection(this.collectionRef).then(data => {
+      this.collection = data
+    });
+  }
+
   ngOnInit() {
     this.collectionRef = this.route.snapshot.paramMap.get('collectionRef');
+
     if (this.collectionRef) {
+        this.getCollectionCaps();
         this.getCollection();
     }
   }

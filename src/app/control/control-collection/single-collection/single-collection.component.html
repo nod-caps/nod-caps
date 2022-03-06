@@ -6,7 +6,7 @@
 
     <ion-item>
       <ion-label>
-        Pub Collection <span class="live">[LIVE]</span>
+        {{collection?.name}} <span *ngIf="collection?.isLive" class="live">[LIVE]</span> <span *ngIf="!collection?.isLive" class="not-live">[NOT-LIVE]</span>
       </ion-label>
       <ion-buttons slot="end">
         <ion-button>
@@ -21,16 +21,15 @@
     <swiper [config]="config">
     <ng-template swiperSlide *ngFor="let cap of caps" >
       <ion-card>
-        <img src="/assets/img/cap-image.jpg">
+        <img [src]="cap.imageField1">
         <ion-card-header>
-          <ion-card-subtitle>Destination</ion-card-subtitle>
-          <ion-card-title>Madison, WI</ion-card-title>
+          <ion-card-title>{{cap?.name}}</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-          Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named
+          {{cap?.description}}
           </ion-card-content>
          
-          <ion-button fill="outline" class="top-right-button" (click)="editCap(cap.capRef)">
+          <ion-button fill="outline" class="top-right-button" (click)="editCap(cap.nameHyphenated)">
             Edit
           </ion-button>
       </ion-card>

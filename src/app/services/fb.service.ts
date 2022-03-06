@@ -7,10 +7,10 @@ import { collection, query, getDocs, where, Firestore } from '@angular/fire/fire
 })
 export class FirebaseService {
 
+  allCaps: any[] = [];
 
   constructor(
-    private firestore: Firestore
-
+    private firestore: Firestore,
   ) { }
 
   async getSingleCollection(collectionRef?: any){
@@ -20,7 +20,6 @@ export class FirebaseService {
         querySnapshot.forEach((doc) => {
           collections.push(doc.data());
         });
-        console.log('hello', collections);
         return collections[0];
 
 }
@@ -40,6 +39,25 @@ export class FirebaseService {
     }
 
 
+    async getAllCaps(){
+      this.allCaps = [];
+      const q = query(collection(this.firestore, 'collections'), where("isLive", "==", true));
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach(async (doc) => {
+        const qu = query(collection(this.firestore, 'caps'), where("collectionRef", "==", doc.data().collectionRef));
+        const querySnapshot = await getDocs(qu);
+        const capList=[]
+        const collectionObj  = {name: doc.data().name, capList};
+        querySnapshot.forEach((doc) => {
+         capList.push(doc.data());
+      });
+      this.allCaps.push(collectionObj);
+    });
+    return this.allCaps;
+    }
+
+
+
     async getCollectionCaps(collectionRef: any){
     const caps = [];
     const q = query(collection(this.firestore, 'caps'), where("collectionRef", "==", collectionRef));
@@ -52,7 +70,7 @@ export class FirebaseService {
 
 async getSingleCap(capRef: any){
     const caps = [];
-    const q = query(collection(this.firestore, 'caps'), where("cap_reference", "==", capRef));
+    const q = query(collection(this.firestore, 'caps'), where("capRef", "==", capRef));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       caps.push(doc.data());

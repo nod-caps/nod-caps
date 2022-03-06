@@ -2,33 +2,33 @@
 
   <ion-row>
     <ion-col size="12" size-md="2" class="preview-images">
-      <div>
-        <img src="/assets/img/cap-image.jpg" style="border: 3px solid #994836">
+      <div *ngIf="cap?.imageField1">
+        <img (click)="makeActive(cap?.imageField1)" (mouseover)="hoverImg(cap?.imageField1)" (mouseout)="hoverImgOut()" [src]="cap?.imageField1" [ngClass]="activeCap === cap?.imageField1 ? 'active-cap' : ''">
       </div>
-      <div>
-        <img src="/assets/img/cap-image.jpg">
+      <div *ngIf="cap?.imageField2">
+        <img (click)="makeActive(cap?.imageField2)" (mouseover)="hoverImg(cap?.imageField2)" (mouseout)="hoverImgOut()" [src]="cap?.imageField2" [ngClass]="activeCap === cap?.imageField2 ? 'active-cap' : ''">
       </div>
-      <div>
-        <img src="/assets/img/cap-image.jpg">
+      <div *ngIf="cap?.imageField3">
+        <img (click)="makeActive(cap?.imageField3)"  (mouseover)="hoverImg(cap?.imageField3)" (mouseout)="hoverImgOut()" [src]="cap?.imageField3" [ngClass]="activeCap === cap?.imageField3 ? 'active-cap' : ''">
       </div>
-      <div>
-        <img src="/assets/img/cap-image.jpg">
+      <div *ngIf="cap?.imageField4">
+        <img  (click)="makeActive(cap?.imageField4)"  (mouseover)="hoverImg(cap?.imageField4)" (mouseout)="hoverImgOut()" [src]="cap?.imageField4" [ngClass]="activeCap === cap?.imageField4 ? 'active-cap' : ''">
       </div>
     </ion-col>
     <ion-col size="12" size-md="5" class="main-image">
-      <img src="/assets/img/cap-image.jpg">
+      <img [src]="activeCap">
     </ion-col>
     <ion-col size="12" size-md="5" class="description-col">
-        <h1>ROSE AND CROWN</h1>
-        <h2><i>Pub collection</i></h2>
+        <h1>{{cap?.name}}</h1>
+        <h2><i>{{cap?.colelction}}</i></h2>
         <ion-icon class="star" name="star"></ion-icon>
         <ion-icon name="star" class="star"></ion-icon>
         <ion-icon class="star" name="star"></ion-icon>
         <ion-icon class="star" name="star"></ion-icon>
         <ion-icon class="star" name="star"></ion-icon>
         <h2 class="review-count">(29)</h2>
-        <h1 class="price">£25</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>  
+        <h1 class="price">£{{cap?.price}}</h1>
+        <p>{{cap?.description}}</p>  
         <ion-button fill="outline"color="dark">ADD TO BASKET</ion-button>
 
         <div class="extras-box">
@@ -52,6 +52,26 @@
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>  
     </ion-col>
     <ion-col size="12" size-md="1"></ion-col>
+  </ion-row>
+
+
+
+  <h2>Other caps from this collection</h2>
+  <ion-row>
+
+
+  
+    <ion-col size="12" size-md="3" *ngFor="let otherCap of otherCaps" [ngStyle]="{'display':otherCap.name === cap.name ? 'none' : 'block' }" >
+      <ion-card (click)="goToHat(otherCap)">
+        <img [src]="otherCap?.imageField1">
+        <ion-card-header>
+          <ion-card-title>{{otherCap?.name}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          {{otherCap?.description}}            
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
   </ion-row>
 
   <ion-row class="other-info">

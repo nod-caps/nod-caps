@@ -13,3 +13,16 @@ ion-item{
 .error-message{
     color: var(--ion-color-danger);
 } 
+
+
+.hat-images{
+    display: flex;
+    img{
+        max-width:125px; 
+        margin:0px 20px
+    }
+    p{
+        margin:0px 20px
+
+    }
+}
