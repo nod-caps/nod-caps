@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BasketService } from 'src/app/services/basket.service';
 import { FirebaseService } from 'src/app/services/fb.service';
 
 @Component({
@@ -15,11 +16,13 @@ export class HatPageComponent implements OnInit {
   mainActiveCap: any;
   collectionRef: any;
   otherCaps: any;
+  quantity: number= 1
 
   constructor(
     private route: ActivatedRoute,
     private fb: FirebaseService,
     private router: Router,
+    private basket: BasketService
   ) { }
 
 hoverImg(capImg: any){
@@ -53,6 +56,10 @@ goToHat(cap: any){
       }
     });
   }
+
+addToBasket(cap: any) {
+   this.basket.addItemToBasket(cap, this.quantity);
+}
 
   ngOnInit() {
      this.collectionRef = this.route.snapshot.paramMap.get('collectionRef');

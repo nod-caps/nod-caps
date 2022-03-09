@@ -28,8 +28,12 @@
         <ion-icon class="star" name="star"></ion-icon>
         <h2 class="review-count">(29)</h2>
         <h1 class="price">£{{cap?.price}}</h1>
+        <ion-item>
+          <ion-label>Quantity:</ion-label>
+          <ion-input type="number" [(ngModel)]="quantity" required="true" clearInput=true min="0" max="5" value="1"></ion-input>
+        </ion-item>   
         <p>{{cap?.description}}</p>  
-        <ion-button fill="outline"color="dark">ADD TO BASKET</ion-button>
+        <ion-button fill="outline"color="dark" (click)="addToBasket(cap)">ADD TO BASKET</ion-button>
 
         <div class="extras-box">
           <ion-item class="delivery" lines="none">
