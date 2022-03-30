@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-control',
@@ -10,12 +12,12 @@ export class ControlComponent implements OnInit {
 
   collections: any[] = [];
 
+
   constructor(
     private router: Router,
+    private formBuilder: FormBuilder,
+    private authService: AuthService
   ) { }
-
-
-
 
 
   ngOnInit() {

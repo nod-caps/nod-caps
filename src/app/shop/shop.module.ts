@@ -7,7 +7,6 @@ import { SharedModule } from '../shared/shared.module';
 import { ShopRoutingModule } from './shop-routing.module';
 import { HatPageComponent } from './hat-page/hat-page.component';
 import { CheckoutComponent } from './checkout/checkout.component';
-import { BasketComponent } from './basket/basket.component';
 import { ThankYouComponent } from './thank-you/thank-you.component';
 import { CollectionComponent } from './collection/collection.component';
 
@@ -21,7 +20,7 @@ import { CollectionComponent } from './collection/collection.component';
     SharedModule,
     
   ],
-  declarations: [ShopComponent, HatPageComponent, BasketComponent, CheckoutComponent, ThankYouComponent, CollectionComponent]
+  declarations: [ShopComponent, HatPageComponent, CheckoutComponent, ThankYouComponent, CollectionComponent]
 })
 export class ShopModule {}
 

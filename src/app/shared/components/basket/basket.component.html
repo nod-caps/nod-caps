@@ -1,0 +1,47 @@
+<ion-content>
+  <div class="basket-container">
+    <h1>Your Basket</h1>
+
+      <ion-row class="basket-item" *ngFor="let item of basketArray; index as i">
+        
+        <ion-col [size]="inMenu ? '12': '4'">
+          <img [src]="item.cap.imageField1">
+        </ion-col>
+        <ion-col   [size]="inMenu ? '12': '8'" class="pos-rel">
+          <h2>{{item.cap.name}}</h2>
+          <p>{{item.cap.description}}</p>
+          <p *ngIf="inModal">Quantity: {{item.quantity}}</p>
+          <ion-item class="quantity" *ngIf="!inModal">
+            <ion-label>Quantity</ion-label>
+            <ion-select mode="ios" interface="popover" *ngIf="item.quantity" (ionChange)="quantityChanged($event, i)"  [value]="item.quantity">
+              <ion-select-option [value]=1>1</ion-select-option>
+              <ion-select-option [value]=2>2</ion-select-option>
+              <ion-select-option [value]=3>3</ion-select-option>
+              <ion-select-option [value]=4>4</ion-select-option>
+            </ion-select>
+          </ion-item>
+         <!-- <ion-item class="quantity">
+            <ion-label>Quantity:</ion-label>
+            <ion-input (ionChange)="quantityChanged($event, i)"  type="number" required="true"  min="1" max="5" [value]="item.quantity"></ion-input>
+
+          </ion-item>-->
+          <div class="top-right">
+          <span class="item-price">£{{item.itemPrice}}</span>
+          <ion-button *ngIf="!inModal" (click)="remove(i)"  class="remove-from-basket" fill="none" color="medium"><ion-icon name="close"></ion-icon></ion-button>
+          </div>
+        </ion-col>
+      
+      </ion-row>
+
+        <div>
+          £{{totalPrice}}
+        </div>
+        
+
+        <ion-button *ngIf="inModal" (click)="editBasket()">Edit Basket</ion-button>
+        <ion-button  color="dark">Checkout</ion-button>
+        
+    
+
+  </div>
+</ion-content>

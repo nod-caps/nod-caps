@@ -16,6 +16,15 @@ export class BasketService {
   ) { }
 
 
+  editBasket(){
+    this.basketSub.next(this.currentBasket);
+    console.log('hello')
+  }
+
+  getBasket(){
+    return this.currentBasket;
+  }
+
 
   addItemToBasket(cap: any, quantity: number){
         this.currentBasket.forEach((elem, index) => {

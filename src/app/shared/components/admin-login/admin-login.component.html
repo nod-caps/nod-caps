@@ -1,0 +1,26 @@
+<div class="page-container">
+    <form [formGroup]="logInForm">
+    <ion-list>
+        <ion-item>
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input type="text" formControlName="email" placeholder="Enter email..."></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.email">
+        <ng-container *ngIf="email?.hasError(error.type) && (email?.dirty || email?.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+      <ion-item>
+        <ion-label position="stacked">Password</ion-label>
+        <ion-input type="password" formControlName="password" placeholder="Enter password..."></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.password">
+        <ng-container *ngIf="password?.hasError(error.type) && (password?.dirty || password?.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+    </ion-list> 
+    <ion-button class="submit-btn" type="submit" (click)="logIn()" [disabled]="!logInForm.valid">Log In</ion-button>
+
+  </form>
+</div>

@@ -1,7 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
 import { BasketService } from 'src/app/services/basket.service';
 import { FirebaseService } from 'src/app/services/fb.service';
+import { BasketComponent } from 'src/app/shared/components/basket/basket.component';
+import { environment } from 'src/environments/environment';
+import { getFunctions, httpsCallable } from "firebase/functions";
+
+
+
+declare var Stripe;
+
 
 @Component({
   selector: 'app-hat-page',
@@ -22,8 +31,8 @@ export class HatPageComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FirebaseService,
     private router: Router,
-    private basket: BasketService
-  ) { }
+    private basket: BasketService,
+private modalCtrl: ModalController,  ) { }
 
 hoverImg(capImg: any){
   this.mainActiveCap = this.activeCap;
@@ -36,6 +45,8 @@ this.activeCap = this.mainActiveCap;
 makeActive(capImg: any) {
   this.activeCap = capImg;
 }
+
+
 
 
 goToHat(cap: any){
@@ -57,8 +68,36 @@ goToHat(cap: any){
     });
   }
 
-addToBasket(cap: any) {
+
+  checkoutFirebase(): void {
+    console.log('checking out with item id: ' + this.capRef);
+
+    var stripe = Stripe(environment.stripe.push);
+    const functions = getFunctions();
+    const checkout = httpsCallable(functions, 'stripeCheckout');
+    checkout({ id: this.capRef })
+        .then(result => {
+            console.log('hello', result);
+            stripe.redirectToCheckout({
+                sessionId: result.data,
+            }).then((result: any) => {
+                console.log(result.error.message);
+            });
+        });
+}
+
+
+  async addToBasket(cap: any) {
    this.basket.addItemToBasket(cap, this.quantity);
+   const modal = await this.modalCtrl.create({
+    component: BasketComponent,
+    componentProps: {
+      inModal: true
+    },
+    cssClass: 'basket-modal'
+  });
+  return await modal.present();
+
 }
 
   ngOnInit() {
