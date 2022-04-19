@@ -18,9 +18,7 @@ export class ShopComponent implements OnInit {
     private fb: FirebaseService, 
   ) { }
 
-goToHat(cap: any){
-this.router.navigateByUrl('shop/' + cap.collectionRef + '/'  + cap.nameHyphenated);
-}
+
 
 goToCollection(collection: any){
   console.log('hello', collection);

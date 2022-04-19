@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-thank-you',
@@ -8,8 +8,11 @@ import { Router } from '@angular/router';
 })
 export class ThankYouComponent implements OnInit {
 
+  orderNumber: any;
+
   constructor(
-    private router:Router
+    private router:Router,
+    private route: ActivatedRoute
   ) { }
 
 
@@ -17,6 +20,8 @@ export class ThankYouComponent implements OnInit {
     this.router.navigateByUrl('home');
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.orderNumber = this.route.snapshot.paramMap.get('orderNumber');
+  }
 
 }

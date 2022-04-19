@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class BasketService {
+export class BasketService{
 
     public basketSub = new BehaviorSubject<any>([]);
     currentBasket = [];
@@ -13,15 +13,23 @@ export class BasketService {
 
   constructor(
     
-  ) { }
+  ) {
+    if (JSON.parse(localStorage.getItem('basket'))) {
+      this.currentBasket = JSON.parse(localStorage.getItem('basket'))
+      this.basketSub.next(this.currentBasket);
+    } else {
+      this.currentBasket = [];
+    }
+    
+   }
 
 
   editBasket(){
     this.basketSub.next(this.currentBasket);
-    console.log('hello')
+    localStorage.setItem('basket', JSON.stringify(this.currentBasket));
   }
 
-  getBasket(){
+  getBasket(){    
     return this.currentBasket;
   }
 
@@ -38,9 +46,11 @@ export class BasketService {
         if (this.pushObjectToArray){
             this.currentBasket.push({cap, quantity, capRef: cap.capRef});
             this.basketSub.next(this.currentBasket);
+            localStorage.setItem('basket', JSON.stringify(this.currentBasket));
           } else{
             this.basketSub.next(this.currentBasket);
             this.pushObjectToArray = true;   
+            localStorage.setItem('basket', JSON.stringify(this.currentBasket));
           }
             
    

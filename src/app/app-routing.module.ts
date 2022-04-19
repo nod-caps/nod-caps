@@ -56,7 +56,7 @@ const routes: Routes = [
     component: CheckoutComponent,
   },
   {
-    path: 'cheers',
+    path: 'cheers/:orderNumber',
     component: ThankYouComponent,
   },
 

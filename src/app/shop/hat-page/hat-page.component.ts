@@ -4,8 +4,8 @@ import { ModalController } from '@ionic/angular';
 import { BasketService } from 'src/app/services/basket.service';
 import { FirebaseService } from 'src/app/services/fb.service';
 import { BasketComponent } from 'src/app/shared/components/basket/basket.component';
-import { environment } from 'src/environments/environment';
-import { getFunctions, httpsCallable } from "firebase/functions";
+import { Subscription } from 'rxjs';
+
 
 
 
@@ -25,7 +25,11 @@ export class HatPageComponent implements OnInit {
   mainActiveCap: any;
   collectionRef: any;
   otherCaps: any;
-  quantity: number= 1
+  quantity: any;
+  basketSub: Subscription;
+  alreadyInBasket = false;
+  quantityArray = [];
+  capBasketMax = 5;
 
   constructor(
     private route: ActivatedRoute,
@@ -46,17 +50,11 @@ makeActive(capImg: any) {
   this.activeCap = capImg;
 }
 
-
-
-
-goToHat(cap: any){
-  this.router.navigateByUrl('shop/' + this.collectionRef + '/' + cap.nameHyphenated);
-  }
-
   getCap(){
     this.fb.getSingleCap(this.capRef).then(data => {
       this.cap = data
       this.makeActive(this.cap.imageField1);
+      this.checkQuantity();
     });
   }
 
@@ -68,24 +66,20 @@ goToHat(cap: any){
     });
   }
 
+  quantityChanged(ev: any, index: any) {
+    this.quantity = ev.detail.value;
+  }
 
-  checkoutFirebase(): void {
-    console.log('checking out with item id: ' + this.capRef);
-
-    var stripe = Stripe(environment.stripe.push);
-    const functions = getFunctions();
-    const checkout = httpsCallable(functions, 'stripeCheckout');
-    checkout({ id: this.capRef })
-        .then(result => {
-            console.log('hello', result);
-            stripe.redirectToCheckout({
-                sessionId: result.data,
-            }).then((result: any) => {
-                console.log(result.error.message);
-            });
-        });
+async openBasket(){
+  const modal = await this.modalCtrl.create({
+    component: BasketComponent,
+    componentProps: {
+      inModal: true
+    },
+    cssClass: 'basket-modal'
+  });
+  return await modal.present();
 }
-
 
   async addToBasket(cap: any) {
    this.basket.addItemToBasket(cap, this.quantity);
@@ -97,6 +91,32 @@ goToHat(cap: any){
     cssClass: 'basket-modal'
   });
   return await modal.present();
+  
+} 
+
+checkInBasket(){
+  // subscribe to basket you muppet
+  this.basketSub = this.basket.basketSub.subscribe((data) => {
+    if (data) {
+      data.forEach((element: any) => {
+        if (element.capRef === this.capRef) {
+          this.alreadyInBasket = true;
+        }
+      });
+    }
+   
+  })
+
+ 
+}
+
+checkQuantity() {
+  this.quantity = 1;
+if (this.cap.quantity < this.capBasketMax) {
+  this.quantityArray = Array.from({length:this.cap.quantity},(v,k)=>k+1)
+} else {
+  this.quantityArray = Array.from({length:this.capBasketMax},(v,k)=>k+1)
+}
 
 }
 
@@ -106,6 +126,7 @@ goToHat(cap: any){
      this.capRef = this.collectionRef + '_' + capName;
     this.getCap();
     this.getOtherHats();
+    this.checkInBasket();
 
   }
 

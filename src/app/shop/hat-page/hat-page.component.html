@@ -20,7 +20,6 @@
     </ion-col>
     <ion-col size="12" size-md="5" class="description-col">
         <h1>{{cap?.name}}</h1>
-        <h2><i>{{cap?.colelction}}</i></h2>
         <ion-icon class="star" name="star"></ion-icon>
         <ion-icon name="star" class="star"></ion-icon>
         <ion-icon class="star" name="star"></ion-icon>
@@ -28,18 +27,25 @@
         <ion-icon class="star" name="star"></ion-icon>
         <h2 class="review-count">(29)</h2>
         <h1 class="price">£{{cap?.price}}</h1>
-        <ion-item>
-          <ion-label>Quantity:</ion-label>
-          <ion-input type="number" [(ngModel)]="quantity" required="true" clearInput=true min="0" max="5" value="1"></ion-input>
-        </ion-item>   
+      
+        <ion-item lines="none" class="quantity" *ngIf="!alreadyInBasket">
+          <ion-label>Qty</ion-label>
+          <ion-select mode="ios" interface="popover" *ngIf="quantity" (ionChange)="quantityChanged($event, i)"  [value]="quantity">
+            <ion-select-option *ngFor="let val of quantityArray" [value]=val>{{val}}</ion-select-option>
+          </ion-select>
+        </ion-item>
         <p>{{cap?.description}}</p>  
-        <ion-button fill="outline"color="dark" (click)="addToBasket(cap)">ADD TO BASKET</ion-button>
-        <ion-button (click)="checkoutFirebase()">stripe testing</ion-button>
+        <p *ngIf="cap?.quantity < 20" class="cap-quantity">Only {{cap?.quantity}} left in stock!</p>
+
+        <div class="ion-text-center add-basket">
+          <ion-button *ngIf="!alreadyInBasket" shape="round" color="tertiary" (click)="addToBasket(cap)">ADD TO BASKET</ion-button>
+          <ion-button *ngIf="alreadyInBasket" shape="round" color="tertiary" (click)="openBasket()">VIEW IN BASKET</ion-button>
+        </div>
 
         <div class="extras-box">
           <ion-item class="delivery" lines="none">
             <ion-icon slot="start" name="mail"></ion-icon>
-            <ion-label>Delivery info</ion-label>
+            <ion-label>Delivery info (2-3 days)</ion-label>
           </ion-item>    
           <ion-item class="plant-tree" lines="none">
             <ion-icon slot="start" name="leaf"></ion-icon>
@@ -48,6 +54,17 @@
          </div>
       </ion-col>
   </ion-row>
+
+
+<div class="other-caps">
+  <h2>Other caps from this collection</h2>
+  <ion-row>
+    <ion-col size="12" size-md="3" *ngFor="let otherCap of otherCaps" [ngStyle]="{'display':otherCap.name === cap.name ? 'none' : 'block' }" >
+     <app-cap-card [cap]="otherCap" [collectionRef] = "collectionRef"></app-cap-card>
+    </ion-col>
+  </ion-row>
+</div>
+
 
   <ion-row class="learn-more">
     <ion-col size="12" size-md="4" class="learn-more-header">
@@ -61,23 +78,6 @@
 
 
 
-  <h2>Other caps from this collection</h2>
-  <ion-row>
-
-
-  
-    <ion-col size="12" size-md="3" *ngFor="let otherCap of otherCaps" [ngStyle]="{'display':otherCap.name === cap.name ? 'none' : 'block' }" >
-      <ion-card (click)="goToHat(otherCap)">
-        <img [src]="otherCap?.imageField1">
-        <ion-card-header>
-          <ion-card-title>{{otherCap?.name}}</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          {{otherCap?.description}}            
-        </ion-card-content>
-      </ion-card>
-    </ion-col>
-  </ion-row>
 
   <ion-row class="other-info">
     <ion-col size="12" size-md="1"></ion-col>

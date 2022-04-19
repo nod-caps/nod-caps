@@ -1,4 +1,4 @@
-ion-row{
+.cap-row{
     margin:30px;
 }
 
@@ -6,13 +6,19 @@ ion-row{
     padding:15px 30px;
     text-align: center;
     max-width: 800px;
-    color: white;
+    color: #f8f9fa;
     margin:auto;
+}
+.top-row{
+    background: #22472A;
+    padding-bottom: 30px;
 }
 
 h1{
     font-size:40px;
 }
-ion-content{
-    --background: linear-gradient(180deg, #013328 50%, rgba(0,0,0,0) 30%), linear-gradient(180deg, #994836 80%, #013328 80%)!important;
+
+.caps-div{
+    padding: 10px;
 }
+

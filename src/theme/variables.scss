@@ -2,7 +2,16 @@
 // http://ionicframework.com/docs/theming/
 
 /** Ionic CSS Variables **/
+
+@font-face {
+  font-family: AppFont;
+  src: url("../assets/fonts/AvenirNext-Medium.otf"); //change url accordingly
+  }
+  
+
 :root {
+   --ion-font-family: 'AppFont';
+
   /** primary **/
   --ion-color-primary: #3880ff;
   --ion-color-primary-rgb: 56, 128, 255;
@@ -20,12 +29,12 @@
   --ion-color-secondary-tint: #50c8ff;
 
   /** tertiary **/
-  --ion-color-tertiary: #5260ff;
-  --ion-color-tertiary-rgb: 82, 96, 255;
-  --ion-color-tertiary-contrast: #ffffff;
-  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
-  --ion-color-tertiary-shade: #4854e0;
-  --ion-color-tertiary-tint: #6370ff;
+	--ion-color-tertiary: #7ac08e;
+	--ion-color-tertiary-rgb: 122,192,142;
+	--ion-color-tertiary-contrast: #22472A;
+	--ion-color-tertiary-contrast-rgb: 34, 71, 42;
+	--ion-color-tertiary-shade: #6ba97d;
+	--ion-color-tertiary-tint: #87c699;
 
   /** success **/
   --ion-color-success: #2dd36f;
@@ -70,8 +79,8 @@
   /** light **/
   --ion-color-light: #f4f5f8;
   --ion-color-light-rgb: 244, 245, 248;
-  --ion-color-light-contrast: #000000;
-  --ion-color-light-contrast-rgb: 0, 0, 0;
+  --ion-color-light-contrast: #22472A;
+  --ion-color-light-contrast-rgb: 34, 71, 42;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
 }
@@ -97,12 +106,12 @@
     --ion-color-secondary-shade: #46b0e0;
     --ion-color-secondary-tint: #62ceff;
 
-    --ion-color-tertiary: #6a64ff;
-    --ion-color-tertiary-rgb: 106,100,255;
-    --ion-color-tertiary-contrast: #ffffff;
-    --ion-color-tertiary-contrast-rgb: 255,255,255;
-    --ion-color-tertiary-shade: #5d58e0;
-    --ion-color-tertiary-tint: #7974ff;
+    --ion-color-tertiary: #7ac08e;
+    --ion-color-tertiary-rgb: 122,192,142;
+    --ion-color-tertiary-contrast: #22472A;
+    --ion-color-tertiary-contrast-rgb: 0,0,0;
+    --ion-color-tertiary-shade: #6ba97d;
+    --ion-color-tertiary-tint: #87c699;
 
     --ion-color-success: #2fdf75;
     --ion-color-success-rgb: 47,223,117;

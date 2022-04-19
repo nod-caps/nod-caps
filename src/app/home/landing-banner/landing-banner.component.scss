@@ -17,12 +17,10 @@ ion-row{
   max-width:2000px;
   margin-left:auto;
   margin-right: auto;
-  margin-bottom:50px;
-  background: linear-gradient(
-    -75deg, #013328 35%, rgba(0, 0, 0, 0) 35%), url('../../../assets/img/hiking-header.jpg'); 
+  background: #22472a; 
   background-position: center;
   background-size: cover;
-  color: white;
+ 
 }
 
 .custom-shape-divider-bottom-1633272370 {
@@ -62,7 +60,9 @@ ion-row{
       margin:0px;
       font-size:50px;
       font-weight: bold;
+      color: #f8f9fa;
   }
+
 
 }
 
@@ -119,6 +119,7 @@ ion-row{
   opacity: 0; 
   p{
     font-size:20px;
+    color: white;
   }
 }
 

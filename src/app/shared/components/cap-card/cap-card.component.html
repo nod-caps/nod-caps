@@ -1,0 +1,16 @@
+<ion-card (click)="goToHat(cap)">
+  <img [src]="cap?.imageField1">
+  <ion-card-header>
+    <ion-card-title>{{cap?.name}} </ion-card-title>
+
+    <div class="bottom-holder">
+      <span class="rating"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></span>
+      <span class="price"> £{{cap.price}}</span>
+    </div>
+  </ion-card-header>
+  <div class="shop-button-hover ion-text-center">
+  <ion-button  shape="round" color="light">
+        SHOP
+  </ion-button>
+</div>
+</ion-card>

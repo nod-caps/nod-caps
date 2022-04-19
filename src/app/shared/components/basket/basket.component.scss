@@ -3,7 +3,6 @@ ion-content{
 }
 h1{    margin-top: 50px;
     margin-bottom: 20px;
-    border-bottom: 1px solid #cccc;
     padding-bottom: 20px;
 }
 .basket-container{
@@ -13,8 +12,6 @@ h1{    margin-top: 50px;
 }
 
 .basket-item{
-    border-bottom: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
     margin-bottom: 20px;
     padding-bottom: 20px;
     ion-col{
@@ -24,7 +21,11 @@ h1{    margin-top: 50px;
         height:235px;
     }
     .quantity{
-        width:250px;
+        width:85px;
+        --padding-start: 0px;
+        ion-label{
+            max-width:40px
+        }
     }
 }
 
@@ -33,11 +34,51 @@ h1{    margin-top: 50px;
 }
 
 .pos-rel .top-right{
-    position:absolute;
-    top: 5px;
-    right:20px;
+    position: absolute;
+    top: 12px;
+    right: 20px;
+    font-size: 20px;
 }
 
-.item-price{
-    
+ion-toolbar{
+    max-width:800px;
+    margin-left:auto;
+    margin-right:auto;
+    --background:transparent;
+}
+ion-footer{
+    background:#22472A
+}
+
+ion-title{
+    color: #F7F8F9;
+    padding:0px;
+}
+
+
+.remove-from-basket{
+    text-decoration: underline;
+    text-transform: lowercase;
+    position: absolute;
+    left: -20px;
+    bottom: -7px;
+    color:#737373;
+}
+
+.description{
+    color:#737373;
+    margin-bottom:0px;
+}
+
+ion-select{
+    padding-left:0px;
+}
+
+
+.inModal .basket-container{
+padding:0px 20px;
+}
+
+.inModal ion-toolbar {
+    padding:0px 20px;
 }

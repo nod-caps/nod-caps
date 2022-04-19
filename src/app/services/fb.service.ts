@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { collection, query, getDocs, where, Firestore } from '@angular/fire/firestore';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseService {
 
   allCaps: any[] = [];
+  currentDoc: any;
 
   constructor(
     private firestore: Firestore,
@@ -77,6 +79,24 @@ async getSingleCap(capRef: any){
     });
     return caps[0]
 }
+
+async getStripeCap(capRef:any) {
+  const stripeCaps = [];
+  const q = query(collection(this.firestore, 'products'), where("metadata.id", "==", capRef));
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach(async (doc) => {
+    stripeCaps.push(doc.data());
+    console.log('hello', stripeCaps);
+    const q1 = query(collection(doc.ref, 'prices'));
+    const querySnapshot1 = await getDocs(q1);
+    querySnapshot1.forEach(async (doc1) => {
+      stripeCaps[0].price = doc1.data()
+      console.log('shalom')
+      return stripeCaps[0]
+    });
+  });
+}
+
 
 
 

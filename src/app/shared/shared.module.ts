@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 import { BannerSwiperComponent } from './components/banner-swiper/banner-swiper.component';
 import { BasketComponent } from './components/basket/basket.component';
+import { CapCardComponent } from './components/cap-card/cap-card.component';
 import { HeaderComponent } from './components/header/header.component';
 
 
@@ -26,14 +27,16 @@ import { HeaderComponent } from './components/header/header.component';
       BannerSwiperComponent,
       HeaderComponent,
       BasketComponent,
-      AdminLoginComponent
+      AdminLoginComponent,
+      CapCardComponent
   ],
   providers: [],
   exports: [
     BannerSwiperComponent,
     HeaderComponent,
     BasketComponent, 
-    AdminLoginComponent
+    AdminLoginComponent,
+    CapCardComponent
   ]
 })
 export class SharedModule { }

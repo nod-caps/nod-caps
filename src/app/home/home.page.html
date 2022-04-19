@@ -1,7 +1,6 @@
 
 
-<app-banner-swiper [ngClass]="isTop?'fade-in':'fade-out'" ></app-banner-swiper>
-
+<!--<app-banner-swiper [ngClass]="isTop?'fade-in':'fade-out'" ></app-banner-swiper>-->
 
 
 
@@ -9,16 +8,12 @@
 
 
     <app-landing-banner [isTop]="isTop"></app-landing-banner>
-    <app-section-two [ngClass]="isTop?'toptop':''" class="background2"></app-section-two>
-    <app-section-three></app-section-three>
+    
+    <app-section-one [ngClass]="isTop?'toptop':''" class="background2"></app-section-one>
+
     
  
-    <ion-footer>
-      <ion-toolbar>
-        <ion-button  color="light" fill="clear" [disabled]="true">©2021 Cap Shop</ion-button>
-        <ion-button slot="end" color="dark" fill="clear">Contact</ion-button>
-      </ion-toolbar>
-    </ion-footer>
+
 </ion-content>
 
 
