@@ -1,7 +1,7 @@
 <div class="section2">
   <div class="collection-div">
 
-  <h1>{{collection?.name}}</h1>
+  <h2>Our caps</h2>
   <ion-row class="row">
 
     <ion-col size="12" size-md="3" *ngFor="let cap of caps">
@@ -10,54 +10,120 @@
   </ion-row>
 </div>
 
-  <div class="swiper-holder">
+ 
 
+
+<div class="green-info-section">
+    <ion-row>
+      <ion-col size="12" size-md="4" class="ion-text-center">
+        <p>This is some general information about where we started</p>
+      </ion-col>
+      <ion-col size="12" size-md="4" class="ion-text-center">
+        <p>This is some general information about what we do about planting trees</p>
+      </ion-col>
+      <ion-col size="12" size-md="4" class="ion-text-center">
+        <p>This is some general information about where we get our caps.</p>
+      </ion-col>
+    </ion-row>
+</div>
+
+<div class="swiper-holder">
+  <h2>Some great photos from all of you...</h2>
   <swiper #swiper [config]="config" (slideChange)="onSlideChange($event)">
     <ng-template swiperSlide>
-      <div class="banner-swiper" [ngClass]="activeIndex === 0 ? '': 'notActive'">
-        <img src="assets/img/mountain-1.jpg">
-        <div class="text-holder">
-          <h2>
-            Check out the latest collection
-          </h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, q
-          </p>
-          <ion-button shape="round" (click)="goToShop()" color="light">TO SHOP</ion-button>
-        </div>
+      <ion-card>
+        <img src="assets/img/cap-photo.png">
+        <ion-card-header>
+          <ion-card-title class="photo-description">Description here</ion-card-title>
+        </ion-card-header>
+        <div class="shop-button-hover ion-text-center">
+        <ion-button  shape="round" color="light">
+              SHOP
+        </ion-button>
       </div>
+      </ion-card>
     </ng-template>
     <ng-template swiperSlide>
-      <div class="banner-swiper" [ngClass]="activeIndex === 1 ? '': 'notActive'">
-        <img src="assets/img/monutain-2.jpg">
-        <div class="text-holder">
-          <h2>
-            Check out the latest collection
-          </h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, q
-          </p>
-          <ion-button shape="round" (click)="goToShop()" color="light">TO SHOP</ion-button>
-        </div>
+      <ion-card>
+        <img src="assets/img/cap-photo.png">
+        <ion-card-header>
+          <ion-card-title class="photo-description">Description here</ion-card-title>
+        </ion-card-header>
+        <div class="shop-button-hover ion-text-center">
+        <ion-button  shape="round" color="light">
+              SHOP
+        </ion-button>
       </div>
+      </ion-card>
     </ng-template>
     <ng-template swiperSlide>
-      <div class="banner-swiper" [ngClass]="activeIndex === 2 ? '': 'notActive'">
-        <img src="assets/img/mountain-3.jpg">
-        <div class="text-holder">
-          <h2>
-            Check out the latest collection
-          </h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, q
-          </p>
-          <ion-button shape="round"  (click)="goToShop()"color="light">TO SHOP</ion-button>
-        </div>
+      <ion-card>
+        <img src="assets/img/cap-photo.png">
+        <ion-card-header>
+          <ion-card-title class="photo-description">Description here</ion-card-title>
+        </ion-card-header>
+        <div class="shop-button-hover ion-text-center">
+        <ion-button  shape="round" color="light">
+              SHOP
+        </ion-button>
       </div>
+      </ion-card>
+    </ng-template>
+    <ng-template swiperSlide>
+      <ion-card>
+        <img src="assets/img/cap-photo.png">
+        <ion-card-header>
+          <ion-card-title class="photo-description">Description here</ion-card-title>
+        </ion-card-header>
+        <div class="shop-button-hover ion-text-center">
+        <ion-button  shape="round" color="light">
+              SHOP
+        </ion-button>
+      </div>
+      </ion-card>
+    </ng-template>
+    <ng-template swiperSlide>
+      <ion-card>
+        <img src="assets/img/cap-photo.png">
+        <ion-card-header>
+          <ion-card-title class="photo-description">Description here</ion-card-title>
+        </ion-card-header>
+        <div class="shop-button-hover ion-text-center">
+        <ion-button  shape="round" color="light">
+              SHOP
+        </ion-button>
+      </div>
+      </ion-card>
+    </ng-template>
+    <ng-template swiperSlide>
+      <ion-card>
+        <img src="assets/img/cap-photo.png">
+        <ion-card-header>
+          <ion-card-title class="photo-description">Description here</ion-card-title>
+        </ion-card-header>
+        <div class="shop-button-hover ion-text-center">
+        <ion-button  shape="round" color="light">
+              SHOP
+        </ion-button>
+      </div>
+      </ion-card>
+    </ng-template>
+    <ng-template swiperSlide>
+      <ion-card>
+        <img src="assets/img/cap-photo.png">
+        <ion-card-header>
+          <ion-card-title class="photo-description">Description here</ion-card-title>
+        </ion-card-header>
+        <div class="shop-button-hover ion-text-center">
+        <ion-button  shape="round" color="light">
+              SHOP
+        </ion-button>
+      </div>
+      </ion-card>
     </ng-template>
   </swiper>
-  <ion-button *ngIf="!disableStart" class="nav-button left" color="light" (click)="slidePrev()"><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
-  <ion-button *ngIf="!disableEnd" class="nav-button right" color="light"  (click)="slideNext()" ><ion-icon  name="chevron-forward-outline"></ion-icon></ion-button>
+  <ion-button *ngIf="!disableStart" class="nav-button left" color="tertiary" (click)="slidePrev()"><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
+  <ion-button *ngIf="!disableEnd" class="nav-button right" color="tertiary"  (click)="slideNext()" ><ion-icon  name="chevron-forward-outline"></ion-icon></ion-button>
 </div>
 
 

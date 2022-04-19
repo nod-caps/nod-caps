@@ -21,9 +21,9 @@ disableStart = false;
  
 
 config: SwiperOptions = {
-  slidesPerView: 1.4,
+  slidesPerView: 5,
   spaceBetween: 20,
-  initialSlide: 1,
+  initialSlide: 0,
   centeredSlides: true,
   centeredSlidesBounds: true,
 

@@ -1,5 +1,5 @@
 ion-row{
-  margin-bottom:30px;
+  // margin-bottom:30px;
 
 }
 
@@ -31,7 +31,7 @@ font-size:40px;
 }
 
 .collection-div{
-  padding:30px;
+  padding:70px 30px;
 }
 
 .banner-swiper {
@@ -44,14 +44,23 @@ font-size:40px;
 }
 
 .section2 h2{
-  color:#212529
+  color:#212529;
+  font-size: 30px;
+    margin-bottom: 30px;
 }
 
 .swiper-holder{
+
   animation: slideUp 1.5s ease ;
   -webkit-animation: slideUp 1.5s ease ;
-  margin-bottom:50px;
+  padding: 115px 35px;
   position: relative;
+  background-image: -webkit-linear-gradient(270deg, #ffffff 45%, #22472a 45%);
+  position: relative;
+  h2{
+   
+    text-align: center;
+  }
   .nav-button{
     height: 40px;
       width: 40px;
@@ -137,3 +146,26 @@ font-size:40px;
 }
 
 
+
+.green-info-section{
+  
+    background-image: url('/assets/img/hiking-header.jpg');
+    background-position: center;
+  p{
+    color: #f8f9fa;
+    font-size:20px;
+  }
+  ion-col{
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding:30px;
+    background:rgba(0, 0, 0, 0.85);
+  }
+}
+
+
+.photo-description{
+  font-size: 15px;
+}
