@@ -1,0 +1,30 @@
+.container {
+    padding: 20px;
+    height:100%;
+}
+
+.order {
+    border: 1px solid rgb(16, 61, 25);
+}
+
+.hat{
+    margin-left:10px;
+}
+
+ion-card{
+    padding:10px;
+    ion-button{
+        float:right;
+        margin-top:10px;
+    }
+}
+
+.packaged{
+    background: #a7ffa7;
+}
+
+.packageSearch {
+   // text-align: center;
+   margin-top:10px;
+   margin-bottom: 20px;
+}

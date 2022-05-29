@@ -18,9 +18,19 @@ ion-card:hover {
     display:none;
    }
 
+   .running-out {
+    font-size: 15px;
+    color: #d40000;
+    position: absolute;
+    top: -5px;
+   }
+
    
 ion-card{
     overflow:visible;
+    max-width: 275px;
+    margin-left: auto;
+    margin-right: auto;
     ion-icon{
      color: #7ac08e
     }
@@ -69,3 +79,10 @@ ion-card-title{
     }
   }
  
+
+  .loading{
+    height:336px;
+    text-align:center;
+    padding-top:60%;
+
+  }

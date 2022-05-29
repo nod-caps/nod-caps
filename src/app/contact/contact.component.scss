@@ -1,7 +1,7 @@
 .form-holder{
     background:white;
-    width:40%;
-    margin-left:30%;
+    width:60%;
+    margin-left:20%;
     padding: 1px 30px 30px 30px;
     border-radius: 2px;
     margin-top:30px;
@@ -15,7 +15,13 @@ ion-button{
     text-align:right;
 }
 
-ion-content{
-    --background: linear-gradient(180deg, #013328 50%, rgba(0,0,0,0) 30%), linear-gradient(180deg, #994836 60%, #013328 60%)!important;
 
+@media (max-width: 768px) {
+    .form-holder{
+        width:100%!important;
+        margin:0%!important;
+        padding-top: 56px;
+    }
 }
+
+

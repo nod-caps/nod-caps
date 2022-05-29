@@ -42,3 +42,45 @@ ion-content{
     width: 700px;
     height:70%;
 }
+
+.cookie-modal .modal-wrapper {
+    width: 100%;
+    bottom: 0px;
+    position: absolute;
+    height:30%;
+}
+
+@media (max-width:768px) {
+    .basket-modal .modal-wrapper{
+        width: 95%;
+        height:80%;
+    }
+    .cookie-modal .modal-wrapper {
+        height:45%;
+    }
+}
+
+
+.swiper-col-hat .swiper-slide {
+    text-align: center;
+}
+
+.swiper-button-prev, .swiper-button-next{
+    height: 40px;
+    width: 40px;
+    --border-radius: 50%;
+    --padding-start:0px;
+    --padding-end:0px;
+}
+
+.swiper-button-prev:after, .swiper-button-next:after{
+  display: none;
+}
+
+.swiper-pagination-bullet-active{
+    background: #22472A;
+}
+
+.modal-wrapper {
+    --border-radius:6px;
+}

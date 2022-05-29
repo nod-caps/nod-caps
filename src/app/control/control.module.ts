@@ -6,7 +6,6 @@ import { SharedModule } from '../shared/shared.module';
 import { ControlRoutingModule } from './control-routing.module';
 import { ControlComponent } from './control.component';
 import { CreateCapComponent } from './create-cap/create-cap.component';
-import { OrdersComponent } from './orders/orders.component';
 import { ControlCollectionComponent } from './control-collection/control-collection.component';
 import { SwiperModule } from 'swiper/angular';
 import { SingleCollectionComponent } from './control-collection/single-collection/single-collection.component';
@@ -31,6 +30,6 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
     AngularFireAuthModule, 
     AngularFireStorageModule,
   ],
-  declarations: [ControlComponent, CreateCapComponent, OrdersComponent, ControlCollectionComponent, SingleCollectionComponent, CreateCollectionComponent]
+  declarations: [ControlComponent, CreateCapComponent, ControlCollectionComponent, SingleCollectionComponent, CreateCollectionComponent]
 })
 export class ControlModule { }

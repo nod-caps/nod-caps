@@ -10,23 +10,31 @@ export class BasketService{
     public basketSub = new BehaviorSubject<any>([]);
     currentBasket = [];
     pushObjectToArray = true
+    useLocalStorage = false;
 
   constructor(
     
   ) {
+   }
+
+   checkBasket() {
+     console.log('hello there');
     if (JSON.parse(localStorage.getItem('basket'))) {
       this.currentBasket = JSON.parse(localStorage.getItem('basket'))
       this.basketSub.next(this.currentBasket);
     } else {
       this.currentBasket = [];
     }
-    
    }
-
 
   editBasket(){
     this.basketSub.next(this.currentBasket);
     localStorage.setItem('basket', JSON.stringify(this.currentBasket));
+  }
+
+  clearBasket() {
+    this.basketSub.next([]);
+    localStorage.removeItem('basket');
   }
 
   getBasket(){    

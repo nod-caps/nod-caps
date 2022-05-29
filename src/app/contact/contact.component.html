@@ -1,27 +1,48 @@
 
 <ion-content>
-  <div class="form-holder">
+  <div class="form-holder" *ngIf="!mailSent">
     <h1>Contact Form</h1>
     <p>Please get in touch with any shite and a member of the team will get back to you.</p>
+    <form [formGroup]="contactForm">
 
     <ion-item>
       <ion-label position="stacked">Name</ion-label>
-      <ion-input placeholder="Your name..."></ion-input>
+      <ion-input  formControlName="name" placeholder="Your name..."></ion-input>
     </ion-item>
+    <div *ngFor="let error of errorMessages.name">
+      <ng-container *ngIf="name?.hasError(error.type) && (name?.dirty || name?.touched)">
+        <small class="error-message">{{error.message}}</small>
+      </ng-container>
+    </div>
     <ion-item>
       <ion-label position="stacked">Email</ion-label>
-      <ion-input placeholder="Your email..."></ion-input>
+      <ion-input  type="email"  formControlName="email"placeholder="Your email..."></ion-input>
     </ion-item>
+    <div *ngFor="let error of errorMessages.email">
+      <ng-container *ngIf="email?.hasError(error.type) && (email?.dirty || email?.touched)">
+        <small class="error-message">{{error.message}}</small>
+      </ng-container>
+    </div>
     
 
     <ion-item>
       <ion-label position="stacked">Message</ion-label>
-      <ion-textarea rows="6" placeholder="Enter your text..."></ion-textarea>
+      <ion-textarea  formControlName="message" rows="6" placeholder="Enter your text..."></ion-textarea>
     </ion-item>
+    <div *ngFor="let error of errorMessages.message">
+      <ng-container *ngIf="message?.hasError(error.type) && (message?.dirty || message?.touched)">
+        <small class="error-message">{{error.message}}</small>
+      </ng-container>
+    </div>
+    </form>
 
     <div class="button-holder">
-      <ion-button fill="outline" color="dark">Send Message</ion-button>
+      <ion-button [disabled]="!contactForm.valid" shape="round" color="tertiary" (click)="sendEmail()"><span *ngIf="!sending">Send Message</span><ion-spinner *ngIf="sending"></ion-spinner></ion-button>
 
     </div>
+  </div>
+  <div class="form-holder" *ngIf="mailSent">
+    <h1>Message Sent</h1>
+    <p>Thanks for getting in touch. We will get back to you asap.</p>
   </div>
 </ion-content>

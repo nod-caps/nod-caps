@@ -1,7 +1,7 @@
 <ion-content>
 
-  <ion-row>
-    <ion-col size="12" size-md="2" class="preview-images">
+  <ion-row *ngIf="cap">
+    <ion-col size="12" size-md="2" class="preview-images ion-hide-md-down">
       <div *ngIf="cap?.imageField1">
         <img (click)="makeActive(cap?.imageField1)" (mouseover)="hoverImg(cap?.imageField1)" (mouseout)="hoverImgOut()" [src]="cap?.imageField1" [ngClass]="activeCap === cap?.imageField1 ? 'active-cap' : ''">
       </div>
@@ -15,8 +15,29 @@
         <img  (click)="makeActive(cap?.imageField4)"  (mouseover)="hoverImg(cap?.imageField4)" (mouseout)="hoverImgOut()" [src]="cap?.imageField4" [ngClass]="activeCap === cap?.imageField4 ? 'active-cap' : ''">
       </div>
     </ion-col>
-    <ion-col size="12" size-md="5" class="main-image">
+    <ion-col size="12" size-md="5" class="main-image ion-hide-md-down">
       <img [src]="activeCap">
+    </ion-col>
+    <ion-col size="12" class="ion-hide-md-up swiper-col-hat">
+      <swiper #swiper [config]="config" >
+        <ng-template swiperSlide class="swipe" *ngIf="cap?.imageField1">
+          <img [src]="cap?.imageField1">
+        </ng-template>
+        <ng-template swiperSlide class="swipe" *ngIf="cap?.imageField2">
+          <img [src]="cap?.imageField2">
+        </ng-template>
+        <ng-template swiperSlide class="swipe" *ngIf="cap?.imageField3">
+          <img [src]="cap?.imageField3">
+        </ng-template>
+        <ng-template swiperSlide class="swipe" *ngIf="cap?.imageField4">
+          <img [src]="cap?.imageField4">
+        </ng-template>
+
+      </swiper>
+      <div class="swiper-pagination"></div>
+
+      <ion-button class=" swiper-button-prev" color="light" ><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
+       <ion-button class=" swiper-button-next" color="light" ><ion-icon  name="chevron-forward-outline"></ion-icon></ion-button>
     </ion-col>
     <ion-col size="12" size-md="5" class="description-col">
         <h1>{{cap?.name}}</h1>
@@ -28,32 +49,37 @@
         <h2 class="review-count">(29)</h2>
         <h1 class="price">£{{cap?.price}}</h1>
       
-        <ion-item lines="none" class="quantity" *ngIf="!alreadyInBasket">
+        <ion-item lines="none" class="quantity" *ngIf="!alreadyInBasket && cap?.quantity !== 0">
           <ion-label>Qty</ion-label>
           <ion-select mode="ios" interface="popover" *ngIf="quantity" (ionChange)="quantityChanged($event, i)"  [value]="quantity">
             <ion-select-option *ngFor="let val of quantityArray" [value]=val>{{val}}</ion-select-option>
           </ion-select>
         </ion-item>
         <p>{{cap?.description}}</p>  
-        <p *ngIf="cap?.quantity < 20" class="cap-quantity">Only {{cap?.quantity}} left in stock!</p>
+        <p *ngIf="cap?.quantity < 20 && cap?.quantity > 0" class="cap-quantity">Only {{cap?.quantity}} left in stock!</p>
+        <p *ngIf="cap?.quantity === 0" class="cap-quantity">Out of stock!</p>
 
-        <div class="ion-text-center add-basket">
+        <div class="ion-text-center add-basket" *ngIf="cap?.quantity !== 0">
           <ion-button *ngIf="!alreadyInBasket" shape="round" color="tertiary" (click)="addToBasket(cap)">ADD TO BASKET</ion-button>
           <ion-button *ngIf="alreadyInBasket" shape="round" color="tertiary" (click)="openBasket()">VIEW IN BASKET</ion-button>
         </div>
 
         <div class="extras-box">
-          <ion-item class="delivery" lines="none">
+          <ion-item class="delivery" detail="false" button="true" lines="none" (click)="openDeliveryInfo()">
             <ion-icon slot="start" name="mail"></ion-icon>
             <ion-label>Delivery info (2-3 days)</ion-label>
           </ion-item>    
           <ion-item class="plant-tree" lines="none">
             <ion-icon slot="start" name="leaf"></ion-icon>
-            <ion-label>Plant a tree with each purhcase</ion-label>
+            <ion-label>Plant a tree with each purchase</ion-label>
           </ion-item>      
          </div>
       </ion-col>
   </ion-row>
+  <ion-row *ngIf="!cap" class="loading">
+    <ion-spinner color="tertiary"></ion-spinner>
+  </ion-row>
+ 
 
 
 <div class="other-caps">
@@ -62,6 +88,14 @@
     <ion-col size="12" size-md="3" *ngFor="let otherCap of otherCaps" [ngStyle]="{'display':otherCap.name === cap.name ? 'none' : 'block' }" >
      <app-cap-card [cap]="otherCap" [collectionRef] = "collectionRef"></app-cap-card>
     </ion-col>
+  </ion-row>
+  <ion-row class="row" *ngIf="!otherCaps">
+    <ion-col size="12" size-lg="3" size-md="4" size-sm="6">
+     <app-cap-card></app-cap-card>
+    </ion-col>
+    <ion-col size="12" size-lg="3" size-md="4" size-sm="6">
+      <app-cap-card></app-cap-card>
+     </ion-col>
   </ion-row>
 </div>
 
@@ -80,7 +114,7 @@
 
 
   <ion-row class="other-info">
-    <ion-col size="12" size-md="1"></ion-col>
+    <ion-col size="12 " size-md="1"></ion-col>
     <ion-col size="12" size-md="7" class="other-info-section">
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>  
     </ion-col>
@@ -89,5 +123,7 @@
     </ion-col>
   </ion-row>
 
+
+  <app-footer></app-footer>
 
 </ion-content>

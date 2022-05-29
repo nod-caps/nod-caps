@@ -182,7 +182,7 @@ async save() {
   this.capName = this.capForm.get('name').value;
   const description = this.capForm.get('description').value;
   const price = this.capForm.get('price').value;
-  const quantity = this.capForm.get('quantity').value;
+  const quantity = Number(this.capForm.get('quantity').value);
   this.capRef = this.collectionRef + '_' + this.capName.replaceAll(' ', '-');
 
   const capObj = {

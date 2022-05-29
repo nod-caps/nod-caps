@@ -1,15 +1,13 @@
 <ion-header   class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="end">
-      <ion-menu-button class="ion-hide-md-up" color="light"></ion-menu-button>
-       <div class="ion-hide-md-down">
-         <ion-button (click)="goTo('home')"><strong>HOME</strong></ion-button>
-         <ion-button (click)="goTo('shop')"><strong>SHOP</strong></ion-button>
-         <ion-button (click)="goTo('basket')" class="basket"><ion-icon name="cart"></ion-icon><ion-badge *ngIf="basketQuantity > 0" color="danger">{{basketQuantity}}</ion-badge></ion-button>
-
+       <div>
+         <ion-button (click)="goTo('home')" color="light ion-hide-sm-down"><strong>home</strong></ion-button>
+         <ion-button (click)="goTo('shop')" color="light"><strong>shop</strong></ion-button>
+         <ion-button (click)="goTo('basket')" color="light" class="basket"><ion-icon name="cart"></ion-icon><ion-badge *ngIf="basketQuantity > 0" color="danger">{{basketQuantity}}</ion-badge></ion-button>
        </div>
     </ion-buttons>
-    <ion-title>
+    <ion-title slot="start" (click)="goTo('home')" >
       <strong>nod caps</strong>
     </ion-title>
   </ion-toolbar>

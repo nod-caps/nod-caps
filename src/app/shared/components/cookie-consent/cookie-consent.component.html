@@ -1,0 +1,14 @@
+<div class="cookie-container">
+  <ion-buttons class="close">
+    <ion-button color="dark" (click)="close()"><ion-icon name="close-outline"></ion-icon></ion-button>
+  </ion-buttons>
+  <h3>
+    You guessed it. This site uses cookies.
+  </h3>
+  <p>We use non-personal cookies for analytics, and also some social media cookies to allow us to personalise ads. There are also one or two to take care of security. If you click 'Accept' this will allow us to use Analytics and Marketing cookies. You have full control over which cookies may be set by clicking 'Settings'
+  </p>
+  <div class="ion-text-center">
+    <ion-button color="tertiary" shape="round" (click)="setCookie('accepted')">Accept</ion-button>
+    <ion-button color="tertiary" fill="outline" shape="round" (click)="setCookie('rejected')">I do not accept</ion-button>
+  </div> 
+</div>

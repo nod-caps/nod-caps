@@ -3,6 +3,14 @@
       padding: 0px!important;
       //text-align:center;
     }
+    ion-title{
+      padding-left: 20px;
+      text-align: left;
+    }
+    ion-badge{
+height:auto;
+width: auto;
+    }
   }
   
   ion-toolbar{
@@ -18,8 +26,12 @@
     ion-badge{
       margin-bottom: 11px;
     border-radius: 50%;
-    width: 19px;
-    height: 19px;
+     width: 19px;
+     height: 19px;
     margin-left:-7px;
     }
+  }
+
+  ion-title{
+    cursor:pointer;
   }

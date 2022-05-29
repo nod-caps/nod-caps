@@ -1,11 +1,14 @@
-<ion-card (click)="goToHat(cap)">
+<ion-card (click)="goToHat(cap)" *ngIf="cap">
   <img [src]="cap?.imageField1">
   <ion-card-header>
-    <ion-card-title>{{cap?.name}} </ion-card-title>
+    <ion-card-title>{{cap?.name}}</ion-card-title>
+    <span class="running-out" *ngIf="cap.quantity < 10 && cap.quanity > 0"> only {{cap?.quantity}} left!</span>
+    <span class="running-out" *ngIf="cap.quantity === 0"> Out of stock!</span>
+
 
     <div class="bottom-holder">
       <span class="rating"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></span>
-      <span class="price"> £{{cap.price}}</span>
+      <span class="price"> £{{cap?.price}}</span>
     </div>
   </ion-card-header>
   <div class="shop-button-hover ion-text-center">
@@ -13,4 +16,8 @@
         SHOP
   </ion-button>
 </div>
+</ion-card>
+
+<ion-card *ngIf="!cap" class="loading">
+  <ion-spinner color="tertiary"></ion-spinner>
 </ion-card>

@@ -1,3 +1,39 @@
-<p>
-  orders works!
-</p>
+<div class="container">
+  <h1>This page is for displaying orders</h1>
+ 
+  <ion-item>
+    <ion-label>Pick date</ion-label>
+    <ion-datetime
+      displayFormat="DD.MM.YYYY"
+      presentation="date"
+      (ionChange)="dateChanged($event)"
+    ></ion-datetime>
+  </ion-item> 
+    <ion-item><ion-label>Search by order number:</ion-label><ion-input [(ngModel)]="orderNumber"></ion-input><ion-button fill="icon-only" (click)="searchByOrderNumber()"><ion-icon name="search"></ion-icon></ion-button></ion-item>
+  <ion-item><ion-label>Search by email:</ion-label><ion-input [(ngModel)]="email"></ion-input><ion-button  (click)="searchByEmail()"fill="icon-only"><ion-icon name="search"></ion-icon></ion-button></ion-item>
+ 
+ <div class="packageSearch">
+  <ion-button (click)="searchByPackaged()" color="tertiary">Get Unpackaged </ion-button>
+ </div> 
+<ion-content>
+  <div *ngIf="orders">
+
+ 
+  <ion-card class="order" *ngFor="let order of orders; index as i" [ngClass]="order.packaged ? 'packaged': ''">
+    <p>Date: {{order.dateString}}</p>
+    <p>Email: {{order.customerEmail}}</p>
+    <p>Name: {{order.customerName}}</p>
+    <p>Packing Label: <span style="color: red">NA</span></p>
+    <p>Order number: {{order.orderNumber}}</p>
+    <p>Order:</p>
+    <ion-item class="hat" *ngFor="let cap of order.lineItems ">
+     {{cap.description}} - {{cap.quantity}}
+    </ion-item>
+
+    <ion-button *ngIf="!order.packaged" color="success" size="small" fill="outline" (click)="packaged(order, i)">Packaged</ion-button>
+    
+  </ion-card>
+</div>
+</ion-content>
+
+</div>

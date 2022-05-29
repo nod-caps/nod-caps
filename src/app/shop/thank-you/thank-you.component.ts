@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BasketService } from 'src/app/services/basket.service';
 
 @Component({
   selector: 'app-thank-you',
@@ -11,17 +12,17 @@ export class ThankYouComponent implements OnInit {
   orderNumber: any;
 
   constructor(
-    private router:Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private basket: BasketService,
+
   ) { }
 
 
-  goHome(){
-    this.router.navigateByUrl('home');
-  }
+
 
   ngOnInit() {
     this.orderNumber = this.route.snapshot.paramMap.get('orderNumber');
+    this.basket.clearBasket();
   }
 
 }

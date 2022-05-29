@@ -170,3 +170,22 @@ font-size:40px;
 .photo-description{
   font-size: 15px;
 }
+
+@media (max-width: 768px) {
+  .green-info-section{
+    background-size:cover;
+  ion-col{
+    height:300px;
+  }
+  }
+  .swiper-holder {
+    background-image: -webkit-linear-gradient(270deg, #ffffff 55%, #22472a 55%);
+  .nav-button {
+    top:50%
+  }
+}
+
+
+
+
+}

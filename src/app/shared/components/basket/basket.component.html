@@ -1,14 +1,31 @@
+<ion-buttons *ngIf="inModal" class="close">
+  <ion-button color="dark" (click)="close()"><ion-icon name="close-outline"></ion-icon></ion-button>
+</ion-buttons>
+
+<div class="basket-title" [ngClass]="inModal ? 'inModal' : ''">
+  <h1 *ngIf="basketArray.length > 0">Your Basket</h1>
+  <h1 *ngIf="basketArray.length < 1">Your basket is empty!</h1>
+  <div class="back-to-shop" *ngIf="basketArray.length < 1" >
+    <ion-button  (click)="goTo('shop')"   color="tertiary" shape="round">
+      Back to shop
+    </ion-button>
+  </div>
+ 
+</div>
+
 <ion-content [ngClass]="inModal ? 'inModal' : ''">
+
   <div class="basket-container">
-    <h1>Your Basket</h1>
+   
 
       <ion-row class="basket-item" *ngFor="let item of basketArray; index as i">
         
         <ion-col [size]="inMenu ? '12': '4'">
           <img [src]="item.cap.imageField1">
         </ion-col>
-        <ion-col   [size]="inMenu ? '12': '8'" class="pos-rel">
+        <ion-col   [size]="inMenu ? '12': '8'" class="pos-rel col-right">
           <h2>{{item.cap.name}}</h2>
+          <p class="ion-hide-md-up">£{{item.itemPrice}}</p>
           <p class="description">{{item.cap.description}}</p>
           <p *ngIf="inModal">Quantity: {{item.quantity}}</p>
           <ion-item lines="none" class="quantity" *ngIf="!inModal">
@@ -22,22 +39,26 @@
             <ion-input (ionChange)="quantityChanged($event, i)"  type="number" required="true"  min="1" max="5" [value]="item.quantity"></ion-input>
           </ion-item>-->
           <div class="top-right">
-          <span class="item-price">£{{item.itemPrice}}</span>
+          <span class="item-price ion-hide-md-down">£{{item.itemPrice}}</span>
+          <ion-button *ngIf="!inModal" (click)="remove(i)"  class="remove-from-basket-mob ion-hide-md-up" fill="none" color="medium"><ion-icon name="close-outline"></ion-icon></ion-button>
           </div>
 
-          <ion-button *ngIf="!inModal" (click)="remove(i)"  class="remove-from-basket" fill="none" color="medium">remove</ion-button>
+          <ion-button *ngIf="!inModal" (click)="remove(i)"  class="remove-from-basket ion-hide-md-down" fill="none" color="medium">remove</ion-button>
 
         </ion-col>
       
       </ion-row>
+      <ion-button  slot="end"shape="round" color="tertiary" fill="outline" *ngIf="inModal" (click)="editBasket()">Edit Basket</ion-button>
+
   </div>
 </ion-content>
 <ion-footer [ngClass]="inModal ? 'inModal' : ''">
- <ion-toolbar>
+ <ion-toolbar >
    <ion-title>
     Total:  £{{totalPrice}}
    </ion-title>
-    <ion-button  slot="end"shape="round" color="tertiary" fill="outline" *ngIf="inModal" (click)="editBasket()">Edit Basket</ion-button>
-    <ion-button  slot="end"shape="round"  color="tertiary" (click)="getStripeInfo()">Checkout</ion-button>
-  </ion-toolbar>
+    <ion-button  [disabled]="basketArray.length < 1" slot="end"shape="round"  color="tertiary" (click)="getStripeInfo()">Checkout</ion-button>
+</ion-toolbar>
+ 
+  
 </ion-footer>

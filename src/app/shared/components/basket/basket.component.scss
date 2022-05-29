@@ -1,14 +1,21 @@
 ion-content{
     --background: white;
 }
-h1{    margin-top: 50px;
+h1{   
     margin-bottom: 20px;
-    padding-bottom: 20px;
+
+   
+}
+.basket-title {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right:auto;
 }
 .basket-container{
     max-width: 800px;
     margin-left: auto;
     margin-right:auto;
+    padding: 30px 20px; 
 }
 
 .basket-item{
@@ -18,7 +25,7 @@ h1{    margin-top: 50px;
         padding:0px;
     }
     img{
-        height:235px;
+      //  height:235px;
     }
     .quantity{
         width:85px;
@@ -45,14 +52,17 @@ ion-toolbar{
     margin-left:auto;
     margin-right:auto;
     --background:transparent;
+    padding: 10px 5px 10px 15px;
 }
 ion-footer{
-    background:#22472A
+    background:#22472A;
+padding-bottom:10px;
 }
 
 ion-title{
     color: #F7F8F9;
     padding:0px;
+    text-align: left;
 }
 
 
@@ -60,9 +70,16 @@ ion-title{
     text-decoration: underline;
     text-transform: lowercase;
     position: absolute;
-    left: -20px;
-    bottom: -7px;
+    bottom: 0px;
+    left:0px;
+    --padding-start: 18px;
     color:#737373;
+}
+
+.remove-from-basket-mob{
+    top: -20px;
+    right: -40px;
+    position: absolute;
 }
 
 .description{
@@ -79,6 +96,53 @@ ion-select{
 padding:0px 20px;
 }
 
-.inModal ion-toolbar {
-    padding:0px 20px;
+
+
+.col-right{
+    padding: 0px 20px !important;
 }
+
+@media(max-width: 768px) {
+    .basket-title {
+        margin-top:60px;
+    }
+    .inModal.basket-title{
+        margin-top:30px!important;
+    }
+    ion-content{
+      --margin-top:0px;
+    }
+    .col-right{
+        padding:10px !important;
+        p {
+            margin-top:0px;
+            font-size: 14px;
+        }
+    } 
+    h2 {
+        margin-top:0px;
+        font-size:20px;
+    }
+    ion-label {
+        font-size: 14px!important;
+    }
+    ion-select {
+        font-size:14px;
+    }
+
+    ion-title{
+        text-align: left;
+    }
+}
+
+.close{
+    position:absolute;
+    top:5px;
+    right: 5px;
+}
+
+.back-to-shop {
+    margin-top: 50px;
+    text-align: center;
+}
+

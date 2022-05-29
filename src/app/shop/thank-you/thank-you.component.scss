@@ -8,3 +8,17 @@ ion-content{
     margin-right:auto;
     text-align: center;
 }
+
+h1 {
+    color: #22472A
+}
+
+@media(max-width: 768px) {
+    ion-content{
+        margin-top: 56px;
+    }
+}
+
+ion-buttons{
+    justify-content: center;
+}

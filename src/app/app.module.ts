@@ -19,6 +19,7 @@ import { SharedModule } from './shared/shared.module';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { AngularFireModule } from '@angular/fire/compat';
   providers: [
     StatusBar,
     SplashScreen,
+    CookieService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

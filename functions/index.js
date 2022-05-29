@@ -14,7 +14,7 @@ exports.stripeCheckout = functions.https.onCall(async (data, context) => {
     },
     mode: "payment",
     success_url: "http://localhost:8100/cheers/" + orderNumber,
-    cancel_url: "http://localhost:8100/cancel",
+    cancel_url: "http://localhost:8100/shop",
   });
 
   return session.id;
@@ -37,17 +37,44 @@ exports.stripeWebhook = functions.https.onRequest(async (req, res) => {
   }
 
   const dataObject = event.data.object;
+  const lineItems = await stripe.checkout.sessions.retrieve(
+      dataObject.id,
+      {
+        expand: ["line_items"],
+      },
+  );
+
   const timestamp = new Date().getTime();
+  const dateString = new Date().toISOString().split("T")[0];
   const n = dataObject.success_url.lastIndexOf("/");
   const orderNumberFromString = dataObject.success_url.substring(n + 1);
+  lineItems.line_items.data.forEach((item, index) => {
+    lineItems.line_items.data[index].productId = item.price.product;
+    lineItems.line_items.data[index].priceId = item.price.id;
+    delete lineItems.line_items.data[index].price;
+    const ref = admin.firestore().collection("caps");
+    ref.where("description", "==", item.description)
+        .get()
+        .then(function(querySnapshot) {
+          querySnapshot.forEach(function(document) {
+            const quantity = document.data().quantity - item.quantity;
+            document.ref.update({quantity: quantity});
+          });
+        });
+  });
 
   await admin.firestore().collection("orders").doc().set({
     checkoutSessionId: dataObject.id,
     paymentStatus: dataObject.payment_status,
     shippingInfo: dataObject.shipping,
     amountTotal: dataObject.amount_total,
-    extra: dataObject,
+    customerId: dataObject.customer,
+    customerName: dataObject.customer_details.name,
+    customerEmail: dataObject.customer_details.email,
+    paymentIntent: dataObject.payment_intent,
+    lineItems: lineItems.line_items.data,
     date: timestamp,
+    dateString: dateString,
     orderNumber: orderNumberFromString,
     /* shipment: {
       // carrierId: "se-423887",

@@ -9,6 +9,7 @@ import { HatPageComponent } from './hat-page/hat-page.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ThankYouComponent } from './thank-you/thank-you.component';
 import { CollectionComponent } from './collection/collection.component';
+import { SwiperModule } from 'swiper/angular';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { CollectionComponent } from './collection/collection.component';
     IonicModule,
     ShopRoutingModule,
     SharedModule,
+    SwiperModule
     
   ],
   declarations: [ShopComponent, HatPageComponent, CheckoutComponent, ThankYouComponent, CollectionComponent]

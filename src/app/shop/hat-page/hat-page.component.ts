@@ -1,11 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { BasketService } from 'src/app/services/basket.service';
 import { FirebaseService } from 'src/app/services/fb.service';
 import { BasketComponent } from 'src/app/shared/components/basket/basket.component';
 import { Subscription } from 'rxjs';
-
+import { DeliveryModalComponent } from '../delivery-modal/delivery-modal.component';
+import { SwiperOptions } from 'swiper';
+import { SwiperComponent } from 'swiper/angular';
+import SwiperCore, { Navigation, Autoplay, Keyboard, Pagination, Scrollbar, Zoom } from 'swiper';
+SwiperCore.use([Navigation, Autoplay, Keyboard, Pagination, Scrollbar, Zoom, ]);
 
 
 
@@ -31,12 +35,37 @@ export class HatPageComponent implements OnInit {
   quantityArray = [];
   capBasketMax = 5;
 
+
+  @ViewChild('swiper') swiper: SwiperComponent;
+
+  config: SwiperOptions = {
+    slidesPerView: 1,
+    spaceBetween: 0,
+    initialSlide: 0,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+     pagination: {
+      el: '.swiper-pagination',
+      type: 'bullets',
+    }
+  }
+
   constructor(
     private route: ActivatedRoute,
     private fb: FirebaseService,
     private router: Router,
     private basket: BasketService,
 private modalCtrl: ModalController,  ) { }
+
+async openDeliveryInfo() {
+  const modal = await this.modalCtrl.create({
+    component: DeliveryModalComponent,
+    cssClass: 'delivery-modal'
+  });
+  return await modal.present();
+}
 
 hoverImg(capImg: any){
   this.mainActiveCap = this.activeCap;
@@ -46,13 +75,17 @@ hoverImgOut() {
 this.activeCap = this.mainActiveCap;
 }
 
+
+
 makeActive(capImg: any) {
   this.activeCap = capImg;
+  this.mainActiveCap = capImg;
 }
 
   getCap(){
     this.fb.getSingleCap(this.capRef).then(data => {
       this.cap = data
+      console.log('hello', this.cap )
       this.makeActive(this.cap.imageField1);
       this.checkQuantity();
     });

@@ -28,7 +28,8 @@ export class BasketComponent implements OnInit, OnDestroy {
     private basket: BasketService,
     private modalCtrl: ModalController,
     private router: Router,
-    private fb: FirebaseService,    private firestore: Firestore,
+    private fb: FirebaseService,    
+    private firestore: Firestore,
 
   ) {}
 
@@ -118,9 +119,14 @@ goToStripe(){
             sessionId: result.data,
           })
           .then((result: any) => {
+            console.log("hello", result);
             console.log(result.error.message);
           });
       });
+}
+
+goTo(link: string) {
+  this.router.navigateByUrl(link);
 }
 
   editBasket() {
@@ -142,6 +148,10 @@ goToStripe(){
     console.log('hello', this.basketArray);
   }
 
+
+  close() {
+    this.modalCtrl.dismiss();
+  }
   checkQuantity(capItem: any) {
     if (capItem.cap.quantity < this.capBasketMax) {
       return Array.from({length:capItem.cap.quantity},(v,k)=>k+1)

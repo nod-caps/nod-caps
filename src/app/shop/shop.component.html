@@ -20,5 +20,15 @@
       </ion-col>
      
     </ion-row>
+    <ion-row class="row" *ngIf="!collection.capList">
+      <ion-col size="12" size-lg="3" size-md="4" size-sm="6">
+       <app-cap-card></app-cap-card>
+      </ion-col>
+      <ion-col size="12" size-lg="3" size-md="4" size-sm="6">
+        <app-cap-card></app-cap-card>
+       </ion-col>
+    </ion-row>
   </div>
+
+  <app-footer></app-footer>
 </ion-content>

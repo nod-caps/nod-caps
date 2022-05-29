@@ -1,11 +1,11 @@
-import { Component,  OnInit, ViewChild,  } from '@angular/core';
+import { Component, OnInit, ViewChild,  } from '@angular/core';
 import { Router } from '@angular/router';
 import { FirebaseService } from 'src/app/services/fb.service';
 import { SwiperOptions } from 'swiper';
 import { SwiperComponent } from 'swiper/angular';
-import SwiperCore, { Autoplay, Keyboard, Pagination, Scrollbar, Zoom } from 'swiper';
+import SwiperCore, { Navigation, Autoplay, Keyboard, Pagination, Scrollbar, Zoom } from 'swiper';
 
-SwiperCore.use([Autoplay, Keyboard, Pagination, Scrollbar, Zoom, ]);
+SwiperCore.use([Navigation, Autoplay, Keyboard, Pagination, Scrollbar, Zoom, ]);
 
 
 @Component({
@@ -16,22 +16,45 @@ SwiperCore.use([Autoplay, Keyboard, Pagination, Scrollbar, Zoom, ]);
 export class SectionOneComponent implements OnInit {
 
 
-disableEnd = false;
-disableStart = false;
- 
+
+changingWidth = false;
+ slidesPerView = 5
 
 config: SwiperOptions = {
-  slidesPerView: 5,
+  slidesPerView: this.slidesPerView,
   spaceBetween: 20,
   initialSlide: 0,
-  centeredSlides: true,
-  centeredSlidesBounds: true,
-
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+  // centeredSlides: true,
+  // centeredSlidesBounds: true,
+  breakpoints: {
+    // when window width is >= 320px
+    320: {
+      slidesPerView: 1,
+    },
+    // when window width is >= 480px
+    640: {
+      slidesPerView: 2,
+    },
+    // when window width is >= 640px
+    768: {
+      slidesPerView: 3,
+    },
+    960: {
+      slidesPerView: 4,
+    },
+    1040: {
+      slidesPerView: 5,
+    }
+  }
 }
 
 @ViewChild('swiper') swiper: SwiperComponent;
   
-
+width = 500;
 
 caps: any[] =[]
 collection: any;
@@ -41,7 +64,7 @@ activeIndex = 1;
   
 constructor(
     private fb: FirebaseService,
-    private router: Router
+    private router: Router,
   ) { 
   }
 
@@ -50,31 +73,8 @@ constructor(
     this.router.navigateByUrl('/shop');
   }
 
-onSlideChange(e: any) {
-  this.swiper.swiperRef = e;
-  if (this.swiper.swiperRef.isEnd){
-    this.disableEnd = true
-  } else {
-    this.disableEnd = false
-  }
-
-  if (this.swiper.swiperRef.isBeginning){
-    this.disableStart = true;
-  } else {
-    this.disableStart = false
-  }
-
-  this.activeIndex = this.swiper.swiperRef.activeIndex;
 
 
-}
-
-  slideNext(){
-    this.swiper.swiperRef.slideNext(400);
-  }
-  slidePrev(){
-    this.swiper.swiperRef.slidePrev(400);
-    }
 
   async getHats() {
     this.fb.getCollectionCaps(this.displayCollectionRef).then(data => {
@@ -94,9 +94,10 @@ onSlideChange(e: any) {
 
 
   ngOnInit() {
-  
       this.getSingleCollection();
       this.getHats();
+
+     
 
   }
 

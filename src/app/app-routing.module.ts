@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './admin/about/about.component';
+import { PrivacyComponent } from './admin/privacy/privacy.component';
 import { ReturnsComponent } from './admin/returns/returns.component';
 import { TermsComponent } from './admin/terms/terms.component';
+import { OrdersComponent } from './control/orders/orders.component';
 import { AuthService } from './services/auth.service';
 import { AdminLoginComponent } from './shared/components/admin-login/admin-login.component';
 import { BasketComponent } from './shared/components/basket/basket.component';
@@ -40,8 +42,12 @@ const routes: Routes = [
     component: AdminLoginComponent,
   },
   {
-    path: 'returns',
+    path: 'delivery-returns',
     component: ReturnsComponent,
+  },
+  {
+    path: 'privacy',
+    component: PrivacyComponent,
   },
   {
     path: 'about',
@@ -59,6 +65,10 @@ const routes: Routes = [
     path: 'cheers/:orderNumber',
     component: ThankYouComponent,
   },
+  {
+    path: 'orders', // child route path
+    component: OrdersComponent, // child route component that the router renders
+},  
 
   {
     path: '',
