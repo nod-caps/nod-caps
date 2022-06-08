@@ -1,6 +1,14 @@
 const functions = require("firebase-functions");
+const Mailchimp = require("mailchimp-api-v3");
+const mailchimp = new Mailchimp("daca0e7c466fa98bea02b4736cd53c01-us13");
 const stripe = require("stripe")(functions.config().stripe.secret_key);
 const admin = require("firebase-admin");
+// Sendgrid Config
+const sgMail = require("@sendgrid/mail");
+
+const API_KEY = functions.config().sendgrid.key;
+const TEMPLATE_ID = functions.config().sendgrid.template;
+sgMail.setApiKey(API_KEY);
 admin.initializeApp();
 
 exports.stripeCheckout = functions.https.onCall(async (data, context) => {
@@ -149,4 +157,44 @@ exports.stripeWebhook = functions.https.onRequest(async (req, res) => {
       }); */
 
   return res.sendStatus(200);
+});
+
+exports.addPurchaserToMailchimp = functions.https.onRequest((req, res) => {
+  res.set("Access-Control-Allow-Origin", "*");
+  res.set("Access-Control-Allow-Methods", "GET, PUT, POST, OPTIONS");
+  res.set("Access-Control-Allow-Headers", "*");
+
+  if (req.method === "OPTIONS") {
+    res.end();
+  } else {
+    mailchimp.post("/lists/adcf6c4f48/members", {
+      merge_fields: {
+        "FNAME": req.body.fname,
+        "LNAME": req.body.lname,
+      },
+      email_address: req.body.email,
+      status: "subscribed",
+      tags: ["purchased"],
+    })
+        .then(function(results) {
+          res.json(results);
+        })
+        .catch(function(err) {
+          res.json(err);
+        });
+  }
+});
+
+exports.addPurchaserToMailchimp2 = functions.https.onCall((data, context) => {
+  const order = data["order"];
+  const msg = {
+    to: "joesscales@gmail.com",
+    from: "info@nodcaps.com",
+    templateId: TEMPLATE_ID,
+    dynamic_template_data: {
+      subject: "hello there",
+      order: order,
+    },
+  };
+  return sgMail.send(msg);
 });

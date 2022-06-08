@@ -46,7 +46,6 @@ export class AdminLoginComponent implements OnInit {
 
 
   logIn(){
-    console.log('hello', this.logInForm.get('email').value, this.logInForm.get('password').value);
     this.authService.signIn(this.logInForm.get('email').value, this.logInForm.get('password').value);
   }
   ngOnInit() {}

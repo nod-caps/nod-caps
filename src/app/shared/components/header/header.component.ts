@@ -20,7 +20,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.basketSub = this.basket.basketSub.subscribe((data) => {
-      console.log('hello', data);
       let basketLength = 0
       data.forEach(element => {
         basketLength = basketLength + element.quantity;

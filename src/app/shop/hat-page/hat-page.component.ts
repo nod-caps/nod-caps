@@ -85,7 +85,6 @@ makeActive(capImg: any) {
   getCap(){
     this.fb.getSingleCap(this.capRef).then(data => {
       this.cap = data
-      console.log('hello', this.cap )
       this.makeActive(this.cap.imageField1);
       this.checkQuantity();
     });
