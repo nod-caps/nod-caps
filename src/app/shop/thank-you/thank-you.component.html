@@ -1,8 +1,13 @@
 <ion-content>
+
   <div class="basket-container">
     <h1>Cheers!</h1>
     <p>A confirmation email is on its way to you</p>
     <p>Your order number is {{orderNumber}}</p>
+    <div class="sign-up">
+      <app-sign-up [inModal]="false"></app-sign-up>
+
+    </div>
 
     <p>While you wait come and check us out on social media!</p>
       <ion-buttons>

@@ -6,6 +6,7 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { OrdersComponent } from '../control/orders/orders.component';
+import { ThankYouComponent } from '../shop/thank-you/thank-you.component';
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 import { BannerSwiperComponent } from './components/banner-swiper/banner-swiper.component';
 import { BasketComponent } from './components/basket/basket.component';
@@ -13,6 +14,7 @@ import { CapCardComponent } from './components/cap-card/cap-card.component';
 import { CookieConsentComponent } from './components/cookie-consent/cookie-consent.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 
 
@@ -34,7 +36,9 @@ import { HeaderComponent } from './components/header/header.component';
       CapCardComponent,
       FooterComponent,
       CookieConsentComponent,
-      OrdersComponent
+      OrdersComponent,
+      SignUpComponent,
+      ThankYouComponent,
 
   ],
   providers: [],
@@ -46,7 +50,9 @@ import { HeaderComponent } from './components/header/header.component';
     CapCardComponent,
     FooterComponent, 
     CookieConsentComponent,
-    OrdersComponent
+    OrdersComponent,
+    SignUpComponent,
+    ThankYouComponent,
   ]
 })
 export class SharedModule { }

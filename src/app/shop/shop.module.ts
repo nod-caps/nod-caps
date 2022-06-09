@@ -7,7 +7,6 @@ import { SharedModule } from '../shared/shared.module';
 import { ShopRoutingModule } from './shop-routing.module';
 import { HatPageComponent } from './hat-page/hat-page.component';
 import { CheckoutComponent } from './checkout/checkout.component';
-import { ThankYouComponent } from './thank-you/thank-you.component';
 import { CollectionComponent } from './collection/collection.component';
 import { SwiperModule } from 'swiper/angular';
 
@@ -22,7 +21,7 @@ import { SwiperModule } from 'swiper/angular';
     SwiperModule
     
   ],
-  declarations: [ShopComponent, HatPageComponent, CheckoutComponent, ThankYouComponent, CollectionComponent]
+  declarations: [ShopComponent, HatPageComponent, CheckoutComponent,  CollectionComponent],
 })
 export class ShopModule {}
 

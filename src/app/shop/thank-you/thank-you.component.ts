@@ -16,7 +16,7 @@ export class ThankYouComponent implements OnInit {
   orderNumber: any;
   order: any;
   contactRef: any;
-  showFullOptIn = true;
+  showOptIn = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -49,14 +49,19 @@ export class ThankYouComponent implements OnInit {
     const q = query(collection(this.firestore, 'contacts'), where("email", "==", this.order.customerEmail));
     const querySnapshot = await getDocs(q)
     querySnapshot.forEach((doc) => {
-      if (doc.data().meta.state === 'SUCCESS'){
+     // if (doc.data().meta.state === 'SUCCESS'){
         contactRefs.push(doc.ref.path.substring(doc.ref.path.lastIndexOf('/') + 1));
-      }
+    //  }
     });
     if (contactRefs.length > 0) {
       this.contactRef = contactRefs[0];
-      this.showFullOptIn = false;
-    }
+      this.showOptIn = false;
+      this.addReviewToExsistingContact();
+    } 
+  }
+
+  addReviewToExsistingContact() {
+    this.fire.collection('contacts').doc(this.contactRef).update({line: 'ask_review'});  
   }
 
   sendMail(){
