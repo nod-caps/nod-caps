@@ -41,3 +41,10 @@ width: auto;
       margin-top:10px;
     }
   }
+
+  #interaction{
+    height: 5px;
+    width: 50%;
+    position: absolute;
+    z-index: 100;
+  }

@@ -30,8 +30,8 @@
    
     </form>
   
-    <ion-item>
-      <ion-label>Agree to our terms and conditions blah blah</ion-label>
+    <ion-item lines="none" class="agree" >
+      <ion-label>I consent to recieving updates from Nod Caps</ion-label>
       <ion-checkbox color="secondary" [(ngModel)]="isChecked"></ion-checkbox>
     </ion-item>
   
@@ -40,6 +40,4 @@
     </div>
   
 </div>
-<div *ngIf="signedUp">
-  <p>Thanks for signing up</p>
-</div>
+

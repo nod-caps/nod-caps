@@ -14,6 +14,7 @@ import { CapCardComponent } from './components/cap-card/cap-card.component';
 import { CookieConsentComponent } from './components/cookie-consent/cookie-consent.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
+import { SignUpHolderComponent } from './components/sign-up-holder/sign-up-holder.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 
@@ -39,6 +40,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
       OrdersComponent,
       SignUpComponent,
       ThankYouComponent,
+      SignUpHolderComponent
 
   ],
   providers: [],
@@ -53,6 +55,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
     OrdersComponent,
     SignUpComponent,
     ThankYouComponent,
+    SignUpHolderComponent
   ]
 })
 export class SharedModule { }

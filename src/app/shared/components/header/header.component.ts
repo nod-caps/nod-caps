@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { BasketService } from 'src/app/services/basket.service';
+import { SignUpService } from 'src/app/services/sign-up.service';
 
 @Component({
   selector: 'app-header',
@@ -12,10 +13,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   basketQuantity: number = 0;
   basketSub: Subscription;
+  isOnDiv = false;
+  checkedPopUp = false;
 
   constructor(
     private router: Router,
-    private basket: BasketService
+    private basket: BasketService,
+    private signUp: SignUpService
   ) { }
 
   ngOnInit() {
@@ -26,6 +30,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
       });
       this.basketQuantity = basketLength
     })
+
+    setTimeout(() => {
+      const div = document.getElementById("interaction")
+      div.onmouseenter = () => {
+        if (!this.checkedPopUp) {
+          this.signUp.checkSignUp();
+          this.checkedPopUp = true;
+        }
+      }
+    }, 5000)
+   
   }
   ngOnDestroy(): void {
       if (this.basketSub) {

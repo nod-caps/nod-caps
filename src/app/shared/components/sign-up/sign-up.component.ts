@@ -1,6 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormBuilder, Validators } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
+import {ToastController} from '@ionic/angular';
 
 
 @Component({
@@ -14,10 +16,13 @@ export class SignUpComponent implements OnInit {
   isChecked = false;
   sending = false;
   signedUp = false;
+  @Output() justSignedUp: EventEmitter<any> = new EventEmitter;
 
   constructor(
     private formBuilder: FormBuilder,
-    private fire: AngularFirestore
+    private fire: AngularFirestore,
+    private cookie: CookieService,
+    private toastCtrl: ToastController
   ) { }
 
 
@@ -67,11 +72,28 @@ signUp () {
     if (doc) {
        this.sending = false;
        this.signedUp = true;
+       this.justSignedUp.emit(true);
+       this.presentToast();
+
     }
    });
 }
 
+  async presentToast() {
+    const toast = await this.toastCtrl.create({
+      message: 'Thanks for signing up!.',
+      duration: 2000,
+      position: 'top',
+      color: 'tertiary',
+    });
+    toast.present();
+  }
+
   ngOnInit() {
+    const gotConsentCookie =  this.cookie.get('consentAllowed');
+    if (gotConsentCookie === 'allowed') {
+      this.cookie.set('shownPopUp', 'shown', 365); 
+    }
   }
 
 }
