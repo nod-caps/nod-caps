@@ -1,0 +1,29 @@
+.container{
+    padding: 20px;
+}
+
+
+.choose-star{
+    text-align: center;
+    margin-top: 20px;
+    ion-icon{
+        font-size: 30px;
+        margin-right:5px;
+        color: #a3a3a3;
+        cursor: pointer;
+    }
+}
+
+.highlight{
+    color: var(--ion-color-tertiary)!important;
+}
+
+.button-holder{
+    margin-top:20px;
+}
+
+.dismiss{
+    position: absolute;
+    top:10px;
+    right:10px;
+}

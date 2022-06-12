@@ -9,6 +9,9 @@ import { DeliveryModalComponent } from '../delivery-modal/delivery-modal.compone
 import { SwiperOptions } from 'swiper';
 import { SwiperComponent } from 'swiper/angular';
 import SwiperCore, { Navigation, Autoplay, Keyboard, Pagination, Scrollbar, Zoom } from 'swiper';
+import { AddReviewComponent } from '../../shared/components/add-review/add-review.component';
+import { Firestore } from '@angular/fire/firestore';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 SwiperCore.use([Navigation, Autoplay, Keyboard, Pagination, Scrollbar, Zoom, ]);
 
 
@@ -26,6 +29,7 @@ export class HatPageComponent implements OnInit {
   cap: any;
   capRef: any;
   activeCap: any;
+  capReviews: any;
   mainActiveCap: any;
   collectionRef: any;
   otherCaps: any;
@@ -57,7 +61,8 @@ export class HatPageComponent implements OnInit {
     private fb: FirebaseService,
     private router: Router,
     private basket: BasketService,
-private modalCtrl: ModalController,  ) { }
+private modalCtrl: ModalController,
+private firestore: Firestore  ) { }
 
 async openDeliveryInfo() {
   const modal = await this.modalCtrl.create({
@@ -89,6 +94,9 @@ makeActive(capImg: any) {
       this.checkQuantity();
     });
   }
+
+
+
 
   async getOtherHats() {
     this.fb.getCollectionCaps(this.collectionRef).then(data => {
@@ -159,7 +167,31 @@ if (this.cap.quantity < this.capBasketMax) {
     this.getCap();
     this.getOtherHats();
     this.checkInBasket();
+    this.checkOnScreen();
 
   }
+
+  checkOnScreen(){
+    const other = document.querySelector('.other-info');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.intersectionRatio > 0) {
+          this.getCapReviews();
+          observer.unobserve(entry.target);
+        } 
+      });
+    });
+    observer.observe(other);
+  }
+
+    async getCapReviews(){
+      this.capReviews = [];
+      const q = query(collection(this.firestore, 'reviews'), where("capRef", "==", this.cap.capRef));
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        this.capReviews.push(doc.data());
+      });
+    }
+  
 
 }

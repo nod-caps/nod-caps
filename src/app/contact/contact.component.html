@@ -39,7 +39,6 @@
 
     <div class="button-holder">
       <ion-button [disabled]="!contactForm.valid" shape="round" color="tertiary" (click)="sendEmail()"><span *ngIf="!sending">Send Message</span><ion-spinner *ngIf="sending"></ion-spinner></ion-button>
-
     </div>
   </div>
   <div class="form-holder" *ngIf="mailSent">

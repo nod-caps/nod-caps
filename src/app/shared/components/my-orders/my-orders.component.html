@@ -1,0 +1,17 @@
+<div class="container">
+  <h1>Recent Orders</h1>
+  <div>
+    <ion-row *ngFor="let cap of caps; let i = index">
+      <ion-col size="4">
+          <img [src]="cap.imageField1">
+      </ion-col>
+      <ion-col size="8">
+        <h2>{{cap.name}}</h2>
+        <p>{{cap.description}}</p>
+        <ion-button *ngIf="!cap.review" color="tertiary" shape="round" (click)="review(cap, i)">Review</ion-button>
+        <ion-button color="light" shape="round"  (click)="buyAgain(cap, i)">Buy Again</ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+
+</div>

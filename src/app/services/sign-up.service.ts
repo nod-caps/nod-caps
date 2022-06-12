@@ -19,7 +19,6 @@ export class SignUpService{
 
 
    checkSignUp() {
-    //this.showSignUp();
     const route = this.router.url;
     const gotCookie =  this.cookie.get('shownPopUp');
     if (!gotCookie && route.indexOf('cheers') === -1  && route.indexOf('basket') === -1) {
