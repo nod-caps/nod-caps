@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
+import { getFunctions, httpsCallable } from 'firebase/functions';
 
 @Component({
   selector: 'app-add-review',
@@ -73,9 +74,30 @@ export class AddReviewComponent implements OnInit {
         if (doc) {
            this.sending = false;
            this.modalCtrl.dismiss({review: true});
+           const functions = getFunctions();
+           const updateReviews = httpsCallable(functions, 'updateAverageReview');
+           updateReviews({capRef: this.cap.capRef, newRating: this.selectedIndex}).then((result) => {
+            if (result) {
+              console.log('done');
+              this.sendMail();
+            }
+          });
         }
        });
       
+  }
+
+  sendMail() {
+    const contactObj = {
+      to: "info@nodcaps.com",
+      message: {
+        subject: "New Review",
+        text: this.cap.capRef,
+        html: "<ul><li>" +  this.reviewForm.get('name').value + " </li><li>" +  this.selectedIndex + "stars </li><li>" +  this.reviewForm.get('message').value + "</li><li>www.nodcaps.com/shop/" + this.cap.collectionRef + "/" + this.cap.nameHyphenated  + "</li></ul>",
+      },
+  }
+  console.log('hello', contactObj);
+  this.fire.collection('mail').add(contactObj);
   }
 
 

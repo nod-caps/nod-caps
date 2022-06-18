@@ -5,7 +5,7 @@
     <p>A confirmation email is on its way to you</p>
     <p>Your order number is {{orderNumber}}</p>
     <div class="sign-up">
-      <app-sign-up [inModal]="false"></app-sign-up>
+      <app-sign-up *ngIf="showOptIn" [inModal]="false"></app-sign-up>
 
     </div>
 

@@ -1,14 +1,52 @@
 <div class="container">
 
-  <h1>Reviews</h1>
 
-  
-  <div *ngFor="let review of capReviews" class="review-box">
-    <div>
-      <p><span *ngIf="review.name">{{review.name}}</span><span *ngIf="!review.name">Anonymous</span></p>
-      <ion-icon name="star" color="tertiary" *ngFor="let item of [].constructor(review.rating)"></ion-icon> 
-      <p>{{review.message}}</p>
+  <ion-segment (ionChange)="segmentChanged($event)" [value]="currentSegment" color="tertiary" mode="md">
+    <ion-segment-button value="cap">
+      <ion-label>{{cap?.name}} Reviews <span *ngIf="capReviews">({{capReviews.length}})</span></ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="other">
+      <ion-label>All Other Reviews <span *ngIf="otherReviews">({{otherReviews.length}})</span></ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div *ngIf="currentSegment === 'cap'">
+    <div *ngIf="loadingCapReviews">
+      <ion-skeleton-text *ngFor="let item of reviewSkeleton"></ion-skeleton-text>
     </div>
+    <div *ngIf="capReviews.length > 0 && !loadingCapReviews">
+      <ion-virtual-scroll [items]="capReviews" approxItemHeight="320px" >
+        <div *virtualItem="let review;" class="review-box">
+            <p><span *ngIf="review.name">{{review.name}}</span><span *ngIf="!review.name">Anonymous</span></p>
+            <ion-icon name="star" color="tertiary" *ngFor="let item of [].constructor(review.rating)"></ion-icon> 
+            <ion-icon name="star-outline" color="tertiary" *ngFor="let item of [].constructor(5-review.rating)"></ion-icon> 
+
+            <p>{{review.message}}</p>
+        </div>
+      </ion-virtual-scroll>
+      </div>
+      <div *ngIf="capReviews.lenght === 0 && !loadingCapReviews" class="ion-text-center">
+        <p>This cap has no reviews yet... </p>
+      </div>
   </div>
+
+  <div *ngIf="currentSegment === 'other'">
+    <div *ngIf="loadingOtherReviews">
+      <ion-skeleton-text *ngFor="let item of reviewSkeleton"></ion-skeleton-text>
+    </div>
+    <div *ngIf="otherReviews.length > 0 && !loadingOtherReviews">
+      <ion-virtual-scroll [items]="otherReviews" approxItemHeight="320px" >
+        <div *virtualItem="let review;" class="review-box">
+            <p><span *ngIf="review.name">{{review.name}}</span><span *ngIf="!review.name">Anonymous</span></p>
+            <ion-icon name="star" color="tertiary" *ngFor="let item of [].constructor(review.rating)"></ion-icon> 
+            <p>{{review.message}}</p>
+        </div>
+      </ion-virtual-scroll>
+      </div>
+      <div *ngIf="otherReviews.length === 0 && !loadingOtherReviews" class="ion-text-center">
+        <p>There are no other reviews yet... </p>
+      </div>
+  </div>
+ 
 
 </div>

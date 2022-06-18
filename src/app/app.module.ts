@@ -22,6 +22,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { CookieService } from 'ngx-cookie-service';
 
 
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -32,6 +33,7 @@ import { CookieService } from 'ngx-cookie-service';
      AngularFireStorageModule,
      SharedModule,
     SwiperModule, 
+
   provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
   provideFirestore(() => getFirestore())],
   providers: [

@@ -41,12 +41,23 @@
     </ion-col>
     <ion-col size="12" size-md="5" class="description-col">
         <h1>{{cap?.name}}</h1>
-        <ion-icon class="star" name="star"></ion-icon>
-        <ion-icon name="star" class="star"></ion-icon>
-        <ion-icon class="star" name="star"></ion-icon>
-        <ion-icon class="star" name="star"></ion-icon>
-        <ion-icon class="star" name="star"></ion-icon>
-        <h2 class="review-count">(29)</h2>
+        <div (click) = "scroll()" class="ratings">
+          <ion-icon class="star" name="star" *ngFor="let item of [].constructor(wholeStars)"></ion-icon>
+          <ion-icon *ngIf="hasHalf" name="star-half" class="star"></ion-icon>
+          <div *ngIf="!hasHalf" class="empty-star">
+            <ion-icon class="star"  *ngFor="let item of [].constructor(5 - wholeStars)"name="star-outline"></ion-icon>
+          </div>
+          <h2 class="review-count">
+            <span *ngIf="cap?.numberOfReviews">{{cap?.rating}}</span>
+          </h2>
+          <h2 class="review-count">
+            <span *ngIf="cap?.numberOfReviews">({{cap?.numberOfReviews}} ratings)</span>
+            <span *ngIf="!cap?.numberOfReviews">(0 ratings)</span>
+
+          </h2>
+        </div>
+        
+       
         <h1 class="price">£{{cap?.price}}</h1>
       
         <ion-item lines="none" class="quantity" *ngIf="!alreadyInBasket && cap?.quantity !== 0">
@@ -124,9 +135,9 @@
   </ion-row>
 
 
-  <app-reviews  [capReviews] = "capReviews"></app-reviews>
+  <app-reviews *ngIf="cap && loadReviews"  [cap]="cap"></app-reviews>
 
 
-  <app-footer></app-footer>
+  <app-footer id="review-comp"></app-footer>
 
 </ion-content>

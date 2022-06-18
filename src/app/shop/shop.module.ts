@@ -12,6 +12,7 @@ import { SwiperModule } from 'swiper/angular';
 import { ReviewsComponent } from './hat-page/reviews/reviews.component';
 
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -20,7 +21,8 @@ import { ReviewsComponent } from './hat-page/reviews/reviews.component';
     ShopRoutingModule,
     SharedModule,
     SwiperModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
     
   ],
   declarations: [ShopComponent, HatPageComponent, CheckoutComponent,  CollectionComponent, ReviewsComponent

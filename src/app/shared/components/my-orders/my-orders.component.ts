@@ -15,6 +15,7 @@ export class MyOrdersComponent implements OnInit {
   customerEmail: any;
   order: any;
   caps: any;
+  customerUnique: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -38,7 +39,7 @@ export class MyOrdersComponent implements OnInit {
       return modal.onDidDismiss();
     }).then (result => {
       if (result.data?.review) {
-        this.caps[index].review = true
+        this.caps[index].review = true 
       }
     })
   }
@@ -83,18 +84,33 @@ export class MyOrdersComponent implements OnInit {
       querySnapshot.forEach((doc) => {
         this.caps.push(doc.data());
       });
-      console.log('hello', this.caps);
     });
+  }
+
+  async checkIfCustomer() {
+      const q = query(collection(this.firestore, 'contacts'), where("unique_name", "==", this.customerUnique));
+      const querySnapshot = await getDocs(q);
+      if (querySnapshot.size > 0) {
+        querySnapshot.forEach((doc) => {
+          if (doc.data().email === this.customerEmail) {
+            this.getInfo();
+          } else {
+            this.noOrder();
+          }
+      });
+      } else {
+        this.noOrder();
+      }
+      
   }
 
   ngOnInit() {
     const customerInfo = this.route.snapshot.queryParamMap.get('mo');
     if (customerInfo) {
-     
 let n = customerInfo.lastIndexOf('-');
 this.customerEmail = customerInfo.substring(0, customerInfo.lastIndexOf('-'));
-this.getInfo();
-
+this.customerUnique = customerInfo.substring(n + 1);
+this.checkIfCustomer();
 
 
   } else {

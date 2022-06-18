@@ -7,7 +7,13 @@
 
 
     <div class="bottom-holder">
-      <span class="rating"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></span>
+      <span class="rating" *ngIf="cap?.rating">
+        <ion-icon class="star" name="star" *ngFor="let item of [].constructor(wholeStars)"></ion-icon>
+        <ion-icon *ngIf="hasHalf" name="star-half" class="star"></ion-icon>
+        <div *ngIf="!hasHalf" class="empty-star">
+          <ion-icon class="star"  *ngFor="let item of [].constructor(5 - wholeStars)"name="star-outline"></ion-icon>
+        </div>
+      </span>
       <span class="price"> £{{cap?.price}}</span>
     </div>
   </ion-card-header>

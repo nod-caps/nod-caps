@@ -21,7 +21,7 @@ exports.stripeCheckout = functions.https.onCall(async (data, context) => {
       allowed_countries: ["GB"],
     },
     mode: "payment",
-    success_url: "http://localhost:8100/cheers/" + orderNumber,
+    success_url: "http://localhost:8100/cheers?on=" + orderNumber,
     cancel_url: "http://localhost:8100/shop",
   });
 
@@ -54,8 +54,8 @@ exports.stripeWebhook = functions.https.onRequest(async (req, res) => {
 
   const timestamp = new Date().getTime();
   const dateString = new Date().toISOString().split("T")[0];
-  const n = dataObject.success_url.lastIndexOf("/");
-  const orderNumberFromString = dataObject.success_url.substring(n + 1);
+  const n = dataObject.success_url.lastIndexOf("cheers?on=");
+  const orderNumberFromString = dataObject.success_url.substring(n + 10);
   lineItems.line_items.data.forEach((item, index) => {
     lineItems.line_items.data[index].productId = item.price.product;
     lineItems.line_items.data[index].priceId = item.price.id;
@@ -188,13 +188,52 @@ exports.addPurchaserToMailchimp = functions.https.onRequest((req, res) => {
 exports.addPurchaserToMailchimp2 = functions.https.onCall((data, context) => {
   const order = data["order"];
   const msg = {
-    to: "joesscales@gmail.com",
-    from: "info@nodcaps.com",
     templateId: TEMPLATE_ID,
-    dynamic_template_data: {
-      subject: "hello there",
-      order: order,
-    },
+    from: "info@nodcaps.com",
+    personalizations: [
+      {
+        to: [
+          {
+            email: "info@nodcaps.com",
+          },
+        ],
+        dynamic_template_data: {
+          order: order,
+          subject: "order placed",
+        },
+      },
+      {
+        to: [
+          {
+            email: order.customerEmail,
+          },
+        ],
+        dynamic_template_data: {
+          order: order,
+          subject: "order placed1",
+        },
+      },
+    ],
   };
   return sgMail.send(msg);
+});
+
+exports.updateAverageReview = functions.https.onCall((data, context) => {
+  const capRef = data["capRef"];
+  const rating = data["newRating"];
+  admin.firestore().collection("caps").doc(capRef)
+      .get()
+      .then((doc) => {
+        const currentRating = doc.data().rating;
+        const numberOfReviews = doc.data().numberOfReviews;
+        if (!numberOfReviews) {
+          admin.firestore().collection("caps").doc(capRef).update({rating: rating, numberOfReviews: 1});
+        } else {
+          let newRating = ((currentRating*numberOfReviews) + rating) / (numberOfReviews + 1);
+          newRating = newRating.toFixed(2);
+          admin.firestore().collection("caps").doc(capRef)
+              .update({rating: newRating, numberOfReviews: numberOfReviews + 1});
+        }
+      });
+  return;
 });

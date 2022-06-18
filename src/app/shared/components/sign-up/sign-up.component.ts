@@ -60,6 +60,7 @@ signUp () {
   const fullName = this.signUpForm.get('name').value.split(' ');
     const firstName = fullName[0];
     const lastName = fullName[fullName.length - 1];
+    const randomUserNumber = Math.floor(100000 + Math.random() * 900000).toString();
   this.sending = true;
   this.fire
   .collection('contacts')
@@ -67,7 +68,8 @@ signUp () {
     email: this.signUpForm.get('email').value,
     first_name: firstName,
     last_name: lastName,
-    line: ask_review
+    line: ask_review,
+    unique_name: randomUserNumber,
   }).then(async (doc: any)=> {
     if (doc) {
        this.sending = false;

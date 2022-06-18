@@ -44,7 +44,7 @@ export class ThankYouComponent implements OnInit {
      //  this.checkIfExpired();
       this.checkIfAContact();
       if (!this.order.emailSent) {
-       // this.sendMail();
+        //this.sendMail();
       }
     } else {
 this.noOrder();
@@ -89,9 +89,9 @@ this.noOrder();
     const q = query(collection(this.firestore, 'contacts'), where("email", "==", this.order.customerEmail));
     const querySnapshot = await getDocs(q)
     querySnapshot.forEach((doc) => {
-     // if (doc.data().meta.state === 'SUCCESS'){
+      if (doc.data().meta.state === 'SUCCESS'){
         contactRefs.push(doc.ref.path.substring(doc.ref.path.lastIndexOf('/') + 1));
-    //  }
+    }
     });
     if (contactRefs.length > 0) {
       this.contactRef = contactRefs[0];
@@ -101,10 +101,11 @@ this.noOrder();
   }
 
   addReviewToExsistingContact() {
+    
     this.fire.collection('contacts').doc(this.contactRef).update({line: 'ask_review'});  
   }
 
-  sendMail(){
+sendMail(){
      const functions = getFunctions();
      const sendMail = httpsCallable(functions, 'addPurchaserToMailchimp2');
     sendMail({order: this.order}).then((result) => {

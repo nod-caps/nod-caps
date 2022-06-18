@@ -38,6 +38,10 @@ export class HatPageComponent implements OnInit {
   alreadyInBasket = false;
   quantityArray = [];
   capBasketMax = 5;
+  loadReviews = false;
+  displayRating  = 5;
+  wholeStars = 5;
+  hasHalf = false;
 
 
   @ViewChild('swiper') swiper: SwiperComponent;
@@ -89,7 +93,10 @@ makeActive(capImg: any) {
 
   getCap(){
     this.fb.getSingleCap(this.capRef).then(data => {
-      this.cap = data
+      this.cap = data;
+      this.displayRating = Math.round(this.cap.rating*2) / 2;
+      this.wholeStars = Math.floor(this.displayRating);
+      this.hasHalf = this.displayRating.toString().indexOf('.') > -1;
       this.makeActive(this.cap.imageField1);
       this.checkQuantity();
     });
@@ -176,7 +183,7 @@ if (this.cap.quantity < this.capBasketMax) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.intersectionRatio > 0) {
-          this.getCapReviews();
+          this.loadReviews = true;
           observer.unobserve(entry.target);
         } 
       });
@@ -184,14 +191,10 @@ if (this.cap.quantity < this.capBasketMax) {
     observer.observe(other);
   }
 
-    async getCapReviews(){
-      this.capReviews = [];
-      const q = query(collection(this.firestore, 'reviews'), where("capRef", "==", this.cap.capRef));
-      const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-        this.capReviews.push(doc.data());
-      });
-    }
   
+
+    scroll(){
+      document.getElementById("review-comp").scrollIntoView();
+    }
 
 }

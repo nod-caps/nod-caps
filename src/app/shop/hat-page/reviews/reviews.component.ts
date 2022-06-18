@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Firestore } from '@angular/fire/firestore';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 
 @Component({
   selector: 'app-reviews',
@@ -7,10 +9,54 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ReviewsComponent implements OnInit {
 
-  @Input() capReviews: any;
+  capReviews: any;
+  @Input() cap: any;
+  currentSegment = 'cap';
+  loadedOtherOnce = false;
+  otherReviews: any;
+  loadingCapReviews = true;
+  loadingOtherReviews = true
 
-  constructor() { }
+  reviewSkeleton = [1,2,3];
 
-  ngOnInit() {}
+  constructor(
+    private firestore: Firestore
+  ) { }
+
+  segmentChanged(event: any){
+    this.currentSegment= event.detail.value;
+    if (this.currentSegment === 'other' && !this.loadedOtherOnce){
+      this.loadOtherReviews();
+      this.loadedOtherOnce = true;
+    }
+  }
+
+
+  async getCapReviews(){
+    this.capReviews = [];
+    const q = query(collection(this.firestore, 'reviews'), where("capRef", "==", this.cap.capRef));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      this.capReviews.push(doc.data());
+    });
+    console.log('hello', this.capReviews);
+    this.loadingCapReviews = false;
+  }
+
+  async loadOtherReviews(){
+    this.otherReviews = [];
+    const q = query(collection(this.firestore, 'reviews'), where("capRef", "!=", this.cap.capRef));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      this.otherReviews.push(doc.data());
+    });
+    console.log('hello', this.otherReviews);
+    this.loadingOtherReviews = false;
+
+  }
+
+  ngOnInit() {
+    this.getCapReviews();
+  }
 
 }
