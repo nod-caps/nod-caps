@@ -7,6 +7,7 @@ ion-content{
     margin-left: auto;
     margin-right:auto;
     text-align: center;
+    margin-top:65px;
 }
 
 h1 {
@@ -21,4 +22,12 @@ h1 {
 
 ion-buttons{
     justify-content: center;
+}
+
+.sign-up{
+    max-width:400px;
+    padding: 20px;
+    margin-left:auto;
+    margin-right:auto;
+    background: #ececec;
 }

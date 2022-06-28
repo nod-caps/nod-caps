@@ -1,14 +1,22 @@
 <ion-content>
+
   <div class="basket-container">
     <h1>Cheers!</h1>
     <p>A confirmation email is on its way to you</p>
     <p>Your order number is {{orderNumber}}</p>
+    <div class="sign-up">
+      <app-sign-up *ngIf="showOptIn" [inModal]="false"></app-sign-up>
+
+    </div>
 
     <p>While you wait come and check us out on social media!</p>
       <ion-buttons>
         <ion-button color="dark"><ion-icon name="logo-instagram"></ion-icon></ion-button>
         <ion-button color="dark"><ion-icon name="logo-facebook"></ion-icon></ion-button>
       </ion-buttons>
+
+    <p>All order info will be included in the email - if you have any questions please contact us <a href="/contact">here</a> with your order number!</p>
    
   </div>
+  
     </ion-content>

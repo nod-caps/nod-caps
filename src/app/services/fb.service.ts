@@ -86,7 +86,6 @@ async getStripeCap(capRef:any) {
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach(async (doc) => {
     stripeCaps.push(doc.data());
-    console.log('hello', stripeCaps);
     const q1 = query(collection(doc.ref, 'prices'));
     const querySnapshot1 = await getDocs(q1);
     querySnapshot1.forEach(async (doc1) => {

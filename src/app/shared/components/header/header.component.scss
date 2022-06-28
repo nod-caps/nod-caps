@@ -6,6 +6,7 @@
     ion-title{
       padding-left: 20px;
       text-align: left;
+     
     }
     ion-badge{
 height:auto;
@@ -34,4 +35,16 @@ width: auto;
 
   ion-title{
     cursor:pointer;
+    img{
+      width:80px;
+      max-width:80px;
+      margin-top:10px;
+    }
+  }
+
+  #interaction{
+    height: 5px;
+    width: 50%;
+    position: absolute;
+    z-index: 100;
   }

@@ -1,6 +1,14 @@
 const functions = require("firebase-functions");
+const Mailchimp = require("mailchimp-api-v3");
+const mailchimp = new Mailchimp("daca0e7c466fa98bea02b4736cd53c01-us13");
 const stripe = require("stripe")(functions.config().stripe.secret_key);
 const admin = require("firebase-admin");
+// Sendgrid Config
+const sgMail = require("@sendgrid/mail");
+
+const API_KEY = functions.config().sendgrid.key;
+const TEMPLATE_ID = functions.config().sendgrid.template;
+sgMail.setApiKey(API_KEY);
 admin.initializeApp();
 
 exports.stripeCheckout = functions.https.onCall(async (data, context) => {
@@ -13,7 +21,7 @@ exports.stripeCheckout = functions.https.onCall(async (data, context) => {
       allowed_countries: ["GB"],
     },
     mode: "payment",
-    success_url: "http://localhost:8100/cheers/" + orderNumber,
+    success_url: "http://localhost:8100/cheers?on=" + orderNumber,
     cancel_url: "http://localhost:8100/shop",
   });
 
@@ -46,8 +54,8 @@ exports.stripeWebhook = functions.https.onRequest(async (req, res) => {
 
   const timestamp = new Date().getTime();
   const dateString = new Date().toISOString().split("T")[0];
-  const n = dataObject.success_url.lastIndexOf("/");
-  const orderNumberFromString = dataObject.success_url.substring(n + 1);
+  const n = dataObject.success_url.lastIndexOf("cheers?on=");
+  const orderNumberFromString = dataObject.success_url.substring(n + 10);
   lineItems.line_items.data.forEach((item, index) => {
     lineItems.line_items.data[index].productId = item.price.product;
     lineItems.line_items.data[index].priceId = item.price.id;
@@ -149,4 +157,83 @@ exports.stripeWebhook = functions.https.onRequest(async (req, res) => {
       }); */
 
   return res.sendStatus(200);
+});
+
+exports.addPurchaserToMailchimp = functions.https.onRequest((req, res) => {
+  res.set("Access-Control-Allow-Origin", "*");
+  res.set("Access-Control-Allow-Methods", "GET, PUT, POST, OPTIONS");
+  res.set("Access-Control-Allow-Headers", "*");
+
+  if (req.method === "OPTIONS") {
+    res.end();
+  } else {
+    mailchimp.post("/lists/adcf6c4f48/members", {
+      merge_fields: {
+        "FNAME": req.body.fname,
+        "LNAME": req.body.lname,
+      },
+      email_address: req.body.email,
+      status: "subscribed",
+      tags: ["purchased"],
+    })
+        .then(function(results) {
+          res.json(results);
+        })
+        .catch(function(err) {
+          res.json(err);
+        });
+  }
+});
+
+exports.addPurchaserToMailchimp2 = functions.https.onCall((data, context) => {
+  const order = data["order"];
+  const msg = {
+    templateId: TEMPLATE_ID,
+    from: "info@nodcaps.com",
+    personalizations: [
+      {
+        to: [
+          {
+            email: "info@nodcaps.com",
+          },
+        ],
+        dynamic_template_data: {
+          order: order,
+          subject: "order placed",
+        },
+      },
+      {
+        to: [
+          {
+            email: order.customerEmail,
+          },
+        ],
+        dynamic_template_data: {
+          order: order,
+          subject: "order placed1",
+        },
+      },
+    ],
+  };
+  return sgMail.send(msg);
+});
+
+exports.updateAverageReview = functions.https.onCall((data, context) => {
+  const capRef = data["capRef"];
+  const rating = data["newRating"];
+  admin.firestore().collection("caps").doc(capRef)
+      .get()
+      .then((doc) => {
+        const currentRating = doc.data().rating;
+        const numberOfReviews = doc.data().numberOfReviews;
+        if (!numberOfReviews) {
+          admin.firestore().collection("caps").doc(capRef).update({rating: rating, numberOfReviews: 1});
+        } else {
+          let newRating = ((currentRating*numberOfReviews) + rating) / (numberOfReviews + 1);
+          newRating = newRating.toFixed(2);
+          admin.firestore().collection("caps").doc(capRef)
+              .update({rating: newRating, numberOfReviews: numberOfReviews + 1});
+        }
+      });
+  return;
 });

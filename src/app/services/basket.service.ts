@@ -18,7 +18,6 @@ export class BasketService{
    }
 
    checkBasket() {
-     console.log('hello there');
     if (JSON.parse(localStorage.getItem('basket'))) {
       this.currentBasket = JSON.parse(localStorage.getItem('basket'))
       this.basketSub.next(this.currentBasket);

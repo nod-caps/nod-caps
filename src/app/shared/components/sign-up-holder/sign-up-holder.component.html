@@ -1,0 +1,15 @@
+  <ion-content>
+  <div class="top-section">
+    <h1>
+      Sign Up For Discounts and New Hat Releases
+    </h1>
+    <p>We're not annoying with it - just 1 or 2 a month</p>
+  </div>
+  <div class="sign-up">
+    <app-sign-up (justSignedUp)="signedUp($event)" [inModal]=true ></app-sign-up>
+  </div>
+
+</ion-content>
+<div class="ion-text-center">
+  <ion-button  (click)="dismiss()" fill="clear" color="medium">dismiss</ion-button>
+</div>

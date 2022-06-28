@@ -57,7 +57,6 @@ export class ContactComponent implements OnInit {
 
   sendEmail() {
     this.sending = true;
-    console.log('hello',  this.contactForm.get('name').value, this.contactForm.get('message').value, this.contactForm.get('email').value);
     const contactObj = {
         to: "info@nodcaps.com",
         message: {

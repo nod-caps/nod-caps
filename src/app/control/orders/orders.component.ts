@@ -40,14 +40,12 @@ export class OrdersComponent implements OnInit {
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       const object = doc.data();
-      console.log('hello', doc.data());
       object.docRef = doc.ref.path.substring(doc.ref.path.lastIndexOf('/') + 1);
      this.orders.push(object);
     });
   }
 
   async searchByEmail() {
-    console.log('hello', this.email)
     this.orders = [];
     const q = query(collection(this.firestore, 'orders'), where("extra.customer_details.email", "==", this.email ));
     const querySnapshot = await getDocs(q);
@@ -70,9 +68,7 @@ export class OrdersComponent implements OnInit {
   }
 
   dateChanged(ev: any) {
-     console.log('hello', ev.detail.value);
      this.date = ev.detail.value.split('T')[0];
-     console.log('hello', this.date);
      this.searchByDate();
   }
 

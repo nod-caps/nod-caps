@@ -76,7 +76,6 @@ export class BasketComponent implements OnInit, OnDestroy {
         // price:doc1.data().poduct
       });  
       if (index === this.basketArray.length -1 && doc1.data()) {
-        console.log('hello finished', this.checkoutArray);
         this.goToStripe()
       }
     });
@@ -89,7 +88,6 @@ export class BasketComponent implements OnInit, OnDestroy {
     this.checkoutArray = [];
     this.basketArray.forEach((cap, index) => {
       this.fb.getStripeCap(cap.capRef).then((data:any) => {
-        console.log('hello', data);
         this.checkoutArray.push({
           name: data.name,
           description: data.description,
@@ -99,7 +97,6 @@ export class BasketComponent implements OnInit, OnDestroy {
           quantity: cap.quantity,
         });
         if (index === this.basketArray.length -1) {
-          console.log('hello finished', this.checkoutArray);
         //  this.goToStripe()
         }
       });
@@ -114,12 +111,10 @@ goToStripe(){
       const functions = getFunctions();
       const checkout = httpsCallable(functions, 'stripeCheckout');
       checkout({checkoutArray: this.checkoutArray}).then((result) => {
-        console.log("hello", result);
         stripe.redirectToCheckout({
             sessionId: result.data,
           })
           .then((result: any) => {
-            console.log("hello", result);
             console.log(result.error.message);
           });
       });
@@ -145,7 +140,6 @@ goTo(link: string) {
         this.basketArray[index].quantityArray = this.checkQuantity( this.basketArray[index])
       });
     });
-    console.log('hello', this.basketArray);
   }
 
 

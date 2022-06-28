@@ -7,6 +7,9 @@ import { ScreensizeService } from './services/screensize.service';
 import { CookieService } from 'ngx-cookie-service';
 import { CookieConsentComponent } from './shared/components/cookie-consent/cookie-consent.component';
 import { BasketService } from './services/basket.service';
+import { SignUpComponent } from './shared/components/sign-up/sign-up.component';
+import { SignUpHolderComponent } from './shared/components/sign-up-holder/sign-up-holder.component';
+import { SignUpService } from './services/sign-up.service';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +17,9 @@ import { BasketService } from './services/basket.service';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent implements OnInit{
+
+showingCookies = false;
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -21,7 +27,8 @@ export class AppComponent implements OnInit{
     private screensizeService: ScreensizeService,
     private cookie: CookieService,
     private modalCtrl: ModalController,
-    private basketService: BasketService
+    private basketService: BasketService,
+    private signUpService: SignUpService
   ) {
    }
 
@@ -33,12 +40,21 @@ export class AppComponent implements OnInit{
   }
 
   async presentModal() {
+  this.showingCookies = true;
     const modal = await this.modalCtrl.create({
       component: CookieConsentComponent,
       cssClass: 'cookie-modal'
-    });
-    return await modal.present();
+    }).then (modal => {
+      modal.present();
+      return modal.onDidDismiss();
+    }).then (result => {
+      if (result) {
+        this.showingCookies = false;
+      }
+    })
+
   }
+
 
 
   ngOnInit() {
@@ -50,5 +66,12 @@ export class AppComponent implements OnInit{
    } else if (gotCookie === 'rejected') {
      this.basketService.clearBasket();
    }
-  }
+
+   
+   setTimeout(() => {
+      if (window.innerWidth < 768) {
+        this.signUpService.checkSignUp();
+      }
+  }, 20000);
+}
 }

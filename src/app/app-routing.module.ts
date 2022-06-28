@@ -8,6 +8,7 @@ import { OrdersComponent } from './control/orders/orders.component';
 import { AuthService } from './services/auth.service';
 import { AdminLoginComponent } from './shared/components/admin-login/admin-login.component';
 import { BasketComponent } from './shared/components/basket/basket.component';
+import { MyOrdersComponent } from './shared/components/my-orders/my-orders.component';
 import { CheckoutComponent } from './shop/checkout/checkout.component';
 import { ThankYouComponent } from './shop/thank-you/thank-you.component';
 
@@ -62,8 +63,12 @@ const routes: Routes = [
     component: CheckoutComponent,
   },
   {
-    path: 'cheers/:orderNumber',
+    path: 'cheers',
     component: ThankYouComponent,
+  },
+  {
+    path: 'my-orders',
+    component: MyOrdersComponent,
   },
   {
     path: 'orders', // child route path

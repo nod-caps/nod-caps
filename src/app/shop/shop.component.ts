@@ -21,14 +21,12 @@ export class ShopComponent implements OnInit {
 
 
 goToCollection(collection: any){
-  console.log('hello', collection);
   this.router.navigateByUrl('shop/' + collection.collectionRef);
 }
 
   async getAllHats() {
     this.fb.getAllCaps().then(data => {
       this.allCollections = data
-      console.log('hello', this.allCollections);
      });
 }
 
