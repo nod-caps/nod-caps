@@ -3,7 +3,7 @@
 </ion-buttons>
 
 <div class="basket-title" [ngClass]="inModal ? 'inModal' : ''">
-  <h1 *ngIf="basketArray.length > 0">Your Basket</h1>
+  <h1 *ngIf="basketArray.length > 0">Your Basket ({{basketLength}} caps) </h1>
   <h1 *ngIf="basketArray.length < 1">Your basket is empty!</h1>
   <div class="back-to-shop" *ngIf="basketArray.length < 1" >
     <ion-button  (click)="goTo('shop')"   color="tertiary" shape="round">
@@ -15,7 +15,7 @@
 
 <ion-content [ngClass]="inModal ? 'inModal' : ''">
 
-  <div class="basket-container">
+  <div class="basket-container" *ngIf="basketArray">
    
 
       <ion-row class="basket-item" *ngFor="let item of basketArray; index as i">

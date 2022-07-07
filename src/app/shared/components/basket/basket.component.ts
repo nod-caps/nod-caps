@@ -23,6 +23,7 @@ export class BasketComponent implements OnInit, OnDestroy {
   totalPrice = 0;
   checkoutArray: any;
   capBasketMax = 5;
+  
 
   constructor(
     private basket: BasketService,
@@ -30,14 +31,13 @@ export class BasketComponent implements OnInit, OnDestroy {
     private router: Router,
     private fb: FirebaseService,    
     private firestore: Firestore,
-
   ) {}
 
   quantityChanged(ev: any, index: any) {
     //getting called twice as changing in here
     this.basketArray[index].quantity = ev.detail.value;
     this.basketArray[index].itemPrice =
-      ev.detail.value * this.basketArray[index].cap.price;
+    ev.detail.value * this.basketArray[index].cap.price;
     this.getTotalPrice();
     this.basket.editBasket();
   }
@@ -129,13 +129,16 @@ goTo(link: string) {
     this.router.navigateByUrl('basket');
   }
 
+
   ngOnInit() {
     //do i need to subscribe here
     this.basket.basketSub.subscribe((data) => {
+      this.basketLength = 0;
       this.totalPrice = 0;
       this.basketArray = data;
       this.basketArray.forEach((item: any, index: any) => {
         this.basketArray[index].itemPrice = item.quantity * item.cap.price;
+        this.basketLength = this.basketLength + item.quantity
         this.totalPrice += this.basketArray[index].itemPrice;
         this.basketArray[index].quantityArray = this.checkQuantity( this.basketArray[index])
       });

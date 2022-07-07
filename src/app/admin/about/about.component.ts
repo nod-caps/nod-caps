@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
   selector: 'app-about',
@@ -7,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutComponent implements OnInit {
 
-  constructor() { }
+  constructor( private seo: SeoService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.seo.generateTags({title: 'Nod Caps About', description:'Buy cheap caps online', image: '/assets/img/cap-image.jpg' });
+
+  }
 
 }

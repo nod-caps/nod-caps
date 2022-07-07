@@ -1,0 +1,23 @@
+ion-grid{
+    padding: 80px 0px;
+    background: #7AC08E;
+    text-align: center;
+    ion-col{
+        padding:0px 10px;
+    }
+    h1{
+        color: #212529; 
+        padding:0px 20px;
+
+    }
+    p{
+        color: #212529; 
+        padding:0px 20px;
+    }
+}
+
+.middle-it {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}

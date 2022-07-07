@@ -1,5 +1,5 @@
 <ion-card (click)="goToHat(cap)" *ngIf="cap">
-  <img [src]="cap?.imageField1">
+  <img class="cap-skel" [src]="cap?.imageField1">
   <ion-card-header>
     <ion-card-title>{{cap?.name}}</ion-card-title>
     <span class="running-out" *ngIf="cap.quantity < 10 && cap.quanity > 0"> only {{cap?.quantity}} left!</span>
@@ -14,6 +14,15 @@
           <ion-icon class="star"  *ngFor="let item of [].constructor(5 - wholeStars)"name="star-outline"></ion-icon>
         </div>
       </span>
+      <span class="rating" *ngIf="!cap?.rating">
+        <ion-icon class="star" name="star"></ion-icon>
+        <ion-icon class="star" name="star"></ion-icon>
+        <ion-icon class="star" name="star"></ion-icon>
+        <ion-icon class="star" name="star"></ion-icon>
+        <ion-icon class="star" name="star"></ion-icon>
+
+      </span>
+
       <span class="price"> £{{cap?.price}}</span>
     </div>
   </ion-card-header>

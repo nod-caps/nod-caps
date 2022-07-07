@@ -29,8 +29,6 @@ ion-card:hover {
 ion-card{
     overflow:visible;
     max-width: 275px;
-    margin-left: auto;
-    margin-right: auto;
     ion-icon{
      color: #7ac08e
     }
@@ -89,4 +87,10 @@ ion-card-title{
 
   .empty-star{
     display:inline-block;
+  }
+
+  .cap-skel{
+    height:257px;
+    width: 220px;
+    background: #7e7e7e
   }

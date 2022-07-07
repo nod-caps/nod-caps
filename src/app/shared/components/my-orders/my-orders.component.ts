@@ -31,7 +31,8 @@ export class MyOrdersComponent implements OnInit {
     const modal = await this.modalCtrl.create({
       component: AddReviewComponent,
       componentProps:{
-        cap
+        cap,
+        email: this.customerEmail
       },
       cssClass: 'review-modal'
     }).then (modal => {

@@ -31,7 +31,7 @@ ion-content{
     img{
     max-height:100px;
     max-width:85px;
-    border: 1px solid #22472A;
+   // border: 1px solid #22472A;
     border-radius: 3px;
     cursor:pointer;
 }
@@ -70,6 +70,9 @@ ion-row{ margin-top:40px
         color:#73B786;
         font-size:14px;
     }
+    .black{
+        color:black;
+    }
     h1{
         color: black;
         margin-top: 0px;
@@ -85,10 +88,7 @@ ion-row{ margin-top:40px
 }
 
 .extras-box{
-    border: 1px solid #737373;
-    padding: 10px;
     margin: 50px 0px 0px 0px;
-    border-radius: 3px;
     ion-icon{
         margin-right:10px;
     }
@@ -137,7 +137,6 @@ ion-row{ margin-top:40px
 
 
 .other-info{
-
     margin-bottom:50px;
     ion-col{
         display: flex!important;
@@ -216,3 +215,46 @@ h2{
 .empty-star{
     display:inline-block;
 }
+
+.cap-row{
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
+}
+
+.slideInLeft{
+    animation: slideInLeft ease 1s;
+    -webkit-animation: slideInLeft ease 1s;
+}
+
+.slideInRight{
+    animation: slideInRight ease 1s;
+    -webkit-animation: slideInRight ease 1s;
+}
+@keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+
+  @keyframes slideInLeft {
+    0% {
+        transform: translateX(-600px);    }
+    100% {
+        transform: translateX(0px);
+    }
+  }
+
+  @keyframes slideInRight {
+    0% {
+        transform: translateX(600px);    }
+    100% {
+        transform: translateX(0px);
+    }
+  }
+
+  .reviews{
+      min-height: 300px;
+  }

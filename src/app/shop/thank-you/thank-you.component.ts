@@ -7,6 +7,8 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ToastController } from '@ionic/angular';
 
 
+
+
 @Component({
   selector: 'app-thank-you',
   templateUrl: './thank-you.component.html',
@@ -17,8 +19,9 @@ export class ThankYouComponent implements OnInit {
   orderNumber: any;
   order: any;
   contactRef: any;
-  showOptIn = true;
+  showOptIn = false;
 
+  
   constructor(
     private route: ActivatedRoute,
     private basket: BasketService,
@@ -97,7 +100,9 @@ this.noOrder();
       this.contactRef = contactRefs[0];
       this.showOptIn = false;
       this.addReviewToExsistingContact();
-    } 
+    }  else {
+      this.showOptIn = true;
+    }
   }
 
   addReviewToExsistingContact() {

@@ -1,11 +1,7 @@
-import { Component, OnInit, ViewChild,  } from '@angular/core';
+import { Component, OnInit,  } from '@angular/core';
 import { Router } from '@angular/router';
 import { FirebaseService } from 'src/app/services/fb.service';
-import { SwiperOptions } from 'swiper';
-import { SwiperComponent } from 'swiper/angular';
-import SwiperCore, { Navigation, Autoplay, Keyboard, Pagination, Scrollbar, Zoom } from 'swiper';
 
-SwiperCore.use([Navigation, Autoplay, Keyboard, Pagination, Scrollbar, Zoom, ]);
 
 
 @Component({
@@ -16,45 +12,6 @@ SwiperCore.use([Navigation, Autoplay, Keyboard, Pagination, Scrollbar, Zoom, ]);
 export class SectionOneComponent implements OnInit {
 
 
-
-changingWidth = false;
- slidesPerView = 5
-
-config: SwiperOptions = {
-  slidesPerView: this.slidesPerView,
-  spaceBetween: 20,
-  initialSlide: 0,
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
-  // centeredSlides: true,
-  // centeredSlidesBounds: true,
-  breakpoints: {
-    // when window width is >= 320px
-    320: {
-      slidesPerView: 1,
-    },
-    // when window width is >= 480px
-    640: {
-      slidesPerView: 2,
-    },
-    // when window width is >= 640px
-    768: {
-      slidesPerView: 3,
-    },
-    960: {
-      slidesPerView: 4,
-    },
-    1040: {
-      slidesPerView: 5,
-    }
-  }
-}
-
-@ViewChild('swiper') swiper: SwiperComponent;
-  
-width = 500;
 
 caps: any[] =[]
 collection: any;

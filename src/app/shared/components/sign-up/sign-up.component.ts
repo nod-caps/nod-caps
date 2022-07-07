@@ -13,6 +13,7 @@ import {ToastController} from '@ionic/angular';
 export class SignUpComponent implements OnInit {
 
   @Input() inModal = true;
+  @Input() inBanner = false;
   isChecked = false;
   sending = false;
   signedUp = false;
@@ -75,7 +76,9 @@ signUp () {
        this.sending = false;
        this.signedUp = true;
        this.justSignedUp.emit(true);
-       this.presentToast();
+       if (!this.inBanner) {
+        this.presentToast();
+      }
 
     }
    });

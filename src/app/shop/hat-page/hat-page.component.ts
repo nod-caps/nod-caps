@@ -12,6 +12,7 @@ import SwiperCore, { Navigation, Autoplay, Keyboard, Pagination, Scrollbar, Zoom
 import { AddReviewComponent } from '../../shared/components/add-review/add-review.component';
 import { Firestore } from '@angular/fire/firestore';
 import { collection, getDocs, query, where } from 'firebase/firestore';
+import { SeoService } from 'src/app/services/seo.service';
 SwiperCore.use([Navigation, Autoplay, Keyboard, Pagination, Scrollbar, Zoom, ]);
 
 
@@ -66,7 +67,8 @@ export class HatPageComponent implements OnInit {
     private router: Router,
     private basket: BasketService,
 private modalCtrl: ModalController,
-private firestore: Firestore  ) { }
+private firestore: Firestore,
+private seo: SeoService  ) { }
 
 async openDeliveryInfo() {
   const modal = await this.modalCtrl.create({
@@ -94,11 +96,14 @@ makeActive(capImg: any) {
   getCap(){
     this.fb.getSingleCap(this.capRef).then(data => {
       this.cap = data;
-      this.displayRating = Math.round(this.cap.rating*2) / 2;
-      this.wholeStars = Math.floor(this.displayRating);
-      this.hasHalf = this.displayRating.toString().indexOf('.') > -1;
+      if (this.cap.rating) {
+        this.displayRating = Math.round(this.cap.rating*2) / 2;
+        this.wholeStars = Math.floor(this.displayRating);
+        this.hasHalf = this.displayRating.toString().indexOf('.') > -1;
+      }
       this.makeActive(this.cap.imageField1);
       this.checkQuantity();
+      this.seo.generateTags({title: 'Nod Caps - ' + this.cap.name, description: this.cap.name, image: this.cap.imageField1 });
     });
   }
 
@@ -175,11 +180,12 @@ if (this.cap.quantity < this.capBasketMax) {
     this.getOtherHats();
     this.checkInBasket();
     this.checkOnScreen();
+    this.checkOnScreenLearn();
 
   }
 
   checkOnScreen(){
-    const other = document.querySelector('.other-info');
+    const reviews = document.querySelector('.reviews');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.intersectionRatio > 0) {
@@ -188,9 +194,24 @@ if (this.cap.quantity < this.capBasketMax) {
         } 
       });
     });
-    observer.observe(other);
+    observer.observe(reviews);
   }
 
+  checkOnScreenLearn(){
+    const learn = document.querySelector('.learn-more');
+    const other = document.querySelector('.other-info');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.intersectionRatio > 0) {
+          learn.classList.add('slideInLeft');
+          other.classList.add('slideInRight');
+          observer.unobserve(entry.target);
+        } 
+      });
+    });
+    observer.observe(learn);
+  }
   
 
     scroll(){

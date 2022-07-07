@@ -17,11 +17,11 @@
     <div *ngIf="capReviews.length > 0 && !loadingCapReviews">
       <ion-virtual-scroll [items]="capReviews" approxItemHeight="320px" >
         <div *virtualItem="let review;" class="review-box">
-            <p><span *ngIf="review.name">{{review.name}}</span><span *ngIf="!review.name">Anonymous</span></p>
+            <p class="name"><span *ngIf="review.name">{{review.name}}</span><span *ngIf="!review.name">Anonymous</span></p>
             <ion-icon name="star" color="tertiary" *ngFor="let item of [].constructor(review.rating)"></ion-icon> 
             <ion-icon name="star-outline" color="tertiary" *ngFor="let item of [].constructor(5-review.rating)"></ion-icon> 
 
-            <p>{{review.message}}</p>
+            <p class="message">"{{review.message}}"</p>
         </div>
       </ion-virtual-scroll>
       </div>
@@ -37,9 +37,9 @@
     <div *ngIf="otherReviews.length > 0 && !loadingOtherReviews">
       <ion-virtual-scroll [items]="otherReviews" approxItemHeight="320px" >
         <div *virtualItem="let review;" class="review-box">
-            <p><span *ngIf="review.name">{{review.name}}</span><span *ngIf="!review.name">Anonymous</span></p>
+            <p class="name"><span *ngIf="review.name">{{review.name}}</span><span *ngIf="!review.name">Anonymous</span></p>
             <ion-icon name="star" color="tertiary" *ngFor="let item of [].constructor(review.rating)"></ion-icon> 
-            <p>{{review.message}}</p>
+            <p class="message">"{{review.message}}"</p>
         </div>
       </ion-virtual-scroll>
       </div>

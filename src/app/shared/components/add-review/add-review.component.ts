@@ -17,6 +17,7 @@ export class AddReviewComponent implements OnInit {
   @Input() cap: any;
   selectedIndex: any;
   sending = false
+  @Input() email: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -67,7 +68,8 @@ export class AddReviewComponent implements OnInit {
             capRef: this.cap.capRef,
             rating: this.selectedIndex,
             image: this.cap.imageField1,
-            capName: this.cap.name
+            capName: this.cap.name,
+            email: this.email
           }
       
       this.fire.collection('reviews').add(reviewObj).then(async (doc: any)=> {
@@ -93,6 +95,7 @@ export class AddReviewComponent implements OnInit {
       message: {
         subject: "New Review",
         text: this.cap.capRef,
+        email: this.email,
         html: "<ul><li>" +  this.reviewForm.get('name').value + " </li><li>" +  this.selectedIndex + "stars </li><li>" +  this.reviewForm.get('message').value + "</li><li>www.nodcaps.com/shop/" + this.cap.collectionRef + "/" + this.cap.nameHyphenated  + "</li></ul>",
       },
   }

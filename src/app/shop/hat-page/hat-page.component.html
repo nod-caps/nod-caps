@@ -1,6 +1,6 @@
 <ion-content>
 
-  <ion-row *ngIf="cap">
+  <ion-row *ngIf="cap" class="cap-row">
     <ion-col size="12" size-md="2" class="preview-images ion-hide-md-down">
       <div *ngIf="cap?.imageField1">
         <img (click)="makeActive(cap?.imageField1)" (mouseover)="hoverImg(cap?.imageField1)" (mouseout)="hoverImgOut()" [src]="cap?.imageField1" [ngClass]="activeCap === cap?.imageField1 ? 'active-cap' : ''">
@@ -47,13 +47,15 @@
           <div *ngIf="!hasHalf" class="empty-star">
             <ion-icon class="star"  *ngFor="let item of [].constructor(5 - wholeStars)"name="star-outline"></ion-icon>
           </div>
+          <div *ngIf="hasHalf" class="empty-star">
+            <ion-icon class="star"  *ngFor="let item of [].constructor(4 - wholeStars)"name="star-outline"></ion-icon>
+          </div>
           <h2 class="review-count">
             <span *ngIf="cap?.numberOfReviews">{{cap?.rating}}</span>
           </h2>
-          <h2 class="review-count">
+          <h2 class="review-count black">
             <span *ngIf="cap?.numberOfReviews">({{cap?.numberOfReviews}} ratings)</span>
             <span *ngIf="!cap?.numberOfReviews">(0 ratings)</span>
-
           </h2>
         </div>
         
@@ -135,7 +137,11 @@
   </ion-row>
 
 
+  <app-social-slider></app-social-slider>
+
+<div class="reviews">
   <app-reviews *ngIf="cap && loadReviews"  [cap]="cap"></app-reviews>
+</div>
 
 
   <app-footer id="review-comp"></app-footer>

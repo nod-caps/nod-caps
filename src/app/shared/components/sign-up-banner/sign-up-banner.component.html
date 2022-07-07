@@ -1,0 +1,27 @@
+<ion-grid [ngClass]="signedUpDone ? 'middle-it' : ''">
+  <div  *ngIf="!signedUpDone">
+    <h1>Don't Miss Out!</h1>
+    <p>Join our mailing list to be the first to know about new products, discounts and any other fun updates.</p>
+  </div>
+
+  <div *ngIf="signedUpDone">
+    <h1>That's all done</h1>
+    <p>Thanks for signing up, please go and check out some caps! </p>
+    <ion-button  shape="round" color="light"  (click)="goTo('shop')">To Shop</ion-button>
+  </div>
+  
+
+
+  <ion-row>
+    <ion-col size-lg="6" offset-lg="3">
+      <app-sign-up (justSignedUp)="signedUp($event)" [inBanner]="true" ></app-sign-up>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+
+
+
+
+

@@ -8,11 +8,11 @@
   
   <form [formGroup]="signUpForm">
   
-    <ion-item>
+    <ion-item class="first">
       <ion-label position="stacked">Name</ion-label>
       <ion-input  formControlName="name" placeholder="Your name..."></ion-input>
     </ion-item>
-    <div *ngFor="let error of errorMessages.name">
+    <div *ngFor="let error of errorMessages.name" >
       <ng-container *ngIf="name?.hasError(error.type) && (name?.dirty || name?.touched)">
         <small class="error-message">{{error.message}}</small>
       </ng-container>
@@ -36,8 +36,9 @@
     </ion-item>
   
     <div class="button-holder">
-      <ion-button [disabled]="!signUpForm.valid || !isChecked" shape="round" color="tertiary" (click)="signUp()"><span *ngIf="!sending">Sign me up</span><ion-spinner *ngIf = "sending"></ion-spinner></ion-button>
+      <ion-button [disabled]="!signUpForm.valid || !isChecked" shape="round" [color]="inBanner ? 'light':'teriary'" (click)="signUp()"><span *ngIf="!sending">Sign me up</span><ion-spinner *ngIf = "sending"></ion-spinner></ion-button>
     </div>
   
 </div>
+
 

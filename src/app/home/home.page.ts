@@ -1,6 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ScreensizeService } from '../services/screensize.service';
+import { SeoService } from '../services/seo.service';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,8 @@ export class HomePage implements OnInit {
   isDesktop: boolean;
   isTop = true;
  
-  constructor(private screensizeService: ScreensizeService) {
+  constructor(private screensizeService: ScreensizeService,
+    private seo: SeoService) {
     this.screensizeService.isDesktopView().subscribe(isDesktop => {
       this.isDesktop = isDesktop;
     });
@@ -35,6 +37,8 @@ this.isTop=false;
  }
 
   ngOnInit(){
+
+    this.seo.generateTags({title: 'Nod Caps', description:'Buy cheap caps online', image: '/assets/img/cap-image.jpg' });
 
      }
 

@@ -4,12 +4,16 @@
 
 
 
-<ion-content  [scrollEvents]="true" (ionScroll)="onScroll($event)" >
+<ion-content  [scrollEvents]="true" (ionScroll)="onScroll($event)">
 
 
-    <app-landing-banner [isTop]="isTop"></app-landing-banner>
+    <app-landing-banner id="toptop" [isTop]="isTop"></app-landing-banner>
+
+    <app-boast-banner></app-boast-banner>
     
     <app-section-one [ngClass]="isTop?'toptop':''" class="background2"></app-section-one>
+
+    <app-sign-up-banner></app-sign-up-banner>
     
     <app-footer></app-footer>
 
