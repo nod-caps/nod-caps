@@ -1,9 +1,10 @@
 .cap-row{
     margin:30px;
     min-height:300px;
+    opacity: 1;
     ion-col{
-        animation: slideIn ease 1s;
-        -webkit-animation: slideIn ease 1s;}
+        animation: slideIn ease 0.6s;
+        -webkit-animation: slideIn ease 0.6s;}
 }
 
 
@@ -13,6 +14,7 @@
     max-width: 800px;
     color: #f8f9fa;
     margin:auto;
+    font-size: 20px;
 }
 .top-row{
     background: #22472A;
@@ -20,7 +22,7 @@
 }
 
 h1{
-    font-size:40px;
+    font-size:50px;
 }
 
 .caps-div{
@@ -35,9 +37,11 @@ h1{
 
 @keyframes slideIn {
     0% {
-        transform: translateY(600px);    }
+        transform: translateY(100px);   
+    opacity:0 }
     100% {
         transform: translateY(0px);
+        opacity: 1;
     }
   }
 .caps-holder{

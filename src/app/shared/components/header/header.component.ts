@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MenuController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { BasketService } from 'src/app/services/basket.service';
 import { SignUpService } from 'src/app/services/sign-up.service';
@@ -19,7 +20,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private basket: BasketService,
-    private signUp: SignUpService
+    private signUp: SignUpService,
+    private menu: MenuController
   ) { }
 
   ngOnInit() {
@@ -50,6 +52,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   goTo(string: any){
     this.router.navigateByUrl(string);
+  }
+
+  openBasket() {
+    this.menu.open('custom');
   }
 
 }

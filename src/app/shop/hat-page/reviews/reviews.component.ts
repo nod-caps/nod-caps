@@ -16,6 +16,8 @@ export class ReviewsComponent implements OnInit {
   otherReviews: any;
   loadingCapReviews = true;
   loadingOtherReviews = true
+  @Input() wholeStars = 5;
+  @Input() hasHalf = false;
 
   reviewSkeleton = [1,2,3];
 
@@ -39,7 +41,6 @@ export class ReviewsComponent implements OnInit {
     querySnapshot.forEach((doc) => {
       this.capReviews.push(doc.data());
     });
-    console.log('hello', this.capReviews);
     this.loadingCapReviews = false;
   }
 
@@ -50,7 +51,6 @@ export class ReviewsComponent implements OnInit {
     querySnapshot.forEach((doc) => {
       this.otherReviews.push(doc.data());
     });
-    console.log('hello', this.otherReviews);
     this.loadingOtherReviews = false;
 
   }

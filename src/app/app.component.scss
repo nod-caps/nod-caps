@@ -2,4 +2,17 @@
     .mt {
         margin-top:56px;
     }
+    
+.my-custom-menu {
+    --width:600px!important;
 }
+}
+
+
+.my-custom-menu {
+    --width:100%;
+    app-basket {
+     height:100%;   
+    }
+}
+

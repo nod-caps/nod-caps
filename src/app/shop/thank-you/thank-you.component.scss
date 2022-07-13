@@ -8,6 +8,7 @@ ion-content{
     margin-right:auto;
     text-align: center;
     margin-top:65px;
+    padding: 0px 20px;
 }
 
 h1 {
@@ -17,6 +18,9 @@ h1 {
 @media(max-width: 768px) {
     ion-content{
         margin-top: 56px;
+    }
+    .basket-container{
+        margin-top:80px;
     }
 }
 
@@ -31,3 +35,155 @@ ion-buttons{
     margin-right:auto;
     background: #ececec;
 }
+
+
+.summary {
+    animation: fadeIn ease 1s;
+    -webkit-animation: fadeIn ease 1s;
+    margin-bottom: 50px;
+    ion-item{
+        --padding-start: 0px;
+        ion-avatar {
+            margin-right:20px;
+        }
+        span{
+            float: right;
+        }
+    }
+}
+
+.sum-title{
+    font-size: 20px;
+}
+.fs14 {
+    font-size: 14px;
+}
+
+.no-order{
+    height:100px;
+    ion-spinner{
+        margin-top:50px;
+    }
+}
+
+
+.next {
+    background: #F0F0FF;
+    padding-top: 20px;
+    border-radius: 4px;
+}
+
+.steps {
+  max-width: 600px;
+  margin: 30px auto;
+  text-align: left;
+  padding:0px 10px;
+}
+
+.step {
+  display: flex;
+  position: relative;
+  height: 120px;
+
+  &:after {
+    content: "";
+    position: absolute;
+    left: 16px;
+    top: 34px;
+    height: 0;
+    width: 2px;
+    background-color: #22472A;
+  }
+
+  .info {
+    margin: 6px 0 20px;
+  }
+
+  .title {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 8px;
+    color: black;
+  }
+
+  .text {
+    font-size: 14px;
+    color: rgba(black, 0.7);
+    padding-bottom: 0;
+    margin: 0;
+  }
+
+  &:not(:last-child) {
+    &:after {
+      height: 86px;
+    }
+   
+  }
+}
+
+.number {
+  width: 34px;
+  height: 34px;
+  background-color: transparent;
+  border-radius: 50%;
+  border: 2px solid #22472A;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #22472A;
+  font-size: 15px;
+  font-weight: 600;
+  margin-right: 25px;
+  ion-icon {
+    font-size:20px;
+  }
+
+  &.completed {
+    background-color: #22472A;
+    color: white;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+
+    path {
+      fill: black;
+    }
+  }
+}
+
+@media (max-width: 768px)  {
+    .step {
+        height:120px!important;
+        &:not(:last-child) {
+            &:after {
+              height: 86px!important;
+            }
+           
+          }
+}
+   
+}
+
+
+.social-info{
+    width: 100%;
+    .social-buttons{
+        text-align: center;
+        margin-top:10px;
+        margin-left: -62px;
+    }
+}
+
+
+@keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }

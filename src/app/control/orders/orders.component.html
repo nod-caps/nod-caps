@@ -27,7 +27,7 @@
     <p>Order number: {{order.orderNumber}}</p>
     <p>Order:</p>
     <ion-item class="hat" *ngFor="let cap of order.lineItems ">
-     {{cap.description}} - {{cap.quantity}}
+     {{cap.quantity}} - {{cap.description}}
     </ion-item>
 
     <ion-button *ngIf="!order.packaged" color="success" size="small" fill="outline" (click)="packaged(order, i)">Packaged</ion-button>

@@ -1,7 +1,7 @@
 ion-card:hover {
     transform: scale(1.05);
-    animation: scaleUp 0.75s ease forwards;
-    -webkit-animation: scaleUp 0.75s ease forwards;
+    animation: scaleUp 0.45s ease forwards;
+    -webkit-animation: scaleUp 0.45s ease forwards;
     .shop-button-hover{
       display:flex;
       text-align: center;
@@ -9,8 +9,8 @@ ion-card:hover {
       top: 50%;
       width: 100px;
       left: calc(50% - 50px);
-      animation: slideUpBut 0.75s ease forwards;
-      -webkit-animation: slideUpBut 0.75s ease forwards;
+      animation: slideUpBut 0.45s ease forwards;
+      -webkit-animation: slideUpBut 0.45s ease forwards;
     }
   }
 
@@ -18,17 +18,15 @@ ion-card:hover {
     display:none;
    }
 
-   .running-out {
-    font-size: 15px;
-    color: #d40000;
-    position: absolute;
-    top: -5px;
-   }
+
 
    
 ion-card{
     overflow:visible;
     max-width: 275px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom:30px;
     ion-icon{
      color: #7ac08e
     }
@@ -90,7 +88,25 @@ ion-card-title{
   }
 
   .cap-skel{
-    height:257px;
-    width: 220px;
+    height:100%;
+    
     background: #7e7e7e
+  }
+
+  .image-holder {
+    position: relative;
+    .out-of-stock{
+    position: absolute;
+    top: -14px;
+    text-align: center;
+    width: 90%;
+    margin-left: 5%;
+    background: #b0b0b0;
+    height: 35px;
+    border-radius: 4px 4px 0px 0px;
+    padding-top:8px;
+    span{
+      color: #f8f9fa;
+    }
+    }
   }

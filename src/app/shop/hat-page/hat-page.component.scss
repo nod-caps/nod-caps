@@ -2,32 +2,62 @@ ion-content{
     --background: white!important;
 }
 
+
+.swiper-button-next{
+    top: 45%;
+}
+.swiper-button-prev{
+    top: 45%;
+}
+
+.free-delivery{
+    float: right;
+    margin-top:10px!important;
+    font-size:14px!important;
+}
+.price{
+    margin-left: 0px!important;
+    font-size: 22px!important;
+    margin-bottom: 20px;
+}
+
 @media(max-width:768px){
     .learn-more{
         margin-bottom: 0px!important;
     }
-    .preview-images{
-        text-align:left!important;
-        padding: 0px 20px;
-        div {
-            display: inline-block;
-            padding: 3px;
+    .learn-more-section{
+        padding: 0px 25px 25px 25px!important;
     }
-   
-    } 
+
+   .other-caps{
+    padding: 25px!important;
+    margin: 30px 0px 0px 0px!important;
+
+   }
+    
     .description-col{
         padding: 10px 20px 0px 20px!important;
     }
-    .add-basket {
-        margin-top:0px!important
-    }
+ 
     .other-info{
         flex-wrap: wrap-reverse;
     }
+    .description-col h1{
+        font-size: 26px!important
+    }
+    .description-col .price{
+        font-size: 20px!important;
+    }
+
 }
 
-.preview-images {
-    text-align: end;
+    .preview-images{
+        text-align:center!important;
+        padding: 0px;
+        div {
+            display: inline-block;
+            padding: 6px;
+    }   
     img{
     max-height:100px;
     max-width:85px;
@@ -37,14 +67,14 @@ ion-content{
 }
 
 }
-ion-row{ margin-top:40px
-}
+
 
 
 .add-basket{
-    margin-top:45px;
+    margin-top:20px;
+  
     ion-button{
-        width:80%;
+        width:100%;
     }
 }
 
@@ -52,6 +82,7 @@ ion-row{ margin-top:40px
     text-align: center;
     img{
         max-height:500px;
+        border-radius: 4px;
     }
 }
 
@@ -63,24 +94,24 @@ ion-row{ margin-top:40px
     }
     h2{
         font-size:16px;
-        margin-top:0px;
+        margin-top:3px;
         display: inline-block;
     }
     .review-count{
-        color:#73B786;
+        color:#212529;
         font-size:14px;
     }
-    .black{
-        color:black;
+    .ratings{
+        cursor: pointer;
     }
     h1{
-        color: black;
+        color: #22472a;
         margin-top: 0px;
         font-weight: bold;
+        margin-bottom: 20px;
+font-size: 32px;
     }
-    .price{
-       // font-style:italic
-    }
+
     p{
         color: #737373;
     }
@@ -108,59 +139,34 @@ ion-row{ margin-top:40px
 }
 
 .learn-more{
-    margin-bottom:100px;
-    ion-col{
-        display: flex!important;
-        align-content: center!important;
-        align-items: center!important;
-        padding:40px;
+    h1{
+    color: #22472a;
+    font-weight: bold;
     }
+   
 }
 .learn-more-header{
-    background: #22472A;
-    h1{
-        font-size:40px;
-        font-weight: bold;
-        margin: auto;
-        color:#f8f9fa;
-    }
+text-align:center;
+padding:0px;
+img {
+    max-width: 500px;
+    width: 100%;
+}
 }
 .learn-more-section{
-    background:#efefef;
-    border-radius: 0px 5px 5px 0px;
+    padding:80px 40px;
+    margin-top: auto;
+    margin-bottom: auto;
+  
     p{
         color:#212529;
-        text-align: center;
     }
 }
 
 
-
-.other-info{
-    margin-bottom:50px;
-    ion-col{
-        display: flex!important;
-        align-content: center!important;
-        align-items: center!important;
-        padding:40px;
-    }
-}
-.other-info-header{
-  background:#73B786;
-    h1{
-        font-size:40px;
-        font-weight: bold;
-        margin: auto;
-        color:#f8f9fa;
-    }
-}
-.other-info-section{
-    background:#efefef;
-    border-radius: 5px 0px 0px 5px;
-    p{
-        color:#222;
-        text-align: center;
-    }
+.size{
+    color:#212529!important;
+    font-size: 14px;
 }
 
 
@@ -174,11 +180,20 @@ h2{
 }
 
 .other-caps{
-    margin:30px 60px;
+    padding: 30px 60px;
+    margin: 30px 0px 0px 0px;
+    background:#f5f5f5;
+    h1{
+        color: #22472a;
+        font-weight: bold;
+    }
 }
 
 .cap-quantity{
-    color: #f50b0b!important;
+    color: #ef4040!important;
+    float: right;
+    font-size: 14px;
+    margin-top:20px;
 }
 .quantity{
     width:85px;
@@ -219,17 +234,10 @@ h2{
 .cap-row{
     animation: fadeIn ease 1s;
     -webkit-animation: fadeIn ease 1s;
+    margin-top:40px;
 }
 
-.slideInLeft{
-    animation: slideInLeft ease 1s;
-    -webkit-animation: slideInLeft ease 1s;
-}
 
-.slideInRight{
-    animation: slideInRight ease 1s;
-    -webkit-animation: slideInRight ease 1s;
-}
 @keyframes fadeIn {
     0% {
       opacity:0;
@@ -239,22 +247,83 @@ h2{
     }
   }
 
-  @keyframes slideInLeft {
-    0% {
-        transform: translateX(-600px);    }
-    100% {
-        transform: translateX(0px);
-    }
-  }
 
-  @keyframes slideInRight {
-    0% {
-        transform: translateX(600px);    }
-    100% {
-        transform: translateX(0px);
-    }
-  }
 
   .reviews{
       min-height: 300px;
   }
+
+  .out-of-stock{
+    text-align: center;
+
+    p{
+        color:#ef4040!important;
+        font-size: 20px;
+    }
+  }
+
+  .rating-no{
+    font-size:20px;
+  }
+
+  .quantity-row h2 {
+    margin-top: 13px;
+  }
+  .quantity-row{
+    min-height: 55px;
+    margin-top:20px;
+    border-top: 1px solid #ededed;
+    padding-top: 10px;
+
+  }
+  .quantity-box {
+    text-align: center;
+    display:inline-block;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background: #f5f5f5;
+    margin-top: 10px;
+
+    ion-button{
+        display: inline-block;
+        margin-top: -4px;
+    }
+    span{
+        display: inline-block;
+        color:#22472a;
+        margin-top:8px;
+        width:20px;
+    }
+  }
+
+.accordion{
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+    border-top:1px solid #DEDEDE;
+    ion-item{
+        --padding-start: 5px;
+        --inner-padding-end: 5px;
+        ion-icon{
+            font-size: 20px;
+        }
+    }
+    div{
+        color: #717677;
+        padding: 10px 5px;
+    }
+    .active {
+        animation: fadeIn ease 0.5s;
+        -webkit-animation: fadeIn ease 0.5s;
+         max-height:100%!important;	  
+    }
+    
+@keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+     opacity: 1;
+    }
+  }
+}

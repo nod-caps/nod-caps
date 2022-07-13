@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { SwiperComponent } from 'swiper/angular';
 import { SwiperOptions } from 'swiper';
 import SwiperCore, { Navigation, Autoplay, Keyboard, Pagination, Scrollbar, Zoom } from 'swiper';
@@ -10,7 +10,7 @@ SwiperCore.use([Navigation, Autoplay, Keyboard, Pagination, Scrollbar, Zoom, ]);
   styleUrls: ['./social-slider.component.scss'],
 })
 export class SocialSliderComponent implements OnInit {
-
+@Input() showTitle = true;
 
   slidesPerView = 5
   config: SwiperOptions = {

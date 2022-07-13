@@ -78,6 +78,7 @@ saving = false;
       { type: 'maxlength', message: 'Name cant be longer than 20 characters'},
       { type: 'minlength', message: 'Name must be longer than 3 characters'},
     ],
+
     description: [
       { type: 'maxlength', message: 'Description cant be longer than 20 characters'},
       { type: 'minlength', message: 'Description must be longer than 3 characters'},
@@ -127,6 +128,7 @@ setValues() {
   this.capForm.get('description').setValue(this.cap.description);
   this.capForm.get('price').setValue(this.cap.price);
   this.capForm.get('quantity').setValue(this.cap.quantity);
+
 
 
 

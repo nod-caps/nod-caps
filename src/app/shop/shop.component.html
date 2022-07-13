@@ -12,22 +12,8 @@
 
   <!--<h2>{{collection.name}}</h2>-->
   <!--<ion-button color="tertiary" shape="round" (click)="goToCollection(collection)">To Collection</ion-button>-->
-    <ion-row class="cap-row">
-      
-        <ion-col size="12" size-md="3"  *ngFor="let cap of collection.capList">
-           <app-cap-card [cap]="cap" [collectionRef]="cap.collectionRef"></app-cap-card>
-           
-      </ion-col>
-     
-    </ion-row>
-    <ion-row class="row" *ngIf="!collection.capList">
-      <ion-col size="12" size-lg="3" size-md="4" size-sm="6">
-       <app-cap-card></app-cap-card>
-      </ion-col>
-      <ion-col size="12" size-lg="3" size-md="4" size-sm="6">
-        <app-cap-card></app-cap-card>
-       </ion-col>
-    </ion-row>
+  <app-cap-display [capArray] = "collection.capList" ></app-cap-display>
+
   </div>
   </div>
 

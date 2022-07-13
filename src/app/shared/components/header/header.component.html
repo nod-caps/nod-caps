@@ -5,7 +5,7 @@
        <div>
          <ion-button (click)="goTo('home')" color="light ion-hide-sm-down"><strong>home</strong></ion-button>
          <ion-button (click)="goTo('shop')" color="light"><strong>shop</strong></ion-button>
-         <ion-button (click)="goTo('basket')" color="light" class="basket"><ion-icon name="cart"></ion-icon><ion-badge *ngIf="basketQuantity > 0" color="danger">{{basketQuantity}}</ion-badge></ion-button>
+         <ion-button (click)="openBasket()" color="light" class="basket"><ion-icon name="cart"></ion-icon><ion-badge *ngIf="basketQuantity > 0" color="danger">{{basketQuantity}}</ion-badge></ion-button>
        </div>
     </ion-buttons>
     <ion-title slot="start" (click)="goTo('home')" >

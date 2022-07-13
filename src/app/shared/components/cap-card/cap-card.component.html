@@ -1,9 +1,16 @@
 <ion-card (click)="goToHat(cap)" *ngIf="cap">
-  <img class="cap-skel" [src]="cap?.imageField1">
+  <div class="image-holder">
+    <img class="cap-skel" [src]="cap?.imageField1">
+    <div *ngIf="cap.quantity < 10 && cap.quanity > 0" class="out-of-stock">
+      <span>{{cap?.quantity}} LEFT</span>
+    </div>
+    <div *ngIf="cap.quantity < 1 " class="out-of-stock">
+      <span>OUT OF STOCK</span>
+    </div>
+  </div>
   <ion-card-header>
     <ion-card-title>{{cap?.name}}</ion-card-title>
-    <span class="running-out" *ngIf="cap.quantity < 10 && cap.quanity > 0"> only {{cap?.quantity}} left!</span>
-    <span class="running-out" *ngIf="cap.quantity === 0"> Out of stock!</span>
+    
 
 
     <div class="bottom-holder">

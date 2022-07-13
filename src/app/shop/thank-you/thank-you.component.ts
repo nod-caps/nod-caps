@@ -20,6 +20,7 @@ export class ThankYouComponent implements OnInit {
   order: any;
   contactRef: any;
   showOptIn = false;
+  gotOrderInfo = false;
 
   
   constructor(
@@ -44,11 +45,14 @@ export class ThankYouComponent implements OnInit {
     if (orders.length > 0) {
       orders = orders.sort((a, b) => (a.date < b.date) ? 1 : -1);
       this.order = orders[0];
-     //  this.checkIfExpired();
-      this.checkIfAContact();
-      if (!this.order.emailSent) {
-        //this.sendMail();
+      console.log('hello', this.order);
+      if (!this.order.addedCaps) {
+        this.getCaps();
+      } else {
+        this.gotOrderInfo = true
       }
+     // this.checkIfExpired();
+      this.checkIfAContact();
     } else {
 this.noOrder();
     }
@@ -57,6 +61,26 @@ this.noOrder();
       
     
   
+  }
+
+  getCaps() {
+    this.order.lineItems.forEach(async (cap: any, index: number) => {
+      const q = query(collection(this.firestore, 'caps'), where("description", "==", cap.description));
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        this.order.lineItems[index].cap = doc.data();
+            
+     if ((index === (this.order.lineItems.length - 1))) {
+       this.gotOrderInfo = true;
+
+      if (!this.order.emailSent) {
+        this.sendMail();
+      }
+     }
+      });
+
+  
+    });
   }
 
 
@@ -121,8 +145,7 @@ sendMail(){
   }
 
   markAsSent() {
-    this.fire.collection('orders').doc(this.order.docRef).update({emailSent: true});
-
+    this.fire.collection('orders').doc(this.order.docRef).update({lineItems: this.order.lineItems, emailSent: true});
   }
 
   ngOnInit() {

@@ -1,12 +1,12 @@
 <div class="swiper-holder">
-  <h2>Some great photos from all of you...</h2>
+  <h1 *ngIf="showTitle">nod in the wild</h1>
   <swiper #swiper [config]="config">
     <ng-template swiperSlide>
       <ion-card>
         <img src="assets/img/cap-photo.png">
-        <ion-card-header>
-          <ion-card-title class="photo-description">Description here</ion-card-title>
-        </ion-card-header>
+        <div class="overlay">
+          Perfect Storm
+      </div>
         <div class="shop-button-hover ion-text-center">
         <ion-button  shape="round" color="light">
               SHOP
@@ -17,9 +17,22 @@
     <ng-template swiperSlide>
       <ion-card>
         <img src="assets/img/cap-photo.png">
-        <ion-card-header>
-          <ion-card-title class="photo-description">Description here</ion-card-title>
-        </ion-card-header>
+        <div class="overlay">
+          Perfect Storm
+         </div>
+        <div class="shop-button-hover ion-text-center">
+        <ion-button  shape="round" color="light">
+         SHOP
+        </ion-button>
+      </div>
+      </ion-card>
+    </ng-template>
+    <ng-template swiperSlide>
+      <ion-card>
+        <img src="assets/img/cap-photo.png">
+        <div class="overlay">
+          Burning Bridges
+      </div>
         <div class="shop-button-hover ion-text-center">
         <ion-button  shape="round" color="light">
               SHOP
@@ -30,9 +43,22 @@
     <ng-template swiperSlide>
       <ion-card>
         <img src="assets/img/cap-photo.png">
-        <ion-card-header>
-          <ion-card-title class="photo-description">Description here</ion-card-title>
-        </ion-card-header>
+        <div class="overlay">
+         Daily Driver
+      </div>
+        <div class="shop-button-hover ion-text-center">
+        <ion-button  shape="round" color="light">
+             SHOP
+        </ion-button>
+      </div>
+      </ion-card>
+    </ng-template>
+    <ng-template swiperSlide>
+      <ion-card>
+        <img src="assets/img/cap-photo.png">
+        <div class="overlay">
+         Devils Advocate
+      </div>
         <div class="shop-button-hover ion-text-center">
         <ion-button  shape="round" color="light">
               SHOP
@@ -43,9 +69,9 @@
     <ng-template swiperSlide>
       <ion-card>
         <img src="assets/img/cap-photo.png">
-        <ion-card-header>
-          <ion-card-title class="photo-description">Description here</ion-card-title>
-        </ion-card-header>
+        <div class="overlay">
+          Party Pooper
+      </div>
         <div class="shop-button-hover ion-text-center">
         <ion-button  shape="round" color="light">
               SHOP
@@ -56,35 +82,9 @@
     <ng-template swiperSlide>
       <ion-card>
         <img src="assets/img/cap-photo.png">
-        <ion-card-header>
-          <ion-card-title class="photo-description">Description here</ion-card-title>
-        </ion-card-header>
-        <div class="shop-button-hover ion-text-center">
-        <ion-button  shape="round" color="light">
-              SHOP
-        </ion-button>
-      </div>
-      </ion-card>
-    </ng-template>
-    <ng-template swiperSlide>
-      <ion-card>
-        <img src="assets/img/cap-photo.png">
-        <ion-card-header>
-          <ion-card-title class="photo-description">Description here</ion-card-title>
-        </ion-card-header>
-        <div class="shop-button-hover ion-text-center">
-        <ion-button  shape="round" color="light">
-              SHOP
-        </ion-button>
-      </div>
-      </ion-card>
-    </ng-template>
-    <ng-template swiperSlide>
-      <ion-card>
-        <img src="assets/img/cap-photo.png">
-        <ion-card-header>
-          <ion-card-title class="photo-description">Description here</ion-card-title>
-        </ion-card-header>
+        <div class="overlay">
+            Irish Goodbye
+        </div>
         <div class="shop-button-hover ion-text-center">
         <ion-button  shape="round" color="light">
               SHOP

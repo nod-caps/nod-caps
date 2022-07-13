@@ -10,7 +10,6 @@ export class CapCardComponent implements OnInit {
 
 
   @Input() cap: any;
-  @Input() collectionRef: any; 
   displayRating  = 5;
   wholeStars = 5;
   hasHalf = false;
@@ -19,7 +18,7 @@ export class CapCardComponent implements OnInit {
   ) { }
 
   goToHat(cap: any){
-    this.router.navigateByUrl('shop/' + this.collectionRef + '/' + cap.nameHyphenated);
+    this.router.navigateByUrl('shop/' + cap.collectionRef + '/' + cap.nameHyphenated);
     }
 
     

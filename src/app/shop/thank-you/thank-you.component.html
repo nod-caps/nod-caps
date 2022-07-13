@@ -2,20 +2,89 @@
 
   <div class="basket-container">
     <h1>Cheers! A confirmation email is on its way to you</h1>
-      <p><strong>Your order number is {{orderNumber}}</strong></p>
+      <p>Your order number is {{orderNumber}}</p>
     <div class="sign-up" *ngIf="showOptIn">
       <app-sign-up  [inModal]="false"></app-sign-up>
-
     </div>
 
-    <p>All order info will be included in the email - if you have any questions please contact us <a href="/contact">here</a> with your order number!</p>
+    <div class="ion-text-left summary"  *ngIf="gotOrderInfo">
+      <p class="sum-title">Summary</p>
+      <ion-item *ngFor="let item of order?.lineItems; let i = index">
+        <ion-avatar>
+          <img [src]="item.cap.imageField1">
+        </ion-avatar>
+        <ion-label> {{item.quantity}} x {{item.cap.name}}</ion-label>
+        <span  class="fs14">£{{item.amount_total}}</span>
+      </ion-item>
+      <ion-item>
+        <ion-label>Delivery:</ion-label>
+        <span class="fs14">FREE</span>
+      </ion-item>
+      <ion-item>
+        <ion-label>Total:</ion-label>
+        <span ><strong>£{{order?.amountTotal}}</strong></span>
+      </ion-item>
+    </div>
 
-    <p>While you wait come and check us out on social media! Tag us and appear below.</p>
-    <ion-buttons>
-      <ion-button color="dark"><ion-icon name="logo-instagram"></ion-icon></ion-button>
-      <ion-button color="dark"><ion-icon name="logo-facebook"></ion-icon></ion-button>
-    </ion-buttons>
+    <div class="ion-text-center no-order" *ngIf="!gotOrderInfo">
+      <ion-spinner color="tertiary"></ion-spinner>
+    </div>
 
+
+    <div class="next">
+
+      <h1>What happens next?</h1>
+
+      <div class='steps' id='steps'>
+        <div class='step'>
+          <div class='number completed'>
+            <ion-icon name="heart-outline"></ion-icon>
+          </div>
+          <div class='info social-info'>
+            <p class='title'>
+               Follow us on social media
+            </p>
+            <p class='text'>Tag us when you get your cap!</p>
+            <p class="social-buttons"><app-social-buttons></app-social-buttons></p>
+          </div>
+        </div>
+      
+        <div class='step'>
+          <div class='number'><ion-icon name="mail-outline"></ion-icon></div>
+          <div class='info'>
+            <p class='title'>We are packaging your order</p>
+            <p class='text'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat pariatur minima nemo? </p>
+          </div>
+        </div>
+
+        <div class='step'>
+          <div class='number'><ion-icon name="car-outline"></ion-icon></div>
+          <div class='info'>
+            <p class='title'>Shipping your order</p>
+            <p class='text'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat pariatur minima nemo?</p>
+          </div>
+        </div>
+
+        <div class='step'>
+          <div class='number'><ion-icon name="home-outline"></ion-icon></div>
+          <div class='info'>
+            <p class='title'>Delivered!</p>
+            <p class='text'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat pariatur minima nemo?</p>
+          </div>
+        </div>
+
+        <div class='step'>
+          <div class='number'><ion-icon name="star-outline"></ion-icon></div>
+          <div class='info'>
+            <p class='title'>Leave a review!</p>
+            <p class='text'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat pariatur minima nemo?</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      
+  
     
 
    

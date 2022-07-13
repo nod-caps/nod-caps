@@ -2,21 +2,8 @@
   <div class="collection-div">
 
   <h2>Our caps</h2>
-  <ion-row class="row" *ngIf="caps">
+    <app-cap-display [capArray] = "caps" ></app-cap-display>
 
-    <ion-col size="12" size-lg="3" size-md="4" size-sm="6" *ngFor="let cap of caps">
-     <app-cap-card [cap]="cap" [collectionRef] = "displayCollectionRef"></app-cap-card>
-    </ion-col>
-  </ion-row>
-
-  <ion-row class="row" *ngIf="!caps">
-    <ion-col size="12" size-lg="3" size-md="4" size-sm="6">
-     <app-cap-card></app-cap-card>
-    </ion-col>
-    <ion-col size="12" size-lg="3" size-md="4" size-sm="6">
-      <app-cap-card></app-cap-card>
-     </ion-col>
-  </ion-row>
 </div>
 
  
@@ -25,13 +12,24 @@
 <div class="green-info-section">
     <ion-row>
       <ion-col size="12" size-md="4" class="ion-text-center">
-        <p>This is some general information about where we started</p>
+        <h2>Who we are</h2>
+        <p>Nod caps is a premium brand focusing exclusively on creating high quality caps for any occasion.  Whether you are taking the dog for a walk, or heading out to meet some mates at the pub, our caps have (quite literally) got you covered.</p>
+        <ion-button shape="round" color="tertiary">Find Out More</ion-button>
       </ion-col>
       <ion-col size="12" size-md="4" class="ion-text-center">
-        <p>This is some general information about what we do about planting trees</p>
+        <h2>Our caps</h2>
+
+        <p>By purely focusing on caps, we’ve been able to put all our efforts into designing and producing the best quality caps that our customers are proud to wear and gift to their loved ones.</p>
+        <ion-button shape="round" color="tertiary">Browse Caps</ion-button>
       </ion-col>
       <ion-col size="12" size-md="4" class="ion-text-center">
-        <p>This is some general information about where we get our caps.</p>
+        <h2>Free delivery</h2>
+
+
+        <p>We offer free delivery with every order - no matter how big or small. Once you place an order, your cap should be with you within 2-3 working days. 
+        </p>
+        <ion-button shape="round" color="tertiary">Delivery Details</ion-button>
+
       </ion-col>
     </ion-row>
 </div>

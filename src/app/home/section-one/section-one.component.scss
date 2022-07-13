@@ -153,15 +153,15 @@ font-size:40px;
     background-position: center;
   p{
     color: #f8f9fa;
-    font-size:20px;
+    font-size:16px;
+  }
+  h2 {
+    color: #f8f9fa;
+
   }
   ion-col{
-    height: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding:30px;
-    background:rgba(0, 0, 0, 0.85);
+    padding: 100px 30px;
+    background: rgba(0, 0, 0, 0.85);
   }
 }
 
@@ -173,9 +173,7 @@ font-size:40px;
 @media (max-width: 768px) {
   .green-info-section{
     background-size:cover;
-  ion-col{
-    height:300px;
-  }
+ 
   }
   .swiper-holder {
     background-image: -webkit-linear-gradient(270deg, #ffffff 55%, #22472a 55%);

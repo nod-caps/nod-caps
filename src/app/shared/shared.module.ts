@@ -7,7 +7,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { SwiperModule } from 'swiper/angular';
+import { AboutComponent } from '../admin/about/about.component';
+import { PrivacyComponent } from '../admin/privacy/privacy.component';
+import { ReturnsComponent } from '../admin/returns/returns.component';
+import { TermsComponent } from '../admin/terms/terms.component';
 import { OrdersComponent } from '../control/orders/orders.component';
+import { DeliveryModalComponent } from '../shop/delivery-modal/delivery-modal.component';
 import { ThankYouComponent } from '../shop/thank-you/thank-you.component';
 import { AddReviewComponent } from './components/add-review/add-review.component';
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
@@ -15,6 +20,7 @@ import { BannerSwiperComponent } from './components/banner-swiper/banner-swiper.
 import { BasketComponent } from './components/basket/basket.component';
 import { BoastBannerComponent } from './components/boast-banner/boast-banner.component';
 import { CapCardComponent } from './components/cap-card/cap-card.component';
+import { CapDisplayComponent } from './components/cap-display/cap-display.component';
 import { CookieConsentComponent } from './components/cookie-consent/cookie-consent.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -23,6 +29,7 @@ import { SignUpBannerComponent } from './components/sign-up-banner/sign-up-banne
 import { SignUpHolderComponent } from './components/sign-up-holder/sign-up-holder.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { SocialSliderComponent } from './components/social-slider/social-slider.component';
+import { SocialButtonsComponent } from './social-buttons/social-buttons.component';
 
 
 
@@ -54,7 +61,14 @@ import { SocialSliderComponent } from './components/social-slider/social-slider.
       AddReviewComponent,
       SocialSliderComponent,
       BoastBannerComponent,
-      SignUpBannerComponent
+      SignUpBannerComponent,
+      DeliveryModalComponent,
+      AboutComponent,
+      PrivacyComponent,
+      ReturnsComponent,
+      TermsComponent, 
+      SocialButtonsComponent,
+      CapDisplayComponent
 
   ],
   providers: [],
@@ -74,7 +88,14 @@ import { SocialSliderComponent } from './components/social-slider/social-slider.
     AddReviewComponent,
     SocialSliderComponent,
     BoastBannerComponent,
-    SignUpBannerComponent
+    SignUpBannerComponent,
+    DeliveryModalComponent,
+    AboutComponent,
+    PrivacyComponent,
+    ReturnsComponent,
+    TermsComponent,
+    SocialButtonsComponent,
+    CapDisplayComponent
   ]
 })
 export class SharedModule { }

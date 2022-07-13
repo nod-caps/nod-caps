@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ModalController } from '@ionic/angular';
+import { AlertController, MenuController, ModalController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { BasketService } from 'src/app/services/basket.service';
 import { environment } from 'src/environments/environment';
@@ -23,6 +23,7 @@ export class BasketComponent implements OnInit, OnDestroy {
   totalPrice = 0;
   checkoutArray: any;
   capBasketMax = 5;
+  outOfStock = false;
   
 
   constructor(
@@ -31,13 +32,19 @@ export class BasketComponent implements OnInit, OnDestroy {
     private router: Router,
     private fb: FirebaseService,    
     private firestore: Firestore,
+    private alertCtrl: AlertController,
+    private menu: MenuController,
+    private alert: AlertController
   ) {}
 
-  quantityChanged(ev: any, index: any) {
+  quantityChanged(index: any) {
     //getting called twice as changing in here
-    this.basketArray[index].quantity = ev.detail.value;
+    if (this.basketArray[index].errorMessage && this.basketArray[index].errorMessage.indexOf('low on stock') >-1) {
+      this.basketArray[index].errorMessage = undefined;
+    }
+   
     this.basketArray[index].itemPrice =
-    ev.detail.value * this.basketArray[index].cap.price;
+    this.basketArray[index].cap.price * this.basketArray[index].cap.price;
     this.getTotalPrice();
     this.basket.editBasket();
   }
@@ -107,7 +114,8 @@ export class BasketComponent implements OnInit, OnDestroy {
   }
 
 goToStripe(){
-      var stripe = Stripe(environment.stripe.push);
+      //change below
+      var stripe = Stripe('pk_test_51Kj1mgKGPCnyjU4r7zk7Ly0QKuHsDVxMNTDH8pFkhIpdlVJ1181Ddcal7xgum9cHzirt3neW6c13GOzAfBwrloGr00OgvsNccG');
       const functions = getFunctions();
       const checkout = httpsCallable(functions, 'stripeCheckout');
       checkout({checkoutArray: this.checkoutArray}).then((result) => {
@@ -122,6 +130,12 @@ goToStripe(){
 
 goTo(link: string) {
   this.router.navigateByUrl(link);
+}
+
+toShop() {
+  this.router.navigateByUrl('shop');
+  this.close();
+
 }
 
   editBasket() {
@@ -140,18 +154,101 @@ goTo(link: string) {
         this.basketArray[index].itemPrice = item.quantity * item.cap.price;
         this.basketLength = this.basketLength + item.quantity
         this.totalPrice += this.basketArray[index].itemPrice;
-        this.basketArray[index].quantityArray = this.checkQuantity( this.basketArray[index])
+        this.basketArray[index].quantityArray = this.checkQuantity( this.basketArray[index].cap.quantity);
       });
     });
   }
 
+  checkIfSoldOut() {
+    this.outOfStock = false;
+    this.basketArray.forEach((item: any, index: any) => {
+      const continueCount = 0;
+      this.fb.getSingleCap(item.cap.capRef).then(async data => {
+        if (data) {
+
+          if (item.quantity > data.quantity) {
+           this.outOfStock = true;
+
+           if ( data.quantity === 0) {
+            if (this.basketArray.length === 1) {
+              this.basketArray[index].errorMessage = 'Sorry! This item appears to be out of stock. Please remove it from your basket, hopefully other caps are still in stock.'
+            } else {
+              this.basketArray[index].errorMessage = 'Sorry! This item appears to be out of stock. Please remove it from your basket and try again.';
+            }
+           } else {
+            this.basketArray[index].errorMessage = 'Sorry! We seem to be low on stock. We only have ' +  data.quantity + ' left. Please ammend your order and try again';
+            this.basketArray[index].quantityArray = this.checkQuantity( data.quantity);
+           } 
+          }
+          
+          if ((index === (this.basketArray.length - 1))  &&  !this.outOfStock) {
+
+            this.getStripeInfo();
+
+          }  else if (this.outOfStock && (index === (this.basketArray.length - 1) )) {
+            const alert = await this.alertCtrl.create({
+              cssClass: 'my-custom-class',
+              header: 'Stock Error',
+              message: 'It looks like you are ordering something we may no longer have, please check any error messages and try again!',
+              buttons: [
+                {
+                  text: 'Okay',
+                }
+              ]   
+             });
+        
+            await alert.present();
+        
+          }
+        };
+
+    });
+  });
+}
+
+
+
+async changeQuantity(dir: string, index){
+  if (dir === 'plus') {
+    if ((this.basketArray[index].quantity + 1) <= this.basketArray[index].quantityArray.length) {
+      this.basketArray[index].quantity++
+      this.quantityChanged(index);
+    } else{
+      let message="";
+      if (this.basketArray[index].quantityArray.length === 5) {
+        message = "Sorry to be this way but we are only letting people order 5 caps at a time for now!"
+      } else {
+        message = "Sorry but it looks like no more hats are in stock!"
+
+      }
+      const alert = await this.alert.create({
+        cssClass: 'my-custom-class',
+        header: 'Maxed Out',
+        message: message,
+        buttons: [
+          {
+            text: 'Okay',
+          }
+        ]   
+       });
+  
+      await alert.present();
+    }
+  } else {
+    if ((this.basketArray[index].quantity - 1) > 0) {
+      this.basketArray[index].quantity--
+      this.quantityChanged(index);
+
+    }
+  }
+}
 
   close() {
-    this.modalCtrl.dismiss();
-  }
-  checkQuantity(capItem: any) {
-    if (capItem.cap.quantity < this.capBasketMax) {
-      return Array.from({length:capItem.cap.quantity},(v,k)=>k+1)
+    this.menu.close();
+   }
+  checkQuantity(capItemQuantity: any) {
+    if (capItemQuantity < this.capBasketMax) {
+      return Array.from({length:capItemQuantity},(v,k)=>k+1)
     } else {
       return Array.from({length:this.capBasketMax},(v,k)=>k+1)
     }

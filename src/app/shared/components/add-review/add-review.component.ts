@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 
 @Component({
@@ -18,16 +18,18 @@ export class AddReviewComponent implements OnInit {
   selectedIndex: any;
   sending = false
   @Input() email: any;
+  @Input() order: any;
 
   constructor(
     private formBuilder: FormBuilder,
     private modalCtrl: ModalController,
-    private fire: AngularFirestore
+    private fire: AngularFirestore,
+    private toastCtrl: ToastController
   ) { }
 
   reviewForm = this.formBuilder.group({
     name: ['', [ Validators.maxLength(20)]],
-    message: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(200)]],
+    message: ['', [ Validators.maxLength(200)]],
   });
 
   
@@ -46,7 +48,6 @@ export class AddReviewComponent implements OnInit {
     ],
     message: [
       { type: 'maxlength', message: 'Description cant be longer than 200 characters'},
-      { type: 'minlength', message: 'Description must be longer than 10 characters'},
     ],
   }
 
@@ -63,7 +64,7 @@ export class AddReviewComponent implements OnInit {
   addReview(){
       this.sending = true;
       const reviewObj = {
-          name: this.reviewForm.get('name').value,
+            name: this.reviewForm.get('name').value,
             message: this.reviewForm.get('message').value,
             capRef: this.cap.capRef,
             rating: this.selectedIndex,
@@ -74,13 +75,20 @@ export class AddReviewComponent implements OnInit {
       
       this.fire.collection('reviews').add(reviewObj).then(async (doc: any)=> {
         if (doc) {
+          const toast = await this.toastCtrl.create({
+            message: 'Thanks for leaving a review!',
+            duration: 2000,
+            position: 'top',
+            color: 'tertiary',
+          });
+          toast.present();
            this.sending = false;
            this.modalCtrl.dismiss({review: true});
            const functions = getFunctions();
            const updateReviews = httpsCallable(functions, 'updateAverageReview');
            updateReviews({capRef: this.cap.capRef, newRating: this.selectedIndex}).then((result) => {
             if (result) {
-              console.log('done');
+             
               this.sendMail();
             }
           });
@@ -99,7 +107,6 @@ export class AddReviewComponent implements OnInit {
         html: "<ul><li>" +  this.reviewForm.get('name').value + " </li><li>" +  this.selectedIndex + "stars </li><li>" +  this.reviewForm.get('message').value + "</li><li>www.nodcaps.com/shop/" + this.cap.collectionRef + "/" + this.cap.nameHyphenated  + "</li></ul>",
       },
   }
-  console.log('hello', contactObj);
   this.fire.collection('mail').add(contactObj);
   }
 
@@ -112,6 +119,8 @@ export class AddReviewComponent implements OnInit {
     this.highlightIndex = -1;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.reviewForm.get('name').setValue(this.order.customerName)
+  }
 
 }

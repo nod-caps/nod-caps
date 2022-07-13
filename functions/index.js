@@ -57,9 +57,6 @@ exports.stripeWebhook = functions.https.onRequest(async (req, res) => {
   const n = dataObject.success_url.lastIndexOf("cheers?on=");
   const orderNumberFromString = dataObject.success_url.substring(n + 10);
   lineItems.line_items.data.forEach((item, index) => {
-    lineItems.line_items.data[index].productId = item.price.product;
-    lineItems.line_items.data[index].priceId = item.price.id;
-    delete lineItems.line_items.data[index].price;
     const ref = admin.firestore().collection("caps");
     ref.where("description", "==", item.description)
         .get()
@@ -69,6 +66,8 @@ exports.stripeWebhook = functions.https.onRequest(async (req, res) => {
             document.ref.update({quantity: quantity});
           });
         });
+    lineItems.line_items.data[index].priceId = item.price.id;
+    delete lineItems.line_items.data[index].price;
   });
 
   await admin.firestore().collection("orders").doc().set({

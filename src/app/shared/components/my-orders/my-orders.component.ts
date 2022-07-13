@@ -32,7 +32,8 @@ export class MyOrdersComponent implements OnInit {
       component: AddReviewComponent,
       componentProps:{
         cap,
-        email: this.customerEmail
+        email: this.customerEmail, 
+        order: this.order
       },
       cssClass: 'review-modal'
     }).then (modal => {
@@ -40,7 +41,7 @@ export class MyOrdersComponent implements OnInit {
       return modal.onDidDismiss();
     }).then (result => {
       if (result.data?.review) {
-        this.caps[index].review = true 
+        this.order.lineItems[index].cap.review = true 
       }
     })
   }
@@ -62,6 +63,7 @@ export class MyOrdersComponent implements OnInit {
   }
 
 
+
   async getInfo() {
      let orders = [];
     const q = query(collection(this.firestore, 'orders'), where("customerEmail", "==", this.customerEmail ));
@@ -70,13 +72,19 @@ export class MyOrdersComponent implements OnInit {
      orders.push(doc.data());
     });
     if (orders.length > 0) {
+      
       orders = orders.sort((a, b) => (a.date < b.date) ? 1 : -1);
-      this.getCaps(orders[0]);
+    //  this.getCaps(orders[0]);
+      this.order = orders[0];
     } else {
       this.noOrder();
     }
   }
 
+  toShop() {
+    this.router.navigateByUrl('shop');
+
+  }
   getCaps(order: any) {
     this.caps = [];
     order.lineItems.forEach(async (cap) => {

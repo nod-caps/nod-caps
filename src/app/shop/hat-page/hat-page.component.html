@@ -1,25 +1,11 @@
 <ion-content>
 
   <ion-row *ngIf="cap" class="cap-row">
-    <ion-col size="12" size-md="2" class="preview-images ion-hide-md-down">
-      <div *ngIf="cap?.imageField1">
-        <img (click)="makeActive(cap?.imageField1)" (mouseover)="hoverImg(cap?.imageField1)" (mouseout)="hoverImgOut()" [src]="cap?.imageField1" [ngClass]="activeCap === cap?.imageField1 ? 'active-cap' : ''">
-      </div>
-      <div *ngIf="cap?.imageField2">
-        <img (click)="makeActive(cap?.imageField2)" (mouseover)="hoverImg(cap?.imageField2)" (mouseout)="hoverImgOut()" [src]="cap?.imageField2" [ngClass]="activeCap === cap?.imageField2 ? 'active-cap' : ''">
-      </div>
-      <div *ngIf="cap?.imageField3">
-        <img (click)="makeActive(cap?.imageField3)"  (mouseover)="hoverImg(cap?.imageField3)" (mouseout)="hoverImgOut()" [src]="cap?.imageField3" [ngClass]="activeCap === cap?.imageField3 ? 'active-cap' : ''">
-      </div>
-      <div *ngIf="cap?.imageField4">
-        <img  (click)="makeActive(cap?.imageField4)"  (mouseover)="hoverImg(cap?.imageField4)" (mouseout)="hoverImgOut()" [src]="cap?.imageField4" [ngClass]="activeCap === cap?.imageField4 ? 'active-cap' : ''">
-      </div>
-    </ion-col>
-    <ion-col size="12" size-md="5" class="main-image ion-hide-md-down">
-      <img [src]="activeCap">
-    </ion-col>
-    <ion-col size="12" class="ion-hide-md-up swiper-col-hat">
-      <swiper #swiper [config]="config" >
+   <!-- <ion-col size="12" size-md="2" size-lg="1" offset-lg="1.5" class="preview-images ion-hide-md-down">
+    </ion-col>-->
+    <ion-col size="12" size-md="7" size-lg="5" offset-lg="1" class="main-image ">
+
+      <swiper  class="hat-swiper" #hatSwiper [config]="hatConfig" >
         <ng-template swiperSlide class="swipe" *ngIf="cap?.imageField1">
           <img [src]="cap?.imageField1">
         </ng-template>
@@ -34,13 +20,35 @@
         </ng-template>
 
       </swiper>
-      <div class="swiper-pagination"></div>
 
-      <ion-button class=" swiper-button-prev" color="light" ><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
-       <ion-button class=" swiper-button-next" color="light" ><ion-icon  name="chevron-forward-outline"></ion-icon></ion-button>
+      <ion-button class=" swiper-button-prev swiper-button-prev-hat" color="light" ><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
+       <ion-button class=" swiper-button-next swiper-button-next-hat" color="light" ><ion-icon  name="chevron-forward-outline"></ion-icon></ion-button>  
+
+      <div class="preview-images ion-hide-md-down">
+        <div *ngIf="cap?.imageField1">
+          <img (click)="slideTo(0)"  [src]="cap?.imageField1">
+        </div>
+        <div *ngIf="cap?.imageField2">
+          <img (click)="slideTo(1)"  [src]="cap?.imageField2">
+        </div>
+        <div *ngIf="cap?.imageField3">
+          <img (click)="slideTo(2)"   [src]="cap?.imageField3" >
+        </div>
+        <div *ngIf="cap?.imageField4">
+          <img  (click)="slideTo(3)"   [src]="cap?.imageField4" >
+        </div>
+      </div>
+     
     </ion-col>
-    <ion-col size="12" size-md="5" class="description-col">
+ 
+    <ion-col size="12" size-md="5" size-lg="5"  class="description-col">
         <h1>{{cap?.name}}</h1>
+        <div>
+          <h2 class="price">£{{cap?.price}}</h2>
+          <h2 class="free-delivery" *ngIf="cap?.quantity !== 0">FREE UK DELIVERY</h2>
+        </div>
+
+
         <div (click) = "scroll()" class="ratings">
           <ion-icon class="star" name="star" *ngFor="let item of [].constructor(wholeStars)"></ion-icon>
           <ion-icon *ngIf="hasHalf" name="star-half" class="star"></ion-icon>
@@ -50,34 +58,88 @@
           <div *ngIf="hasHalf" class="empty-star">
             <ion-icon class="star"  *ngFor="let item of [].constructor(4 - wholeStars)"name="star-outline"></ion-icon>
           </div>
+          <!--<h2 class="review-count">
+            <span  class="rating-no" *ngIf="cap?.numberOfReviews">{{cap?.rating}}</span>
+          </h2>-->
           <h2 class="review-count">
-            <span *ngIf="cap?.numberOfReviews">{{cap?.rating}}</span>
-          </h2>
-          <h2 class="review-count black">
-            <span *ngIf="cap?.numberOfReviews">({{cap?.numberOfReviews}} ratings)</span>
-            <span *ngIf="!cap?.numberOfReviews">(0 ratings)</span>
+            <span *ngIf="cap?.numberOfReviews">({{cap?.numberOfReviews}})</span>
+            <span *ngIf="!cap?.numberOfReviews">(0)</span>
           </h2>
         </div>
+
+
+        <p class="size">ONE SIZE</p>
         
-       
-        <h1 class="price">£{{cap?.price}}</h1>
-      
-        <ion-item lines="none" class="quantity" *ngIf="!alreadyInBasket && cap?.quantity !== 0">
-          <ion-label>Qty</ion-label>
-          <ion-select mode="ios" interface="popover" *ngIf="quantity" (ionChange)="quantityChanged($event, i)"  [value]="quantity">
-            <ion-select-option *ngFor="let val of quantityArray" [value]=val>{{val}}</ion-select-option>
-          </ion-select>
-        </ion-item>
-        <p>{{cap?.description}}</p>  
+
+      <div class="quantity-row">
+        <div class="quantity-box" *ngIf="!alreadyInBasket && cap?.quantity !== 0">
+          <ion-button size="small" fill="clear" color="dark" (click)="changeQuantity('minus')" [disabled] = "quantity < 2">
+            <ion-icon name="remove-outline"></ion-icon>
+          </ion-button>
+          <span>{{quantity}}</span>
+          <ion-button size="small" fill="clear" color="dark" (click)="changeQuantity('plus')">
+            <ion-icon name="add-outline"></ion-icon>        
+          </ion-button>
+        </div>
         <p *ngIf="cap?.quantity < 20 && cap?.quantity > 0" class="cap-quantity">Only {{cap?.quantity}} left in stock!</p>
-        <p *ngIf="cap?.quantity === 0" class="cap-quantity">Out of stock!</p>
+      </div>
+
+
+        <div class="out-of-stock" *ngIf="cap?.quantity === 0">
+          <p  class="cap-quantity">Out of stock! Follow us on socials for stock updates</p>
+          <app-social-buttons></app-social-buttons>
+        </div>
+       
 
         <div class="ion-text-center add-basket" *ngIf="cap?.quantity !== 0">
-          <ion-button *ngIf="!alreadyInBasket" shape="round" color="tertiary" (click)="addToBasket(cap)">ADD TO BASKET</ion-button>
-          <ion-button *ngIf="alreadyInBasket" shape="round" color="tertiary" (click)="openBasket()">VIEW IN BASKET</ion-button>
+          <ion-button *ngIf="!alreadyInBasket" shape="round" color="primary" (click)="addToBasket(cap)">ADD TO BASKET</ion-button>
+          <ion-button *ngIf="alreadyInBasket" shape="round" color="primary" (click)="openBasket()">VIEW IN BASKET</ion-button>
         </div>
 
-        <div class="extras-box">
+        <div class="accordion">
+      
+              <ion-item slot="header"  button="true"  details="none" (click)="accordion(1)" >
+                <ion-label>DESCRIPTION</ion-label>
+                <ion-icon color="dark" slot="end" name="chevron-down-outline" *ngIf="accordionNumber !== 1"></ion-icon>
+                <ion-icon color="dark"slot="end" name="chevron-up-outline" *ngIf="accordionNumber === 1"></ion-icon>
+
+              </ion-item>
+              <div class="ion-padding" slot="content" *ngIf="accordionNumber === 1" [ngClass]="accordionNumber === 1 ? 'active':''">
+                {{cap?.description}} 
+              </div>
+           
+              <ion-item slot="header" button="true"  details="none" (click)="accordion(2)">
+                <ion-label>PRODUCT DETAILS</ion-label>
+                <ion-icon color="dark"slot="end" name="chevron-down-outline" *ngIf="accordionNumber !== 2"></ion-icon>
+                <ion-icon color="dark"slot="end" name="chevron-up-outline" *ngIf="accordionNumber === 2"></ion-icon>
+              </ion-item>
+              <div class="ion-padding" slot="content"  *ngIf="accordionNumber === 2" [ngClass]="accordionNumber === 2 ? 'active':''">
+                <ul>
+                  <li>100% cotton</li>
+                  <li>One size (adjustable)</li>
+                  <li>Six panel design</li>
+                  <li>Soft unstructured crown</li>
+                  <li>Embroidered ventilating eyelets (grommets?)</li>
+                  <li>Embroidered nod logo on the front</li>
+                  <li>Adjustable nod logo rear buckle strap</li>
+                </ul>
+
+
+              </div>
+
+              <ion-item slot="header"  button="true" details="none" (click)="accordion(3)">
+                <ion-label>DELIVERY</ion-label>
+                <ion-icon color="dark"slot="end" name="chevron-down-outline" *ngIf="accordionNumber !== 3"></ion-icon>
+                <ion-icon color="dark"slot="end" name="chevron-up-outline" *ngIf="accordionNumber === 3"></ion-icon>
+              </ion-item>
+              <div class="ion-padding" slot="content"   *ngIf="accordionNumber === 3" [ngClass]="accordionNumber === 3 ? 'active':''">
+                Third Content
+              </div>
+
+        </div>
+
+
+       <!-- <div class="extras-box" *ngIf="cap?.quantity > 0">
           <ion-item class="delivery" detail="false" button="true" lines="none" (click)="openDeliveryInfo()">
             <ion-icon slot="start" name="mail"></ion-icon>
             <ion-label>Delivery info (2-3 days)</ion-label>
@@ -85,8 +147,8 @@
           <ion-item class="plant-tree" lines="none">
             <ion-icon slot="start" name="leaf"></ion-icon>
             <ion-label>Plant a tree with each purchase</ion-label>
-          </ion-item>      
-         </div>
+          </ion-item>     
+         </div>-->
       </ion-col>
   </ion-row>
   <ion-row *ngIf="!cap" class="loading">
@@ -94,53 +156,32 @@
   </ion-row>
  
 
+ 
+      <div class="other-caps">
+        <h1>Browse this collection</h1>
+       <app-cap-display [capArray] = "otherCaps" [parentCapName]="cap?.name"></app-cap-display>
+      </div>
 
-<div class="other-caps">
-  <h2>Other caps from this collection</h2>
-  <ion-row>
-    <ion-col size="12" size-md="3" *ngFor="let otherCap of otherCaps" [ngStyle]="{'display':otherCap.name === cap.name ? 'none' : 'block' }" >
-     <app-cap-card [cap]="otherCap" [collectionRef] = "collectionRef"></app-cap-card>
-    </ion-col>
-  </ion-row>
-  <ion-row class="row" *ngIf="!otherCaps">
-    <ion-col size="12" size-lg="3" size-md="4" size-sm="6">
-     <app-cap-card></app-cap-card>
-    </ion-col>
-    <ion-col size="12" size-lg="3" size-md="4" size-sm="6">
-      <app-cap-card></app-cap-card>
-     </ion-col>
-  </ion-row>
-</div>
+
+
 
 
   <ion-row class="learn-more">
-    <ion-col size="12" size-md="4" class="learn-more-header">
-      <h1>about our hats</h1>
+    <ion-col size="12" size-md="6" class="learn-more-header">
+      <img src="./assets/img/both-stacked3.JPG">
     </ion-col>
-    <ion-col size="12" size-md="7" class="learn-more-section">
+    <ion-col size="12" size-md="6" class="learn-more-section">
+      <h1>Our Caps</h1>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>  
     </ion-col>
-    <ion-col size="12" size-md="1"></ion-col>
   </ion-row>
 
-
-
-
-  <ion-row class="other-info">
-    <ion-col size="12 " size-md="1"></ion-col>
-    <ion-col size="12" size-md="7" class="other-info-section">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>  
-    </ion-col>
-    <ion-col size="12" size-md="4" class="other-info-header">
-      <h1>other info</h1>
-    </ion-col>
-  </ion-row>
 
 
   <app-social-slider></app-social-slider>
 
 <div class="reviews">
-  <app-reviews *ngIf="cap && loadReviews"  [cap]="cap"></app-reviews>
+  <app-reviews *ngIf="cap && loadReviews"  [cap]="cap" [wholeStars]="wholeStars" [hasHalf]="hasHalf"></app-reviews>
 </div>
 
 

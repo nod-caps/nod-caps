@@ -1,63 +1,91 @@
-<ion-buttons *ngIf="inModal" class="close">
-  <ion-button color="dark" (click)="close()"><ion-icon name="close-outline"></ion-icon></ion-button>
+
+<div class="container">
+
+<ion-buttons class="close-menu">
+  <ion-button (click)="close()">
+    <ion-icon name="close-outline"></ion-icon>
+  </ion-button>
 </ion-buttons>
+
 
 <div class="basket-title" [ngClass]="inModal ? 'inModal' : ''">
   <h1 *ngIf="basketArray.length > 0">Your Basket ({{basketLength}} caps) </h1>
   <h1 *ngIf="basketArray.length < 1">Your basket is empty!</h1>
+  <div *ngIf="basketArray.length <1 && outOfStock">
+      Follow us on social media for stock updates.
+      <app-social-buttons></app-social-buttons>
+  </div>
   <div class="back-to-shop" *ngIf="basketArray.length < 1" >
-    <ion-button  (click)="goTo('shop')"   color="tertiary" shape="round">
+    <ion-button  (click)="toShop()"   color="tertiary" shape="round">
       Back to shop
     </ion-button>
   </div>
  
 </div>
 
-<ion-content [ngClass]="inModal ? 'inModal' : ''">
+<ion-content>
+  <div class="basket-container" *ngIf="basketArray .length > 0">
 
-  <div class="basket-container" *ngIf="basketArray">
-   
+    <ion-row class="basket-item" *ngFor="let item of basketArray; index as i">
+      <p *ngIf="item?.errorMessage" class="error">{{item?.errorMessage}}</p>
 
-      <ion-row class="basket-item" *ngFor="let item of basketArray; index as i">
-        
-        <ion-col [size]="inMenu ? '12': '4'">
-          <img [src]="item.cap.imageField1">
-        </ion-col>
-        <ion-col   [size]="inMenu ? '12': '8'" class="pos-rel col-right">
-          <h2>{{item.cap.name}}</h2>
-          <p class="ion-hide-md-up">£{{item.itemPrice}}</p>
-          <p class="description">{{item.cap.description}}</p>
-          <p *ngIf="inModal">Quantity: {{item.quantity}}</p>
-          <ion-item lines="none" class="quantity" *ngIf="!inModal">
-            <ion-label>Qty</ion-label>
-            <ion-select mode="ios" interface="popover" *ngIf="item.quantity" (ionChange)="quantityChanged($event, i)"  [value]="item.quantity">
-              <ion-select-option *ngFor="let val of item.quantityArray" [value]=val>{{val}}</ion-select-option>
-            </ion-select>
-          </ion-item>
-         <!-- <ion-item class="quantity">
-            <ion-label>Quantity:</ion-label>
-            <ion-input (ionChange)="quantityChanged($event, i)"  type="number" required="true"  min="1" max="5" [value]="item.quantity"></ion-input>
-          </ion-item>-->
-          <div class="top-right">
-          <span class="item-price ion-hide-md-down">£{{item.itemPrice}}</span>
-          <ion-button *ngIf="!inModal" (click)="remove(i)"  class="remove-from-basket-mob ion-hide-md-up" fill="none" color="medium"><ion-icon name="close-outline"></ion-icon></ion-button>
+      <ion-col size="3">
+        <img [src]="item.cap.imageField1" (click)="goTo('shop/' + item.cap.collectionRef + '/' + item.cap.nameHyphenated)">
+      </ion-col>
+      <ion-col   size="9" class="pos-rel col-right">
+        <h2 (click)="goTo('shop/' + item.cap.collectionRef + '/' + item.cap.nameHyphenated)">{{item.cap.name}}</h2>
+        <p class="description">{{item.cap.description}}</p>
+
+        <!--<ion-item lines="none" class="quantity">
+          <ion-label>Quantity</ion-label>
+          <ion-select mode="ios" interface="popover" *ngIf="item.quantity" (ionChange)="quantityChanged($event, i)"  [value]="item.quantity">
+            <ion-select-option *ngFor="let val of item.quantityArray" [value]=val>{{val}}</ion-select-option>
+          </ion-select>
+        </ion-item>-->
+
+        <div class="quantity-row">
+          <div class="quantity-box">
+            <ion-button size="small" fill="clear" color="dark" (click)="changeQuantity('minus', i)" [disabled] = "item.quantity < 2">
+              <ion-icon name="remove-outline"></ion-icon>
+            </ion-button>
+            <span>{{item.quantity}}</span>
+            <ion-button size="small" fill="clear" color="dark" (click)="changeQuantity('plus', i)">
+              <ion-icon name="add-outline"></ion-icon>        
+            </ion-button>
           </div>
+        </div>
 
-          <ion-button *ngIf="!inModal" (click)="remove(i)"  class="remove-from-basket ion-hide-md-down" fill="none" color="medium">remove</ion-button>
+     
+        <div class="top-right">
+        <span class="item-price">£{{item.itemPrice}}</span>
+        </div>
 
-        </ion-col>
-      
-      </ion-row>
-      <ion-button  slot="end"shape="round" color="tertiary" fill="outline" *ngIf="inModal" (click)="editBasket()">Edit Basket</ion-button>
+        <ion-button (click)="remove(i)"  class="remove-from-basket" fill="none" color="medium"><ion-icon name="trash-outline"></ion-icon></ion-button>
 
-  </div>
+      </ion-col>
+    
+    </ion-row>
+
+</div>
 </ion-content>
-<ion-footer [ngClass]="inModal ? 'inModal' : ''">
- <ion-toolbar >
-   <ion-title>
-    Total:  £{{totalPrice}}
-   </ion-title>
-    <ion-button  [disabled]="basketArray.length < 1" slot="end"shape="round"  color="tertiary" (click)="getStripeInfo()">Checkout</ion-button>
+
+</div>
+
+<ion-footer>
+  <div >
+    <ion-item lines="none">
+      <ion-label>Shipping:</ion-label>
+      FREE
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label>Total Price:</ion-label>
+      £{{totalPrice}}
+    </ion-item>
+    </div>
+  
+    <ion-toolbar >
+
+<ion-button  [disabled]="basketArray.length < 1" expand="block" shape="round"  color="primary" (click)="checkIfSoldOut()">Checkout</ion-button>
 </ion-toolbar>
  
   

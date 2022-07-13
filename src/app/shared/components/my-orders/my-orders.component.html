@@ -1,17 +1,50 @@
+<ion-content>
+
+
 <div class="container">
   <h1>Recent Orders</h1>
-  <div>
-    <ion-row *ngFor="let cap of caps; let i = index">
-      <ion-col size="4">
-          <img [src]="cap.imageField1">
+  <p>Please leave a review below, it means a lot to us and it will hopefully give others a nod in the right direction</p>
+  <div class="no-order" *ngIf="!order">
+    <ion-spinner color="tertiary"></ion-spinner>
+  </div>
+
+  <div class="review-section" *ngIf="order">
+    <ion-row *ngFor="let item of order?.lineItems; let i = index">
+      <ion-col size="3" class="first-col">
+          <img [src]="item.cap.imageField1" (click)="buyAgain(item.cap)">
       </ion-col>
-      <ion-col size="8">
-        <h2>{{cap.name}}</h2>
-        <p>{{cap.description}}</p>
-        <ion-button *ngIf="!cap.review" color="tertiary" shape="round" (click)="review(cap, i)">Review</ion-button>
-        <ion-button color="light" shape="round"  (click)="buyAgain(cap, i)">Buy Again</ion-button>
+      <ion-col size="9" class="second-col">
+        <h2 (click)="buyAgain(item.cap)">{{item.cap.name}}</h2>
+        <p class="description">{{item.cap.description}}</p>
+        <div class="ion-text-right ion-hide-md-up">
+          <ion-button *ngIf="!item.cap.review" class=" review-button" size="small"  color="tertiary" shape="round" (click)="review(item.cap, i)">Review</ion-button>
+          <ion-button  color="light" shape="round" size="small"   (click)="buyAgain(item.cap)">Buy Again</ion-button>
+        </div>
+        <div class=" ion-hide-md-down">
+          <ion-button *ngIf="!item.cap.review" class=" review-button"   color="tertiary" shape="round" (click)="review(item.cap, i)">Review</ion-button>
+          <ion-button  color="light" shape="round"   (click)="buyAgain(item.cap)">Buy Again</ion-button>
+        </div>
+        
       </ion-col>
     </ion-row>
   </div>
 
+  <div class="buy-more ion-text-center">
+    <ion-button shape="round" color="primary" (click)="toShop()">
+      Browse All Caps
+    </ion-button>
+  </div>
+
+
+
+  <div class="socials">
+    <h1>Have you tagged us yet?</h1>
+    <p>Tag us on socials and appear in the banner below</p>
+<div class="ion-text-center">  
+   <app-social-buttons></app-social-buttons>
 </div>
+   <app-social-slider [showTitle]="false"></app-social-slider>
+  </div>
+
+</div>
+</ion-content>

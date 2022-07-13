@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ModalController } from '@ionic/angular';
+import { AlertController, MenuController, ModalController } from '@ionic/angular';
 import { BasketService } from 'src/app/services/basket.service';
 import { FirebaseService } from 'src/app/services/fb.service';
 import { BasketComponent } from 'src/app/shared/components/basket/basket.component';
@@ -45,21 +45,21 @@ export class HatPageComponent implements OnInit {
   hasHalf = false;
 
 
-  @ViewChild('swiper') swiper: SwiperComponent;
+  @ViewChild('hatSwiper') swiper: SwiperComponent;
 
-  config: SwiperOptions = {
+  hatConfig: SwiperOptions = {
     slidesPerView: 1,
     spaceBetween: 0,
     initialSlide: 0,
+    pagination: true,
     navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
+      nextEl: '.swiper-button-next-hat',
+      prevEl: '.swiper-button-prev-hat',
     },
-     pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-    }
+ 
   }
+
+  accordionNumber = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -68,7 +68,9 @@ export class HatPageComponent implements OnInit {
     private basket: BasketService,
 private modalCtrl: ModalController,
 private firestore: Firestore,
-private seo: SeoService  ) { }
+private seo: SeoService,
+private menu: MenuController,
+private alert: AlertController  ) { }
 
 async openDeliveryInfo() {
   const modal = await this.modalCtrl.create({
@@ -93,6 +95,11 @@ makeActive(capImg: any) {
   this.mainActiveCap = capImg;
 }
 
+slideTo (val: number) {
+  console.log('hello there', this.swiper);
+this.swiper.swiperRef.slideTo(val);
+}
+
   getCap(){
     this.fb.getSingleCap(this.capRef).then(data => {
       this.cap = data;
@@ -108,7 +115,13 @@ makeActive(capImg: any) {
   }
 
 
-
+ accordion(val: number) {
+  if (val === this.accordionNumber) {
+    this.accordionNumber = 0;
+  } else {
+    this.accordionNumber = val;
+  }
+ }
 
   async getOtherHats() {
     this.fb.getCollectionCaps(this.collectionRef).then(data => {
@@ -118,43 +131,77 @@ makeActive(capImg: any) {
     });
   }
 
-  quantityChanged(ev: any, index: any) {
+  quantityChanged(ev: any) {
     this.quantity = ev.detail.value;
   }
 
 async openBasket(){
-  const modal = await this.modalCtrl.create({
+  this.menu.open('custom');
+
+  /*const modal = await this.modalCtrl.create({
     component: BasketComponent,
     componentProps: {
       inModal: true
     },
     cssClass: 'basket-modal'
   });
-  return await modal.present();
+  return await modal.present();*/
 }
 
   async addToBasket(cap: any) {
    this.basket.addItemToBasket(cap, this.quantity);
-   const modal = await this.modalCtrl.create({
+   this.menu.open('custom');
+  /* const modal = await this.modalCtrl.create({
     component: BasketComponent,
     componentProps: {
       inModal: true
     },
     cssClass: 'basket-modal'
   });
-  return await modal.present();
+  return await modal.present();*/
   
 } 
 
+  async changeQuantity(dir: string){
+  if (dir === 'plus') {
+    if ((this.quantity + 1) <= this.quantityArray.length) {
+      this.quantity++
+    } else{
+      const alert = await this.alert.create({
+        cssClass: 'my-custom-class',
+        header: 'Maxed Out',
+        message: 'Sorry to be this way but we are only letting people order 5 caps at a time for now!',
+        buttons: [
+          {
+            text: 'Okay',
+          }
+        ]   
+       });
+  
+      await alert.present();
+    }
+  } else {
+    if ((this.quantity - 1) > 0) {
+      this.quantity--
+    }
+  }
+}
 checkInBasket(){
   // subscribe to basket you muppet
   this.basketSub = this.basket.basketSub.subscribe((data) => {
     if (data) {
-      data.forEach((element: any) => {
-        if (element.capRef === this.capRef) {
-          this.alreadyInBasket = true;
-        }
-      });
+      if (data.length > 0) {
+        data.forEach((element: any) => {
+          if (element.capRef === this.capRef) {
+            this.alreadyInBasket = true;
+          } else {
+            this.alreadyInBasket = false;
+          }
+        });
+      } else {
+        this.alreadyInBasket = false;
+      }
+     
     }
    
   })

@@ -1,16 +1,33 @@
 <div class="container">
 
-
+  <h1>{{cap?.name}} Reviews</h1>
+    <div  class="ratings">
+    
+      <h2 class="review-count">
+        <span  class="review-text" *ngIf="cap?.numberOfReviews">{{cap?.rating}}          </span>
+        <ion-icon class="star" name="star" *ngFor="let item of [].constructor(wholeStars)"></ion-icon>
+        <ion-icon *ngIf="hasHalf" name="star-half" class="star"></ion-icon>
+        <div *ngIf="!hasHalf" class="empty-star">
+          <ion-icon class="star"  *ngFor="let item of [].constructor(5 - wholeStars)"name="star-outline"></ion-icon>
+        </div>
+        <div *ngIf="hasHalf" class="empty-star">
+          <ion-icon class="star"  *ngFor="let item of [].constructor(4 - wholeStars)"name="star-outline"></ion-icon>
+        </div>
+      </h2>
+      <span *ngIf="cap?.numberOfReviews">Based on {{cap?.numberOfReviews}} review<span *ngIf="cap?.numberOfReviews !== 1">s</span></span>
+      <span *ngIf="!cap?.numberOfReviews">Based on 0 reviews</span>
+        </div>
   <ion-segment (ionChange)="segmentChanged($event)" [value]="currentSegment" color="tertiary" mode="md">
     <ion-segment-button value="cap">
-      <ion-label>{{cap?.name}} Reviews <span *ngIf="capReviews">({{capReviews.length}})</span></ion-label>
+      <ion-label>{{cap?.name}} <span *ngIf="capReviews">({{capReviews.length}})</span></ion-label>
     </ion-segment-button>
     <ion-segment-button value="other">
-      <ion-label>All Other Reviews <span *ngIf="otherReviews">({{otherReviews.length}})</span></ion-label>
+      <ion-label> Other <span *ngIf="otherReviews">({{otherReviews.length}})</span></ion-label>
     </ion-segment-button>
   </ion-segment>
 
-  <div *ngIf="currentSegment === 'cap'">
+
+  <div  *ngIf="currentSegment === 'cap'">
     <div *ngIf="loadingCapReviews">
       <ion-skeleton-text *ngFor="let item of reviewSkeleton"></ion-skeleton-text>
     </div>
@@ -21,7 +38,7 @@
             <ion-icon name="star" color="tertiary" *ngFor="let item of [].constructor(review.rating)"></ion-icon> 
             <ion-icon name="star-outline" color="tertiary" *ngFor="let item of [].constructor(5-review.rating)"></ion-icon> 
 
-            <p class="message">"{{review.message}}"</p>
+            <p class="message" *ngIf="review.message">"{{review.message}}"</p>
         </div>
       </ion-virtual-scroll>
       </div>
@@ -35,11 +52,11 @@
       <ion-skeleton-text *ngFor="let item of reviewSkeleton"></ion-skeleton-text>
     </div>
     <div *ngIf="otherReviews.length > 0 && !loadingOtherReviews">
-      <ion-virtual-scroll [items]="otherReviews" approxItemHeight="320px" >
+      <ion-virtual-scroll [items]="otherReviews" approxItemHeight="220px" >
         <div *virtualItem="let review;" class="review-box">
             <p class="name"><span *ngIf="review.name">{{review.name}}</span><span *ngIf="!review.name">Anonymous</span></p>
             <ion-icon name="star" color="tertiary" *ngFor="let item of [].constructor(review.rating)"></ion-icon> 
-            <p class="message">"{{review.message}}"</p>
+            <p class="message" *ngIf="review.message">"{{review.message}}"</p>
         </div>
       </ion-virtual-scroll>
       </div>
@@ -49,4 +66,3 @@
   </div>
  
 
-</div>

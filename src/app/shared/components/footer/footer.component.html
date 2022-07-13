@@ -4,16 +4,12 @@
   </ion-col>
   <ion-col size="12" size-sm="4" >
     <p (click)="goTo('about')"> About</p>
-    <a href="/about" [routerLink]="'/about'">About</a>
     <p  (click)="goTo('terms')"> Terms and Conditions</p>
     <p  (click)="goTo('delivery-returns')"> Delivery and Returns</p>
     <p  (click)="goTo('privacy')"> Privacy and Cookies</p>
   </ion-col>
   <ion-col size="12" size-sm="4" class="center">
-    <ion-buttons>
-      <ion-button href="www.instagram.com/nodcaps" color="dark"><ion-icon name="logo-instagram"></ion-icon></ion-button>
-      <ion-button href="www.twitter.com/nod_caps" color="dark"><ion-icon name="logo-twitter"></ion-icon></ion-button>
-    </ion-buttons>
+   <app-social-buttons></app-social-buttons>
   </ion-col>
 </ion-row>
 
