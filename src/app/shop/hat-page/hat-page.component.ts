@@ -51,7 +51,6 @@ export class HatPageComponent implements OnInit {
     slidesPerView: 1,
     spaceBetween: 0,
     initialSlide: 0,
-    pagination: true,
     navigation: {
       nextEl: '.swiper-button-next-hat',
       prevEl: '.swiper-button-prev-hat',
@@ -246,13 +245,11 @@ if (this.cap.quantity < this.capBasketMax) {
 
   checkOnScreenLearn(){
     const learn = document.querySelector('.learn-more');
-    const other = document.querySelector('.other-info');
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.intersectionRatio > 0) {
           learn.classList.add('slideInLeft');
-          other.classList.add('slideInRight');
           observer.unobserve(entry.target);
         } 
       });

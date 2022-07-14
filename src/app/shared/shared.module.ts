@@ -29,6 +29,7 @@ import { SignUpBannerComponent } from './components/sign-up-banner/sign-up-banne
 import { SignUpHolderComponent } from './components/sign-up-holder/sign-up-holder.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { SocialSliderComponent } from './components/social-slider/social-slider.component';
+import { OurCapsComponent } from './components/our-caps/our-caps.component';
 import { SocialButtonsComponent } from './social-buttons/social-buttons.component';
 
 
@@ -68,7 +69,8 @@ import { SocialButtonsComponent } from './social-buttons/social-buttons.componen
       ReturnsComponent,
       TermsComponent, 
       SocialButtonsComponent,
-      CapDisplayComponent
+      CapDisplayComponent,
+      OurCapsComponent
 
   ],
   providers: [],
@@ -95,7 +97,8 @@ import { SocialButtonsComponent } from './social-buttons/social-buttons.componen
     ReturnsComponent,
     TermsComponent,
     SocialButtonsComponent,
-    CapDisplayComponent
+    CapDisplayComponent,
+    OurCapsComponent
   ]
 })
 export class SharedModule { }

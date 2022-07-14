@@ -46,6 +46,11 @@
       animation: slideUpBut 0.45s ease forwards;
       -webkit-animation: slideUpBut 0.45s ease forwards;
     }
+    .overlay{
+      animation: fadeIn ease 0.45s;
+      -webkit-animation: fadeIn ease 0.45s;
+      opacity: 1;
+    }
   }
 
   
@@ -61,14 +66,25 @@
     position: absolute;
     bottom: 0px;
     width: 100%;
-    background: rgb(34 71 42 / 90%);
+    background: rgb(0 0 0 / 80%);
     color: white;
     text-align: center;
     height: 40px;
     padding-top: 10px;
     font-size: 14px;
+    opacity:0;
+   
    }
 
    ion-card{
     box-shadow: rgb(0 0 0 / 15%) 0px 3px 1px -2px, rgb(0 0 0 / 10%) 0px 2px 2px 0px, rgb(0 0 0 / 5%) 0px 1px 5px 0px;
 }   
+
+@keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}

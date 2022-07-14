@@ -1,0 +1,47 @@
+.dark{
+    background: #323232;
+    .first {
+        color: #f8f9fa 
+    }
+    .second {
+        color:#f8f9fa;
+    }
+}
+
+.light{
+    .second {
+        color:#212529;    
+    }
+}
+
+.first{
+  padding: 25px 40px;
+  background-image: url("/assets/img/logos/faded-logo-feather.png"); /* The image used */
+  background-position: center; 
+  background-repeat: no-repeat;
+  background-size: contain; 
+  .feather-definition{
+    h1 {
+        font-size: 40px;
+    }
+    font-family: 'Times New Roman', Times, serif;
+    span {
+        letter-spacing: 0.3rem;;
+    }
+    .achievement{
+        border-top: 1px solid #f8f9fa;
+        border-top: 1px solid #f8f9fa;
+        padding-top: 10px;
+    margin-top: 0px;
+    }
+  }
+}
+
+
+.second {
+    padding: 25px;
+}
+
+ion-grid{
+    padding: 50px 0px
+}

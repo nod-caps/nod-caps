@@ -2,6 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { SwiperComponent } from 'swiper/angular';
 import { SwiperOptions } from 'swiper';
 import SwiperCore, { Navigation, Autoplay, Keyboard, Pagination, Scrollbar, Zoom } from 'swiper';
+import { Router } from '@angular/router';
 SwiperCore.use([Navigation, Autoplay, Keyboard, Pagination, Scrollbar, Zoom, ]);
 
 @Component({
@@ -41,9 +42,14 @@ export class SocialSliderComponent implements OnInit {
    }
    @ViewChild('swiper') swiper: SwiperComponent;
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
-  
+  goToHat() {
+    console.log('hello');
+    this.router.navigateByUrl('/shop/shalom/hello-there')
+  }
 
   ngOnInit() {}
 
