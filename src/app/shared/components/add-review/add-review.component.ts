@@ -70,7 +70,10 @@ export class AddReviewComponent implements OnInit {
             rating: this.selectedIndex,
             image: this.cap.imageField1,
             capName: this.cap.name,
-            email: this.email
+            date: new Date().toISOString().split("T")[0],
+            email: this.email,
+            collectionRef: this.cap.collectionRef,
+            link: this.cap.collectionRef + '/' + this.cap.nameHyphenated
           }
       
       this.fire.collection('reviews').add(reviewObj).then(async (doc: any)=> {

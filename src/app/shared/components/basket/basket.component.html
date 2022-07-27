@@ -9,7 +9,8 @@
 
 
 <div class="basket-title" [ngClass]="inModal ? 'inModal' : ''">
-  <h1 *ngIf="basketArray.length > 0">Your Basket ({{basketLength}} caps) </h1>
+  <h1 *ngIf="basketLength > 1">Your Basket ({{basketLength}} caps) </h1>
+  <h1 *ngIf="basketLength === 1">Your Basket ({{basketLength}} cap) </h1>
   <h1 *ngIf="basketArray.length < 1">Your basket is empty!</h1>
   <div *ngIf="basketArray.length <1 && outOfStock">
       Follow us on social media for stock updates.

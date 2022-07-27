@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 
 @Component({
@@ -21,7 +22,8 @@ export class ReviewsComponent implements OnInit {
   reviewSkeleton = [1,2,3];
 
   constructor(
-    private firestore: Firestore
+    private firestore: Firestore,
+    private router: Router
   ) { }
 
   segmentChanged(event: any){
@@ -45,13 +47,19 @@ export class ReviewsComponent implements OnInit {
 
   async loadOtherReviews(){
     this.otherReviews = [];
-    const q = query(collection(this.firestore, 'reviews'), where("capRef", "!=", this.cap.capRef));
+    const q = query(collection(this.firestore, 'reviews'), where("collectionRef", "==", this.cap.collectionRef));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      this.otherReviews.push(doc.data());
+      if (doc.data().capRef !== this.cap.capRef) {
+        this.otherReviews.push(doc.data());
+      }
     });
     this.loadingOtherReviews = false;
 
+  }
+
+  toCap(link: string) {
+    this.router.navigateByUrl('/shop/' + link);
   }
 
   ngOnInit() {

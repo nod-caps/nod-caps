@@ -109,6 +109,7 @@ ion-content{
     }
     .ratings{
         cursor: pointer;
+        max-width: 130px;
     }
     h1{
         color: #22472a;
@@ -360,7 +361,6 @@ h2{
 }
 
 h1 {
-    text-align: center;
     color: #22472a;
     font-weight: bold;
 }

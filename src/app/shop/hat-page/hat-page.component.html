@@ -116,7 +116,7 @@
               </ion-item>
               <div class="ion-padding" slot="content" *ngIf="accordionNumber === 1" [ngClass]="accordionNumber === 1 ? 'active':''">
                 {{cap?.description}} <br><br>
-                With an adjustable rear buckle strap and an embroidered feather logo on the front, it`s the perfect accessory to complete any look. 
+                With an adjustable rear buckle strap and an embroidered feather logo on the front, it's the perfect accessory to complete any look. 
               </div>
            
               <ion-item slot="header" button="true"  details="none" (click)="accordion(2)">
@@ -185,11 +185,11 @@
 <div class="reviews" id="review-comp">
   <div class="container">
 
-    <h1>{{cap?.name}} Reviews</h1>
+    <h1 class="ion-text-center">{{cap?.name}} Reviews</h1>
       <div  class="ratings-big">
       
         <h2 class="review-count">
-          <span  class="review-text" *ngIf="cap?.numberOfReviews">{{cap?.rating}}          </span>
+          <span  class="review-text" *ngIf="cap?.numberOfReviews">{{cap?.rating}}</span>
           <ion-icon class="star" name="star" *ngFor="let item of [].constructor(wholeStars)"></ion-icon>
           <ion-icon *ngIf="hasHalf" name="star-half" class="star"></ion-icon>
           <div *ngIf="!hasHalf" class="empty-star">

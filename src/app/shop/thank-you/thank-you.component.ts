@@ -45,6 +45,8 @@ export class ThankYouComponent implements OnInit {
     if (orders.length > 0) {
       orders = orders.sort((a, b) => (a.date < b.date) ? 1 : -1);
       this.order = orders[0];
+      const price = this.order.amountTotal / 100
+      this.order.totalPrice = price.toFixed(2);
       console.log('hello', this.order);
       if (!this.order.addedCaps) {
         this.getCaps();
@@ -68,7 +70,6 @@ this.noOrder();
       const q = query(collection(this.firestore, 'caps'), where("description", "==", cap.description));
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
-        console.log('hello', doc.data().name)
 
         this.order.lineItems[index].cap = doc.data();
             
@@ -80,8 +81,8 @@ this.noOrder();
       }
      }
       });
-
-  
+      const price = cap.amount_total / 100
+      this.order.lineItems[index].price = price.toFixed(2);
     });
   }
 

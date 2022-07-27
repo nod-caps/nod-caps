@@ -26,8 +26,6 @@ export class CookieConsentComponent implements OnInit {
     this.cookie.set('consentAllowed', message, 365); 
     if (message === 'allowed') {
       this.basketService.useLocalStorage  = true;
-    } else if (message ==='rejected') {
-      this.basketService.clearBasket();
     }
     this.modalCtrl.dismiss();
   }

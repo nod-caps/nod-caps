@@ -1,12 +1,12 @@
 <div class="swiper-holder">
   <h1 *ngIf="showTitle">Made for everyone</h1>
-  <p class="ion-text-center">Use #nodcaps when you`re out and about! It`s great to see you all wearing nod caps.</p>
+  <p class="ion-text-center">Use #nodcaps when you're out and about! It's great to see you all wearing nod caps.</p>
   <swiper #swiper [config]="config">
     <ng-template swiperSlide>
       <ion-card>
-        <img src="assets/img/cap-photo.png">
+        <img src="assets/img/social-slider/social-slider1.jpeg">
         <div class="overlay">
-          Perfect Storm
+          Daily Driver
       </div>
         <div class="shop-button-hover ion-text-center">
         <ion-button  shape="round" color="light" (click)="goToHat()">
@@ -17,9 +17,9 @@
     </ng-template>
     <ng-template swiperSlide>
       <ion-card>
-        <img src="assets/img/cap-photo.png">
+        <img src="assets/img/social-slider/social-slider2.jpeg">
         <div class="overlay">
-          Perfect Storm
+          Down to Earth
          </div>
         <div class="shop-button-hover ion-text-center">
         <ion-button  shape="round" color="light" (click)="goToHat()">
@@ -30,9 +30,9 @@
     </ng-template>
     <ng-template swiperSlide>
       <ion-card>
-        <img src="assets/img/cap-photo.png">
+        <img src="assets/img/social-slider/social-slider3.jpeg">
         <div class="overlay">
-          Burning Bridges
+          Black Sheep
       </div>
         <div class="shop-button-hover ion-text-center">
         <ion-button  shape="round" color="light" (click)="goToHat()">
@@ -43,9 +43,9 @@
     </ng-template>
     <ng-template swiperSlide>
       <ion-card>
-        <img src="assets/img/cap-photo.png">
+        <img src="assets/img/social-slider/social-slider4.jpeg">
         <div class="overlay">
-         Daily Driver
+         Out of the Blue
       </div>
         <div class="shop-button-hover ion-text-center">
         <ion-button  shape="round" color="light" (click)="goToHat()">
@@ -56,9 +56,9 @@
     </ng-template>
     <ng-template swiperSlide>
       <ion-card>
-        <img src="assets/img/cap-photo.png">
+        <img src="assets/img/social-slider/social-slider1.jpeg">
         <div class="overlay">
-         Devils Advocate
+         Black Sheep
       </div>
         <div class="shop-button-hover ion-text-center">
         <ion-button  shape="round" color="light" (click)="goToHat()">
@@ -69,9 +69,9 @@
     </ng-template>
     <ng-template swiperSlide>
       <ion-card>
-        <img src="assets/img/cap-photo.png">
+        <img src="assets/img/social-slider/social-slider2.jpeg">
         <div class="overlay">
-          Party Pooper
+          Daily Driver
       </div>
         <div class="shop-button-hover ion-text-center">
         <ion-button  shape="round" color="light" (click)="goToHat()">
@@ -82,9 +82,9 @@
     </ng-template>
     <ng-template swiperSlide>
       <ion-card>
-        <img src="assets/img/cap-photo.png">
+        <img src="assets/img/social-slider/social-slider3.jpeg">
         <div class="overlay">
-            Irish Goodbye
+            Down to Earth
         </div>
         <div class="shop-button-hover ion-text-center">
         <ion-button  shape="round" color="light" (click)="goToHat()">
@@ -97,7 +97,7 @@
   <ion-button class=" swiper-button-prev" color="tertiary" ><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
   <ion-button class=" swiper-button-next" color="tertiary" ><ion-icon  name="chevron-forward-outline"></ion-icon></ion-button>
 
-  <div class="ion-text-center">
+  <div class="ion-text-center mt-20">
     <app-social-buttons [inline]="true"></app-social-buttons>
 
   </div>

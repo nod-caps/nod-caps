@@ -1,13 +1,13 @@
   <ion-content>
   <div class="top-section">
-    <ion-button  class="close" (click)="dismiss()" fill="clear" color="light"><ion-icon name="close-outline"></ion-icon></ion-button>
+    <ion-button  class="close" (click)="dismiss()" fill="clear" color="medium"><ion-icon name="close-outline"></ion-icon></ion-button>
     <p class="fs20">
       Be the first to know
     </p>
     <p>Don't worry - we won't send too many emails but when we do it will be the things you want to see - discounts and sneal peeks!</p>
   </div>
   <div class="sign-up">
-    <app-sign-up (justSignedUp)="signedUp($event)" [inModal]=true  [inFooter]="true"></app-sign-up>
+    <app-sign-up (justSignedUp)="signedUp($event)" [inModal]=true ></app-sign-up>
   </div>
 
 </ion-content>

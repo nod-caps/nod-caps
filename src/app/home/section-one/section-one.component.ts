@@ -50,6 +50,8 @@ constructor(
   }
 
 
+
+
   ngOnInit() {
       this.getSingleCollection();
       this.getHats();

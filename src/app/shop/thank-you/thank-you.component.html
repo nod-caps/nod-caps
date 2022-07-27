@@ -6,7 +6,7 @@
       <p>Your order number is <strong>{{orderNumber}}</strong></p>
 
       <div *ngIf="showOptIn" class="opt-in">
-        <p>Whilst you`re here, join our mailing list for discounts and new cap updates! </p>
+        <p>Whilst you're here, join our mailing list for discounts and new cap updates! </p>
         <div class="sign-up">
           <app-sign-up  [inModal]="false"></app-sign-up>
         </div>
@@ -21,7 +21,7 @@
           <img [src]="item.cap.imageField1">
         </ion-avatar>
         <ion-label> {{item.quantity}} x {{item.cap.name}}</ion-label>
-        <span  class="fs14">£{{item.amount_total}}</span>
+        <span  class="fs14">£{{item.price}}</span>
       </ion-item>
       <ion-item lines="none">
         <ion-label></ion-label>
@@ -31,7 +31,7 @@
       <ion-item lines="none">
         <ion-label></ion-label>
         <span class="item-right">Total:</span>
-        <span ><strong>£{{order?.amountTotal}}</strong></span>
+        <span ><strong>£{{order?.totalPrice}}</strong></span>
       </ion-item>
     </div>
 
@@ -70,7 +70,7 @@
           <div class='number'><ion-icon name="car-outline"></ion-icon></div>
           <div class='info'>
             <p class='title'>Shipping your order</p>
-            <p class='text'>Once it`s all packed up, your cap is then taken to the delivery station. You will be notified when your order is out for delivery. </p>
+            <p class='text'>Once it's all packed up, your cap is then taken to the delivery station. You will be notified when your order is out for delivery. </p>
           </div>
         </div>
 

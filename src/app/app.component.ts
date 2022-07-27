@@ -63,8 +63,6 @@ showingCookies = false;
     this.presentModal();
    } else if (gotCookie === 'accepted'){
     this.basketService.checkBasket();
-   } else if (gotCookie === 'rejected') {
-     this.basketService.clearBasket();
    }
 
    

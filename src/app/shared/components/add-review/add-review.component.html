@@ -5,10 +5,10 @@
     </ion-button>
   </ion-buttons>
   <h1>Add A Review</h1>
-  <p>Please let us and everyone else know about the cap and your experience with us, unless its really bad. Then just email us...</p>
+  <p>Please let us (and everyone else) know about your cap and experience with us! Unless it's bad - then just email us...</p>
 
   <div class="choose-star">
-    <p>Select your rating:</p>
+    <p>Tap a star to select your rating:</p>
     <ion-icon (click)="selectRating(i)" *ngFor="let star of stars; let i= index" (mouseover)="highlight(i)" (mouseout)="dehighlight()" name="star" [ngClass]= "highlightIndex > i || selectedIndex > i? 'highlight': ''"></ion-icon>
   </div>
 
@@ -16,9 +16,9 @@
   
   <form [formGroup]="reviewForm">
 
-    <ion-item>
+    <ion-item lines="none">
       <ion-label position="stacked">Name</ion-label>
-      <ion-input  formControlName="name" placeholder="Your name..."></ion-input>
+      <ion-input  formControlName="name" placeholder="Enter your name..."></ion-input>
     </ion-item>
     <div *ngFor="let error of errorMessages.name">
       <ng-container *ngIf="name?.hasError(error.type) && (name?.dirty || name?.touched)">
@@ -27,9 +27,9 @@
     </div>
     
 
-    <ion-item>
+    <ion-item lines="none">
       <ion-label position="stacked">Message</ion-label>
-      <ion-textarea  formControlName="message" rows="6" placeholder="Enter your review..."></ion-textarea>
+      <ion-textarea  formControlName="message" rows="6" placeholder="Enter your message about how much you love your nod cap..."></ion-textarea>
     </ion-item>
     <div *ngFor="let error of errorMessages.message">
       <ng-container *ngIf="message?.hasError(error.type) && (message?.dirty || message?.touched)">
@@ -39,7 +39,7 @@
     </form>
 
     <div class="button-holder">
-      <ion-button (click)="addReview()" [disabled]="!reviewForm.valid || !rating" shape="round" color="tertiary" ><span *ngIf="!sending">Send Review</span><ion-spinner *ngIf="sending"></ion-spinner></ion-button>
+      <ion-button (click)="addReview()" [disabled]="!reviewForm.valid || !rating" shape="round" color="tertiary" ><span *ngIf="!sending">SEND REVIEW</span><ion-spinner *ngIf="sending"></ion-spinner></ion-button>
     </div>
  
 

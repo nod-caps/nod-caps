@@ -65,7 +65,7 @@ ion-content{
         width: 100%;
     }
     .cookie-modal .modal-wrapper {
-        height:45%;
+        height:55%;
     }
     .sign-up-modal .modal-wrapper {
         width: 95%;
@@ -170,3 +170,11 @@ width: 95%;
   }
 
 
+
+  h1{
+    font-size: 36px;
+  }
+
+  .modal-wrapper h1 {
+    font-size: 28px!important;
+  }

@@ -62,3 +62,19 @@ ion-segment{
     color:#73B786;
     font-size: 35px;
 }
+
+.other-review{
+    img{
+        width: 15%;
+        display:inline-block;
+        border-radius: 6px;
+        max-width: 100px;
+        cursor: pointer;
+    }
+    .text-bit{
+        margin-left: 15px;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+}
