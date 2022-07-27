@@ -244,7 +244,7 @@ async changeQuantity(dir: string, index){
 }
 
   close() {
-    this.menu.close();
+    this.modalCtrl.dismiss();
    }
   checkQuantity(capItemQuantity: any) {
     if (capItemQuantity < this.capBasketMax) {

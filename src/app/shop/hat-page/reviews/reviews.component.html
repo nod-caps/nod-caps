@@ -1,22 +1,4 @@
-<div class="container">
 
-  <h1>{{cap?.name}} Reviews</h1>
-    <div  class="ratings">
-    
-      <h2 class="review-count">
-        <span  class="review-text" *ngIf="cap?.numberOfReviews">{{cap?.rating}}          </span>
-        <ion-icon class="star" name="star" *ngFor="let item of [].constructor(wholeStars)"></ion-icon>
-        <ion-icon *ngIf="hasHalf" name="star-half" class="star"></ion-icon>
-        <div *ngIf="!hasHalf" class="empty-star">
-          <ion-icon class="star"  *ngFor="let item of [].constructor(5 - wholeStars)"name="star-outline"></ion-icon>
-        </div>
-        <div *ngIf="hasHalf" class="empty-star">
-          <ion-icon class="star"  *ngFor="let item of [].constructor(4 - wholeStars)"name="star-outline"></ion-icon>
-        </div>
-      </h2>
-      <span *ngIf="cap?.numberOfReviews">Based on {{cap?.numberOfReviews}} review<span *ngIf="cap?.numberOfReviews !== 1">s</span></span>
-      <span *ngIf="!cap?.numberOfReviews">Based on 0 reviews</span>
-        </div>
   <ion-segment (ionChange)="segmentChanged($event)" [value]="currentSegment" color="tertiary" mode="md">
     <ion-segment-button value="cap">
       <ion-label>{{cap?.name}} <span *ngIf="capReviews">({{capReviews.length}})</span></ion-label>
@@ -63,6 +45,5 @@
       <div *ngIf="otherReviews.length === 0 && !loadingOtherReviews" class="ion-text-center">
         <p>There are no other reviews yet... </p>
       </div>
-  </div>
  
 

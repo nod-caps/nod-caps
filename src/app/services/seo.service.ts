@@ -13,15 +13,12 @@ export class SeoService {
   generateTags({ title = '', description = '', image = '' }) {
 
     this.title.setTitle(title);
-    this.meta.addTags([
-      // Open Graph
-      { name: 'og:url', content: `https://firestarter.fireship.io${this.router.url}` },
-      { name: 'og:title', content: title },
-      { name: 'og:description', content: description },
-      { name: 'og:image', content: image },
-      // Twitter Card
-      { name: 'twitter:card', content: 'summary' },
-      { name: 'twitter:site', content: '@fireship_dev' },
-    ]);
+    // this.meta.updateTag({ name: 'og:url', property:'og:url', content: `https://firestarter.fireship.io${this.router.url}` });
+    this.meta.updateTag({ name:'og:title', property:'og:title', content: title });
+    this.meta.updateTag({ name:'og:description',  property:'og:description', content: description })
+    this.meta.updateTag({ name:'og:image', property:'og:image', content: image });
+    this.meta.updateTag({ name: 'twitter:title', content: title });
+    this.meta.updateTag({ name: 'twitter:description', content: description });    
+    this.meta.updateTag({ name: 'twitter:image', content: image });   
   }
 }

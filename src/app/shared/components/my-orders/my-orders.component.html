@@ -1,50 +1,67 @@
 <ion-content>
 
 
-<div class="container">
-  <h1>Recent Orders</h1>
-  <p>Please leave a review below, it means a lot to us and it will hopefully give others a nod in the right direction</p>
+  <div class="top-holder-section">
+    <div>
+      <h1>Recent Orders</h1>
+    </div>
+  </div>
+
+  <div class="middle-container">
+
+  <p>Thanks for your order(s)! Give others a nod in the right direction by leaving us a review! Or maybe you like your cap so much, you want to buy it again to gift to a friend...</p>
   <div class="no-order" *ngIf="!order">
     <ion-spinner color="tertiary"></ion-spinner>
   </div>
 
   <div class="review-section" *ngIf="order">
+    <div class="order-summary">
+      <p><strong>Order Summary</strong></p>
+      <p>Order Number: {{order?.orderNumber}}</p>
+      <p>Order Number: {{order?.date}}</p>
+    </div>
+  
+
     <ion-row *ngFor="let item of order?.lineItems; let i = index">
-      <ion-col size="3" class="first-col">
+      <ion-col size="2" class="first-col">
           <img [src]="item.cap.imageField1" (click)="buyAgain(item.cap)">
       </ion-col>
-      <ion-col size="9" class="second-col">
-        <h2 (click)="buyAgain(item.cap)">{{item.cap.name}}</h2>
-        <p class="description">{{item.cap.description}}</p>
-        <div class="ion-text-right ion-hide-md-up">
-          <ion-button *ngIf="!item.cap.review" class=" review-button" size="small"  color="tertiary" shape="round" (click)="review(item.cap, i)">Review</ion-button>
-          <ion-button  color="light" shape="round" size="small"   (click)="buyAgain(item.cap)">Buy Again</ion-button>
+      <ion-col size="10" size-md="7" class="second-col">
+        <div>
+          <h2 (click)="buyAgain(item.cap)">{{item.cap.name}}</h2>
+          <p class="description ion-hide-md-down">{{item.cap.description}}</p>
         </div>
-        <div class=" ion-hide-md-down">
-          <ion-button *ngIf="!item.cap.review" class=" review-button"   color="tertiary" shape="round" (click)="review(item.cap, i)">Review</ion-button>
-          <ion-button  color="light" shape="round"   (click)="buyAgain(item.cap)">Buy Again</ion-button>
+    
+        <div class="ion-text-left ion-hide-md-up">
+          <ion-button *ngIf="!item.cap.review" class=" review-button" size="small"  color="tertiary" shape="round" (click)="review(item.cap, i)">REVIEW</ion-button>
+          <ion-button  color="light" shape="round" size="small"   (click)="buyAgain(item.cap)">BUY AGAIN</ion-button>
         </div>
-        
       </ion-col>
+      <ion-col size="3" class="ion-text-left ion-hide-md-down">
+        <ion-button *ngIf="!item.cap.review" class=" review-button" size="small" expand="block"  color="tertiary" shape="round" (click)="review(item.cap, i)">SEND REVIEW</ion-button>
+        <ion-button  color="light" shape="round" expand="block" size="small"  (click)="buyAgain(item.cap)">BUY AGAIN</ion-button>
+      </ion-col>
+      
+     
+      
+        
     </ion-row>
   </div>
 
   <div class="buy-more ion-text-center">
+    <p>Looking to add another nod cap to your wardrobe?  Then head to the Shop.</p>
     <ion-button shape="round" color="primary" (click)="toShop()">
       Browse All Caps
     </ion-button>
   </div>
 
+</div>
 
+  <app-what-next></app-what-next>
 
   <div class="socials">
-    <h1>Have you tagged us yet?</h1>
-    <p>Tag us on socials and appear in the banner below</p>
-<div class="ion-text-center">  
-   <app-social-buttons></app-social-buttons>
-</div>
-   <app-social-slider [showTitle]="false"></app-social-slider>
+   <app-social-slider></app-social-slider>
   </div>
 
-</div>
+<app-footer></app-footer>
 </ion-content>

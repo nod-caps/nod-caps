@@ -50,10 +50,14 @@ saving = false;
     ) { }
 
       capForm = this.formBuilder.group({
-    name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
-    description: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(200)]],
+    name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+    description: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(400)]],
      price: ['', [Validators.required, Validators.pattern("^-?[0-9]\\d*(\\.\\d{1,2})?$"), Validators.minLength(4)]],
-     quantity: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]]
+     quantity: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
+     colour: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+     colourName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+
+
 
   });
 
@@ -73,14 +77,30 @@ saving = false;
     return this.capForm.get('quantity');
   }
 
+  get colour() {
+    return this.capForm.get('colour');
+  }
+  get colourName() {
+    return this.capForm.get('colourName');
+  }
+
+
   public errorMessages = {
     name: [
-      { type: 'maxlength', message: 'Name cant be longer than 20 characters'},
+      { type: 'maxlength', message: 'Name cant be longer than 50 characters'},
       { type: 'minlength', message: 'Name must be longer than 3 characters'},
+    ],
+    colour: [
+      { type: 'maxlength', message: 'Colour cant be longer than 20 characters'},
+      { type: 'minlength', message: 'Colour must be longer than 3 characters'},
+    ],
+    colourName: [
+      { type: 'maxlength', message: 'Colour Name cant be longer than 20 characters'},
+      { type: 'minlength', message: 'Colour Name must be longer than 3 characters'},
     ],
 
     description: [
-      { type: 'maxlength', message: 'Description cant be longer than 20 characters'},
+      { type: 'maxlength', message: 'Description cant be longer than 400 characters'},
       { type: 'minlength', message: 'Description must be longer than 3 characters'},
     ],
     price: [
@@ -128,9 +148,8 @@ setValues() {
   this.capForm.get('description').setValue(this.cap.description);
   this.capForm.get('price').setValue(this.cap.price);
   this.capForm.get('quantity').setValue(this.cap.quantity);
-
-
-
+  this.capForm.get('colour').setValue(this.cap.colour);
+  this.capForm.get('colourName').setValue(this.cap.colourName);
 
 }
 
@@ -184,6 +203,8 @@ async save() {
   this.capName = this.capForm.get('name').value;
   const description = this.capForm.get('description').value;
   const price = this.capForm.get('price').value;
+  const colour = this.capForm.get('colour').value;
+  const colourName = this.capForm.get('colourName').value;
   const quantity = Number(this.capForm.get('quantity').value);
   this.capRef = this.collectionRef + '_' + this.capName.replaceAll(' ', '-');
 
@@ -196,6 +217,8 @@ async save() {
     nameHyphenated: this.capName.replaceAll(' ', '-'),
     price: price,
     quantity: quantity,
+    colour: colour,
+    colourName: colourName,
     isLive: false
   };
   if (this.editPage) {

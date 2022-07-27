@@ -13,6 +13,8 @@ import { AddReviewComponent } from '../../shared/components/add-review/add-revie
 import { Firestore } from '@angular/fire/firestore';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { SeoService } from 'src/app/services/seo.service';
+import { myEnterFromRightAnimation } from 'src/app/animations/enter';
+import { myLeaveToRightAnimation } from 'src/app/animations/leave';
 SwiperCore.use([Navigation, Autoplay, Keyboard, Pagination, Scrollbar, Zoom, ]);
 
 
@@ -51,6 +53,7 @@ export class HatPageComponent implements OnInit {
     slidesPerView: 1,
     spaceBetween: 0,
     initialSlide: 0,
+    pagination: true,
     navigation: {
       nextEl: '.swiper-button-next-hat',
       prevEl: '.swiper-button-prev-hat',
@@ -68,7 +71,6 @@ export class HatPageComponent implements OnInit {
 private modalCtrl: ModalController,
 private firestore: Firestore,
 private seo: SeoService,
-private menu: MenuController,
 private alert: AlertController  ) { }
 
 async openDeliveryInfo() {
@@ -95,21 +97,22 @@ makeActive(capImg: any) {
 }
 
 slideTo (val: number) {
-  console.log('hello there', this.swiper);
 this.swiper.swiperRef.slideTo(val);
 }
 
   getCap(){
     this.fb.getSingleCap(this.capRef).then(data => {
-      this.cap = data;
-      if (this.cap.rating) {
-        this.displayRating = Math.round(this.cap.rating*2) / 2;
-        this.wholeStars = Math.floor(this.displayRating);
-        this.hasHalf = this.displayRating.toString().indexOf('.') > -1;
+      if (data) {
+        this.cap = data;
+        if (this.cap.rating) {
+          this.displayRating = Math.round(this.cap.rating*2) / 2;
+          this.wholeStars = Math.floor(this.displayRating);
+          this.hasHalf = this.displayRating.toString().indexOf('.') > -1;
+        }
+        this.makeActive(this.cap.imageField1);
+        this.checkQuantity();
+        this.seo.generateTags({title: 'Nod Caps - ' + this.cap.name, description: this.cap.description, image: this.cap.imageField1 });
       }
-      this.makeActive(this.cap.imageField1);
-      this.checkQuantity();
-      this.seo.generateTags({title: 'Nod Caps - ' + this.cap.name, description: this.cap.name, image: this.cap.imageField1 });
     });
   }
 
@@ -135,30 +138,20 @@ this.swiper.swiperRef.slideTo(val);
   }
 
 async openBasket(){
-  this.menu.open('custom');
-
-  /*const modal = await this.modalCtrl.create({
+  const modal = await this.modalCtrl.create({
     component: BasketComponent,
-    componentProps: {
-      inModal: true
-    },
-    cssClass: 'basket-modal'
-  });
-  return await modal.present();*/
+    cssClass: 'basket-modal',
+    enterAnimation: myEnterFromRightAnimation,
+    leaveAnimation: myLeaveToRightAnimation,
+
+  }).then (modal => {
+    modal.present();
+  })
 }
 
   async addToBasket(cap: any) {
+    this.openBasket();  
    this.basket.addItemToBasket(cap, this.quantity);
-   this.menu.open('custom');
-  /* const modal = await this.modalCtrl.create({
-    component: BasketComponent,
-    componentProps: {
-      inModal: true
-    },
-    cssClass: 'basket-modal'
-  });
-  return await modal.present();*/
-  
 } 
 
   async changeQuantity(dir: string){

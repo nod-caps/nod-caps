@@ -11,7 +11,15 @@ body {
   
   /* Social Icons */
   .social-icons {
-    display: inline-flex;
+    display: flex;
+  }
+
+  .show-button-inline {
+    display: inline-flex!important;
+  }
+
+  swiper {
+    margin-bottom: 20px;
   }
   
   .social-icon {
@@ -19,13 +27,13 @@ body {
     align-items: center;
     justify-content: center;
     position: relative;
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
     margin: 0 0.5rem;
     border-radius: 50%;
     cursor: pointer;
     font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     text-decoration: none;
     transition: all 0.15s ease;
     background: #eeeeee;

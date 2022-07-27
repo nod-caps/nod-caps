@@ -1,0 +1,22 @@
+
+.where {
+    padding: 30px 40px 50px 40px;
+    background:#323232;
+    width: 100%;
+    h2 {
+        color: #f8f9fa;
+        margin-top: 30px;
+    }
+    p{
+        color: #f8f9fa;
+    }
+   .last-p{
+    margin-bottom: 30px;
+   }
+}
+
+@media( max-width:768px) {
+    .where {
+        padding: 30px!important;
+    }
+}

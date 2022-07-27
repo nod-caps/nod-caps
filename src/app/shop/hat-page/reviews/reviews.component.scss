@@ -1,12 +1,4 @@
-.container {
-    padding:30px 30px 60px 30px;
-}
 
-h1 {
-    text-align: center;
-    color: #22472a;
-    font-weight: bold;
-}
 
 .review-box{
     padding: 15px;
@@ -20,7 +12,7 @@ h1 {
 }
 
 ion-skeleton-text{
-    height:200px;
+    height:120px;
     width: 100%;
     background: #eee;
     margin-top: 15px;
@@ -48,9 +40,7 @@ ion-segment{
 }
 
 @media (max-width: 768px) {
-    .container{
-        padding:15px 15px 60px 15px;
-    }
+   
     .review-box {
         margin: 15px;
     }
@@ -65,9 +55,7 @@ ion-segment{
     color:#73B786;
 }
 
-.ratings{
-    text-align: center;
-}
+
 
 .review-text{
     margin-right:10px;

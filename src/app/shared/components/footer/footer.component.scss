@@ -1,19 +1,93 @@
-.center{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-p{
-    text-align: center;
-}
+
+
 ion-row{
-    padding-top: 50px;
-    padding-bottom: 50px;
-    background: #f5f5f5;
+    background: #323232;
+    padding: 25px 50px;
+}
+
+ion-col{
+    padding: 25px 10px;
 }
 
 ion-toolbar {
     ion-title{
         color:#22472a;
+    }
+}
+
+.nod-logo{
+    width: 70px;
+    margin-bottom:20px; 
+    margin-left: 10px;
+}
+
+.contact-us{
+    margin-top: 20px;
+}
+
+.links {
+    p{
+        color: #F8F9FA
+    }
+    a{
+        color: #F8F9FA;
+        font-size: 13px;
+    }
+}
+
+p{
+    font-size: 13px;
+}
+
+.email-text{
+    color:#f8f9fa;
+    padding-bottom: 0px;
+}
+
+.sign-up {
+    margin-top: 10px;
+    ion-item{
+        --background: transparent;
+        --padding-start: 0px;
+        --padding-end: 0px;
+
+        ion-button{
+            margin: 0px 0px 0px 15px;
+            height: 42px;
+            width: 130px;
+        }
+    }
+    ion-input{
+        --background: #f8f9fa;
+        --padding-start: 10px;
+        --padding-end: 10px;
+        border-radius: 8px;
+    }
+}
+
+.agree{
+    ion-label{
+        color: white;
+        --padding-start: 0px;
+        text-overflow: inherit;
+        white-space: inherit;
+        font-size: 12px;
+    }
+    ion-checkbox{
+        margin-right: 10px;
+        width:20px;
+        height:20px;
+    }
+}
+
+@media(max-width:768px) {
+    ion-row{
+        padding: 25px 25px 75px 25px;
+    }
+    .sign-up ion-button{
+        width:90px!important;
+    }
+    .sign-up{
+        padding-top:0px!important;
     }
 }

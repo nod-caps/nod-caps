@@ -48,6 +48,26 @@
       </div>
 
       <ion-item>
+        <ion-label position="stacked">Colour</ion-label>
+        <ion-input formControlName="colour" placeholder="Enter Colour..."></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.colour">
+        <ng-container *ngIf="colour?.hasError(error.type) && (colour?.dirty || colour?.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+
+      <ion-item>
+        <ion-label position="stacked">Colour Name</ion-label>
+        <ion-input formControlName="colourName" placeholder="Enter Colour Name..."></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.colourName">
+        <ng-container *ngIf="colourName?.hasError(error.type) && (colourName?.dirty || colourName?.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+
+      <ion-item>
         <ion-label>Image One <ion-icon *ngIf = "cap?.imageField1" name="checkmark-circle-outline"></ion-icon></ion-label><input type="file"  name="myImage1" accept="image/png, image/gif, image/jpeg" #imageInput1 (change)="processFile(imageInput1, 1)" />
       </ion-item>
       <ion-item>

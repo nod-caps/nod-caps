@@ -28,12 +28,12 @@
           <small class="error-message">{{error.message}}</small>
         </ng-container>
       </div>
-      <ion-item>
+     <!-- <ion-item>
         <ion-label position="stacked">
           Banner image
         </ion-label>
         <input type="file" name="bannerImage" accept="image/png, image/gif, image/jpeg"  #bannerImage (change)="processFile(bannerImage)"/>
-      </ion-item>
+      </ion-item>-->
       <ion-item >
         <ion-label>Put Live?</ion-label>
         <ion-checkbox  id="putLive" name='putLive'  [checked]="putLive" (ionChange)="onChange($event)" ></ion-checkbox>
@@ -41,13 +41,13 @@
     </ion-list>
     </form>
 
-    <img class="banner-image" *ngIf="collection?.imageUrl" [src]="collection?.imageUrl">
-    <p *ngIf="!collection?.imageUrl">No image selected yet...</p>
+    <!--<img class="banner-image" *ngIf="collection?.imageUrl" [src]="collection?.imageUrl">
+    <p *ngIf="!collection?.imageUrl">No image selected yet...</p>-->
   
     <ion-button fill="outline">
       Preview
     </ion-button>
-    <ion-button (click)="save()" [disabled]="!collectionForm.valid || (!editPage && !hasProcessed)">
+    <ion-button (click)="save()" [disabled]="!collectionForm.valid">
      <span *ngIf="!saving">Save</span>
      <ion-spinner *ngIf="saving"></ion-spinner>
     </ion-button>

@@ -20,6 +20,7 @@ import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { CookieService } from 'ngx-cookie-service';
+import { ScullyLibModule } from '@scullyio/ng-lib';
 
 
 
@@ -35,7 +36,11 @@ import { CookieService } from 'ngx-cookie-service';
     SwiperModule, 
 
   provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
-  provideFirestore(() => getFirestore())],
+  provideFirestore(() => getFirestore()),
+  ScullyLibModule.forRoot({
+    useTransferState: true,
+    alwaysMonitor: true,
+  })],
   providers: [
     StatusBar,
     SplashScreen,

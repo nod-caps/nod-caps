@@ -1,9 +1,7 @@
 <ion-content>
 <ion-row class="top-row">
   <div class="top-text">
-    <h1>All hats </h1>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>  
+    <h1>nod caps</h1>
   </div>
 </ion-row>
  
@@ -12,16 +10,17 @@
 
   <!--<h2>{{collection.name}}</h2>-->
   <!--<ion-button color="tertiary" shape="round" (click)="goToCollection(collection)">To Collection</ion-button>-->
+    <h2>The Original Collection</h2>
+
   <app-cap-display [capArray] = "collection.capList" ></app-cap-display>
 
   </div>
   </div>
 
+  <app-what-next></app-what-next>
+  <app-our-caps [dark]="false"></app-our-caps>
+
   <app-social-slider></app-social-slider>
-
-
-  <app-sign-up-banner></app-sign-up-banner>
-
 
   <app-footer></app-footer>
 </ion-content>

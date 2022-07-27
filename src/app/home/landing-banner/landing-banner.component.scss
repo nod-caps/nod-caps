@@ -1,6 +1,6 @@
 @media (max-width: 768px) {
   .center-text h1{
-font-size:34px!important;
+font-size:32px!important;
   }
   .banner ion-col{
     padding:20px!important;
@@ -12,12 +12,13 @@ font-size:34px!important;
 }
 
 
+
 ion-row{
   width:100%;
   max-width:2000px;
   margin-left:auto;
   margin-right: auto;
-  background: #22472a; 
+  background: url("/assets/img/Header.png");
   background-position: center;
   background-size: cover;
   height: 500px;
@@ -58,10 +59,8 @@ ion-row{
  
     
   h1{
-      margin:0px;
-      font-size:50px;
-      font-weight: bold;
-      color: #f8f9fa;
+      font-size:32px;
+      color: #000000;
   }
 
 
@@ -203,4 +202,21 @@ ion-row{
   .scroll{
     position: absolute;
     bottom:20px;
+  }
+
+  a{
+    margin-top:20px;
+    color: black;
+    /* padding-bottom: 10px; */
+    text-decoration: none;
+    padding-bottom: 10px;
+    border-bottom: 1px solid black;
+    ion-icon{
+        margin-bottom: -3px;
+    }
+  }
+  .text-holder{
+    position: absolute;
+    bottom:20px;
+    left: 10px;
   }

@@ -22,6 +22,12 @@ ion-content{
 }
 
 @media(max-width:768px){
+    .add-basket{
+      
+        ion-button{
+            width:100% ;
+        }
+    }
     .learn-more{
         margin-bottom: 0px!important;
     }
@@ -74,7 +80,7 @@ ion-content{
     margin-top:20px;
   
     ion-button{
-        width:100%;
+        width:270px;;
     }
 }
 
@@ -326,4 +332,58 @@ h2{
      opacity: 1;
     }
   }
+}
+
+
+.colour-holder{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 1px solid;
+    margin-bottom:15px;
+    .colour-code{
+        width:35px;
+        height: 35px;
+        border-radius: 50%;
+        margin: 4px;
+    }
+}
+
+.colour-name{
+    color:#212529!important;
+    margin-bottom: 10px;
+}
+
+.container {
+    padding:30px 30px 60px 30px;
+    min-height: 600px;
+}
+
+h1 {
+    text-align: center;
+    color: #22472a;
+    font-weight: bold;
+}
+
+
+
+
+.empty-star{
+    display:inline-block;
+}
+
+.ratings-big{
+    text-align: center;
+}
+
+
+.star{
+    color:#73B786;
+}
+
+@media (max-width: 768px) {
+    .container{
+        padding:15px 15px 60px 15px;
+    }
+  
 }

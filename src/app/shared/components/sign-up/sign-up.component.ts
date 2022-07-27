@@ -13,6 +13,7 @@ import {ToastController} from '@ionic/angular';
 export class SignUpComponent implements OnInit {
 
   @Input() inModal = true;
+  @Input() inFooter = false;
   @Input() inBanner = false;
   isChecked = false;
   sending = false;

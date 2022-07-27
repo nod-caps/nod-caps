@@ -1,13 +1,18 @@
 .cookie-container {
-    padding:20px;
+    padding:30px;
 }
 
 ion-button{
-    margin: 0px 5px;
+    margin: 5px 5px;
 }
 
 .close{
-    position: absolute;
-    top:0px;
-    right:0px;
+    position:absolute;
+    top: 5px;
+    font-size:20px;
+    right: -5px;
 }   
+
+p{
+    margin-bottom: 25px;
+}

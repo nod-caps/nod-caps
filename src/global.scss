@@ -39,28 +39,30 @@ ion-content{
 }
 
 .basket-modal .modal-wrapper{
-    width: 700px;
-    height:70%;
+    width: 600px;
+    height: 100%;
+    border-radius: 0px;
+    position: absolute;
+    right: 0px;
 }
 
 .cookie-modal .modal-wrapper {
     width: 100%;
     bottom: 0px;
     position: absolute;
-    height:30%;
+    height:35%;
 }
 
 .sign-up-modal .modal-wrapper {
     bottom: 0px;
     position: absolute;
-    max-height: 322px;
+    max-height: 302px;
         border-radius: 10px 10px 0px 0px;
 }
 
 @media (max-width:768px) {
     .basket-modal .modal-wrapper{
-        width: 95%;
-        height:80%;
+        width: 100%;
     }
     .cookie-modal .modal-wrapper {
         height:45%;
@@ -120,3 +122,51 @@ width: 95%;
         margin: 0px 8px;
     }
 }
+
+// add in -scully below
+ app-root-scully .scully-div{
+    background: #22472a;
+    z-index: 10000;
+    height: 100vh;
+    .center-holder{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        text-align:center;
+    .feather-logo{
+        width: 10%;
+    }
+    .nod-logo{
+        width: 30%
+    }
+    p{
+        color: #7ac08e;
+    }
+    .loading-dots{
+        width:10%;
+        margin-top: 25px;
+    }
+    }
+  }
+
+  app-root-scully app-header{
+    display: none;
+  }
+    app-root-scully .cookie-modal {
+    display: none;
+  }
+
+  app-root .scully-div {
+    display: none;
+  }
+
+
+
+  .where ion-item{
+    margin-left: 0px!important;
+    --padding-start: 0px;
+  }
+
+

@@ -29,3 +29,10 @@ npm-debug.log*
 /platforms
 /plugins
 /www
+
+scully.log
+scullyStats.json
+.scully
+/scully/**/*.js
+/scully/**/*.js.map
+/scully/**/*.d.ts

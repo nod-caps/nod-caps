@@ -1,7 +1,9 @@
 .dark{
     background: #323232;
     .first {
-        color: #f8f9fa 
+        color: #f8f9fa;
+        background-image: url("/assets/img/logos/faded-logo-feather.png"); /* The image used */
+
     }
     .second {
         color:#f8f9fa;
@@ -9,14 +11,25 @@
 }
 
 .light{
+    .first {
+        color:#212529;  
+        background-image: url("/assets/img/logos/faded-logo-feather-white.png"); /* The image used */
+  
+    }
     .second {
         color:#212529;    
+    }
+    a {
+        color: #212529;
+        border-bottom: 1px solid #212529;
+    }
+    .achievement{
+        border-top: 1px solid #212529!important;
     }
 }
 
 .first{
-  padding: 25px 40px;
-  background-image: url("/assets/img/logos/faded-logo-feather.png"); /* The image used */
+  padding: 30px 80px;
   background-position: center; 
   background-repeat: no-repeat;
   background-size: contain; 
@@ -30,7 +43,6 @@
     }
     .achievement{
         border-top: 1px solid #f8f9fa;
-        border-top: 1px solid #f8f9fa;
         padding-top: 10px;
     margin-top: 0px;
     }
@@ -39,9 +51,30 @@
 
 
 .second {
-    padding: 25px;
+    padding: 30px;
+    p{
+        margin-bottom: 25px;
+    }
 }
 
 ion-grid{
-    padding: 50px 0px
+    padding: 50px 0px 80px 0px;
+}
+
+a{
+    margin-top:20px;
+    color: white;
+    /* padding-bottom: 10px; */
+    text-decoration: none;
+    padding-bottom: 10px;
+    border-bottom: 1px solid white;
+    ion-icon{
+        margin-bottom: -3px;
+    }
+}
+
+@media (max-width:768px) {
+    .first {
+        padding:30px
+    }
 }

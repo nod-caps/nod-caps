@@ -68,13 +68,15 @@ this.noOrder();
       const q = query(collection(this.firestore, 'caps'), where("description", "==", cap.description));
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
+        console.log('hello', doc.data().name)
+
         this.order.lineItems[index].cap = doc.data();
             
      if ((index === (this.order.lineItems.length - 1))) {
        this.gotOrderInfo = true;
 
       if (!this.order.emailSent) {
-        this.sendMail();
+         this.sendMail();
       }
      }
       });

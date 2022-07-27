@@ -16,8 +16,7 @@ export class ReviewsComponent implements OnInit {
   otherReviews: any;
   loadingCapReviews = true;
   loadingOtherReviews = true
-  @Input() wholeStars = 5;
-  @Input() hasHalf = false;
+  
 
   reviewSkeleton = [1,2,3];
 

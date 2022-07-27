@@ -1,14 +1,21 @@
 <ion-content>
 
   <div class="basket-container">
-    <h1>Cheers! A confirmation email is on its way to you</h1>
-      <p>Your order number is {{orderNumber}}</p>
-    <div class="sign-up" *ngIf="showOptIn">
-      <app-sign-up  [inModal]="false"></app-sign-up>
-    </div>
+    <h1>Thank You!</h1>
+    <p>We have recevied your order and are getting started on it right away. You will shortly receive an email confirmation.</p>
+      <p>Your order number is <strong>{{orderNumber}}</strong></p>
+
+      <div *ngIf="showOptIn" class="opt-in">
+        <p>Whilst you`re here, join our mailing list for discounts and new cap updates! </p>
+        <div class="sign-up">
+          <app-sign-up  [inModal]="false"></app-sign-up>
+        </div>
+      </div>
+      
+   
 
     <div class="ion-text-left summary"  *ngIf="gotOrderInfo">
-      <p class="sum-title">Summary</p>
+      <p class="sum-title">Order Summary</p>
       <ion-item *ngFor="let item of order?.lineItems; let i = index">
         <ion-avatar>
           <img [src]="item.cap.imageField1">
@@ -16,12 +23,14 @@
         <ion-label> {{item.quantity}} x {{item.cap.name}}</ion-label>
         <span  class="fs14">£{{item.amount_total}}</span>
       </ion-item>
-      <ion-item>
-        <ion-label>Delivery:</ion-label>
+      <ion-item lines="none">
+        <ion-label></ion-label>
+        <span class="item-right">Delivery:</span>
         <span class="fs14">FREE</span>
       </ion-item>
-      <ion-item>
-        <ion-label>Total:</ion-label>
+      <ion-item lines="none">
+        <ion-label></ion-label>
+        <span class="item-right">Total:</span>
         <span ><strong>£{{order?.amountTotal}}</strong></span>
       </ion-item>
     </div>
@@ -30,7 +39,7 @@
       <ion-spinner color="tertiary"></ion-spinner>
     </div>
 
-
+  </div>
     <div class="next">
 
       <h1>What happens next?</h1>
@@ -44,7 +53,7 @@
             <p class='title'>
                Follow us on social media
             </p>
-            <p class='text'>Tag us when you get your cap!</p>
+            <p class='text'>Be sure to tag us when your cap arrives! </p>
             <p class="social-buttons"><app-social-buttons></app-social-buttons></p>
           </div>
         </div>
@@ -53,7 +62,7 @@
           <div class='number'><ion-icon name="mail-outline"></ion-icon></div>
           <div class='info'>
             <p class='title'>We are packaging your order</p>
-            <p class='text'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat pariatur minima nemo? </p>
+            <p class='text'>Our team are carefully packing up your cap.</p>
           </div>
         </div>
 
@@ -61,7 +70,7 @@
           <div class='number'><ion-icon name="car-outline"></ion-icon></div>
           <div class='info'>
             <p class='title'>Shipping your order</p>
-            <p class='text'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat pariatur minima nemo?</p>
+            <p class='text'>Once it`s all packed up, your cap is then taken to the delivery station. You will be notified when your order is out for delivery. </p>
           </div>
         </div>
 
@@ -69,7 +78,7 @@
           <div class='number'><ion-icon name="home-outline"></ion-icon></div>
           <div class='info'>
             <p class='title'>Delivered!</p>
-            <p class='text'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat pariatur minima nemo?</p>
+            <p class='text'>Your cap is delivered to your doorstep! </p>
           </div>
         </div>
 
@@ -77,7 +86,7 @@
           <div class='number'><ion-icon name="star-outline"></ion-icon></div>
           <div class='info'>
             <p class='title'>Leave a review!</p>
-            <p class='text'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat pariatur minima nemo?</p>
+            <p class='text'>Give us the nod of approval - leave a review and tell us what you think about your nod cap!</p>
           </div>
         </div>
       </div>
@@ -88,8 +97,11 @@
     
 
    
-  </div>
+ 
 
   <app-social-slider></app-social-slider>
+  <app-footer></app-footer>
   
     </ion-content>
+
+    

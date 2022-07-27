@@ -1,5 +1,6 @@
 <div class="swiper-holder">
-  <h1 *ngIf="showTitle">nod in the wild</h1>
+  <h1 *ngIf="showTitle">Made for everyone</h1>
+  <p class="ion-text-center">Use #nodcaps when you`re out and about! It`s great to see you all wearing nod caps.</p>
   <swiper #swiper [config]="config">
     <ng-template swiperSlide>
       <ion-card>
@@ -96,6 +97,10 @@
   <ion-button class=" swiper-button-prev" color="tertiary" ><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
   <ion-button class=" swiper-button-next" color="tertiary" ><ion-icon  name="chevron-forward-outline"></ion-icon></ion-button>
 
+  <div class="ion-text-center">
+    <app-social-buttons [inline]="true"></app-social-buttons>
+
+  </div>
   <h4 class="ion-text-center">#nodcaps</h4>
 
 </div>

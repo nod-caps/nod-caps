@@ -14,14 +14,58 @@ border-radius: 0px 0px 10px 10px;
 
 }
 
+.sign-up-button{
+    height: 42px;
+    width: 120px;
+}
 
-.first{
-    border-radius: 10px 10px 0px 0px;
+
+ion-item{
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    ion-checkbox{
+        margin-right: 10px;
+    }
 }
 
 form div {
     background: white;
+    text-align: left;
+    max-width: 700px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
     .error-message {
         margin-left:10px;
+    }
+}
+
+ion-input{
+    --padding-start: 10px!important;
+    border: 1px solid #000;
+    border-radius: 8px;
+    max-width: 310px;
+    margin-right: 20px;
+}
+
+.in-footer{
+    ion-item{
+        --background: transparent;
+        ion-input{
+            --background: white;
+        }
+       
+    }
+    .agree ion-label{
+        color: #f8f9fa!important;
+    }
+}
+
+@media(max-width: 768px){
+    ion-item{
+        --padding-start:0px;
+        --padding-end:0px;
     }
 }
