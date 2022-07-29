@@ -58,6 +58,8 @@ showingCookies = false;
 
 
   ngOnInit() {
+    this.presentModal();
+
    const gotCookie =  this.cookie.get('consentAllowed');
    if (!gotCookie) {
     this.presentModal();

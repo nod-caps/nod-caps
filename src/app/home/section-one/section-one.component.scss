@@ -1,5 +1,6 @@
 ion-row{
   // margin-bottom:30px;
+  background: rgba(0, 0, 0, 0.85);
 
 }
 
@@ -161,7 +162,6 @@ font-size:40px;
   }
   ion-col{
     padding: 100px 30px;
-    background: rgba(0, 0, 0, 0.85);
   }
 }
 
@@ -173,7 +173,12 @@ font-size:40px;
 @media (max-width: 768px) {
   .green-info-section{
     background-size:cover;
- 
+    ion-col{
+      padding: 30px!important;
+    }
+    ion-row {
+      padding: 40px 0px;
+    }
   }
   .swiper-holder {
     background-image: -webkit-linear-gradient(270deg, #ffffff 55%, #22472a 55%);

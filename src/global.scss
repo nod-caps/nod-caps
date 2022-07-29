@@ -47,7 +47,6 @@ ion-content{
 }
 
 .cookie-modal .modal-wrapper {
-    width: 100%;
     bottom: 0px;
     position: absolute;
     height:35%;
@@ -57,7 +56,7 @@ ion-content{
     bottom: 0px;
     position: absolute;
     max-height: 302px;
-        border-radius: 10px 10px 0px 0px;
+    border-radius: 10px 10px 0px 0px;
 }
 
 @media (max-width:768px) {
@@ -66,10 +65,11 @@ ion-content{
     }
     .cookie-modal .modal-wrapper {
         height:55%;
+        width: 95%;
     }
     .sign-up-modal .modal-wrapper {
         width: 95%;
-      
+        max-height: 345px!important;
     }
 }
 

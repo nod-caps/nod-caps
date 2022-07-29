@@ -21,8 +21,8 @@ exports.stripeCheckout = functions.https.onCall(async (data, context) => {
       allowed_countries: ["GB"],
     },
     mode: "payment",
-    success_url: "http://localhost:8100/cheers?on=" + orderNumber,
-    cancel_url: "http://localhost:8100/shop",
+    success_url: "https://projecttwo-c4839.web.app/?on=" + orderNumber,
+    cancel_url: "https://projecttwo-c4839.web.app/shop",
   });
 
   return session.id;
