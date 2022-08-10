@@ -7,16 +7,16 @@
 
       <swiper  class="hat-swiper" #hatSwiper [config]="hatConfig" >
         <ng-template swiperSlide class="swipe" *ngIf="cap?.imageField1">
-          <img [src]="cap?.imageField1">
+          <img [alt]="cap?.name + ' image 1 | nod caps'" [src]="cap?.imageField1">
         </ng-template>
         <ng-template swiperSlide class="swipe" *ngIf="cap?.imageField2">
-          <img [src]="cap?.imageField2">
+          <img [alt]="cap?.name + ' image 2 | nod caps'" [src]="cap?.imageField2">
         </ng-template>
         <ng-template swiperSlide class="swipe" *ngIf="cap?.imageField3">
-          <img [src]="cap?.imageField3">
+          <img [alt]="cap?.name + ' image 3 | nod caps'" [src]="cap?.imageField3">
         </ng-template>
         <ng-template swiperSlide class="swipe" *ngIf="cap?.imageField4">
-          <img [src]="cap?.imageField4">
+          <img [alt]="cap?.name + ' image 4 | nod caps'" [src]="cap?.imageField4">
         </ng-template>
 
       </swiper>

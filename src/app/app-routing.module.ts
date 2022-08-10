@@ -7,9 +7,7 @@ import { TermsComponent } from './admin/terms/terms.component';
 import { OrdersComponent } from './control/orders/orders.component';
 import { AuthService } from './services/auth.service';
 import { AdminLoginComponent } from './shared/components/admin-login/admin-login.component';
-import { BasketComponent } from './shared/components/basket/basket.component';
 import { MyOrdersComponent } from './shared/components/my-orders/my-orders.component';
-import { CheckoutComponent } from './shop/checkout/checkout.component';
 import { ThankYouComponent } from './shop/thank-you/thank-you.component';
 
 const routes: Routes = [
@@ -53,14 +51,6 @@ const routes: Routes = [
   {
     path: 'about',
     component: AboutComponent,
-  },
-  {
-    path: 'basket',
-    component: BasketComponent,
-  },
-  {
-    path: 'checkout',
-    component: CheckoutComponent,
   },
   {
     path: 'cheers',

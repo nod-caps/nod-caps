@@ -36,7 +36,7 @@
     <div *ngIf="otherReviews.length > 0 && !loadingOtherReviews">
       <ion-virtual-scroll [items]="otherReviews" approxItemHeight="220px" >
         <div *virtualItem="let review;" class="review-box other-review">
-          <img [src]="review.image" (click)="toCap(review.link)">
+          <img [alt]="review.name + ' | nod caps'" [src]="review.image" (click)="toCap(review.link)">
             <div class="text-bit">
               <p class="name"><span *ngIf="review.name">{{review.name}}</span><span *ngIf="!review.name">Anonymous</span></p>
               <ion-icon name="star" color="tertiary" *ngFor="let item of [].constructor(review.rating)"></ion-icon> 

@@ -1,5 +1,4 @@
 import { Component, OnInit,  } from '@angular/core';
-import { Router } from '@angular/router';
 import { FirebaseService } from 'src/app/services/fb.service';
 
 
@@ -21,14 +20,10 @@ activeIndex = 1;
   
 constructor(
     private fb: FirebaseService,
-    private router: Router,
   ) { 
   }
 
 
-  goToShop(){
-    this.router.navigateByUrl('/shop');
-  }
 
 
 

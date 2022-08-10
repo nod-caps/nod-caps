@@ -3,13 +3,13 @@
   <ion-toolbar>
     <ion-buttons slot="end">
        <div>
-         <ion-button (click)="goTo('home')" color="light ion-hide-sm-down"><strong>home</strong></ion-button>
-         <ion-button (click)="goTo('shop')" color="light"><strong>shop</strong></ion-button>
+        <a class="header-button ion-hide-sm-down" [routerLink]="['/home']">HOME</a>
+        <a class="header-button" [routerLink]="['/shop']">SHOP</a>
          <ion-button (click)="openBasket()" color="light" class="basket"><ion-icon name="cart"></ion-icon><ion-badge *ngIf="basketQuantity > 0" color="danger">{{basketQuantity}}</ion-badge></ion-button>
        </div>
     </ion-buttons>
-    <ion-title slot="start" (click)="goTo('home')" >
-      <img  src="./assets/img/logos/nod-text-logo-white.png">
+    <ion-title slot="start" >
+     <a [routerLink]="'/home'" ><img alt="nod caps logo" src="./assets/img/logos/nod-text-logo-white.png"></a>
     </ion-title>
   </ion-toolbar>
 </ion-header>

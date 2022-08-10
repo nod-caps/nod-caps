@@ -24,7 +24,7 @@
 
     <ion-row *ngFor="let item of order?.lineItems; let i = index">
       <ion-col size="2" class="first-col">
-          <img [src]="item.cap.imageField1" (click)="buyAgain(item.cap)">
+          <img [alt]="item.cap.name +  '| nod caps'" [src]="item.cap.imageField1" (click)="buyAgain(item.cap)">
       </ion-col>
       <ion-col size="10" size-md="7" class="second-col">
         <div>
@@ -50,9 +50,8 @@
 
   <div class="buy-more ion-text-center">
     <p>Looking to add another nod cap to your wardrobe?  Then head to the Shop.</p>
-    <ion-button shape="round" color="primary" (click)="toShop()">
-      Browse All Caps
-    </ion-button>
+    <a class="ion-button ion-button-primary" [routerLink]="'/shop'">BROWSE ALL CAPS</a>
+
   </div>
 
 </div>

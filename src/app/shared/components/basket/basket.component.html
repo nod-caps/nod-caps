@@ -31,7 +31,7 @@
       <p *ngIf="item?.errorMessage" class="error">{{item?.errorMessage}}</p>
 
       <ion-col size="3">
-        <img [src]="item.cap.imageField1" (click)="goTo('shop/' + item.cap.collectionRef + '/' + item.cap.nameHyphenated)">
+        <img [alt]="item.cap.name + ' | nod cap item'" [src]="item.cap.imageField1" (click)="goTo('shop/' + item.cap.collectionRef + '/' + item.cap.nameHyphenated)">
       </ion-col>
       <ion-col   size="9" class="pos-rel col-right">
         <h2 (click)="goTo('shop/' + item.cap.collectionRef + '/' + item.cap.nameHyphenated)">{{item.cap.name}}</h2>

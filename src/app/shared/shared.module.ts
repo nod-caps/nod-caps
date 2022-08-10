@@ -16,7 +16,6 @@ import { DeliveryModalComponent } from '../shop/delivery-modal/delivery-modal.co
 import { ThankYouComponent } from '../shop/thank-you/thank-you.component';
 import { AddReviewComponent } from './components/add-review/add-review.component';
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
-import { BannerSwiperComponent } from './components/banner-swiper/banner-swiper.component';
 import { BasketComponent } from './components/basket/basket.component';
 import { BoastBannerComponent } from './components/boast-banner/boast-banner.component';
 import { CapCardComponent } from './components/cap-card/cap-card.component';
@@ -48,7 +47,6 @@ import { WhatNextComponent } from './components/what-next/what-next.component';
         RouterModule
       ],
   declarations: [
-      BannerSwiperComponent,
       HeaderComponent,
       BasketComponent,
       AdminLoginComponent,
@@ -77,7 +75,6 @@ import { WhatNextComponent } from './components/what-next/what-next.component';
   ],
   providers: [],
   exports: [
-    BannerSwiperComponent,
     HeaderComponent,
     BasketComponent, 
     AdminLoginComponent,

@@ -18,7 +18,7 @@
       <p class="sum-title">Order Summary</p>
       <ion-item *ngFor="let item of order?.lineItems; let i = index">
         <ion-avatar>
-          <img [src]="item.cap.imageField1">
+          <img [alt]="item.cap.name + '| nod cap purchase'" [src]="item.cap.imageField1">
         </ion-avatar>
         <ion-label> {{item.quantity}} x {{item.cap.name}}</ion-label>
         <span  class="fs14">£{{item.price}}</span>

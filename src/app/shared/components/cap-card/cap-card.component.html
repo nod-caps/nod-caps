@@ -1,44 +1,48 @@
-<ion-card (click)="goToHat(cap)" *ngIf="cap">
-  <div class="image-holder">
-    <img class="cap-skel" [src]="cap?.imageField1">
-    <div *ngIf="cap.quantity < 10 && cap.quanity > 0" class="out-of-stock">
-      <span>{{cap?.quantity}} LEFT</span>
+<a [routerLink]="'/shop/' + cap.collectionRef + '/' + cap.nameHyphenated" *ngIf="cap">
+  <ion-card>
+    <div class="image-holder">
+      <img class="cap-skel" [alt]="cap?.name +  ' | nod caps'" [src]="cap?.imageField1">
+      <div *ngIf="cap.quantity < 10 && cap.quanity > 0" class="out-of-stock">
+        <span>{{cap?.quantity}} LEFT</span>
+      </div>
+      <div *ngIf="cap.quantity < 1 " class="out-of-stock">
+        <span>OUT OF STOCK</span>
+      </div>
     </div>
-    <div *ngIf="cap.quantity < 1 " class="out-of-stock">
-      <span>OUT OF STOCK</span>
-    </div>
+    <ion-card-header>
+      <ion-card-title>{{cap?.name}}</ion-card-title>
+      
+  
+  
+      <div class="bottom-holder">
+        <span class="rating" *ngIf="cap?.rating">
+          <ion-icon class="star" name="star" *ngFor="let item of [].constructor(wholeStars)"></ion-icon>
+          <ion-icon *ngIf="hasHalf" name="star-half" class="star"></ion-icon>
+          <div *ngIf="!hasHalf" class="empty-star">
+            <ion-icon class="star"  *ngFor="let item of [].constructor(5 - wholeStars)"name="star-outline"></ion-icon>
+          </div>
+        </span>
+        <span class="rating" *ngIf="!cap?.rating">
+          <ion-icon class="star" name="star"></ion-icon>
+          <ion-icon class="star" name="star"></ion-icon>
+          <ion-icon class="star" name="star"></ion-icon>
+          <ion-icon class="star" name="star"></ion-icon>
+          <ion-icon class="star" name="star"></ion-icon>
+  
+        </span>
+  
+        <span class="price"> £{{cap?.price}}</span>
+      </div>
+    </ion-card-header>
+    <div class="shop-button-hover ion-text-center">
+    <ion-button  shape="round" color="light">
+          SHOP
+    </ion-button>
   </div>
-  <ion-card-header>
-    <ion-card-title>{{cap?.name}}</ion-card-title>
-    
+  </ion-card>
+</a>
 
 
-    <div class="bottom-holder">
-      <span class="rating" *ngIf="cap?.rating">
-        <ion-icon class="star" name="star" *ngFor="let item of [].constructor(wholeStars)"></ion-icon>
-        <ion-icon *ngIf="hasHalf" name="star-half" class="star"></ion-icon>
-        <div *ngIf="!hasHalf" class="empty-star">
-          <ion-icon class="star"  *ngFor="let item of [].constructor(5 - wholeStars)"name="star-outline"></ion-icon>
-        </div>
-      </span>
-      <span class="rating" *ngIf="!cap?.rating">
-        <ion-icon class="star" name="star"></ion-icon>
-        <ion-icon class="star" name="star"></ion-icon>
-        <ion-icon class="star" name="star"></ion-icon>
-        <ion-icon class="star" name="star"></ion-icon>
-        <ion-icon class="star" name="star"></ion-icon>
-
-      </span>
-
-      <span class="price"> £{{cap?.price}}</span>
-    </div>
-  </ion-card-header>
-  <div class="shop-button-hover ion-text-center">
-  <ion-button  shape="round" color="light">
-        SHOP
-  </ion-button>
-</div>
-</ion-card>
 
 <ion-card *ngIf="!cap" class="loading">
   <ion-spinner color="tertiary"></ion-spinner>

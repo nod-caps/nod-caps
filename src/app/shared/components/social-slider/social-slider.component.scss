@@ -47,8 +47,8 @@
       -webkit-animation: slideUpBut 0.45s ease forwards;
     }
     .overlay{
-      animation: fadeIn ease 0.45s;
-      -webkit-animation: fadeIn ease 0.45s;
+      animation: fadeIn ease 0.65s;
+      -webkit-animation: fadeIn ease 0.65s;
       opacity: 1;
     }
   }
@@ -80,12 +80,32 @@
     box-shadow: rgb(0 0 0 / 15%) 0px 3px 1px -2px, rgb(0 0 0 / 10%) 0px 2px 2px 0px, rgb(0 0 0 / 5%) 0px 1px 5px 0px;
 }   
 
+@keyframes scaleUp {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scales(1.05);
+  }
+}
+
 @keyframes fadeIn {
   0% {
     opacity:0;
   }
   100% {
     opacity:1;
+  }
+}
+
+@keyframes slideUpBut {
+  0% {
+    transform: translateY(20px);
+    opactiy: 0%;
+  }
+  100% {
+    transform: translateY(0px);
+    opactiy:100%;
   }
 }
 

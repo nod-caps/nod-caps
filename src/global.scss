@@ -179,3 +179,57 @@ width: 95%;
   .modal-wrapper h1 {
     font-size: 28px!important;
   }
+
+  .ion-button{
+   
+    border-radius: 64px;
+    background: #7ac08e;
+    box-shadow: 0 3px 1px -2px rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%);
+    text-transform: uppercase;
+    height: 36px;
+    text-decoration: none;
+    padding: 8px 26px;
+    margin: 4px 2px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    display: inline-flex;
+  }
+
+  .ion-button-small{
+    height: 2.1em!important;
+    font-size: 13px!important;
+    padding: 6px 26px!important;
+  }
+  .ion-button-light{
+    background: #F4F5F8!important;
+  }
+  .ion-button-light:hover{
+    background: #dedede!important;
+  }
+
+  .ion-button:hover{
+  opacity: 0.92;
+  }
+
+  .ion-button-primary {
+    background: #22472a!important;
+    color:#fff!important;
+
+  }
+
+
+  .header-button{
+    border-radius: 2px;
+    background: transparent;
+    font-size: 14px;
+    font-weight: bold;
+    color: #F1F3F5;
+    text-decoration: none;
+    padding: 12px;
+    display: inline-flex;
+  }
+
+  .header-button:hover{
+    background:rgba(255,255,255,0.08);
+  }

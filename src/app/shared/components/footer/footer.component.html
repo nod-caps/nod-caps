@@ -7,21 +7,22 @@
     <app-sign-up [inFooter]="true"></app-sign-up>
    </ion-col>
   <ion-col size="12"   size-md="6" size-xl="2" >
-    <img class="nod-logo" src="./assets/img/logos/nod-text-logo-white.png">
+    <img class="nod-logo" alt="nod caps logo" src="./assets/img/logos/nod-text-logo-white.png">
     <app-social-buttons></app-social-buttons>
-    <ion-button class="contact-us" shape="round" color="tertiary" (click)="goTo('contact')">Contact Us</ion-button>
+    <a class="ion-button contact-us" [routerLink]="'/contact'">Contact Us</a>
+
   </ion-col>
   <ion-col class="links" size="6"  size-md="3" size-xl="1.5" >
     <p><strong>HELP</strong></p>
-    <a>Contact Us</a><br>
-    <a>Delivery Info</a><br>
-    <a>Returns</a>
+    <a [routerLink]="'/contact'">Contact Us</a><br>
+    <a [routerLink]="'/delivery-returns'">Delivery Info</a><br>
+    <a [routerLink]="'/delivery-returns'">Returns</a>
   </ion-col>
   <ion-col class="links" size="6"   size-md="3"size-xl="1.5" >
     <p><strong>NOD CAPS</strong></p>
-    <a>About Us</a><br>
-    <a>Terms & Conditions</a><br>
-    <a>Privacy Policy</a>
+    <a  [routerLink]="'/about'">About Us</a><br>
+    <a  [routerLink]="'/terms'">Terms & Conditions</a><br>
+    <a [routerLink]="'/terms'">Privacy Policy</a>
   </ion-col>
   <ion-col size="12" size-xl="3" size-lg="6"  class="email-text ion-hide-md-down" >
    <p><strong>BE THE FIRST TO HEAR ABOUT OUR NEW CAPS</strong></p>
