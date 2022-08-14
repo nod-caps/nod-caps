@@ -1,10 +1,10 @@
 <ion-content>
-
-  <ion-row *ngIf="cap" class="cap-row">
+<ion-row  class="cap-row">
    <!-- <ion-col size="12" size-md="2" size-lg="1" offset-lg="1.5" class="preview-images ion-hide-md-down">
     </ion-col>-->
     <ion-col size="12" size-md="7" size-lg="5" offset-lg="1" class="main-image ">
 
+      <img *ngIf="!cap" [alt]="capName + ' image 1 | nod caps'" [src]="preLoadCap.image">
       <swiper  class="hat-swiper" #hatSwiper [config]="hatConfig" >
         <ng-template swiperSlide class="swipe" *ngIf="cap?.imageField1">
           <img [alt]="cap?.name + ' image 1 | nod caps'" [src]="cap?.imageField1">
@@ -24,7 +24,7 @@
       <ion-button class=" swiper-button-prev swiper-button-prev-hat" color="light" ><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
        <ion-button class=" swiper-button-next swiper-button-next-hat" color="light" ><ion-icon  name="chevron-forward-outline"></ion-icon></ion-button>  
 
-      <div class="preview-images ion-hide-md-down">
+      <div class="preview-images ion-hide-md-down" *ngIf="cap">
         <div *ngIf="cap?.imageField1">
           <img (click)="slideTo(0)"  [src]="cap?.imageField1">
         </div>
@@ -38,11 +38,18 @@
           <img  (click)="slideTo(3)"   [src]="cap?.imageField4" >
         </div>
       </div>
+      <div class="preview-images ion-hide-md-down" *ngIf="!cap">
+          <ion-skeleton-text animated></ion-skeleton-text>
+          <ion-skeleton-text animated></ion-skeleton-text>
+          <ion-skeleton-text animated></ion-skeleton-text>
+          <ion-skeleton-text animated></ion-skeleton-text>
+
+      </div>
      
     </ion-col>
  
     <ion-col size="12" size-md="5" size-lg="5"  class="description-col">
-        <h1>{{cap?.name}}</h1>
+        <h1>{{capName}} Baseball Cap</h1>
         <div>
           <h2 class="price">£{{cap?.price}}</h2>
           <h2 class="free-delivery" *ngIf="cap?.quantity !== 0">FREE UK DELIVERY</h2>
@@ -102,7 +109,7 @@
        
 
         <div class="add-basket" *ngIf="cap?.quantity !== 0">
-          <ion-button *ngIf="!alreadyInBasket" shape="round" color="primary" (click)="addToBasket(cap)">ADD TO BASKET</ion-button>
+          <ion-button *ngIf="!alreadyInBasket" shape="round" color="primary" [disabled]="!cap" (click)="addToBasket(cap)">ADD TO BASKET</ion-button>
           <ion-button *ngIf="alreadyInBasket" shape="round" color="primary" (click)="openBasket()">VIEW IN BASKET</ion-button>
         </div>
 
@@ -115,7 +122,7 @@
 
               </ion-item>
               <div class="ion-padding" slot="content" *ngIf="accordionNumber === 1" [ngClass]="accordionNumber === 1 ? 'active':''">
-                {{cap?.description}} <br><br>
+                {{preLoadCap.description}} <br><br>
                 With an adjustable rear buckle strap and an embroidered feather logo on the front, it's the perfect accessory to complete any look. 
               </div>
            
@@ -160,9 +167,6 @@
           </ion-item>     
          </div>-->
       </ion-col>
-  </ion-row>
-  <ion-row *ngIf="!cap" class="loading">
-    <ion-spinner color="tertiary"></ion-spinner>
   </ion-row>
  
 

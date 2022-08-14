@@ -26,5 +26,6 @@ export const config: ScullyConfig = {
     '/shop/The-Original-Collection/Out-of-the-Blue',
     '/shop/The-Original-Collection/Down-to-Earth',
     '/shop/The-Original-Collection/Daily-Driver',
+    '/nod-sitemap',
   ],
 }

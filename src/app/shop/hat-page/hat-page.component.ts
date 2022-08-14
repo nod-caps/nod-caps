@@ -15,6 +15,7 @@ import { collection, getDocs, query, where } from 'firebase/firestore';
 import { SeoService } from 'src/app/services/seo.service';
 import { myEnterFromRightAnimation } from 'src/app/animations/enter';
 import { myLeaveToRightAnimation } from 'src/app/animations/leave';
+import { QuickCapService } from 'src/app/services/quick-cap.service';
 SwiperCore.use([Navigation, Autoplay, Keyboard, Pagination, Scrollbar, Zoom, ]);
 
 
@@ -30,6 +31,7 @@ declare var Stripe;
 export class HatPageComponent implements OnInit {
 
   cap: any;
+  preLoadCap: any = {};
   capRef: any;
   activeCap: any;
   capReviews: any;
@@ -44,6 +46,7 @@ export class HatPageComponent implements OnInit {
   loadReviews = false;
   displayRating  = 5;
   wholeStars = 5;
+  capName = '';
   hasHalf = false;
 
 
@@ -61,7 +64,7 @@ export class HatPageComponent implements OnInit {
  
   }
 
-  accordionNumber = 0;
+  accordionNumber = 1;
 
   constructor(
     private route: ActivatedRoute,
@@ -71,7 +74,8 @@ export class HatPageComponent implements OnInit {
 private modalCtrl: ModalController,
 private firestore: Firestore,
 private seo: SeoService,
-private alert: AlertController  ) { }
+private alert: AlertController,
+private quickCap: QuickCapService  ) { }
 
 async openDeliveryInfo() {
   const modal = await this.modalCtrl.create({
@@ -111,7 +115,6 @@ this.swiper.swiperRef.slideTo(val);
         }
         this.makeActive(this.cap.imageField1);
         this.checkQuantity();
-        this.seo.generateTags({title: 'Nod Caps - ' + this.cap.name, description: this.cap.description, image: this.cap.imageField1 });
       }
     });
   }
@@ -129,6 +132,7 @@ this.swiper.swiperRef.slideTo(val);
     this.fb.getCollectionCaps(this.collectionRef).then(data => {
       if(data) {
         this.otherCaps = data
+        
       }
     });
   }
@@ -213,8 +217,12 @@ if (this.cap.quantity < this.capBasketMax) {
 
   ngOnInit() {
      this.collectionRef = this.route.snapshot.paramMap.get('collectionRef');
-     const capName = this.route.snapshot.paramMap.get('capNameHyphenated');
-     this.capRef = this.collectionRef + '_' + capName;
+     const capNameHyp = this.route.snapshot.paramMap.get('capNameHyphenated');
+    this.capName = capNameHyp.replace(/-/g, ' ');
+    this.preLoadCap = this.quickCap.getCap(this.capName);
+     this.seo.generateTags({title: this.preLoadCap.metaTitle, description: this.preLoadCap.metaDescription, image: this.preLoadCap.image });
+
+    this.capRef = this.collectionRef + '_' + capNameHyp;
     this.getCap();
     this.getOtherHats();
     this.checkInBasket();

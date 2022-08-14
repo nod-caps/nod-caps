@@ -37,9 +37,7 @@ this.isTop=false;
  }
 
   ngOnInit(){
-
-    this.seo.generateTags({title: 'Nod Caps', description:'Buy cheap caps online', image: '/assets/img/cap-image.jpg' });
-
+    this.seo.generateTags({title: 'High quality Baseball caps for everyone | nod caps ', description:'As the UK’s top cap brand, we’ve got you covered (literally)! We focus exclusively on producing caps for anyone to wear. FREE Delivery.', image: '/assets/img/cap-image.jpg' });
      }
 
 }

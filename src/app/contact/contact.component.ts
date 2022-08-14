@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormBuilder, Validators } from '@angular/forms';
+import { SeoService } from '../services/seo.service';
 
 @Component({
   selector: 'app-contact',
@@ -15,6 +16,7 @@ export class ContactComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private fire: AngularFirestore, 
+    private seo: SeoService
 
   ) { }
 
@@ -73,6 +75,9 @@ export class ContactComponent implements OnInit {
      });
     }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.seo.generateTags({title: 'Contact Us - UK Baseball Caps | nod caps', description:'Contact nod caps for help with returns, orders, product queries and more.', image: '/assets/img/cap-image.jpg' });
+
+  }
 
 }

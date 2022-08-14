@@ -34,7 +34,7 @@ goToCollection(collection: any){
 
   ngOnInit() {
     this.getAllHats()
-    this.seo.generateTags({title: 'Nod Caps Shop', description:'Buy cheap caps online', image: '/assets/img/cap-image.jpg' });
+    this.seo.generateTags({title: 'Shop nod caps | The Best UK Baseball & Dad Caps', description:'Buy high quality baseball and dad caps in a variety of colours at nod caps. Shop now - free UK delivery.', image: '/assets/img/cap-image.jpg' });
   }
 
 }

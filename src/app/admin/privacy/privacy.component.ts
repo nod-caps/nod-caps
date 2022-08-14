@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
   selector: 'app-privacy',
@@ -7,8 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrivacyComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private seo: SeoService
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.seo.generateTags({title: 'Privacy Policy - UK Baseball Caps | nod caps', description:'Please read our privacy policy for using nod caps.', image: '/assets/img/cap-image.jpg' });
+
+  }
 
 }

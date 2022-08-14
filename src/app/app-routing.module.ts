@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './admin/about/about.component';
+import { DeliveryComponent } from './admin/delivery/delivery.component';
 import { PrivacyComponent } from './admin/privacy/privacy.component';
 import { ReturnsComponent } from './admin/returns/returns.component';
+import { SitemapComponent } from './admin/sitemap/sitemap.component';
 import { TermsComponent } from './admin/terms/terms.component';
 import { OrdersComponent } from './control/orders/orders.component';
 import { AuthService } from './services/auth.service';
@@ -41,8 +43,12 @@ const routes: Routes = [
     component: AdminLoginComponent,
   },
   {
-    path: 'delivery-returns',
+    path: 'returns',
     component: ReturnsComponent,
+  },
+  {
+  path: 'delivery',
+    component: DeliveryComponent,
   },
   {
     path: 'privacy',
@@ -51,6 +57,10 @@ const routes: Routes = [
   {
     path: 'about',
     component: AboutComponent,
+  },
+  {
+    path: 'nod-sitemap',
+    component: SitemapComponent,
   },
   {
     path: 'cheers',

@@ -11,7 +11,7 @@ export class AboutComponent implements OnInit {
   constructor( private seo: SeoService) { }
 
   ngOnInit() {
-    this.seo.generateTags({title: 'Nod Caps About', description:'Buy cheap caps online', image: '/assets/img/cap-image.jpg' });
+    this.seo.generateTags({title: 'Our Story - UK Baseball Caps | nod caps', description:'nod caps are a small team based in Edinburgh focusing exclusively on producing quality caps for anyone to wear. Buy nod caps now. ', image: '/assets/img/cap-image.jpg' });
 
   }
 

@@ -64,7 +64,7 @@ ion-content{
             display: inline-block;
             padding: 6px;
     }   
-    img{
+    img,ion-{
     max-height:100px;
     max-width:85px;
    // border: 1px solid #22472A;
@@ -90,6 +90,18 @@ ion-content{
         max-height:500px;
         border-radius: 4px;
     }
+    .main-image-skeleton{
+        height:450px;
+        border-radius: 4px;
+    }
+}
+
+.preview-images ion-skeleton-text {
+    height: 100px;
+    width: 22%;
+    display: inline-block;
+    margin: 5px;
+    border-radius: 4px;
 }
 
 .description-col{

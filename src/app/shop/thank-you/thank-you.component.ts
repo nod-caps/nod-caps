@@ -47,7 +47,6 @@ export class ThankYouComponent implements OnInit {
       this.order = orders[0];
       const price = this.order.amountTotal / 100
       this.order.totalPrice = price.toFixed(2);
-      console.log('hello', this.order);
       if (!this.order.addedCaps) {
         this.getCaps();
       } else {

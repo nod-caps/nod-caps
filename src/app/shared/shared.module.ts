@@ -31,6 +31,8 @@ import { SocialSliderComponent } from './components/social-slider/social-slider.
 import { OurCapsComponent } from './components/our-caps/our-caps.component';
 import { SocialButtonsComponent } from './social-buttons/social-buttons.component';
 import { WhatNextComponent } from './components/what-next/what-next.component';
+import { SitemapComponent } from '../admin/sitemap/sitemap.component';
+import { DeliveryComponent } from '../admin/delivery/delivery.component';
 
 
 
@@ -70,7 +72,10 @@ import { WhatNextComponent } from './components/what-next/what-next.component';
       SocialButtonsComponent,
       CapDisplayComponent,
       OurCapsComponent,
-      WhatNextComponent
+      WhatNextComponent,
+      SitemapComponent, 
+      DeliveryComponent,
+      TermsComponent
 
   ],
   providers: [],
@@ -98,7 +103,10 @@ import { WhatNextComponent } from './components/what-next/what-next.component';
     SocialButtonsComponent,
     CapDisplayComponent,
     OurCapsComponent,
-    WhatNextComponent
+    WhatNextComponent,
+    SitemapComponent, 
+    DeliveryComponent,
+    TermsComponent
   ]
 })
 export class SharedModule { }
