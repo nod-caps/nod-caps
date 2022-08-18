@@ -13,6 +13,7 @@ export class ShopComponent implements OnInit {
 
 
   allCollections: any
+  caps: any[] =[];
   
   constructor(
     private router:Router,
@@ -32,9 +33,18 @@ goToCollection(collection: any){
      });
 }
 
+async getHats() {
+  this.fb.getCollectionCaps('The-Original-Collection').then(data => {
+    if(data) {
+      this.caps = data
+    }
+  });
+}
+
   ngOnInit() {
-    this.getAllHats()
     this.seo.generateTags({title: 'Shop nod caps | The Best UK Baseball & Dad Caps', description:'Buy high quality baseball and dad caps in a variety of colours at nod caps. Shop now - free UK delivery.', image: '/assets/img/cap-image.jpg' });
+    this.getHats()
+
   }
 
 }

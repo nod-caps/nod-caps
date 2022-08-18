@@ -24,7 +24,7 @@
 
     <ion-row *ngFor="let item of order?.lineItems; let i = index">
       <ion-col size="2" class="first-col">
-          <img [alt]="item.cap.name +  '| nod caps'" [src]="item.cap.imageField1" (click)="buyAgain(item.cap)">
+          <img loading="lazy" [alt]="item.cap.name +  '| nod caps'" [src]="item.cap.imageField1" (click)="buyAgain(item.cap)">
       </ion-col>
       <ion-col size="10" size-md="7" class="second-col">
         <div>

@@ -33,6 +33,9 @@ import { SocialButtonsComponent } from './social-buttons/social-buttons.componen
 import { WhatNextComponent } from './components/what-next/what-next.component';
 import { SitemapComponent } from '../admin/sitemap/sitemap.component';
 import { DeliveryComponent } from '../admin/delivery/delivery.component';
+import { TopCapsComponent } from './components/top-caps/top-caps.component';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
 
@@ -46,7 +49,8 @@ import { DeliveryComponent } from '../admin/delivery/delivery.component';
         AngularFireAuthModule, 
         AngularFireStorageModule,
         SwiperModule,
-        RouterModule
+        RouterModule,
+        LazyLoadImageModule
       ],
   declarations: [
       HeaderComponent,
@@ -75,7 +79,9 @@ import { DeliveryComponent } from '../admin/delivery/delivery.component';
       WhatNextComponent,
       SitemapComponent, 
       DeliveryComponent,
-      TermsComponent
+      TermsComponent,
+      TopCapsComponent, 
+      NotFoundComponent
 
   ],
   providers: [],
@@ -106,7 +112,9 @@ import { DeliveryComponent } from '../admin/delivery/delivery.component';
     WhatNextComponent,
     SitemapComponent, 
     DeliveryComponent,
-    TermsComponent
+    TermsComponent, 
+    TopCapsComponent, 
+    NotFoundComponent
   ]
 })
 export class SharedModule { }

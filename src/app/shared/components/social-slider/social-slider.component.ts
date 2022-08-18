@@ -18,6 +18,8 @@ export class SocialSliderComponent implements OnInit {
     slidesPerView: this.slidesPerView,
     spaceBetween: 20,
     initialSlide: 0,
+    preloadImages: false,
+    lazy: true,
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',

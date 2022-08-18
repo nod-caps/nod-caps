@@ -6,17 +6,21 @@
 
       <img *ngIf="!cap" [alt]="capName + ' image 1 | nod caps'" [src]="preLoadCap.image">
       <swiper  class="hat-swiper" #hatSwiper [config]="hatConfig" >
-        <ng-template swiperSlide class="swipe" *ngIf="cap?.imageField1">
-          <img [alt]="cap?.name + ' image 1 | nod caps'" [src]="cap?.imageField1">
+        <ng-template swiperSlide class="swipe" >
+          <img [alt]="cap?.name + ' image 1 | nod caps'" [src]="preLoadCap.image">
+
         </ng-template>
-        <ng-template swiperSlide class="swipe" *ngIf="cap?.imageField2">
-          <img [alt]="cap?.name + ' image 2 | nod caps'" [src]="cap?.imageField2">
+        <ng-template swiperSlide class="swipe">
+          <img   [alt]="cap?.name + ' image 2 | nod caps'" [src]="cap?.imageField2">
+
         </ng-template>
-        <ng-template swiperSlide class="swipe" *ngIf="cap?.imageField3">
-          <img [alt]="cap?.name + ' image 3 | nod caps'" [src]="cap?.imageField3">
+        <ng-template swiperSlide class="swipe" >
+          <img   [alt]="cap?.name + ' image 3 | nod caps'" [src]="cap?.imageField3">
+
         </ng-template>
-        <ng-template swiperSlide class="swipe" *ngIf="cap?.imageField4">
-          <img [alt]="cap?.name + ' image 4 | nod caps'" [src]="cap?.imageField4">
+        <ng-template swiperSlide class="swipe" >
+          <img  [alt]="cap?.name + ' image 4 | nod caps'" [src]="cap?.imageField4">
+
         </ng-template>
 
       </swiper>
@@ -26,16 +30,20 @@
 
       <div class="preview-images ion-hide-md-down" *ngIf="cap">
         <div *ngIf="cap?.imageField1">
-          <img (click)="slideTo(0)"  [src]="cap?.imageField1">
+          <img loading="lazy" [alt]="cap?.name + ' image 1 small | nod caps'" [src]="cap?.imageField1">
+
         </div>
         <div *ngIf="cap?.imageField2">
-          <img (click)="slideTo(1)"  [src]="cap?.imageField2">
+          <img loading="lazy" [alt]="cap?.name + ' image 2 small| nod caps'" [src]="cap?.imageField2">
+
         </div>
         <div *ngIf="cap?.imageField3">
-          <img (click)="slideTo(2)"   [src]="cap?.imageField3" >
+          <img loading="lazy" [alt]="cap?.name + ' image 3 small| nod caps'" [src]="cap?.imageField3">
+
         </div>
         <div *ngIf="cap?.imageField4">
-          <img  (click)="slideTo(3)"   [src]="cap?.imageField4" >
+          <img loading="lazy" [alt]="cap?.name + ' image 4 small| nod caps'" [src]="cap?.imageField4">
+
         </div>
       </div>
       <div class="preview-images ion-hide-md-down" *ngIf="!cap">
@@ -131,8 +139,9 @@
                 <ion-icon color="dark"slot="end" name="chevron-down-outline" *ngIf="accordionNumber !== 2"></ion-icon>
                 <ion-icon color="dark"slot="end" name="chevron-up-outline" *ngIf="accordionNumber === 2"></ion-icon>
               </ion-item>
-              <div class="ion-padding" slot="content"  *ngIf="accordionNumber === 2" [ngClass]="accordionNumber === 2 ? 'active':''">
+              <div class="ion-padding" slot="content"  *ngIf="accordionNumber === 2 || !cap" [ngClass]="accordionNumber === 2 ? 'active':''">
                 <ul>
+                  <li>{{cap?.colourName}} colour</li>
                   <li>100% cotton</li>
                   <li>One size (adjustable)</li>
                   <li>Six panel design</li>
@@ -149,7 +158,7 @@
                 <ion-icon color="dark"slot="end" name="chevron-down-outline" *ngIf="accordionNumber !== 3"></ion-icon>
                 <ion-icon color="dark"slot="end" name="chevron-up-outline" *ngIf="accordionNumber === 3"></ion-icon>
               </ion-item>
-              <div class="ion-padding" slot="content"   *ngIf="accordionNumber === 3" [ngClass]="accordionNumber === 3 ? 'active':''">
+              <div class="ion-padding" slot="content"   *ngIf="accordionNumber === 3 || !cap" [ngClass]="accordionNumber === 3 ? 'active':''">
                 nod caps offer free UK mainland delivery with every order - no matter how big or small. Once you place an order, your nod cap should be with you within 2-3 working days.
               </div>
 
@@ -179,12 +188,39 @@
 
 
 
+      <ion-row class="gift-row">
+        <ion-col size="12" size-md="5" class="first-col">
+          <img loading="lazy" src="https://projecttwo-c4839.web.app/assets/img/social-slider/social-slider4.jpeg">
+        </ion-col>
+        <ion-col size="12" size-md="7">
+          <div >
+            <ion-item lines="none">
+              <ion-icon name="gift-outline"></ion-icon>
+              <ion-label>The Perfect Gift</ion-label>
+            </ion-item>
+            <p>Every cap is carefully gift wrapped by hand with no receipt included so whether you're treating yourself or gift-giving to others, you can send the cap straight to the recipient.  All caps are one-size fits all so no need to worry about the right fit! </p>
+          </div>
+          <div class="sec">
+            <ion-item lines="none">
+              <ion-icon name="leaf-outline"></ion-icon>
+              <ion-label>Sustainable Packaging</ion-label>
+            </ion-item>
+            <p>Our packaging is completely recyclable and made from 100% recycled content. We also try to use as little packaging possible (whilst ensuring your cap is well protected and arrives in top condition!) </p>
+          </div>
+          <div class="sec">
+            <ion-item lines="none">
+              <ion-icon name="gift-outline"></ion-icon>
+              <ion-label>A Feather in your Cap</ion-label>
+            </ion-item>
+            <p>Our signature feather logo represents our gift to you - we're giving you a feather in your cap. We hope you are proud to wear nod caps and gift to your friends and family. </p>
+          </div>
+        </ion-col>
 
-   <app-our-caps [dark]="true" class="learn-more"></app-our-caps>
+      </ion-row>
 
 
 
-  <app-social-slider></app-social-slider>
+  <app-social-slider class="learn-more"></app-social-slider>
 
 <div class="reviews" id="review-comp">
   <div class="container">

@@ -10,6 +10,8 @@ export class FirebaseService {
 
   allCaps: any[] = [];
   currentDoc: any;
+  currentCollectionRef = ''
+  currentCollectionCaps = [];
 
   constructor(
     private firestore: Firestore,
@@ -61,13 +63,22 @@ export class FirebaseService {
 
 
     async getCollectionCaps(collectionRef: any){
-    const caps = [];
-    const q = query(collection(this.firestore, 'caps'), where("collectionRef", "==", collectionRef));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      caps.push(doc.data());
-    });
-    return caps
+
+      if (collectionRef === this.currentCollectionRef) {
+         return  this.currentCollectionCaps;
+      } else {
+        this.currentCollectionCaps = [];
+        this.currentCollectionRef = collectionRef
+        const q = query(collection(this.firestore, 'caps'), where("collectionRef", "==", collectionRef));
+        const querySnapshot = await getDocs(q);
+        console.log('hello')
+    
+        querySnapshot.forEach((doc) => {
+          this.currentCollectionCaps.push(doc.data());
+        });
+        return this.currentCollectionCaps
+      }
+    
 }
 
 async getSingleCap(capRef: any){

@@ -12,8 +12,8 @@ export class SectionOneComponent implements OnInit {
 
 
 
-caps: any[] =[]
-collection: any;
+caps: any[];
+  collection: any;
 //CHANGE THIS ONE
 displayCollectionRef = 'The-Original-Collection';
 activeIndex = 1;
@@ -48,7 +48,7 @@ constructor(
 
 
   ngOnInit() {
-      this.getSingleCollection();
+      // this.getSingleCollection();
       this.getHats();
 
      

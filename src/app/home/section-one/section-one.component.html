@@ -2,14 +2,14 @@
   <div class="collection-div">
 
   <h2>The Original Collection</h2>
-    <app-cap-display [capArray] = "caps" ></app-cap-display>
-
+    <app-cap-display [capArray] = "caps"></app-cap-display>
+    <app-top-caps *ngIf="!caps"></app-top-caps>  
 </div>
+  
+  
 
- 
 
-
-<div class="green-info-section">
+<div   [lazyLoad]="'https://projecttwo-c4839.web.app/assets/img/hiking-header.jpg'" class="green-info-section">
     <ion-row>
       <ion-col size="12" size-md="4" class="ion-text-center">
         <h2>Why We Started</h2>
@@ -21,7 +21,7 @@
       <ion-col size="12" size-md="4" class="ion-text-center">
         <h2>Who We Are</h2>
         <p>We are a small team based in Edinburgh focusing exclusively on producing quality caps for anyone to wear. Hopefully you like them!</p>
-        <a class="ion-button" [routerLink]="['/shop']">OUR CAPS</a>
+        <a class="ion-button" [routerLink]="['/shop']">BUY CAPS</a>
        
       </ion-col>
       <ion-col size="12" size-md="4" class="ion-text-center">

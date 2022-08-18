@@ -7,7 +7,22 @@
         -webkit-animation: slideIn ease 0.6s;}
 }
 
-
+.starting-with{
+    h1{
+        color:#22472A
+    }
+    ion-col{
+        padding: 40px;
+    }
+    .second-col{
+        text-align: center;
+        img {
+            border-radius: 20px;
+        }
+    }
+    
+  
+}
 
 
 
@@ -16,20 +31,22 @@
     background-image: url('/assets/img/hiking-header.jpg');
     background-position: center;
     background-size: cover;
-    height: 130px;
     .top-text {
-        background: rgba(0,0,0,0.4);
+        background: rgba(0,0,0,0.75);
         text-align: center;
         height: 100%;
-        display: table;
         width: 100%;
+        text-align:center;
+        color:#f8f9fa;
+        padding:15px 25px 20px 25px;
     }
     h1{
-       color: #f8f9fa;
        font-size: 40px;
-       display: table-cell;
-       text-align: center;
-       vertical-align: middle;
+    }
+    h1,p{
+        max-width: 750px;
+        margin-left: auto;
+        margin-right: auto;
     }
   }
 

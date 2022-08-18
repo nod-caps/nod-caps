@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class OurCapsComponent implements OnInit {
 
   @Input() dark= true;
+  @Input() shopPage = false;
 
   constructor() { }
 

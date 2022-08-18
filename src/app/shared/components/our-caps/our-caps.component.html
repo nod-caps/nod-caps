@@ -1,7 +1,7 @@
 <ion-grid [ngClass]="dark ? 'dark':'light'">
   <ion-row>
-    <ion-col size="12" size-md="6" size-lg="5" class="first">
-      <div class="feather-definition">
+    <ion-col [lazyLoad]="dark ? 'https://projecttwo-c4839.web.app/assets/img/logos/faded-logo-feather.png' : 'https://projecttwo-c4839.web.app/assets/img/logos/faded-logo-feather-white.png'" size="12" size-md="6" size-lg="5" class="first">
+      <div  class="feather-definition">
         <h1>A feather in <br> your cap</h1>
         <p><span>|feth-er-in-yoor-kap|</span><em>phrase.</em></p>
         <hr>
@@ -13,10 +13,14 @@
       <h1>
           Our Caps
       </h1>
-      <p >
-          By purely focusing on caps, we've been able to put all our efforts into designing and producing the best quality caps that our customers are proud to wear and gift to their loved ones.  This is exactly why we have placed our signature feather logo on the front on your cap - we’re giving you a feather in your cap.
-           All of our caps are crafted from 100% cotton featuring a soft unstructured six panel crown with taped seams,  a curved peak and an adjustable buckle strap to the rear.  
+      <p *ngIf="!shopPage">
+          By purely focusing on baseball caps, we've been able to put all our efforts into designing and producing the best quality caps that our customers are proud to wear and gift to their loved ones. This is exactly why we have placed our signature feather logo on the front on your cap - we’re giving you a feather in your cap.
+           All of our dad caps are crafted from 100% cotton featuring a soft unstructured six panel crown with taped seams,  a curved peak and an adjustable buckle strap to the rear.  
       </p>
+      <p *ngIf="shopPage">
+        All of our baseball caps / dad caps are designed with the nod feather logo embroidered on the front. We produce high quality caps that we (and hopefully our customers) are proud to wear which is where the phrase 'a feaher in your cap' came into its own. This signature logo is placed front and centre on a 100% cotton
+         unstructured six panel crown, alonside a curved peak and adjustable buckle with nod logo. 
+    </p>
       <a href="/shop" [routerLink]="'/shop'">Browse the Cap Collection <ion-icon name="arrow-forward-outline"></ion-icon></a>
     </ion-col>
   </ion-row>

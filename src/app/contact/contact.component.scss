@@ -12,9 +12,22 @@ ion-button{
 }
 
 .button-holder{
-    text-align:right;
+    text-align:left;
+}
+small{
+    margin-left:15px;
 }
 
+ion-item{
+    margin-top:15px;
+}
+
+ion-input, ion-textarea{
+    border: 1px solid black;
+    border-radius: 8px;
+    margin-top: 10px;
+    --padding-start: 10px!important;
+}
 
 @media (max-width: 768px) {
     .form-holder{
@@ -23,5 +36,11 @@ ion-button{
         padding-top: 56px;
     }
 }
+h1{
+ margin-bottom:40px;
+}   
 
 
+.mt45{
+    margin-top:45px;
+}

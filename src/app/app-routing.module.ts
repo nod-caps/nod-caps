@@ -10,6 +10,7 @@ import { OrdersComponent } from './control/orders/orders.component';
 import { AuthService } from './services/auth.service';
 import { AdminLoginComponent } from './shared/components/admin-login/admin-login.component';
 import { MyOrdersComponent } from './shared/components/my-orders/my-orders.component';
+import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 import { ThankYouComponent } from './shop/thank-you/thank-you.component';
 
 const routes: Routes = [
@@ -53,7 +54,8 @@ const routes: Routes = [
   {
     path: 'privacy',
     component: PrivacyComponent,
-  },
+  }, 
+  {path: '404', component: NotFoundComponent},
   {
     path: 'about',
     component: AboutComponent,
@@ -80,6 +82,7 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {path: '**', redirectTo: '/404'}
 ];
 
 @NgModule({

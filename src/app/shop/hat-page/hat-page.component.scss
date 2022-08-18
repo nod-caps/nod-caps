@@ -399,3 +399,40 @@ h1 {
     }
   
 }
+
+.gift-row{
+    color:#f8f9fa;
+    padding: 20px 0px;
+    p{
+        margin-left: 40px;
+        margin-top:0px;
+    }
+    ion-col{
+        padding: 40px;
+    }
+    .first-col{
+text-align: center;
+display: flex;
+justify-content: center;
+align-items: center;
+    }
+    background: #323232;
+    img {
+       // border-radius: 20px;
+    }
+    ion-item{
+
+        --background: none;
+        color: #f8f9fa;
+        --padding-start:0px;
+        ion-icon{
+            color: #f8f9fa;
+            margin-right:10px;
+        }
+    }
+
+}
+
+.sec{
+    margin-top:20px;
+}

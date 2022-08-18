@@ -9,6 +9,7 @@ import { LandingBannerComponent } from './landing-banner/landing-banner.componen
 import { SectionOneComponent, } from './section-one/section-one.component';
 import { SharedModule } from '../shared/shared.module';
 import { SwiperModule } from 'swiper/angular';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 
 @NgModule({
@@ -18,7 +19,9 @@ import { SwiperModule } from 'swiper/angular';
     IonicModule,
     HomePageRoutingModule,
     SharedModule,
-    SwiperModule
+    SwiperModule, 
+    LazyLoadImageModule, 
+
   ],
   declarations: [HomePage, LandingBannerComponent, SectionOneComponent, ]
 })

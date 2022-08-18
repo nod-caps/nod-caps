@@ -24,6 +24,7 @@ import { ScullyLibModule } from '@scullyio/ng-lib';
 
 
 
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -33,7 +34,7 @@ import { ScullyLibModule } from '@scullyio/ng-lib';
      AngularFireAuthModule, 
      AngularFireStorageModule,
      SharedModule,
-    SwiperModule, 
+    SwiperModule,
 
   provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
   provideFirestore(() => getFirestore()),

@@ -101,8 +101,7 @@ ion-card-title{
 
   .cap-skel{
     height:100%;
-    
-    background: #7e7e7e
+    min-height: 240px;
   }
 
   .image-holder {
@@ -121,4 +120,13 @@ ion-card-title{
       color: #f8f9fa;
     }
     }
+  }
+
+  .description{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+            line-clamp: 2; 
+    -webkit-box-orient: vertical
   }
