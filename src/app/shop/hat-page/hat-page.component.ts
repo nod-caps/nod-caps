@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertController, MenuController, ModalController } from '@ionic/angular';
+import { AlertController, ModalController, ToastController } from '@ionic/angular';
 import { BasketService } from 'src/app/services/basket.service';
 import { FirebaseService } from 'src/app/services/fb.service';
 import { BasketComponent } from 'src/app/shared/components/basket/basket.component';
@@ -9,18 +9,12 @@ import { DeliveryModalComponent } from '../delivery-modal/delivery-modal.compone
 import { SwiperOptions } from 'swiper';
 import { SwiperComponent } from 'swiper/angular';
 import SwiperCore, { Navigation, Autoplay, Keyboard, Pagination, Scrollbar, Zoom } from 'swiper';
-import { AddReviewComponent } from '../../shared/components/add-review/add-review.component';
 import { Firestore } from '@angular/fire/firestore';
-import { collection, getDocs, query, where } from 'firebase/firestore';
 import { SeoService } from 'src/app/services/seo.service';
 import { myEnterFromRightAnimation } from 'src/app/animations/enter';
 import { myLeaveToRightAnimation } from 'src/app/animations/leave';
 import { QuickCapService } from 'src/app/services/quick-cap.service';
 SwiperCore.use([Navigation, Autoplay, Keyboard, Pagination, Scrollbar, Zoom, ]);
-
-
-
-declare var Stripe;
 
 
 @Component({
@@ -37,7 +31,7 @@ export class HatPageComponent implements OnInit {
   capReviews: any;
   mainActiveCap: any;
   collectionRef: any;
-  otherCaps: any;
+  otherCaps: any[] = [];
   quantity: any;
   basketSub: Subscription;
   alreadyInBasket = false;
@@ -75,7 +69,8 @@ private modalCtrl: ModalController,
 private firestore: Firestore,
 private seo: SeoService,
 private alert: AlertController,
-private quickCap: QuickCapService  ) { }
+private quickCap: QuickCapService,
+private toast: ToastController  ) { }
 
 async openDeliveryInfo() {
   const modal = await this.modalCtrl.create({
@@ -105,7 +100,7 @@ this.swiper.swiperRef.slideTo(val);
 }
 
   getCap(){
-    this.fb.getSingleCap(this.capRef).then(data => {
+    this.fb.getSingleCap(this.capRef).then(async data => {
       if (data) {
         this.cap = data;
         if (this.cap.rating) {
@@ -115,7 +110,9 @@ this.swiper.swiperRef.slideTo(val);
         }
         this.makeActive(this.cap.imageField1);
         this.checkQuantity();
-      }
+      } else {
+        this.showToast('No cap info found, please refresh.');
+        }
     });
   }
 
@@ -132,7 +129,6 @@ this.swiper.swiperRef.slideTo(val);
     this.fb.getCollectionCaps(this.collectionRef).then(data => {
       if(data) {
         this.otherCaps = data
-        
       }
     });
   }
@@ -184,7 +180,7 @@ async openBasket(){
 }
 checkInBasket(){
   // subscribe to basket you muppet
-  this.basketSub = this.basket.basketSub.subscribe((data) => {
+  this.basketSub = this.basket.basketSub.subscribe((data) => { 
     if (data) {
       if (data.length > 0) {
         data.forEach((element: any) => {
@@ -214,21 +210,34 @@ if (this.cap.quantity < this.capBasketMax) {
 }
 
 }
+  async showToast(mesage: string) {
+  const toast = await this.toast.create({
+    message: mesage,
+    duration: 5000,
+    position: 'top', 
+    color: 'tertiary'
+  });
+  toast.present();
+}
 
   ngOnInit() {
      this.collectionRef = this.route.snapshot.paramMap.get('collectionRef');
      const capNameHyp = this.route.snapshot.paramMap.get('capNameHyphenated');
     this.capName = capNameHyp.replace(/-/g, ' ');
     this.preLoadCap = this.quickCap.getCap(this.capName);
-     this.seo.generateTags({title: this.preLoadCap.metaTitle, description: this.preLoadCap.metaDescription, image: this.preLoadCap.image });
-
-    this.capRef = this.collectionRef + '_' + capNameHyp;
-    this.getCap();
-    this.getOtherHats();
-    this.checkInBasket();
-    this.checkOnScreen();
-    this.checkOnScreenLearn();
-
+    if (this.preLoadCap) {
+      this.seo.generateTags({title: this.preLoadCap.metaTitle, description: this.preLoadCap.metaDescription, image: this.preLoadCap.image });
+      this.capRef = this.collectionRef + '_' + capNameHyp;
+      this.getCap();
+      this.getOtherHats();
+      this.checkInBasket();
+      this.checkOnScreen();
+      this.checkOnScreenLearn();
+    } else {
+        this.showToast('Sorry! There was no cap found, redirecting to shop');
+        this.router.navigateByUrl('/shop');
+    }
+    
   }
 
   checkOnScreen(){

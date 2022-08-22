@@ -8,7 +8,7 @@
       <h2>The Original Collection</h2>
 
         <app-cap-display [capArray] = "caps"></app-cap-display>
-        <app-top-caps *ngIf="!caps"></app-top-caps>  
+        <app-top-caps *ngIf="caps.length === 0"></app-top-caps>  
         
     </div>
     

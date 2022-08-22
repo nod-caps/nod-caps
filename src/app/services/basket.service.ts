@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { BasketComponent } from '../shared/components/basket/basket.component';
+import { myEnterFromRightAnimation } from 'src/app/animations/enter';
+import { myLeaveToRightAnimation } from 'src/app/animations/leave';
 
 
 @Injectable({
@@ -13,14 +17,30 @@ export class BasketService{
     useLocalStorage = false;
 
   constructor(
-    
+    private modal: ModalController
   ) {
    }
 
+
+   async openModal() {
+    const modal = await this.modal.create({
+      component: BasketComponent,
+      cssClass: 'basket-modal',
+      enterAnimation: myEnterFromRightAnimation,
+      leaveAnimation: myLeaveToRightAnimation,
+  
+    }).then (modal => {
+      modal.present();
+    })
+   }
    checkBasket() {
     if (JSON.parse(localStorage.getItem('basket'))) {
       this.currentBasket = JSON.parse(localStorage.getItem('basket'))
+
       this.basketSub.next(this.currentBasket);
+      if (this.currentBasket.length > 0) {
+        this.openModal();
+      }
     } else {
       this.currentBasket = [];
     }

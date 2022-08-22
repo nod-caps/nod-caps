@@ -5,7 +5,7 @@
     <ion-col size="12" size-md="7" size-lg="5" offset-lg="1" class="main-image ">
 
       <img *ngIf="!cap" [alt]="capName + ' image 1 | nod caps'" [src]="preLoadCap.image">
-      <swiper  class="hat-swiper" #hatSwiper [config]="hatConfig" >
+      <swiper  class="hat-swiper" #hatSwiper [config]="hatConfig"  *ngIf="cap">
         <ng-template swiperSlide class="swipe" >
           <img [alt]="cap?.name + ' image 1 | nod caps'" [src]="preLoadCap.image">
 
@@ -183,6 +183,7 @@
       <div class="other-caps">
         <h1>Browse this collection</h1>
        <app-cap-display [capArray] = "otherCaps" [parentCapName]="cap?.name"></app-cap-display>
+       <app-top-caps *ngIf="otherCaps.length === 0"></app-top-caps>
       </div>
 
 

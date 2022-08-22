@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
   selector: 'app-admin-login',
@@ -13,7 +14,8 @@ export class AdminLoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private seo: SeoService
   ) { }
 
 
@@ -48,6 +50,8 @@ export class AdminLoginComponent implements OnInit {
   logIn(){
     this.authService.signIn(this.logInForm.get('email').value, this.logInForm.get('password').value);
   }
-  ngOnInit() {}
+  ngOnInit() {
+    this.seo.setRobots();
+  }
 
 }

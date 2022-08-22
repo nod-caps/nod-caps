@@ -24,9 +24,27 @@
   
 }
 
+.top-row-new{
+    height:250px;
+    position: relative;
+    img{
+      object-fit:cover;
+      height:100%;
+      width:100%;
+    }
+    .top-text{
+        height:100%;
+        width:100%;
+        position: absolute;
+        bottom: 0px;
+        padding: 50px 25px;
+        text-align: center;
+        color: #f8f9fa;
+        background: rgba(0,0,0,0.4);
+    }
+}
 
-
-
+/*
 .top-row{
     background-image: url('/assets/img/hiking-header.jpg');
     background-position: center;
@@ -48,8 +66,7 @@
         margin-left: auto;
         margin-right: auto;
     }
-  }
-
+  }*/
 
 
 .caps-div{

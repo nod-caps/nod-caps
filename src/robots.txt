@@ -1,0 +1,8 @@
+User-agent: *
+
+Disallow: /control/
+Disallow: /admin-login
+Disallow: /cheers
+Disallow: /my-orders
+
+Sitemap: https://nodcaps.com/sitemap.xml

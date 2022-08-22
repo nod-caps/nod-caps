@@ -21,7 +21,7 @@ export class SignUpService{
    checkSignUp() {
     const route = this.router.url;
     const gotCookie =  this.cookie.get('shownPopUp');
-    if (!gotCookie && route.indexOf('cheers') === -1  && route.indexOf('basket') === -1) {
+    if (!gotCookie && route.indexOf('cheers') === -1) {
          this.showSignUp();
     }
    }
@@ -32,7 +32,6 @@ export class SignUpService{
     const modal = await this.modalCtrl.create({
       component: SignUpHolderComponent,
       componentProps: {
-        // inModal: true
       },
       cssClass: 'sign-up-modal'
     });

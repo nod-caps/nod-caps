@@ -1,0 +1,23 @@
+diff --git a/node_modules/@firebase/auth/dist/esm2017/index-90ebcfae.js b/node_modules/@firebase/auth/dist/esm2017/index-90ebcfae.js
+index ae28c10..f30b8ed 100644
+--- a/node_modules/@firebase/auth/dist/esm2017/index-90ebcfae.js
++++ b/node_modules/@firebase/auth/dist/esm2017/index-90ebcfae.js
+@@ -9209,7 +9209,8 @@ class BrowserPopupRedirectResolver {
+     }
+     get _shouldInitProactively() {
+         // Mobile browsers and Safari need to optimistically initialize
+-        return _isMobileBrowser() || _isSafari() || _isIOS();
++        // return _isMobileBrowser() || _isSafari() || _isIOS();
++        return false;
+     }
+ }
+ /**
+@@ -9470,7 +9471,7 @@ function getAuth(app = getApp()) {
+         return provider.getImmediate();
+     }
+     return initializeAuth(app, {
+-        popupRedirectResolver: browserPopupRedirectResolver,
++        popupRedirectResolver: undefined,
+         persistence: [
+             indexedDBLocalPersistence,
+             browserLocalPersistence,

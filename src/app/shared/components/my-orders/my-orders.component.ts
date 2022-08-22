@@ -3,6 +3,7 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 import { ModalController, ToastController } from '@ionic/angular';
 import { collection, query, getDocs, where, Firestore } from '@angular/fire/firestore';
 import { AddReviewComponent } from '../add-review/add-review.component';
+import { SeoService } from 'src/app/services/seo.service';
 
 
 @Component({
@@ -22,7 +23,8 @@ export class MyOrdersComponent implements OnInit {
     private router: Router,
     private toastCtrl: ToastController,
     private firestore: Firestore,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private seo: SeoService
   ) { }
 
 
@@ -55,7 +57,7 @@ export class MyOrdersComponent implements OnInit {
     this.router.navigateByUrl('/home');
     const toast = await this.toastCtrl.create({
       message: 'No order found please contact us',
-      duration: 2000,
+      duration: 3000,
       position: 'top',
       color: 'danger',
     });
@@ -68,33 +70,26 @@ export class MyOrdersComponent implements OnInit {
      let orders = [];
     const q = query(collection(this.firestore, 'orders'), where("customerEmail", "==", this.customerEmail ));
     const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-     orders.push(doc.data());
-    });
-    if (orders.length > 0) {
-      
-      orders = orders.sort((a, b) => (a.date < b.date) ? 1 : -1);
-    //  this.getCaps(orders[0]);
-      this.order = orders[0];
-    } else {
+    if (querySnapshot.empty) {
       this.noOrder();
+    } else {
+      querySnapshot.forEach((doc) => {
+        orders.push(doc.data());
+       });
+       if (orders.length > 0) {
+         orders = orders.sort((a, b) => (a.date < b.date) ? 1 : -1);
+         this.order = orders[0];
+       } else {
+         this.noOrder();
+       }
     }
+    
   }
 
   toShop() {
     this.router.navigateByUrl('shop');
+  }
 
-  }
-  getCaps(order: any) {
-    this.caps = [];
-    order.lineItems.forEach(async (cap) => {
-      const q = query(collection(this.firestore, 'caps'), where("description", "==", cap.description));
-      const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-        this.caps.push(doc.data());
-      });
-    });
-  }
 
   async checkIfCustomer() {
       const q = query(collection(this.firestore, 'contacts'), where("unique_name", "==", this.customerUnique));
@@ -114,6 +109,9 @@ export class MyOrdersComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.seo.generateTags({title: 'My Orders | nod caps', description:'nod caps are a small team based in Edinburgh focusing exclusively on producing quality caps for anyone to wear. Buy nod caps now. ' });
+    this.seo.setRobots();
+
     const customerInfo = this.route.snapshot.queryParamMap.get('mo');
     if (customerInfo) {
 let n = customerInfo.lastIndexOf('-');

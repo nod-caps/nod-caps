@@ -86,7 +86,12 @@
   
     <ion-toolbar >
 
-<ion-button  [disabled]="basketArray.length < 1" expand="block" shape="round"  color="primary" (click)="checkIfSoldOut()">Checkout</ion-button>
+<ion-button  [disabled]="basketArray.length < 1" expand="block" shape="round"  color="primary" (click)="checkIfSoldOut()">
+  <span *ngIf="!loadingButton">
+    Checkout
+  </span>
+  <ion-spinner *ngIf="loadingButton"></ion-spinner>
+</ion-button>
 </ion-toolbar>
  
   

@@ -12,7 +12,7 @@ export class SectionOneComponent implements OnInit {
 
 
 
-caps: any[];
+caps: any[] = [];
   collection: any;
 //CHANGE THIS ONE
 displayCollectionRef = 'The-Original-Collection';
@@ -36,18 +36,20 @@ constructor(
     });
   }
 
+  /*
   async getSingleCollection() {
     this.fb.getSingleCollection(this.displayCollectionRef).then(data => {
       if(data) {
         this.collection = data;
       }
     })
-  }
+  }*/
 
 
 
 
   ngOnInit() {
+
       // this.getSingleCollection();
       this.getHats();
 
