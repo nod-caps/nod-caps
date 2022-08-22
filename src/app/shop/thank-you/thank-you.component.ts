@@ -5,6 +5,7 @@ import { collection, query, getDocs, where, Firestore } from '@angular/fire/fire
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ToastController } from '@ionic/angular';
+import { SeoService } from 'src/app/services/seo.service';
 
 
 
@@ -29,34 +30,40 @@ export class ThankYouComponent implements OnInit {
     private firestore: Firestore,
     private fire: AngularFirestore, 
     private router: Router,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController, 
+    private seo: SeoService
   ) { }
 
 
   async getOrder() {
     let orders = [];
     const q = query(collection(this.firestore, 'orders'), where("orderNumber", "==", this.orderNumber));
-    const querySnapshot = await getDocs(q)
-    querySnapshot.forEach((doc) => {
-      const object = doc.data();
-      object.docRef = doc.ref.path.substring(doc.ref.path.lastIndexOf('/') + 1);
-      orders.push(object);
-    });
-    if (orders.length > 0) {
-      orders = orders.sort((a, b) => (a.date < b.date) ? 1 : -1);
-      this.order = orders[0];
-      const price = this.order.amountTotal / 100
-      this.order.totalPrice = price.toFixed(2);
-      if (!this.order.addedCaps) {
-        this.getCaps();
-      } else {
-        this.gotOrderInfo = true
-      }
-     // this.checkIfExpired();
-      this.checkIfAContact();
+    const querySnapshot = await getDocs(q);
+    if (querySnapshot.empty) {
+      this.noOrder();
     } else {
-this.noOrder();
+      querySnapshot.forEach((doc) => {
+        const object = doc.data();
+        object.docRef = doc.ref.path.substring(doc.ref.path.lastIndexOf('/') + 1);
+        orders.push(object);
+      });
+      if (orders.length > 0) {
+        orders = orders.sort((a, b) => (a.date < b.date) ? 1 : -1);
+        this.order = orders[0];
+        const price = this.order.amountTotal / 100
+        this.order.totalPrice = price.toFixed(2);
+        if (!this.order.addedCaps) {
+          this.getCaps();
+        } else {
+          this.gotOrderInfo = true
+        }
+        this.checkIfExpired();
+        this.checkIfAContact();
+      } else {
+         this.noOrder();
+      }
     }
+   
      
  
       
@@ -93,7 +100,7 @@ this.noOrder();
     this.router.navigateByUrl('/home');
     const toast = await this.toastCtrl.create({
       message: 'Page has expired 5 mins after purchase',
-      duration: 2000,
+      duration: 3000,
       position: 'top',
       color: 'danger',
     });
@@ -105,7 +112,7 @@ this.noOrder();
     this.router.navigateByUrl('/home');
     const toast = await this.toastCtrl.create({
       message: 'No order found please contact us',
-      duration: 2000,
+      duration: 3000,
       position: 'top',
       color: 'danger',
     });
@@ -151,6 +158,9 @@ sendMail(){
   }
 
   ngOnInit() {
+    this.seo.generateTags({title: 'Thank you for your order | nod caps', description:'nod caps are a small team based in Edinburgh focusing exclusively on producing quality caps for anyone to wear.' });
+    this.seo.setRobots();
+
     const orderNumber = this.route.snapshot.queryParamMap.get('on');
     if (orderNumber) {
       this.orderNumber = orderNumber;

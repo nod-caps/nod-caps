@@ -3,8 +3,8 @@ import { BrowserModule, Meta } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+//import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+//import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -12,8 +12,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from '../environments/environment';
 // import {AngularFireModule} from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { AngularFireStorageModule } from '@angular/fire/compat/storage';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+// import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+// import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { SwiperModule } from 'swiper/angular';
 import { SharedModule } from './shared/shared.module';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
@@ -31,10 +31,10 @@ import { ScullyLibModule } from '@scullyio/ng-lib';
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig), 
      AngularFirestoreModule,
-     AngularFireAuthModule, 
-     AngularFireStorageModule,
+   //   AngularFireAuthModule, 
+   //  AngularFireStorageModule,
      SharedModule,
-    SwiperModule,
+     SwiperModule, 
 
   provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
   provideFirestore(() => getFirestore()),
@@ -43,8 +43,8 @@ import { ScullyLibModule } from '@scullyio/ng-lib';
     alwaysMonitor: true,
   })],
   providers: [
-    StatusBar,
-    SplashScreen,
+   // StatusBar,
+   // SplashScreen,
     CookieService,
     Meta,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

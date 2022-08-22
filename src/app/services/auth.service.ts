@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+//import { AngularFireAuth } from '@angular/fire/compat/auth';
+//import { Router } from '@angular/router';
+// import { AlertController } from '@ionic/angular';
 
 
 @Injectable({
@@ -12,12 +12,12 @@ export class AuthService {
  isLoggedIn = false;
 
   constructor(
-        public firbaseAuth: AngularFireAuth,
-        private router: Router,
-        private alertCtrl: AlertController
+       // public firbaseAuth: AngularFireAuth,
+        //private router: Router,
+        //private alertCtrl: AlertController
   ) { }
 
-  async signIn(email: string, password: string){
+  /*async signIn(email: string, password: string){
     await this.firbaseAuth.signInWithEmailAndPassword(email,password)
     .then(res => {
         this.isLoggedIn = true;
@@ -47,5 +47,5 @@ export class AuthService {
     }
 
 
-
+*/
 }

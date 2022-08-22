@@ -10,7 +10,7 @@ import { SeoService } from 'src/app/services/seo.service';
 export class NotFoundComponent implements OnInit {
 
 
-  caps: any[];
+  caps: any[] = [];
 
   constructor(
     private fb: FirebaseService,

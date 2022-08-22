@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import { SeoService } from '../services/seo.service';
 
 @Component({
   selector: 'app-control',
@@ -15,12 +14,12 @@ export class ControlComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private formBuilder: FormBuilder,
-    private authService: AuthService
+    private seo: SeoService
   ) { }
 
 
   ngOnInit() {
+    this.seo.setRobots();
   }
 
 

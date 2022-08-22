@@ -27,11 +27,11 @@ goToCollection(collection: any){
   this.router.navigateByUrl('shop/' + collection.collectionRef);
 }
 
-  async getAllHats() {
+ /* async getAllHats() {
     this.fb.getAllCaps().then(data => {
       this.allCollections = data
      });
-}
+}*/
 
 async getHats() {
   this.fb.getCollectionCaps('The-Original-Collection').then(data => {

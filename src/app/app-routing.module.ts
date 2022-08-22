@@ -6,9 +6,9 @@ import { PrivacyComponent } from './admin/privacy/privacy.component';
 import { ReturnsComponent } from './admin/returns/returns.component';
 import { SitemapComponent } from './admin/sitemap/sitemap.component';
 import { TermsComponent } from './admin/terms/terms.component';
-import { OrdersComponent } from './control/orders/orders.component';
-import { AuthService } from './services/auth.service';
-import { AdminLoginComponent } from './shared/components/admin-login/admin-login.component';
+// import { AuthService } from './services/auth.service';
+// import { AdminLoginComponent } from './shared/components/admin-login/admin-login.component';
+// import { MaintenanceComponent } from './shared/components/maintenance/maintenance.component';
 import { MyOrdersComponent } from './shared/components/my-orders/my-orders.component';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 import { ThankYouComponent } from './shop/thank-you/thank-you.component';
@@ -26,23 +26,19 @@ const routes: Routes = [
     path: 'contact',
     loadChildren: () => import('./contact/contact.module').then( m => m.ContactModule)
   },
-  {
-    path: 'admin',
-    loadChildren: () => import('./admin/admin.module').then( m => m.AdminModule)
-  },
-  {
+  /*{
     path: 'control',
     canActivate: [ AuthService ],
     loadChildren: () => import('./control/control.module').then( m => m.ControlModule)
-  },
+  },*/
   {
     path: 'terms',
     component: TermsComponent,
   },
-  {
+  /*{
     path: 'admin-login',
     component: AdminLoginComponent,
-  },
+  },*/
   {
     path: 'returns',
     component: ReturnsComponent,
@@ -71,18 +67,22 @@ const routes: Routes = [
   {
     path: 'my-orders',
     component: MyOrdersComponent,
-  },
-  {
-    path: 'orders', // child route path
-    component: OrdersComponent, // child route component that the router renders
-},  
+  }, 
 
   {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
   },
-  {path: '**', redirectTo: '/404'}
+  {path: '**', redirectTo: '/404'},
+  // add the below and remove the above for maintenance
+/*
+  {
+    path: '',
+    component: MaintenanceComponent,
+  },
+  {path: '**', redirectTo: ''},
+  */
 ];
 
 @NgModule({

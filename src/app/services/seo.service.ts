@@ -10,6 +10,11 @@ export class SeoService {
 
   constructor(private title: Title, private meta: Meta, private router: Router) { }
 
+
+  setRobots() {
+    this.meta.addTag({ name:'robots', content:'noindex,nofollow' });
+  }
+
   generateTags({ title = '', description = '', image = '' }) {
     const url = 'https://projecttwo-c4839.web.app' + this.router.url + '/';
     this.title.setTitle(title);
