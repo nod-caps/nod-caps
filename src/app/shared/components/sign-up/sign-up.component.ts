@@ -12,7 +12,7 @@ import {ToastController} from '@ionic/angular';
 })
 export class SignUpComponent implements OnInit {
 
-  @Input() inModal = true;
+  @Input() fromThankYou = false;
   @Input() inFooter = false;
   @Input() inBanner = false;
   isChecked = false;
@@ -33,16 +33,12 @@ export class SignUpComponent implements OnInit {
       email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]],
   });
 
-  
-
-
 
   get email() {
     return this.signUpForm.get('email');
   }
 
   public errorMessages = {
- 
     email: [
       { type: 'pattern', message: 'Valid email required'},
     ],
@@ -51,35 +47,42 @@ export class SignUpComponent implements OnInit {
 
 signUp () {
  let ask_review = "";
-  if (!this.inModal) {
+  if (this.fromThankYou) {
     ask_review = 'ask_review';
   }
- 
-    const randomUserNumber = Math.floor(100000 + Math.random() * 900000).toString();
-  this.sending = true;
-  this.fire
-  .collection('contacts')
-  .add({
-    email: this.signUpForm.get('email').value,
-    line: ask_review,
-    unique_name: randomUserNumber,
-  }).then(async (doc: any)=> {
-    if (doc) {
-       this.sending = false;
-       this.signedUp = true;
-       this.justSignedUp.emit(true);
-       if (!this.inBanner) {
-        this.presentToast();
-      }
 
-    }
-   });
+
+  if (this.signUpForm.get('email').value) {
+    const randomUserNumber = Math.floor(100000 + Math.random() * 900000).toString();
+    this.sending = true;
+    this.fire
+    .collection('contacts')
+    .add({
+      email: this.signUpForm.get('email').value,
+      line: ask_review,
+      unique_name: randomUserNumber,
+    }).then(async (doc: any)=> {
+      if (doc) {
+         this.sending = false;
+         this.signedUp = true;
+         this.justSignedUp.emit(true);
+         if (!this.inBanner) {
+          this.presentToast('Thanks for signing up!.');
+        }
+  
+      }
+     });
+  } else {
+    this.presentToast('Please enter your email');
+
+  }
+
 }
 
-  async presentToast() {
+  async presentToast(message: string) {
     const toast = await this.toastCtrl.create({
-      message: 'Thanks for signing up!.',
-      duration: 2000,
+      message: message,
+      duration: 3000,
       position: 'top',
       color: 'tertiary',
     });

@@ -36,11 +36,7 @@ export class BasketService{
    checkBasket() {
     if (JSON.parse(localStorage.getItem('basket'))) {
       this.currentBasket = JSON.parse(localStorage.getItem('basket'))
-
       this.basketSub.next(this.currentBasket);
-      if (this.currentBasket.length > 0) {
-        this.openModal();
-      }
     } else {
       this.currentBasket = [];
     }

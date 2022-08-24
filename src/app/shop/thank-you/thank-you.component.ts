@@ -4,7 +4,7 @@ import { BasketService } from 'src/app/services/basket.service';
 import { collection, query, getDocs, where, Firestore } from '@angular/fire/firestore';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { ToastController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { SeoService } from 'src/app/services/seo.service';
 
 
@@ -31,7 +31,8 @@ export class ThankYouComponent implements OnInit {
     private fire: AngularFirestore, 
     private router: Router,
     private toastCtrl: ToastController, 
-    private seo: SeoService
+    private seo: SeoService, 
+    private alert: AlertController
   ) { }
 
 
@@ -70,6 +71,22 @@ export class ThankYouComponent implements OnInit {
     
   
   }
+
+  
+async showError(message: string) {
+  const alert = await this.alert.create({
+    cssClass: 'my-custom-class',
+    header: 'Error Sending Email',
+    message: message,
+    buttons: [
+      {
+        text: 'Okay',
+      }
+    ]   
+   });
+
+  await alert.present();
+}
 
   getCaps() {
     this.order.lineItems.forEach(async (cap: any, index: number) => {
@@ -149,7 +166,11 @@ sendMail(){
     sendMail({order: this.order}).then((result) => {
       if (result) {
         this.markAsSent();
+      } else {
+        this.showError('There was an error sending your email, please contact us')
       }
+    }).catch((err) => {
+      this.showError('There was an error sending your email, please contact us')
     });
   }
 

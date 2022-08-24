@@ -17,7 +17,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { SwiperModule } from 'swiper/angular';
 import { SharedModule } from './shared/shared.module';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { enableIndexedDbPersistence, getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { CookieService } from 'ngx-cookie-service';
 import { ScullyLibModule } from '@scullyio/ng-lib';
@@ -30,6 +30,7 @@ import { ScullyLibModule } from '@scullyio/ng-lib';
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig), 
+    AngularFirestoreModule.enablePersistence(),
      AngularFirestoreModule,
    //   AngularFireAuthModule, 
    //  AngularFireStorageModule,
@@ -37,7 +38,9 @@ import { ScullyLibModule } from '@scullyio/ng-lib';
      SwiperModule, 
 
   provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+
   provideFirestore(() => getFirestore()),
+
   ScullyLibModule.forRoot({
     useTransferState: true,
     alwaysMonitor: true,

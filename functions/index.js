@@ -1,6 +1,4 @@
 const functions = require("firebase-functions");
-const Mailchimp = require("mailchimp-api-v3");
-const mailchimp = new Mailchimp("daca0e7c466fa98bea02b4736cd53c01-us13");
 const stripe = require("stripe")(functions.config().stripe.secret_key);
 const admin = require("firebase-admin");
 // Sendgrid Config
@@ -24,6 +22,10 @@ exports.stripeCheckout = functions.https.onCall(async (data, context) => {
     success_url: "https://projecttwo-c4839.web.app/cheers?on=" + orderNumber,
     cancel_url: "https://projecttwo-c4839.web.app/shop",
   });
+
+  if (!session.id) {
+    throw new functions.https.HttpsError("No session.id was found");
+  }
 
   return session.id;
 });
@@ -158,32 +160,6 @@ exports.stripeWebhook = functions.https.onRequest(async (req, res) => {
   return res.sendStatus(200);
 });
 
-exports.addPurchaserToMailchimp = functions.https.onRequest((req, res) => {
-  res.set("Access-Control-Allow-Origin", "*");
-  res.set("Access-Control-Allow-Methods", "GET, PUT, POST, OPTIONS");
-  res.set("Access-Control-Allow-Headers", "*");
-
-  if (req.method === "OPTIONS") {
-    res.end();
-  } else {
-    mailchimp.post("/lists/adcf6c4f48/members", {
-      merge_fields: {
-        "FNAME": req.body.fname,
-        "LNAME": req.body.lname,
-      },
-      email_address: req.body.email,
-      status: "subscribed",
-      tags: ["purchased"],
-    })
-        .then(function(results) {
-          res.json(results);
-        })
-        .catch(function(err) {
-          res.json(err);
-        });
-  }
-});
-
 exports.addPurchaserToMailchimp2 = functions.https.onCall((data, context) => {
   const order = data["order"];
   const msg = {
@@ -223,15 +199,19 @@ exports.updateAverageReview = functions.https.onCall((data, context) => {
   admin.firestore().collection("caps").doc(capRef)
       .get()
       .then((doc) => {
-        const currentRating = doc.data().rating;
-        const numberOfReviews = doc.data().numberOfReviews;
-        if (!numberOfReviews) {
-          admin.firestore().collection("caps").doc(capRef).update({rating: rating, numberOfReviews: 1});
+        if (doc) {
+          const currentRating = doc.data().rating;
+          const numberOfReviews = doc.data().numberOfReviews;
+          if (!numberOfReviews) {
+            admin.firestore().collection("caps").doc(capRef).update({rating: rating, numberOfReviews: 1});
+          } else {
+            let newRating = ((currentRating*numberOfReviews) + rating) / (numberOfReviews + 1);
+            newRating = newRating.toFixed(2);
+            admin.firestore().collection("caps").doc(capRef)
+                .update({rating: newRating, numberOfReviews: numberOfReviews + 1});
+          }
         } else {
-          let newRating = ((currentRating*numberOfReviews) + rating) / (numberOfReviews + 1);
-          newRating = newRating.toFixed(2);
-          admin.firestore().collection("caps").doc(capRef)
-              .update({rating: newRating, numberOfReviews: numberOfReviews + 1});
+          throw new functions.https.HttpsError("No cap was found for this capRef when updating average review");
         }
       });
   return;

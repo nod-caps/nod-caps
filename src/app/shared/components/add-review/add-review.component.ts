@@ -91,9 +91,10 @@ export class AddReviewComponent implements OnInit {
            const updateReviews = httpsCallable(functions, 'updateAverageReview');
            updateReviews({capRef: this.cap.capRef, newRating: this.selectedIndex}).then((result) => {
             if (result) {
-             
               this.sendMail();
             }
+          }).catch((err) => {
+            console.log(err.message);
           });
         }
        });

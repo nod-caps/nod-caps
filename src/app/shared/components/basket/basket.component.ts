@@ -140,6 +140,8 @@ goToStripe(){
             .then((result: any) => {
               console.log(result.error.message);
             });
+        }).catch((err) => {
+          this.checkOutError('There was an error with this order, please try again or contact us');
         });
       } else {
         this.checkOutError('There was an error with your order, please try again');
@@ -197,40 +199,46 @@ async checkOutError(message: string) {
 
   checkIfSoldOut() {
     this.loadingButton = true;
-    this.outOfStock = false;
-    this.basketArray.forEach((item: any, index: any) => {
-      this.fb.getSingleCap(item.cap.capRef).then(async data => {
-        if (data) {
-          if (item.quantity > data.quantity) {
-           this.outOfStock = true;
-
-           if ( data.quantity === 0) {
-            if (this.basketArray.length === 1) {
-              this.basketArray[index].errorMessage = 'Sorry! This item appears to be out of stock. Please remove it from your basket, hopefully other caps are still in stock.'
-            } else {
-              this.basketArray[index].errorMessage = 'Sorry! This item appears to be out of stock. Please remove it from your basket and try again.';
+    if (this.basketArray < 1) {
+      this.checkOutError('We found no caps in your basket, please try again');
+    } else {
+      this.outOfStock = false;
+      this.basketArray.forEach((item: any, index: any) => {
+        this.fb.getSingleCap(item.cap.capRef).then(async data => {
+          if (data) {
+            if (item.quantity > data.quantity) {
+             this.outOfStock = true;
+  
+             if ( data.quantity === 0) {
+              if (this.basketArray.length === 1) {
+                this.basketArray[index].errorMessage = 'Sorry! This item appears to be out of stock. Please remove it from your basket, hopefully other caps are still in stock.'
+              } else {
+                this.basketArray[index].errorMessage = 'Sorry! This item appears to be out of stock. Please remove it from your basket and try again.';
+              }
+             } else {
+              this.basketArray[index].errorMessage = 'Sorry! We seem to be low on stock. We only have ' +  data.quantity + ' left. Please ammend your order and try again';
+              this.basketArray[index].quantityArray = this.checkQuantity( data.quantity);
+             } 
             }
-           } else {
-            this.basketArray[index].errorMessage = 'Sorry! We seem to be low on stock. We only have ' +  data.quantity + ' left. Please ammend your order and try again';
-            this.basketArray[index].quantityArray = this.checkQuantity( data.quantity);
-           } 
-          }
-          
-          if ((index === (this.basketArray.length - 1))  &&  !this.outOfStock) {
-
-            this.getStripeInfo();
-
-          }  else if (this.outOfStock && (index === (this.basketArray.length - 1) )) {
-            this.checkOutError('It looks like you are ordering something we may no longer have, please check any error messages and try again!');
-            return;
-          }
-        } else {
-         this.checkOutError('There was an error with your basket, please remove all items and try again.');
-         return;
-        };
-
+            
+            if ((index === (this.basketArray.length - 1))  &&  !this.outOfStock) {
+  
+              this.getStripeInfo();
+  
+            }  else if (this.outOfStock && (index === (this.basketArray.length - 1) )) {
+              this.checkOutError('It looks like you are ordering something we may no longer have, please check any error messages and try again!');
+              return;
+            }
+          } else {
+  
+           this.checkOutError('There was an error with your basket, please remove all items and try again.');
+           return;
+          };
+  
+      });
     });
-  });
+    }
+
 }
 
 
