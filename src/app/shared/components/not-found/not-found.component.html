@@ -1,12 +1,13 @@
 <ion-content>
   <div class="page-container four-o-four">
     <h1><strong>Oh no... this is </strong> <img  alt="nod caps logo" src="./assets/img/logos/nod-text-black.png"> <strong>good!</strong> </h1>
-
+    <p>The page you are looking for doesn't exist. Let's get you back on track...</p>
 
     <div class="collection-div">
 
       <h2>The Original Collection</h2>
 
+  
         <app-cap-display [capArray] = "caps"></app-cap-display>
         <app-top-caps *ngIf="caps.length === 0"></app-top-caps>  
         
