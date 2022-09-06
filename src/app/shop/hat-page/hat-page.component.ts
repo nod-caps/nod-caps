@@ -27,9 +27,7 @@ export class HatPageComponent implements OnInit {
   cap: any;
   preLoadCap: any = {};
   capRef: any;
-  activeCap: any;
   capReviews: any;
-  mainActiveCap: any;
   collectionRef: any;
   otherCaps: any[] = [];
   quantity: any;
@@ -41,6 +39,7 @@ export class HatPageComponent implements OnInit {
   displayRating  = 5;
   wholeStars = 5;
   capName = '';
+  isMobile = true;
   hasHalf = false;
 
 
@@ -80,20 +79,6 @@ async openDeliveryInfo() {
   return await modal.present();
 }
 
-hoverImg(capImg: any){
-  this.mainActiveCap = this.activeCap;
-  this.activeCap = capImg;
-}
-hoverImgOut() {
-this.activeCap = this.mainActiveCap;
-}
-
-
-
-makeActive(capImg: any) {
-  this.activeCap = capImg;
-  this.mainActiveCap = capImg;
-}
 
 slideTo (val: number) {
 this.swiper.swiperRef.slideTo(val);
@@ -108,7 +93,7 @@ this.swiper.swiperRef.slideTo(val);
           this.wholeStars = Math.floor(this.displayRating);
           this.hasHalf = this.displayRating.toString().indexOf('.') > -1;
         }
-        this.makeActive(this.cap.imageField1);
+
         this.checkQuantity();
       } else {
         this.showToast('No cap info found, please refresh.');
@@ -221,6 +206,13 @@ if (this.cap.quantity < this.capBasketMax) {
 }
 
   ngOnInit() {
+
+    if (window.innerWidth < 768) {
+      this.isMobile = true;
+    } else {
+      this.isMobile = false;
+    }
+
      this.collectionRef = this.route.snapshot.paramMap.get('collectionRef');
      const capNameHyp = this.route.snapshot.paramMap.get('capNameHyphenated');
     this.capName = capNameHyp.replace(/-/g, ' ');

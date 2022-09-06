@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-// import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-// import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
@@ -15,7 +15,7 @@ import { OrdersComponent } from '../control/orders/orders.component';
 import { DeliveryModalComponent } from '../shop/delivery-modal/delivery-modal.component';
 import { ThankYouComponent } from '../shop/thank-you/thank-you.component';
 import { AddReviewComponent } from './components/add-review/add-review.component';
-// import { AdminLoginComponent } from './components/admin-login/admin-login.component';
+import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 import { BasketComponent } from './components/basket/basket.component';
 import { BoastBannerComponent } from './components/boast-banner/boast-banner.component';
 import { CapCardComponent } from './components/cap-card/cap-card.component';
@@ -47,8 +47,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
         IonicModule,
         ReactiveFormsModule, 
         AngularFirestoreModule,
-       // AngularFireAuthModule, 
-       // AngularFireStorageModule,
+        AngularFireAuthModule, 
+        AngularFireStorageModule,
         SwiperModule,
         RouterModule,
         LazyLoadImageModule
@@ -56,7 +56,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
   declarations: [
       HeaderComponent,
       BasketComponent,
-      // AdminLoginComponent,
+     AdminLoginComponent,
       CapCardComponent,
       FooterComponent,
       CookieConsentComponent,
@@ -90,7 +90,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
   exports: [
     HeaderComponent,
     BasketComponent, 
-    // AdminLoginComponent,
+    AdminLoginComponent,
     CapCardComponent,
     FooterComponent, 
     CookieConsentComponent,

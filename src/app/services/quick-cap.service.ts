@@ -18,24 +18,18 @@ export class QuickCapService {
             metaDescription: 'The Down to Earth is nod just your average baseball cap. Get yours from the nod caps Original Collection today with free UK delivery. 100% cotton.',
             description: 'Down to Earth is part of the nod caps Original Collection. All of these caps feature a 6 panel design made from 100% cotton.',
             image: 'https://firebasestorage.googleapis.com/v0/b/projecttwo-c4839.appspot.com/o/images%2Fcaps%2FThe-Original-Collection%2FDown-to-Earth-1.jpg?alt=media&token=0921706f-8f91-43a3-9674-69edb2fadbf6'
-        }, {
-            name: 'Daily Driver',
-            metaTitle: 'Daily Driver Baseball Cap - Navy | nod caps',
-            metaDescription: 'Out of the Blue',
-            description: 'Daily Driver is part of the nod caps Original Collection. All of these caps feature a 6 panel design made from 100% cotton.',
-            image: 'https://firebasestorage.googleapis.com/v0/b/projecttwo-c4839.appspot.com/o/images%2Fcaps%2FThe-Original-Collection%2FDaily-Driver-1.jpg?alt=media&token=160e299d-3a66-47d6-8d66-9cd05bb0461f'
         },{
             name: 'Devil Wears nod',
-            metaTitle: 'Devil Wears nod Baseball Cap - Red | nod caps',
-            metaDescription: "We've got you covered (literally) with this 100% cotton dark red dad cap. Get FREE delivery to the UK at nod caps. Devil wears nod is part of The Original Collection.",
-            description: 'Daily Driver is part of the nod caps Original Collection. All of these caps feature a 6 panel design made from 100% cotton.',
-            image: 'https://firebasestorage.googleapis.com/v0/b/projecttwo-c4839.appspot.com/o/images%2Fcaps%2FThe-Original-Collection%2FDaily-Driver-1.jpg?alt=media&token=160e299d-3a66-47d6-8d66-9cd05bb0461f'
+            metaTitle: 'Devil Wears nod Baseball Cap - Red | nod cap',
+            metaDescription: "We've got you covered (literally) with this 100% cotton dark red dad cap. Get FREE delivery to the UK at nod caps. Devil wears nod is part of The Original Collection..",
+            description: "As the brighter and bolder option of the Original Collection, the Devil Wears nod baseball cap is a real head-turner. This six panel, 100% cotton dad cap is designed to be worn anywhere and everywhere.  With a relaxed fit and rear adjustable strap. ",
+            image: './assets/img/The-Original-Collection/DevilWearsNod1Mobile.jpg'
         }, {
             name: 'Black Sheep',
             metaTitle: 'The Black Sheep Baseball Cap - Black | nod caps',
             metaDescription: 'The Black Sheep from nod caps is the perfect addition to your everyday accessories. Buy this 100% cotton black dad cap and get free UK delivery. ',
             description: 'Daily Driver is part of the nod caps Original Collection. All of these caps feature a 6 panel design made from 100% cotton.',
-            image: 'https://firebasestorage.googleapis.com/v0/b/projecttwo-c4839.appspot.com/o/images%2Fcaps%2FThe-Original-Collection%2FDaily-Driver-1.jpg?alt=media&token=160e299d-3a66-47d6-8d66-9cd05bb0461f'
+            image: './assets/img/The-Original-Collection/DevilWearsNod1Mobile.jpg'
         }
     ]
 

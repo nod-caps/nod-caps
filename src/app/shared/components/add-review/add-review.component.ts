@@ -17,7 +17,7 @@ export class AddReviewComponent implements OnInit {
   @Input() cap: any;
   selectedIndex: any;
   sending = false
-  @Input() email: any;
+ //  @Input() email: any;
   @Input() order: any;
 
   constructor(
@@ -68,10 +68,10 @@ export class AddReviewComponent implements OnInit {
             message: this.reviewForm.get('message').value,
             capRef: this.cap.capRef,
             rating: this.selectedIndex,
-            image: this.cap.imageField1,
+            image: this.cap.imageField1Mobile,
             capName: this.cap.name,
             date: new Date().toISOString().split("T")[0],
-            email: this.email,
+            orderNumber: this.order.orderNumber,
             collectionRef: this.cap.collectionRef,
             link: this.cap.collectionRef + '/' + this.cap.nameHyphenated
           }
@@ -107,7 +107,7 @@ export class AddReviewComponent implements OnInit {
       message: {
         subject: "New Review",
         text: this.cap.capRef,
-        email: this.email,
+        // email: this.email,
         html: "<ul><li>" +  this.reviewForm.get('name').value + " </li><li>" +  this.selectedIndex + "stars </li><li>" +  this.reviewForm.get('message').value + "</li><li>www.nodcaps.com/shop/" + this.cap.collectionRef + "/" + this.cap.nameHyphenated  + "</li></ul>",
       },
   }

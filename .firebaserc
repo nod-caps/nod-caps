@@ -1,12 +1,12 @@
 {
   "projects": {
-    "default": "projecttwo-c4839"
+    "default": "nod-caps"
   },
   "targets": {
-    "projecttwo-c4839": {
+    "nod-caps": {
       "hosting": {
         "app": [
-          "projecttwo-c4839"
+          "nod-caps"
         ]
       }
     }

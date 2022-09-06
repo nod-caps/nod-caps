@@ -19,9 +19,6 @@ export const config: ScullyConfig = {
     '/my-orders': {
        type: 'ignored',
      },
-     '/cheers': {
-      type: 'ignored',
-    },
     '/control': {
       type: 'ignored',
     },
@@ -33,6 +30,7 @@ export const config: ScullyConfig = {
     '/shop/The-Original-Collection/Out-of-the-Blue',
     '/shop/The-Original-Collection/Down-to-Earth',
     '/shop/The-Original-Collection/Daily-Driver',
+    '/shop/The-Original-Collection/Devil-Wears-nod',
     '/nod-sitemap',
   ],
 }

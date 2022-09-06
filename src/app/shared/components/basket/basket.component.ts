@@ -3,12 +3,12 @@ import { Router } from '@angular/router';
 import { AlertController,  ModalController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { BasketService } from 'src/app/services/basket.service';
-import { environment } from 'src/environments/environment';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import { FirebaseService } from 'src/app/services/fb.service';
 declare var Stripe;
 import { collection, query, getDocs, where, Firestore } from '@angular/fire/firestore';
-import { ThisReceiver } from '@angular/compiler';
+import { environment } from 'src/environments/environment.prod';
+
 
 
 @Component({
@@ -66,7 +66,16 @@ export class BasketComponent implements OnInit, OnDestroy {
 
   getStripeInfo(): void {
     this.checkoutArray = [];
-    this.basketArray.forEach(async (cap, index) => {
+    this.basketArray.forEach(async (cap: any, index: number) => {
+      this.checkoutArray.push({
+        quantity: cap.quantity,
+        price: cap.cap.priceId,
+      });
+      if (index === this.basketArray.length -1) {
+        this.goToStripe()
+     }
+    });
+    /* this.basketArray.forEach(async (cap, index) => {
       const stripeCaps = [];
       const q = query(collection(this.firestore, 'products'), where("metadata.id", "==", cap.capRef));
       const querySnapshot = await getDocs(q);
@@ -84,16 +93,21 @@ export class BasketComponent implements OnInit, OnDestroy {
           } else {
             querySnapshot1.forEach(async (doc1) => {
               this.checkoutArray.push({
-                name: stripeCaps[0].name,
-                description: stripeCaps[0].description,
-                images: stripeCaps[0].images,
-                amount: Math.round(doc1.data().unit_amount),
-                currency: "gbp",
                 quantity: cap.quantity,
-                // price:doc1.data().poduct
+                price: cap.cap.priceId,
+                //price_data: {
+                  //currency: 'gbp',
+                  //unit_amount: Math.round(doc1.data().unit_amount),
+                  //product_data: {
+                    //name: stripeCaps[0].name,
+                    //description: stripeCaps[0].description,
+                    //images: stripeCaps[0].images,
+                  //},
+                //}
               });  
               if (index === this.basketArray.length -1 && doc1.data()) {
-                this.goToStripe()
+                 this.goToStripe()
+
               }
             });
           }
@@ -102,7 +116,7 @@ export class BasketComponent implements OnInit, OnDestroy {
         });
       }
 
-    });
+    });*/
   }
 
   /* checkoutFirebase(): void {
@@ -128,9 +142,8 @@ export class BasketComponent implements OnInit, OnDestroy {
   }*/
 
 goToStripe(){
-      //change below
       if(this.checkoutArray.length > 0) {
-        var stripe = Stripe('pk_test_51Kj1mgKGPCnyjU4r7zk7Ly0QKuHsDVxMNTDH8pFkhIpdlVJ1181Ddcal7xgum9cHzirt3neW6c13GOzAfBwrloGr00OgvsNccG');
+        var stripe = Stripe(environment.stripe.publish); 
         const functions = getFunctions();
         const checkout = httpsCallable(functions, 'stripeCheckout');
         checkout({checkoutArray: this.checkoutArray}).then((result) => {
@@ -145,11 +158,11 @@ goToStripe(){
         });
       } else {
         this.checkOutError('There was an error with your order, please try again');
-      }
+      } 
      
 }
 
-goTo(link: string) {
+goTo(link: string) { 
   this.router.navigateByUrl(link);
 }
 
