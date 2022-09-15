@@ -7,19 +7,26 @@
       <img *ngIf="!cap" [alt]="capName + ' image 1 | nod caps'" [src]="preLoadCap.image">
       <swiper  class="hat-swiper" #hatSwiper [config]="hatConfig"  *ngIf="cap">
         <ng-template swiperSlide class="swipe" >
-          <img [alt]="cap?.name + ' image 1 | nod caps'" [src]="preLoadCap.image">
+          <img *ngIf="isMobile" [alt]="cap?.name + ' image 1 | nod caps'" [src]="cap?.imageField1Mobile">
+          <img  *ngIf="!isMobile" [alt]="cap?.name + ' image 1 | nod caps'" [src]="cap?.imageField1">
 
         </ng-template>
         <ng-template swiperSlide class="swipe">
-          <img   [alt]="cap?.name + ' image 2 | nod caps'" [src]="cap?.imageField2">
+          <img  *ngIf="isMobile" [alt]="cap?.name + ' image 2 | nod caps'" [src]="cap?.imageField2Mobile">
+          <img  *ngIf="!isMobile" [alt]="cap?.name + ' image 2 | nod caps'" [src]="cap?.imageField2">
+
 
         </ng-template>
         <ng-template swiperSlide class="swipe" >
-          <img   [alt]="cap?.name + ' image 3 | nod caps'" [src]="cap?.imageField3">
+          <img  *ngIf="isMobile"  [alt]="cap?.name + ' image 3 | nod caps'" [src]="cap?.imageField3Mobile">
+          <img  *ngIf="!isMobile" [alt]="cap?.name + ' image 3 | nod caps'" [src]="cap?.imageField3">
+
 
         </ng-template>
         <ng-template swiperSlide class="swipe" >
-          <img  [alt]="cap?.name + ' image 4 | nod caps'" [src]="cap?.imageField4">
+          <img *ngIf="isMobile"  [alt]="cap?.name + ' image 4 | nod caps'" [src]="cap?.imageField4Mobile">
+          <img *ngIf="!isMobile"  [alt]="cap?.name + ' image 4 | nod caps'" [src]="cap?.imageField4">
+
 
         </ng-template>
 
@@ -30,19 +37,19 @@
 
       <div class="preview-images ion-hide-md-down" *ngIf="cap">
         <div *ngIf="cap?.imageField1">
-          <img loading="lazy" [alt]="cap?.name + ' image 1 small | nod caps'" [src]="cap?.imageField1">
+          <img loading="lazy" [alt]="cap?.name + ' image 1 small | nod caps'" [src]="cap?.imageField1Small">
 
         </div>
         <div *ngIf="cap?.imageField2">
-          <img loading="lazy" [alt]="cap?.name + ' image 2 small| nod caps'" [src]="cap?.imageField2">
+          <img loading="lazy" [alt]="cap?.name + ' image 2 small| nod caps'" [src]="cap?.imageField2Small">
 
         </div>
         <div *ngIf="cap?.imageField3">
-          <img loading="lazy" [alt]="cap?.name + ' image 3 small| nod caps'" [src]="cap?.imageField3">
+          <img loading="lazy" [alt]="cap?.name + ' image 3 small| nod caps'" [src]="cap?.imageField3Small">
 
         </div>
         <div *ngIf="cap?.imageField4">
-          <img loading="lazy" [alt]="cap?.name + ' image 4 small| nod caps'" [src]="cap?.imageField4">
+          <img loading="lazy" [alt]="cap?.name + ' image 4 small| nod caps'" [src]="cap?.imageField4Small">
 
         </div>
       </div>

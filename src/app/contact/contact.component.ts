@@ -70,7 +70,7 @@ export class ContactComponent implements OnInit {
     this.fire.collection('mail').add(contactObj).then(async (doc: any)=> {
       if (doc) {
          this.sending = false;
-        this.mailSent = true;
+         this.mailSent = true;
       }
      });
     }

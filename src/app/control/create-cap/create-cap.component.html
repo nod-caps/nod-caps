@@ -38,6 +38,15 @@
         </ng-container>
       </div>
       <ion-item>
+        <ion-label position="stacked">Cap priceId (from stripe)</ion-label>
+        <ion-input formControlName="priceId" placeholder="Enter PriceId..."></ion-input>
+      </ion-item>
+        <div *ngFor="let error of errorMessages.priceId">
+          <ng-container *ngIf="priceId?.hasError(error.type) && (priceId?.dirty || priceId?.touched)">
+            <small class="error-message">{{error.message}}</small>
+          </ng-container>
+        </div>
+      <ion-item>
         <ion-label position="stacked">Quantity</ion-label>
         <ion-input formControlName="quantity" placeholder="Enter Quantity..."></ion-input>
       </ion-item>
@@ -68,31 +77,88 @@
       </div>
 
       <ion-item>
-        <ion-label>Image One <ion-icon *ngIf = "cap?.imageField1" name="checkmark-circle-outline"></ion-icon></ion-label><input type="file"  name="myImage1" accept="image/png, image/gif, image/jpeg" #imageInput1 (change)="processFile(imageInput1, 1)" />
+        <ion-label>Image One Large <ion-icon *ngIf = "cap?.imageField1" name="checkmark-circle-outline"></ion-icon></ion-label><input type="file"  name="myImage1" accept="image/png, image/gif, image/jpeg" #imageInput1 (change)="processFile(imageInput1, 1)" />
       </ion-item>
       <ion-item>
-        <ion-label>Image Two <ion-icon  *ngIf = "cap?.imageField2" name="checkmark-circle-outline"></ion-icon></ion-label><input type="file" name="myImage2" accept="image/png, image/gif, image/jpeg" #imageInput2 (change)="processFile(imageInput2, 2)" />
+        <ion-label>Image Two Large<ion-icon  *ngIf = "cap?.imageField2" name="checkmark-circle-outline"></ion-icon></ion-label><input type="file" name="myImage2" accept="image/png, image/gif, image/jpeg" #imageInput2 (change)="processFile(imageInput2, 2)" />
       </ion-item>
       <ion-item>
-        <ion-label>Image Three <ion-icon *ngIf = "cap?.imageField3"  name="checkmark-circle-outline"></ion-icon></ion-label><input type="file" name="myImage3" accept="image/png, image/gif, image/jpeg" #imageInput3 (change)="processFile(imageInput3, 3)" />
+        <ion-label>Image Three Large<ion-icon *ngIf = "cap?.imageField3"  name="checkmark-circle-outline"></ion-icon></ion-label><input type="file" name="myImage3" accept="image/png, image/gif, image/jpeg" #imageInput3 (change)="processFile(imageInput3, 3)" />
       </ion-item>
       <ion-item>
-        <ion-label>Image Four <ion-icon *ngIf = "cap?.imageField4"  name="checkmark-circle-outline"></ion-icon></ion-label><input type="file" name="myImage4" accept="image/png, image/gif, image/jpeg" #imageInput4 (change)="processFile(imageInput4, 4)" />
+        <ion-label>Image Four Large<ion-icon *ngIf = "cap?.imageField4"  name="checkmark-circle-outline"></ion-icon></ion-label><input type="file" name="myImage4" accept="image/png, image/gif, image/jpeg" #imageInput4 (change)="processFile(imageInput4, 4)" />
+      </ion-item>
+      <ion-item>
+        <ion-label>Image One Small <ion-icon *ngIf = "cap?.imageField1Small" name="checkmark-circle-outline"></ion-icon></ion-label><input type="file"  name="myImage1" accept="image/png, image/gif, image/jpeg" #imageInput1Small (change)="processFile(imageInput1Small, 5)" />
+      </ion-item>
+      <ion-item>
+        <ion-label>Image Two Small<ion-icon  *ngIf = "cap?.imageField2Small" name="checkmark-circle-outline"></ion-icon></ion-label><input type="file" name="myImage2" accept="image/png, image/gif, image/jpeg" #imageInput2Small (change)="processFile(imageInput2Small, 6)" />
+      </ion-item>
+      <ion-item>
+        <ion-label>Image Three Small<ion-icon *ngIf = "cap?.imageField3Small"  name="checkmark-circle-outline"></ion-icon></ion-label><input type="file" name="myImage3" accept="image/png, image/gif, image/jpeg" #imageInput3Small (change)="processFile(imageInput3Small, 7)" />
+      </ion-item>
+      <ion-item>
+        <ion-label>Image Four Small<ion-icon *ngIf = "cap?.imageField4Small"  name="checkmark-circle-outline"></ion-icon></ion-label><input type="file" name="myImage4" accept="image/png, image/gif, image/jpeg" #imageInput4Small (change)="processFile(imageInput4Small, 8)" />
+      </ion-item>
+      <ion-item>
+        <ion-label>Image One Mobile <ion-icon *ngIf = "cap?.imageField1Mobile" name="checkmark-circle-outline"></ion-icon></ion-label><input type="file"  name="myImage1" accept="image/png, image/gif, image/jpeg" #imageInput1Mobile (change)="processFile(imageInput1Mobile, 9)" />
+      </ion-item>
+      <ion-item>
+        <ion-label>Image Two Mobile<ion-icon  *ngIf = "cap?.imageField2Mobile" name="checkmark-circle-outline"></ion-icon></ion-label><input type="file" name="myImage2" accept="image/png, image/gif, image/jpeg" #imageInput2Mobile (change)="processFile(imageInput2Mobile, 10)" />
+      </ion-item>
+      <ion-item>
+        <ion-label>Image Three Mobile<ion-icon *ngIf = "cap?.imageField3Mobile"  name="checkmark-circle-outline"></ion-icon></ion-label><input type="file" name="myImage3" accept="image/png, image/gif, image/jpeg" #imageInput3Mobile (change)="processFile(imageInput3Mobile, 11)" />
+      </ion-item>
+      <ion-item>
+        <ion-label>Image Four Mobile<ion-icon *ngIf = "cap?.imageField4Mobile"  name="checkmark-circle-outline"></ion-icon></ion-label><input type="file" name="myImage4" accept="image/png, image/gif, image/jpeg" #imageInput4Mobile (change)="processFile(imageInput4Mobile, 12)" />
       </ion-item>
   </ion-list>
   </form>
-  <div class="hat-images">
-    <img *ngIf = "cap?.imageField1" [src]="cap?.imageField1">
-    <p *ngIf = "!cap?.imageField1">No image 1</p>
+  <div >
+    <div class="hat-images">
+      <img *ngIf = "cap?.imageField1" [src]="cap?.imageField1">
+      <p *ngIf = "!cap?.imageField1">No image 1 Large</p>
+  
+      <img *ngIf = "cap?.imageField2" [src]="cap?.imageField2">
+      <p *ngIf = "!cap?.imageField2">No image 2 Large</p>
+  
+      <img *ngIf = "cap?.imageField3" [src]="cap?.imageField3">
+      <p *ngIf = "!cap?.imageField3">No image 3 Large</p>
+  
+      <img *ngIf = "cap?.imageField4" [src]="cap?.imageField4">
+      <p *ngIf = "!cap?.imageField4">No image 4 Large</p>
+    </div>
+    
 
-    <img *ngIf = "cap?.imageField2" [src]="cap?.imageField2">
-    <p *ngIf = "!cap?.imageField2">No image 2</p>
+    <div class="hat-images">
+      <img *ngIf = "cap?.imageField1Small" [src]="cap?.imageField1Small">
+      <p *ngIf = "!cap?.imageField1Small">No image 1 Small</p>
+  
+      <img *ngIf = "cap?.imageField2Small" [src]="cap?.imageField2Small">
+      <p *ngIf = "!cap?.imageField2Small">No image 2 Small</p>
+  
+      <img *ngIf = "cap?.imageField3Small" [src]="cap?.imageField3Small">
+      <p *ngIf = "!cap?.imageField3Small">No image 3 Small</p>
+  
+      <img *ngIf = "cap?.imageField4Small" [src]="cap?.imageField4Small">
+      <p *ngIf = "!cap?.imageField4Small">No image 4 Small</p>
+    </div>
+    
 
-    <img *ngIf = "cap?.imageField3" [src]="cap?.imageField3">
-    <p *ngIf = "!cap?.imageField3">No image 3</p>
-
-    <img *ngIf = "cap?.imageField4" [src]="cap?.imageField4">
-    <p *ngIf = "!cap?.imageField4">No image 4</p>
+    <div class="hat-images">
+      <img *ngIf = "cap?.imageField1Mobile" [src]="cap?.imageField1Mobile">
+      <p *ngIf = "!cap?.imageField1Small">No image 1 Mobile</p>
+  
+      <img *ngIf = "cap?.imageField2Mobile" [src]="cap?.imageField2Mobile">
+      <p *ngIf = "!cap?.imageField2Mobile">No image 2 Mobile</p>
+  
+      <img *ngIf = "cap?.imageField3Mobile" [src]="cap?.imageField3Mobile">
+      <p *ngIf = "!cap?.imageField3Mobile">No image 3 Mobile</p>
+  
+      <img *ngIf = "cap?.imageField4Mobile" [src]="cap?.imageField4Mobile">
+      <p *ngIf = "!cap?.imageField4Mobile">No image 4 Mobile</p>
+    </div>
+   
 
   </div>
 

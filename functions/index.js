@@ -19,8 +19,8 @@ exports.stripeCheckout = functions.https.onCall(async (data, context) => {
       allowed_countries: ["GB"],
     },
     mode: "payment",
-    success_url: "https://projecttwo-c4839.web.app/cheers?on=" + orderNumber,
-    cancel_url: "https://projecttwo-c4839.web.app/shop",
+    success_url: "http://nod-caps.web.app/cheers?on=" + orderNumber,
+    cancel_url: "https://nod-caps.web.app/shop",
   });
 
   if (!session.id) {
@@ -34,7 +34,7 @@ exports.stripeWebhook = functions.https.onRequest(async (req, res) => {
   let event;
 
   try {
-    const whSec = functions.config().stripe.payments_webhook_secret;
+    const whSec = functions.config().stripe.payment_webhook_secret;
 
     event = stripe.webhooks.constructEvent(
         req.rawBody,
@@ -59,64 +59,72 @@ exports.stripeWebhook = functions.https.onRequest(async (req, res) => {
   const n = dataObject.success_url.lastIndexOf("cheers?on=");
   const orderNumberFromString = dataObject.success_url.substring(n + 10);
   lineItems.line_items.data.forEach((item, index) => {
+    lineItems.line_items.data[index].priceId = item.price.id;
+    const capPrice = item.amount_total / 100;
+    lineItems.line_items.data[index].capPrice = capPrice.toFixed(2);
+    delete lineItems.line_items.data[index].price;
+
     const ref = admin.firestore().collection("caps");
-    ref.where("description", "==", item.description)
+    ref.where("priceId", "==", lineItems.line_items.data[index].priceId)
         .get()
         .then(function(querySnapshot) {
           querySnapshot.forEach(function(document) {
             const quantity = document.data().quantity - item.quantity;
             document.ref.update({quantity: quantity});
+            lineItems.line_items.data[index].cap = document.data();
+            delete lineItems.line_items.data[index].cap.id;
+            if (index === lineItems.line_items.data.length -1) {
+              admin.firestore().collection("orders").doc().set({
+                // checkoutSessionId: dataObject.id,
+                paymentStatus: dataObject.payment_status,
+                shippingInfo: dataObject.shipping_details,
+                amountTotal: dataObject.amount_total,
+                // customerId: dataObject.customer,
+                customerName: dataObject.customer_details.name,
+                customerEmail: dataObject.customer_details.email,
+                paymentIntent: dataObject.payment_intent,
+                // payment: dataObject,
+                lineItems: lineItems.line_items.data,
+                date: timestamp,
+                dateString: dateString,
+                orderNumber: orderNumberFromString,
+                /* shipment: {
+                  // carrierId: "se-423887",
+                  serviceCode: "ups_ground",
+                  shipDate: "2021-09-21",
+                  validateAddress: "no_validation",
+                  shipTo: {
+                    name: "Amanda Miller",
+                    addressLine1: "Flat 23, Lapwing Heights",
+                    cityLocality: "London",
+                    stateProvince: "LND",
+                    postalCode: "N17 9GP",
+                    countryCode: "GB",
+                  },
+                  shipFrom: {
+                    name: "John Doe",
+                    phone: "111-111-1111",
+                    addressLine1: "Clare House",
+                    addressLine2: "Mary Lane",
+                    cityLocality: "Sudbury",
+                    stateProvince: "SFK",
+                    postalCode: "CO10 8DY",
+                    countryCode: "GB",
+                  },
+                  packages: [
+                    {
+                      weight: {
+                        unit: "ounce",
+                        value: 1.0,
+                      },
+                    },
+                  ],
+                }, */
+              });
+              return res.sendStatus(200);
+            }
           });
         });
-    lineItems.line_items.data[index].priceId = item.price.id;
-    delete lineItems.line_items.data[index].price;
-  });
-
-  await admin.firestore().collection("orders").doc().set({
-    checkoutSessionId: dataObject.id,
-    paymentStatus: dataObject.payment_status,
-    shippingInfo: dataObject.shipping,
-    amountTotal: dataObject.amount_total,
-    customerId: dataObject.customer,
-    customerName: dataObject.customer_details.name,
-    customerEmail: dataObject.customer_details.email,
-    paymentIntent: dataObject.payment_intent,
-    lineItems: lineItems.line_items.data,
-    date: timestamp,
-    dateString: dateString,
-    orderNumber: orderNumberFromString,
-    /* shipment: {
-      // carrierId: "se-423887",
-      serviceCode: "ups_ground",
-      shipDate: "2021-09-21",
-      validateAddress: "no_validation",
-      shipTo: {
-        name: "Amanda Miller",
-        addressLine1: "Flat 23, Lapwing Heights",
-        cityLocality: "London",
-        stateProvince: "LND",
-        postalCode: "N17 9GP",
-        countryCode: "GB",
-      },
-      shipFrom: {
-        name: "John Doe",
-        phone: "111-111-1111",
-        addressLine1: "Clare House",
-        addressLine2: "Mary Lane",
-        cityLocality: "Sudbury",
-        stateProvince: "SFK",
-        postalCode: "CO10 8DY",
-        countryCode: "GB",
-      },
-      packages: [
-        {
-          weight: {
-            unit: "ounce",
-            value: 1.0,
-          },
-        },
-      ],
-    }, */
   });
 
   /* admin
@@ -156,8 +164,6 @@ exports.stripeWebhook = functions.https.onRequest(async (req, res) => {
           ],
         },
       }); */
-
-  return res.sendStatus(200);
 });
 
 exports.addPurchaserToMailchimp2 = functions.https.onCall((data, context) => {
@@ -215,4 +221,137 @@ exports.updateAverageReview = functions.https.onCall((data, context) => {
         }
       });
   return;
+});
+
+exports.checkIfAContact = functions.https.onCall(async (data, context) => {
+  let showOptIn = true;
+  const customerEmail = data["customerEmail"];
+  const orderNumber = data["orderNumber"];
+  const ref = admin.firestore().collection("contacts");
+  await ref.where("email", "==", customerEmail)
+      .get()
+      .then( function(querySnapshot) {
+        if (querySnapshot.empty) {
+          showOptIn = true;
+        } else {
+          querySnapshot.forEach(function(document) {
+            if (document.data().meta.state === "SUCCESS") {
+              showOptIn = false;
+              document.ref.update({line: "ask_review", phone_number: orderNumber});
+            } else {
+              showOptIn = true;
+            }
+          });
+        }
+      });
+  return showOptIn;
+});
+
+exports.checkIfAContactUniqueName = functions.https.onCall(async (data, context) => {
+  let order;
+  let orders = [];
+  let emailAddress = "";
+  const uniqueName = data["uniqueName"];
+  const orderNumber = data["orderNumber"];
+  const ref = admin.firestore().collection("contacts");
+  await ref.where("unique_name", "==", uniqueName)
+      .get()
+      .then( async function(querySnapshot) {
+        if (!querySnapshot.empty) {
+          querySnapshot.forEach(function(document) {
+            if (document.data().meta.state === "SUCCESS" && document.data().phone_number === orderNumber) {
+              emailAddress = document.data().email;
+            }
+          });
+          const ref = admin.firestore().collection("orders");
+          await ref.where("customerEmail", "==", emailAddress)
+              .get()
+              .then(function(querySnapshot) {
+                if (!querySnapshot.empty) {
+                  querySnapshot.forEach(function(document) {
+                    if (document.data()) {
+                      const tempOrder = document.data();
+                      tempOrder.docRef = document.ref._path.segments[1];
+                      const price = document.data().amountTotal / 100;
+                      tempOrder.totalPrice = price.toFixed(2);
+                      orders.push(tempOrder);
+                    }
+                  });
+                  if (orders.length > 0) {
+                    orders = orders.sort((a, b) => (a.date < b.date) ? 1 : -1);
+                    order = orders[0];
+                    const publicOrder = {
+                      docRef: order.docRef,
+                      emailSent: order.emailSent,
+                      date: order.date,
+                      dateString: order.dateString,
+                      orderNumber: order.orderNumber,
+                      lineItems: order.lineItems,
+                      showOptIn: true,
+                    };
+                    order = publicOrder;
+                  }
+                }
+              });
+        }
+      });
+  return order;
+});
+
+exports.getOrderWithOrderNumber = functions.https.onCall(async (data, context) => {
+  let order;
+  let orders = [];
+  const orderNumber = data["orderNumber"];
+  const ref = admin.firestore().collection("orders");
+  await ref.where("orderNumber", "==", orderNumber)
+      .get()
+      .then(async function(querySnapshot) {
+        if (querySnapshot.empty) {
+          order = undefined;
+        } else {
+          querySnapshot.forEach(function(document) {
+            if (document.data()) {
+              const tempOrder = document.data();
+              tempOrder.docRef = document.ref._path.segments[1];
+              const price = document.data().amountTotal / 100;
+              tempOrder.totalPrice = price.toFixed(2);
+              orders.push(tempOrder);
+            } else {
+              order = undefined;
+            }
+          });
+          if (orders.length > 0) {
+            orders = orders.sort((a, b) => (a.date < b.date) ? 1 : -1);
+            order = orders[0];
+            const emailAddress = order.customerEmail;
+            const publicOrder = {
+              docRef: order.docRef,
+              emailSent: order.emailSent,
+              date: order.date,
+              dateString: order.dateString,
+              orderNumber: order.orderNumber,
+              lineItems: order.lineItems,
+              showOptIn: true,
+              totalPrice: order.totalPrice
+            };
+            order = publicOrder;
+            if (!order.emailSent) {
+              const ref = admin.firestore().collection("contacts");
+              await ref.where("email", "==", emailAddress)
+                  .get()
+                  .then(function(querySnapshot) {
+                    if (!querySnapshot.empty) {
+                      querySnapshot.forEach(function(document) {
+                        if (document.data().meta.state === "SUCCESS") {
+                          order.showOptIn = false;
+                          document.ref.update({line: "ask_review", phone_number: order.orderNumber});
+                        }
+                      });
+                    }
+                  });
+            }
+          }
+        }
+      });
+  return order;
 });

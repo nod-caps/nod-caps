@@ -6,8 +6,8 @@ import { PrivacyComponent } from './admin/privacy/privacy.component';
 import { ReturnsComponent } from './admin/returns/returns.component';
 import { SitemapComponent } from './admin/sitemap/sitemap.component';
 import { TermsComponent } from './admin/terms/terms.component';
-// import { AuthService } from './services/auth.service';
-// import { AdminLoginComponent } from './shared/components/admin-login/admin-login.component';
+import { AuthService } from './services/auth.service';
+import { AdminLoginComponent } from './shared/components/admin-login/admin-login.component';
 // import { MaintenanceComponent } from './shared/components/maintenance/maintenance.component';
 import { MyOrdersComponent } from './shared/components/my-orders/my-orders.component';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
@@ -26,19 +26,19 @@ const routes: Routes = [
     path: 'contact',
     loadChildren: () => import('./contact/contact.module').then( m => m.ContactModule)
   },
-  /*{
+  {
     path: 'control',
     canActivate: [ AuthService ],
     loadChildren: () => import('./control/control.module').then( m => m.ControlModule)
-  },*/
+  },
   {
     path: 'terms',
     component: TermsComponent,
   },
-  /*{
+  {
     path: 'admin-login',
     component: AdminLoginComponent,
-  },*/
+  },
   {
     path: 'returns',
     component: ReturnsComponent,

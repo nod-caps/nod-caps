@@ -5,17 +5,16 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: "AIzaSyC9sqoySsjpNd0ycbMB5oV98JGoiCAGJo0",
-    authDomain: "projecttwo-c4839.firebaseapp.com",
-    projectId: "projecttwo-c4839",
-    storageBucket: "projecttwo-c4839.appspot.com",
-    messagingSenderId: "633265970125",
-    appId: "1:633265970125:web:7d7dcd066a6cbebb364284",
-    measurementId: "G-6J1CE8B4H7"
+    apiKey: "AIzaSyCjUH5xm2h7q_0R2pGJKNgOg98TrMOBMfs",
+    authDomain: "nod-caps.firebaseapp.com",
+    projectId: "nod-caps",
+    storageBucket: "nod-caps.appspot.com",
+    messagingSenderId: "445751909764",
+    appId: "1:445751909764:web:6b4a1b8da6daa2817451d1",
+    measurementId: "G-YJ9L9FMZWV"
   },
   stripe:{
-    push: "pk_test_51Kj1mgKGPCnyjU4r7zk7Ly0QKuHsDVxMNTDH8pFkhIpdlVJ1181Ddcal7xgum9cHzirt3neW6c13GOzAfBwrloGr00OgvsNccG",
-    key: "sk_test_51Kj1mgKGPCnyjU4r11qN3T9GjDiF3BW1NeupI7UZqpiMQIEIqe9w0aI9iVQWF0PSSUnaoXNWZXpADdL1fuPAVmcf00GBKgGUP9"
+    publish: "pk_test_51LbkIcGXUk9OBXxmN7AYLLscvVyrKe2G8zLGZhHR1fmDVVPCHhdYNEjRiUxXvOZ0MbLzOqBLtwbHxRU4bRjpgw7a00y4Qn4UBZ",
   }
 };
 

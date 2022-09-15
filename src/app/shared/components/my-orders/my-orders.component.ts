@@ -4,6 +4,7 @@ import { ModalController, ToastController } from '@ionic/angular';
 import { collection, query, getDocs, where, Firestore } from '@angular/fire/firestore';
 import { AddReviewComponent } from '../add-review/add-review.component';
 import { SeoService } from 'src/app/services/seo.service';
+import { getFunctions, httpsCallable } from 'firebase/functions';
 
 
 @Component({
@@ -13,7 +14,8 @@ import { SeoService } from 'src/app/services/seo.service';
 })
 export class MyOrdersComponent implements OnInit {
 
-  customerEmail: any;
+  // customerEmail: any;
+  orderNumber: any;
   order: any;
   caps: any;
   customerUnique: any;
@@ -34,7 +36,7 @@ export class MyOrdersComponent implements OnInit {
       component: AddReviewComponent,
       componentProps:{
         cap,
-        email: this.customerEmail, 
+        // email: this.customerEmail, 
         order: this.order
       },
       cssClass: 'review-modal'
@@ -66,7 +68,7 @@ export class MyOrdersComponent implements OnInit {
 
 
 
-  async getInfo() {
+  /*async getInfo() {
      let orders = [];
     const q = query(collection(this.firestore, 'orders'), where("customerEmail", "==", this.customerEmail ));
     const querySnapshot = await getDocs(q);
@@ -84,7 +86,7 @@ export class MyOrdersComponent implements OnInit {
        }
     }
     
-  }
+  }*/
 
   toShop() {
     this.router.navigateByUrl('shop');
@@ -92,7 +94,26 @@ export class MyOrdersComponent implements OnInit {
 
 
   async checkIfCustomer() {
-      const q = query(collection(this.firestore, 'contacts'), where("unique_name", "==", this.customerUnique));
+    const functions = getFunctions();
+    const checkContact = httpsCallable(functions, 'checkIfAContactUniqueName');
+    checkContact({uniqueName: this.customerUnique, orderNumber: this.orderNumber}).then((result) => {
+      console.log(result);
+      if (result) {
+        if (result.data) {
+          console.log('hello', result.data);
+          this.order = result.data;
+          // get back order here from within fucntion
+         // this.getInfo();
+        } else {
+         // this.noOrder(); 
+        }
+      }
+    }).catch((err) => {
+      //this.noOrder();
+      console.log(err.message);
+    });
+
+     /* const q = query(collection(this.firestore, 'contacts'), where("unique_name", "==", this.customerUnique));
       const querySnapshot = await getDocs(q);
       if (querySnapshot.size > 0) {
         querySnapshot.forEach((doc) => {
@@ -104,7 +125,7 @@ export class MyOrdersComponent implements OnInit {
       });
       } else {
         this.noOrder();
-      }
+      }*/
       
   }
 
@@ -115,8 +136,9 @@ export class MyOrdersComponent implements OnInit {
     const customerInfo = this.route.snapshot.queryParamMap.get('mo');
     if (customerInfo) {
 let n = customerInfo.lastIndexOf('-');
-this.customerEmail = customerInfo.substring(0, customerInfo.lastIndexOf('-'));
+this.orderNumber = customerInfo.substring(0, customerInfo.lastIndexOf('-'));
 this.customerUnique = customerInfo.substring(n + 1);
+console.log('hello', this.orderNumber, this.customerUnique);
 this.checkIfCustomer();
 
 

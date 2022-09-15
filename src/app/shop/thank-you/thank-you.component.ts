@@ -37,7 +37,34 @@ export class ThankYouComponent implements OnInit {
 
 
   async getOrder() {
-    let orders = [];
+
+
+    const functions = getFunctions();
+    const getOrder = httpsCallable(functions, 'getOrderWithOrderNumber');
+    getOrder({ orderNumber: this.orderNumber}).then((result) => {
+
+      if (result) {
+        if (result.data ) {
+            this.order = result.data;
+            console.log('hello', this.order);
+            this.checkIfExpired();
+            // this.checkIfAContact();
+            this.markAsSent();
+    
+            if (this.order.lineItems[0].cap && !this.order.emailSent) {
+             this.sendMail();
+            }
+        } else {
+          this.noOrder()
+        }
+      }
+    }).catch((err) => {
+      this.noOrder()
+    });
+
+
+
+    /*let orders = [];
     const q = query(collection(this.firestore, 'orders'), where("orderNumber", "==", this.orderNumber));
     const querySnapshot = await getDocs(q);
     if (querySnapshot.empty) {
@@ -48,22 +75,28 @@ export class ThankYouComponent implements OnInit {
         object.docRef = doc.ref.path.substring(doc.ref.path.lastIndexOf('/') + 1);
         orders.push(object);
       });
+
       if (orders.length > 0) {
+
         orders = orders.sort((a, b) => (a.date < b.date) ? 1 : -1);
         this.order = orders[0];
+        console.log('hello', this.order);
         const price = this.order.amountTotal / 100
         this.order.totalPrice = price.toFixed(2);
-        if (!this.order.addedCaps) {
-          this.getCaps();
-        } else {
-          this.gotOrderInfo = true
-        }
+
         this.checkIfExpired();
         this.checkIfAContact();
+
+        if (this.order.lineItems[0].cap && !this.order.emailSent) {
+         this.sendMail();
+        }
+       
+    
       } else {
          this.noOrder();
       }
-    }
+      
+    }*/
    
      
  
@@ -90,22 +123,14 @@ async showError(message: string) {
 
   getCaps() {
     this.order.lineItems.forEach(async (cap: any, index: number) => {
-      const q = query(collection(this.firestore, 'caps'), where("description", "==", cap.description));
+      const q = query(collection(this.firestore, 'caps'), where("priceId", "==", cap.priceId));
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
-
         this.order.lineItems[index].cap = doc.data();
-            
-     if ((index === (this.order.lineItems.length - 1))) {
-       this.gotOrderInfo = true;
-
-      if (!this.order.emailSent) {
-         this.sendMail();
-      }
-     }
       });
       const price = cap.amount_total / 100
-      this.order.lineItems[index].price = price.toFixed(2);
+      this.order.lineItems[index].capPrice = price.toFixed(2);
+      this.fire.collection('orders').doc(this.order.docRef).update({emailSent: true});
     });
   }
 
@@ -114,7 +139,7 @@ async showError(message: string) {
    const fiveMinsFromPurchase = this.order.date  + (5 * 60 * 1000);
    const currentTime = new Date().getTime();
    if (currentTime > fiveMinsFromPurchase) {
-    this.router.navigateByUrl('/home');
+    // this.router.navigateByUrl('/home');
     const toast = await this.toastCtrl.create({
       message: 'Page has expired 5 mins after purchase',
       duration: 3000,
@@ -126,7 +151,7 @@ async showError(message: string) {
   }
 
   async noOrder() {
-    this.router.navigateByUrl('/home');
+    // this.router.navigateByUrl('/home');
     const toast = await this.toastCtrl.create({
       message: 'No order found please contact us',
       duration: 3000,
@@ -138,7 +163,23 @@ async showError(message: string) {
   }
 
   async checkIfAContact() {
-    const contactRefs = [];
+    const functions = getFunctions();
+    const checkContact = httpsCallable(functions, 'checkIfAContact');
+    checkContact({customerEmail: this.order.customerEmail, orderNumber: this.order.orderNumber}).then((result) => {
+
+      if (result) {
+        if (result.data === false) {
+          this.showOptIn = false; 
+        } else {
+          this.showOptIn = true; 
+        }
+      }
+    }).catch((err) => {
+      console.log(err.message);
+    });
+
+     
+   /* const contactRefs = [];
     const q = query(collection(this.firestore, 'contacts'), where("email", "==", this.order.customerEmail));
     const querySnapshot = await getDocs(q)
     querySnapshot.forEach((doc) => {
@@ -152,11 +193,10 @@ async showError(message: string) {
       this.addReviewToExsistingContact();
     }  else {
       this.showOptIn = true;
-    }
+    }*/
   }
 
   addReviewToExsistingContact() {
-    
     this.fire.collection('contacts').doc(this.contactRef).update({line: 'ask_review'});  
   }
 
@@ -170,12 +210,12 @@ sendMail(){
         this.showError('There was an error sending your email, please contact us')
       }
     }).catch((err) => {
-      this.showError('There was an error sending your email, please contact us')
+      this.showError('There was an error sending your email, please contact us1')
     });
   }
 
   markAsSent() {
-    this.fire.collection('orders').doc(this.order.docRef).update({lineItems: this.order.lineItems, emailSent: true});
+    this.fire.collection('orders').doc(this.order.docRef).update({emailSent: true});
   }
 
   ngOnInit() {

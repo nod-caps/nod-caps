@@ -38,6 +38,38 @@ imageArr: any[] = [{
   file: '',
   capNumber: 4,
   hasProcessed: false
+},{
+  file: '',
+  capNumber: 5,
+  hasProcessed: false
+},{
+  file: '',
+  capNumber: 6,
+  hasProcessed: false
+},{
+  file: '',
+  capNumber: 7,
+  hasProcessed: false
+},{
+  file: '',
+  capNumber: 8,
+  hasProcessed: false
+},{
+  file: '',
+  capNumber: 9,
+  hasProcessed: false
+},{
+  file: '',
+  capNumber: 10,
+  hasProcessed: false
+},{
+  file: '',
+  capNumber: 11,
+  hasProcessed: false
+},{
+  file: '',
+  capNumber: 12,
+  hasProcessed: false
 }];
 saving = false;
   constructor( private router: Router,
@@ -56,6 +88,8 @@ saving = false;
      quantity: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
      colour: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
      colourName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+     priceId: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+
 
 
 
@@ -83,6 +117,9 @@ saving = false;
   get colourName() {
     return this.capForm.get('colourName');
   }
+  get priceId() {
+    return this.capForm.get('priceId');
+  }
 
 
   public errorMessages = {
@@ -109,6 +146,10 @@ saving = false;
     ],
     quantity: [
       { type: 'pattern', message: 'Numeric values only'},
+    ],
+    priceId: [
+      { type: 'maxlength', message: 'priceId cant be longer than 20 characters'},
+      { type: 'minlength', message: 'priceId must be longer than 3 characters'},
     ],
   }
 
@@ -168,7 +209,30 @@ processFile(imageInput: any, capNumber: number) {
   } else if (capNumber === 4) {
     this.imageArr[3].file = imageInput.files[0];
     this.imageArr[3].hasProcessed = true;
-
+  } else if (capNumber === 5) {
+    this.imageArr[4].file = imageInput.files[0];
+    this.imageArr[4].hasProcessed = true;
+  } else if (capNumber === 6) {
+    this.imageArr[5].file = imageInput.files[0];
+    this.imageArr[5].hasProcessed = true;
+  } else if (capNumber === 7) {
+    this.imageArr[6].file = imageInput.files[0];
+    this.imageArr[6].hasProcessed = true;
+  } else if (capNumber === 8) {
+    this.imageArr[7].file = imageInput.files[0];
+    this.imageArr[7].hasProcessed = true;
+  }  else if (capNumber === 9) {
+    this.imageArr[8].file = imageInput.files[0];
+    this.imageArr[8].hasProcessed = true;
+  } else if (capNumber === 10) {
+    this.imageArr[9].file = imageInput.files[0];
+    this.imageArr[9].hasProcessed = true;
+  } else if (capNumber === 11) {
+    this.imageArr[10].file = imageInput.files[0];
+    this.imageArr[10].hasProcessed = true;
+  } else if (capNumber === 12) {
+    this.imageArr[11].file = imageInput.files[0];
+    this.imageArr[11].hasProcessed = true;
   }
 }
 
@@ -203,6 +267,8 @@ async save() {
   this.capName = this.capForm.get('name').value;
   const description = this.capForm.get('description').value;
   const price = this.capForm.get('price').value;
+  const priceId = this.capForm.get('priceId').value;
+
   const colour = this.capForm.get('colour').value;
   const colourName = this.capForm.get('colourName').value;
   const quantity = Number(this.capForm.get('quantity').value);
@@ -216,6 +282,7 @@ async save() {
     capRef: this.capRef,
     nameHyphenated: this.capName.replaceAll(' ', '-'),
     price: price,
+    priceId: priceId,
     quantity: quantity,
     colour: colour,
     colourName: colourName,
@@ -283,10 +350,31 @@ storeImages() {
         } else if (img.capNumber === 4) {
           const imageFieldObj = {imageField4 : url }
           const res = await ref.update(imageFieldObj);
+        } else if (img.capNumber === 5) {
+          const imageFieldObj = {imageField1Small : url }
+          const res = await ref.update(imageFieldObj);
+        } else if (img.capNumber === 6) {
+          const imageFieldObj = {imageField2Small : url }
+          const res = await ref.update(imageFieldObj);
+        } else if (img.capNumber === 7) {
+          const imageFieldObj = {imageField3Small : url }
+          const res = await ref.update(imageFieldObj);
+        } else if (img.capNumber === 8) {
+          const imageFieldObj = {imageField4Small : url }
+          const res = await ref.update(imageFieldObj);
+        }  else if (img.capNumber === 9) {
+          const imageFieldObj = {imageField1Mobile : url }
+          const res = await ref.update(imageFieldObj);
+        } else if (img.capNumber === 10) {
+          const imageFieldObj = {imageField2Mobile : url }
+          const res = await ref.update(imageFieldObj);
+        } else if (img.capNumber === 11) {
+          const imageFieldObj = {imageField3Mobile : url }
+          const res = await ref.update(imageFieldObj);
+        } else if (img.capNumber === 12) {
+          const imageFieldObj = {imageField4Mobile : url }
+          const res = await ref.update(imageFieldObj);
         }
-
-       
-        
       });
     });
     }

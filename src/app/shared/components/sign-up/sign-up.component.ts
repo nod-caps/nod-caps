@@ -12,7 +12,7 @@ import {ToastController} from '@ionic/angular';
 })
 export class SignUpComponent implements OnInit {
 
-  @Input() fromThankYou = false;
+  @Input() orderNumber: any;
   @Input() inFooter = false;
   @Input() inBanner = false;
   isChecked = false;
@@ -47,19 +47,28 @@ export class SignUpComponent implements OnInit {
 
 signUp () {
  let ask_review = "";
-  if (this.fromThankYou) {
+ let orderNumber = ""
+  if (this.orderNumber) {
     ask_review = 'ask_review';
+     orderNumber =this.orderNumber;
   }
 
 
   if (this.signUpForm.get('email').value) {
-    const randomUserNumber = Math.floor(100000 + Math.random() * 900000).toString();
-    this.sending = true;
-    this.fire
+    let randomUserNumber = Math.floor(1000000 + Math.random() * 9000000).toString();
+    const email = this.signUpForm.get('email').value.substring(0,4)
+    for (let i = 0; i < 4; i++) {
+      var randomLet = email.charAt(Math.floor(Math.random() * 4));
+      var randomNum = Math.floor(Math.random() * 7);
+      randomUserNumber = randomUserNumber.slice(0, randomNum) + randomLet + randomUserNumber.slice(randomNum);
+    }  
+   this.sending = true;
+   this.fire
     .collection('contacts')
     .add({
       email: this.signUpForm.get('email').value,
       line: ask_review,
+      phone_number: orderNumber,
       unique_name: randomUserNumber,
     }).then(async (doc: any)=> {
       if (doc) {
