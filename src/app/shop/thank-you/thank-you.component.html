@@ -2,17 +2,16 @@
 
   <div class="basket-container">
     <h1>Thank You!</h1>
-    <p>We have recevied your order and are getting started on it right away. You will shortly receive an email confirmation.</p>
-      <p>Your order number is <strong>{{orderNumber}}</strong></p>
+    <p>We have received your order and are getting started on it right away. You will shortly receive an email confirmation.</p>
+      <p>Your order number is <strong>{{orderNumber}}</strong></p> 
 
       <div *ngIf="order && order.showOptIn" class="opt-in">
         <p>Whilst you're here, join our mailing list for discounts and new cap updates! </p>
         <div class="sign-up" *ngIf="orderNumber">
           <app-sign-up  [orderNumber]="orderNumber"></app-sign-up>
         </div>
-      </div>
+      </div> 
       
-   
 
     <div class="ion-text-left summary"  *ngIf="order">
       <p class="sum-title">Order Summary</p>
