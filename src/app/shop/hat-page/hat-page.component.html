@@ -4,11 +4,13 @@
     </ion-col>-->
     <ion-col size="12" size-md="7" size-lg="5" offset-lg="1" class="main-image ">
 
-      <img *ngIf="!cap" [alt]="capName + ' image 1 | nod caps'" [src]="preLoadCap.image">
+      <img *ngIf="!cap && !isMobile" [alt]="capName + ' image 1 | nod caps'" [src]="preLoadCap.imageLarge">
+      <img *ngIf="!cap && isMobile" [alt]="capName + ' image 1 | nod caps'" [src]="preLoadCap.imageMobile">
+
       <swiper  class="hat-swiper" #hatSwiper [config]="hatConfig"  *ngIf="cap">
         <ng-template swiperSlide class="swipe" >
-          <img *ngIf="isMobile" [alt]="cap?.name + ' image 1 | nod caps'" [src]="cap?.imageField1Mobile">
-          <img  *ngIf="!isMobile" [alt]="cap?.name + ' image 1 | nod caps'" [src]="cap?.imageField1">
+          <img *ngIf="isMobile" [alt]="cap?.name + ' image 1 | nod caps'" [src]="preLoadCap.imageMobile">
+          <img  *ngIf="!isMobile" [alt]="cap?.name + ' image 1 | nod caps'" [src]="preLoadCap.imageLarge">
 
         </ng-template>
         <ng-template swiperSlide class="swipe">

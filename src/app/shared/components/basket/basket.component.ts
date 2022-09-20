@@ -143,6 +143,7 @@ export class BasketComponent implements OnInit, OnDestroy {
 
 goToStripe(){
       if(this.checkoutArray.length > 0) {
+        console.log('hello', this.checkoutArray);
         var stripe = Stripe(environment.stripe.publish); 
         const functions = getFunctions();
         const checkout = httpsCallable(functions, 'stripeCheckout');

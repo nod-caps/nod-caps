@@ -88,7 +88,7 @@ saving = false;
      quantity: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
      colour: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
      colourName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
-     priceId: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+     priceId: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
 
 
 

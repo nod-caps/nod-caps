@@ -54,6 +54,7 @@ export class ThankYouComponent implements OnInit {
             if (this.order.lineItems[0].cap && !this.order.emailSent) {
              this.sendMail();
             }
+
         } else {
           this.noOrder()
         }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { QuickCapService } from 'src/app/services/quick-cap.service';
 
 @Component({
   selector: 'app-top-caps',
@@ -7,8 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopCapsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private quickCap: QuickCapService
+  ) { }
 
-  ngOnInit() {}
+
+  ngOnInit() {
+  }
 
 } 

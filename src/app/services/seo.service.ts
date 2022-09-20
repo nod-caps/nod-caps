@@ -24,11 +24,11 @@ export class SeoService {
     this.meta.addTag({ name:'og:description',  property:'og:description', content: description })
     this.meta.addTag({ name:'description', content: description })
 
-    this.meta.addTag({ name:'og:image', property:'og:image', content: 'https://projecttwo-c4839.web.app/assets/img/social-slider/social-slider4.jpeg' });
+    this.meta.addTag({ name:'og:image', property:'og:image', content: image });
     this.meta.addTag({name:'twitter:card', content: "summary_large_image"});
     this.meta.addTag({name:'twitter:creator', content: "@nodcaps"});
     this.meta.addTag({ name: 'twitter:title', content: title });
     this.meta.addTag({ name: 'twitter:description', content: description });    
-    this.meta.addTag({ name: 'twitter:image', content: 'https://projecttwo-c4839.web.app/assets/img/social-slider/social-slider4.jpeg' });   
+    this.meta.addTag({ name: 'twitter:image', content: image });   
   }
 }

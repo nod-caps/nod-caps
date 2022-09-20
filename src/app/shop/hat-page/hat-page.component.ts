@@ -217,8 +217,9 @@ if (this.cap.quantity < this.capBasketMax) {
      const capNameHyp = this.route.snapshot.paramMap.get('capNameHyphenated');
     this.capName = capNameHyp.replace(/-/g, ' ');
     this.preLoadCap = this.quickCap.getCap(this.capName);
+    console.log('hello', this.preLoadCap);
     if (this.preLoadCap) {
-      this.seo.generateTags({title: this.preLoadCap.metaTitle, description: this.preLoadCap.metaDescription, image: this.preLoadCap.image });
+      this.seo.generateTags({title: this.preLoadCap.metaTitle, description: this.preLoadCap.metaDescription, image: this.preLoadCap.imageMobile });
       this.capRef = this.collectionRef + '_' + capNameHyp;
       this.getCap();
       this.getOtherHats();

@@ -5,7 +5,9 @@ const admin = require("firebase-admin");
 const sgMail = require("@sendgrid/mail");
 
 const API_KEY = functions.config().sendgrid.key;
-const TEMPLATE_ID = functions.config().sendgrid.template;
+const TEMPLATE_ID = "d-75d3d51077944d4e9093a2d953609e9c";
+
+
 sgMail.setApiKey(API_KEY);
 admin.initializeApp();
 
@@ -19,7 +21,7 @@ exports.stripeCheckout = functions.https.onCall(async (data, context) => {
       allowed_countries: ["GB"],
     },
     mode: "payment",
-    success_url: "http://nod-caps.web.app/cheers?on=" + orderNumber,
+    success_url: "https://nod-caps.web.app/cheers?on=" + orderNumber,
     cancel_url: "https://nod-caps.web.app/shop",
   });
 
@@ -53,117 +55,49 @@ exports.stripeWebhook = functions.https.onRequest(async (req, res) => {
         expand: ["line_items"],
       },
   );
-
+  const caps = [];
   const timestamp = new Date().getTime();
   const dateString = new Date().toISOString().split("T")[0];
   const n = dataObject.success_url.lastIndexOf("cheers?on=");
   const orderNumberFromString = dataObject.success_url.substring(n + 10);
-  lineItems.line_items.data.forEach((item, index) => {
+  let index = 0;
+  for (const item of lineItems.line_items.data) {
     lineItems.line_items.data[index].priceId = item.price.id;
     const capPrice = item.amount_total / 100;
     lineItems.line_items.data[index].capPrice = capPrice.toFixed(2);
-    delete lineItems.line_items.data[index].price;
+    // delete lineItems.line_items.data[index].price;
 
     const ref = admin.firestore().collection("caps");
-    ref.where("priceId", "==", lineItems.line_items.data[index].priceId)
+    await ref.where("name", "==", lineItems.line_items.data[index].description)
         .get()
         .then(function(querySnapshot) {
           querySnapshot.forEach(function(document) {
-            const quantity = document.data().quantity - item.quantity;
-            document.ref.update({quantity: quantity});
-            lineItems.line_items.data[index].cap = document.data();
-            delete lineItems.line_items.data[index].cap.id;
-            if (index === lineItems.line_items.data.length -1) {
-              admin.firestore().collection("orders").doc().set({
-                // checkoutSessionId: dataObject.id,
-                paymentStatus: dataObject.payment_status,
-                shippingInfo: dataObject.shipping_details,
-                amountTotal: dataObject.amount_total,
-                // customerId: dataObject.customer,
-                customerName: dataObject.customer_details.name,
-                customerEmail: dataObject.customer_details.email,
-                paymentIntent: dataObject.payment_intent,
-                // payment: dataObject,
-                lineItems: lineItems.line_items.data,
-                date: timestamp,
-                dateString: dateString,
-                orderNumber: orderNumberFromString,
-                /* shipment: {
-                  // carrierId: "se-423887",
-                  serviceCode: "ups_ground",
-                  shipDate: "2021-09-21",
-                  validateAddress: "no_validation",
-                  shipTo: {
-                    name: "Amanda Miller",
-                    addressLine1: "Flat 23, Lapwing Heights",
-                    cityLocality: "London",
-                    stateProvince: "LND",
-                    postalCode: "N17 9GP",
-                    countryCode: "GB",
-                  },
-                  shipFrom: {
-                    name: "John Doe",
-                    phone: "111-111-1111",
-                    addressLine1: "Clare House",
-                    addressLine2: "Mary Lane",
-                    cityLocality: "Sudbury",
-                    stateProvince: "SFK",
-                    postalCode: "CO10 8DY",
-                    countryCode: "GB",
-                  },
-                  packages: [
-                    {
-                      weight: {
-                        unit: "ounce",
-                        value: 1.0,
-                      },
-                    },
-                  ],
-                }, */
-              });
-              return res.sendStatus(200);
+            if (document.data()) {
+              const quantity = document.data().quantity - item.quantity;
+              document.ref.update({quantity: quantity});
+              lineItems.line_items.data[index].cap = document.data();
+              caps.push(document.data());
+              delete lineItems.line_items.data[index].id;
+              if (index === lineItems.line_items.data.length -1) {
+                admin.firestore().collection("orders").doc().set({
+                  paymentStatus: dataObject.payment_status,
+                  shippingInfo: dataObject.shipping_details,
+                  amountTotal: dataObject.amount_total,
+                  customerName: dataObject.customer_details.name,
+                  customerEmail: dataObject.customer_details.email,
+                  paymentIntent: dataObject.payment_intent,
+                  lineItems: lineItems.line_items.data,
+                  date: timestamp,
+                  dateString: dateString,
+                  orderNumber: orderNumberFromString,
+                });
+                return res.sendStatus(200);
+              }
             }
           });
         });
-  });
-
-  /* admin
-      .firestore()
-      .collection("shipments")
-      .add({
-        shipment: {
-          // carrierId: "se-423887",
-          serviceCode: "ups_ground",
-          shipDate: "2021-09-21",
-          validateAddress: "no_validation",
-          shipTo: {
-            name: "Amanda Miller",
-            addressLine1: "Flat 23, Lapwing Heights",
-            cityLocality: "London",
-            stateProvince: "LDN",
-            postalCode: "N17 9GP",
-            countryCode: "GB",
-          },
-          shipFrom: {
-            name: "John Doe",
-            phone: "111-111-1111",
-            addressLine1: "Clare House",
-            addressLine2: "Mary Lane",
-            cityLocality: "Sudbury",
-            stateProvince: "SFK",
-            postalCode: "CO10 8DY",
-            countryCode: "GB",
-          },
-          packages: [
-            {
-              weight: {
-                unit: "ounce",
-                value: 1.0,
-              },
-            },
-          ],
-        },
-      }); */
+    index++;
+  }
 });
 
 exports.addPurchaserToMailchimp2 = functions.https.onCall((data, context) => {
@@ -332,7 +266,8 @@ exports.getOrderWithOrderNumber = functions.https.onCall(async (data, context) =
               orderNumber: order.orderNumber,
               lineItems: order.lineItems,
               showOptIn: true,
-              totalPrice: order.totalPrice
+              totalPrice: order.totalPrice,
+              customerEmail: order.emailSent ? undefined : order.customerEmail,
             };
             order = publicOrder;
             if (!order.emailSent) {
