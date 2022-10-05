@@ -5,6 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { CookieConsentComponent } from './shared/components/cookie-consent/cookie-consent.component';
 import { BasketService } from './services/basket.service';
 import { SignUpService } from './services/sign-up.service';
+import { AddAnalyticsService } from './services/add-analytics.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,6 @@ import { SignUpService } from './services/sign-up.service';
 })
 export class AppComponent implements OnInit{
 
-showingCookies = false;
 closedCookies = false;
 
   constructor(
@@ -21,7 +21,8 @@ closedCookies = false;
     private cookie: CookieService,
     private modalCtrl: ModalController,
     private basketService: BasketService,
-    private signUpService: SignUpService
+    private signUpService: SignUpService,
+    private addAnalytics: AddAnalyticsService
   ) {
    }
 
@@ -30,17 +31,16 @@ closedCookies = false;
 
 
   async presentModal() {
-  this.showingCookies = true;
     const modal = await this.modalCtrl.create({
       component: CookieConsentComponent,
-      cssClass: 'cookie-modal'
+      cssClass: 'cookie-modal',
+      backdropDismiss: false
     }).then (modal => {
       modal.present();
       return modal.onDidDismiss();
     }).then (result => {
-      this.closedCookies = true;
       if (result) {
-        this.showingCookies = false;
+        this.closedCookies = true;
       }
     })
 
@@ -49,20 +49,19 @@ closedCookies = false;
 
 
   ngOnInit() {
-   setTimeout(() => {
-   const gotCookie =  this.cookie.get('consentAllowed');
+   const gotCookie =  this.cookie.get('neccessary-cookies');
    if (!gotCookie) {
     this.presentModal();
-   } else if (gotCookie === 'accepted'){
+   } else if (gotCookie === 'allowed') {
     this.basketService.checkBasket();
+    const gotAnalyticsCookie =  this.cookie.get('analytics-cookies');
+    if (gotAnalyticsCookie) {
+      this.addAnalytics.addAnalytics();
+    }
+
    }
-  }, 5000);
 
    
-   setTimeout(() => {
-      if (window.innerWidth < 768  && this.closedCookies) {
-        this.signUpService.checkSignUp();
-      }
-  }, 20000);
+
 }
 }

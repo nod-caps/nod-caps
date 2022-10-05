@@ -39,7 +39,7 @@
     </form>
 
     <div class="button-holder">
-      <ion-button (click)="addReview()" [disabled]="!reviewForm.valid || !rating" shape="round" color="tertiary" ><span *ngIf="!sending">SEND REVIEW</span><ion-spinner *ngIf="sending"></ion-spinner></ion-button>
+      <ion-button (click)="addReview()" [disabled]="!reviewForm.valid || !rating" shape="round" color="tertiary" ><span *ngIf="!sending" id="addedReviewTrack">SEND REVIEW</span><ion-spinner *ngIf="sending"></ion-spinner></ion-button>
     </div>
  
 

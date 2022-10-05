@@ -15,10 +15,12 @@ export class SignUpComponent implements OnInit {
   @Input() orderNumber: any;
   @Input() inFooter = false;
   @Input() inBanner = false;
+  @Input() fromPopUp = false;
   isChecked = false;
   sending = false;
   signedUp = false;
   @Output() justSignedUp: EventEmitter<any> = new EventEmitter;
+  lostFocus = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -44,7 +46,9 @@ export class SignUpComponent implements OnInit {
     ],
   }
 
-
+changeFocus() {
+  this.lostFocus = true;
+}
 signUp () {
  let ask_review = "";
  let orderNumber = ""
@@ -76,7 +80,7 @@ signUp () {
          this.signedUp = true;
          this.justSignedUp.emit(true);
          if (!this.inBanner) {
-          this.presentToast('Thanks for signing up!.');
+          this.presentToast('Thanks for signing up');
         }
   
       }

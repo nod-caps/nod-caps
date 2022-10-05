@@ -3,7 +3,8 @@
 }
 
 ion-button{
-    margin: 5px 5px;
+    margin: 5px;
+    width: 200px;
 }
 
 .close{
@@ -16,3 +17,47 @@ ion-button{
 p{
     margin-bottom: 25px;
 }
+ ion-item{
+    --padding-start: 0px;
+    font-size: 20px;
+ }
+
+ .necc-text{
+    border-bottom: 1px solid #aaaaaa;
+    padding-bottom: 20px;
+    margin-bottom: 5px;
+ }
+
+ .manage-cookies {
+    p{
+        margin-top:0px;
+    }
+    ion-toggle{
+        margin-bottom:-10px;
+    }
+ }
+
+ .mobile-toggle {
+    display:none;
+     zoom:0.9;
+    margin-bottom:0px;
+}
+.desktop-toggle{
+    display: block;
+}
+
+ @media(max-width:768px) {
+    .mobile-toggle {
+        display:block;
+    }
+    .desktop-toggle{
+        display: none;
+    }
+ }
+
+ ion-toolbar{
+    --border-width: 0px!important;
+ }
+ ion-footer{
+    padding-bottom: 20px;
+ }

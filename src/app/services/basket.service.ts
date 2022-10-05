@@ -34,7 +34,8 @@ export class BasketService{
     })
    }
    checkBasket() {
-    if (JSON.parse(localStorage.getItem('basket'))) {
+    this.useLocalStorage = true;
+    if (JSON.parse(localStorage.getItem('basket')) && this.useLocalStorage) {
       this.currentBasket = JSON.parse(localStorage.getItem('basket'))
       this.basketSub.next(this.currentBasket);
     } else {
@@ -44,12 +45,16 @@ export class BasketService{
 
   editBasket(){
     this.basketSub.next(this.currentBasket);
-    localStorage.setItem('basket', JSON.stringify(this.currentBasket));
+    if (this.useLocalStorage) {
+      localStorage.setItem('basket', JSON.stringify(this.currentBasket));
+    }
   }
 
   clearBasket() {
     this.basketSub.next([]);
-    localStorage.removeItem('basket');
+    if (this.useLocalStorage) {
+      localStorage.removeItem('basket');
+    }
   }
 
   getBasket(){    
@@ -69,11 +74,16 @@ export class BasketService{
         if (this.pushObjectToArray){
             this.currentBasket.push({cap, quantity, capRef: cap.capRef});
             this.basketSub.next(this.currentBasket);
-            localStorage.setItem('basket', JSON.stringify(this.currentBasket));
+            if (this.useLocalStorage) {
+              localStorage.setItem('basket', JSON.stringify(this.currentBasket));
+
+            }
           } else{
             this.basketSub.next(this.currentBasket);
             this.pushObjectToArray = true;   
+            if (this.useLocalStorage) {
             localStorage.setItem('basket', JSON.stringify(this.currentBasket));
+            }
           }
             
    

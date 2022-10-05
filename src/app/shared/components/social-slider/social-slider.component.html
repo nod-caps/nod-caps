@@ -1,9 +1,12 @@
 <div class="swiper-holder">
   <h1 *ngIf="showTitle">Made for everyone</h1>
   <p class="ion-text-center">Use #nodcaps when you're out and about! It's great to see you all wearing nod caps.</p>
+  <div class="pos-rel">
+
+
   <swiper #swiper [config]="config">
     <ng-template swiperSlide>
-      <ion-card>
+      <div class="card">
         <img loading="lazy"  alt="Daily Driver | nod caps" src="assets/img/social-slider/social-slider1.jpeg">
 
         <div class="overlay">
@@ -14,10 +17,10 @@
 
     
       </div>
-      </ion-card>
+    </div>
     </ng-template>
     <ng-template swiperSlide>
-      <ion-card>
+      <div class="card">
         <img loading="lazy"   alt="Down to Earth | nod caps" src="assets/img/social-slider/social-slider2.jpeg">
 
         <div class="overlay">
@@ -27,10 +30,10 @@
         <a class="ion-button ion-button-light" [routerLink]="'/'">SHOP</a>
 
       </div>
-      </ion-card>
+    </div>
     </ng-template>
     <ng-template swiperSlide>
-      <ion-card>
+      <div class="card">
         <img loading="lazy" alt="Black Sheep | nod caps" src="assets/img/social-slider/social-slider2.jpeg">
 
         <div class="overlay">
@@ -39,10 +42,10 @@
         <div class="shop-button-hover ion-text-center">
           <a class="ion-button ion-button-light" [routerLink]="'/'">SHOP</a>
       </div>
-      </ion-card>
+    </div>
     </ng-template>
     <ng-template swiperSlide>
-      <ion-card>
+      <div class="card">
         <img loading="lazy"  alt="Out of the Blue | nod caps" src="assets/img/social-slider/social-slider4.jpeg">
 
         <div class="overlay">
@@ -52,10 +55,10 @@
           <a class="ion-button ion-button-light" [routerLink]="'/'">SHOP</a>
 
       </div>
-      </ion-card>
+      </div>
     </ng-template>
     <ng-template swiperSlide>
-      <ion-card>
+      <div class="card">
         <img loading="lazy"  alt="Black Sheep | nod caps" src="assets/img/social-slider/social-slider1.jpeg">
 
 
@@ -66,10 +69,10 @@
           <a class="ion-button ion-button-light" [routerLink]="'/'">SHOP</a>
 
       </div>
-      </ion-card>
+      </div>
     </ng-template>
     <ng-template swiperSlide>
-      <ion-card>
+      <div class="card">
         <img loading="lazy"  alt="Daily Driver | nod caps" src="assets/img/social-slider/social-slider2.jpeg">
         <div class="overlay">
           Daily Driver
@@ -78,10 +81,10 @@
           <a class="ion-button ion-button-light" [routerLink]="'/'">SHOP</a>
 
       </div>
-      </ion-card>
+      </div>
     </ng-template>
     <ng-template swiperSlide>
-      <ion-card>
+      <div class="card">
         <img loading="lazy"  alt="Down to Earth | nod caps" src="assets/img/social-slider/social-slider3.jpeg">
         <div class="overlay">
             Down to Earth
@@ -90,11 +93,13 @@
           <a class="ion-button ion-button-light" [routerLink]="'/'">SHOP</a>
 
       </div>
-      </ion-card>
+      </div>
     </ng-template>
   </swiper>
   <ion-button class=" swiper-button-prev" color="tertiary" ><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
   <ion-button class=" swiper-button-next" color="tertiary" ><ion-icon  name="chevron-forward-outline"></ion-icon></ion-button>
+
+</div>
 
   <div class="ion-text-center mt-20">
     <app-social-buttons [inline]="true"></app-social-buttons>

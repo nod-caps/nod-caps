@@ -1,19 +1,53 @@
 ion-content{
     --background: white!important;
 }
-
-
-.swiper-button-next{
-    top: 45%;
+.small-feather{
+    width: 22px;
+    margin-right: 14px;
 }
-.swiper-button-prev{
-    top: 45%;
+
+.swiper-button-next-hat{
+    top: 250px;
+    height: 40px;
+    width: 40px;
+    --border-radius: 50%;
+    --padding-start: 0px;
+    --padding-end: 0px;
+    right: 10px;
+    left: auto;
+    position: absolute;
+    margin-top: calc(0px - (var(--swiper-navigation-size) / 2));
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--swiper-navigation-color,var(--swiper-theme-color));
+}
+.swiper-button-prev-hat{
+    top: 250px;
+    height: 40px;
+    width: 40px;
+    --border-radius: 50%;
+    --padding-start: 0px;
+    --padding-end: 0px;
+    left: 10px;
+    right: auto;
+    position: absolute;
+    margin-top: calc(0px - (var(--swiper-navigation-size) / 2));
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--swiper-navigation-color,var(--swiper-theme-color));
 }
 
 .free-delivery{
     float: right;
     margin-top:10px!important;
     font-size:14px!important;
+    font-weight: bold;
 }
 .price{
     margin-left: 0px!important;
@@ -435,4 +469,11 @@ align-items: center;
 
 .sec{
     margin-top:20px;
+}
+
+
+.review-text{
+    margin-right:10px;
+    color:#73B786;
+    font-size: 33px;
 }

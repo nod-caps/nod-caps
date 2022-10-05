@@ -20,6 +20,7 @@ export class SocialSliderComponent implements OnInit {
     initialSlide: 0,
     preloadImages: false,
     lazy: true,
+    loop: true,
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',

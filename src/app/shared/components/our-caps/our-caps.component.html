@@ -1,6 +1,6 @@
 <ion-grid [ngClass]="dark ? 'dark':'light'">
   <ion-row>
-    <ion-col [lazyLoad]="dark ? 'https://projecttwo-c4839.web.app/assets/img/logos/faded-logo-feather.png' : 'https://projecttwo-c4839.web.app/assets/img/logos/faded-logo-feather-white.png'" size="12" size-md="6" size-lg="5" class="first">
+    <ion-col [lazyLoad]="dark ? './assets/img/logos/faded-feather-dark-250px.png' : './assets/img/logos/faded-feather-250px.png'" size="12" size-md="6" size-lg="5" class="first">
       <div  class="feather-definition">
         <h1>A feather in <br> your cap</h1>
         <p><span>|feth-er-in-yoor-kap|</span><em>phrase.</em></p>
@@ -25,7 +25,10 @@ All of our dad-style baseball caps are made from 100% cotton featuring an unstru
         All of our baseball caps / dad caps are designed with the nod feather logo embroidered on the front. We produce high quality caps that we (and hopefully our customers) are proud to wear which is where the phrase 'a feaher in your cap' came into its own. This signature logo is placed front and centre on a 100% cotton
          unstructured six panel crown, alonside a curved peak and adjustable buckle with nod logo. 
     </p>
-      <a href="/shop" [routerLink]="'/shop'">Browse the Cap Collection <ion-icon name="arrow-forward-outline"></ion-icon></a>
+    <div>
+      <a href="/shop" class="fancy-button" [routerLink]="'/shop'">Browse the Cap Collection <ion-icon name="arrow-forward-outline"></ion-icon></a>
+
+    </div>
     </ion-col>
   </ion-row>
 </ion-grid>

@@ -2,11 +2,15 @@
   <form [formGroup]="signUpForm">
 
     <ion-item lines="none"  class="first">
-      <ion-input  type="email"  formControlName="email"placeholder="Your email..."></ion-input>
-      <ion-button class="sign-up-button" [disabled]="!signUpForm.valid || !isChecked" shape="round" [color]="inBanner ? 'dark':'tertiary'" (click)="signUp()"><span *ngIf="!sending">SIGN UP</span><ion-spinner *ngIf = "sending"></ion-spinner></ion-button>
+      <ion-input  type="email"  formControlName="email"placeholder="Your email..." (ionBlur)="changeFocus()"></ion-input>
+      <ion-button class="sign-up-button" [disabled]="!signUpForm.valid || !isChecked" shape="round" [color]="inBanner ? 'dark':'tertiary'" (click)="signUp()">
+        <span *ngIf="!sending"  [ngClass]="fromPopUp ? 'signUpTrackPopUp': ''" id="signUpTrack">SIGN UP</span>
+
+        <ion-spinner *ngIf = "sending"></ion-spinner>
+      </ion-button>
      </ion-item>
      <div *ngFor="let error of errorMessages.email">
-      <ng-container *ngIf="email?.hasError(error.type) && (email?.dirty || email?.touched)">
+      <ng-container *ngIf="email?.hasError(error.type) && (email?.dirty || email?.touched) && lostFocus">
         <small class="error-message">{{error.message}}</small>
       </ng-container>
     </div>

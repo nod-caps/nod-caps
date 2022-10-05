@@ -63,16 +63,25 @@ export class AddReviewComponent implements OnInit {
 
   addReview(){
       this.sending = true;
+      let name = '';
+      let message = '';
+      if (this.reviewForm.get('name').value) {
+        name = this.reviewForm.get('name').value;
+      }
+      if (this.reviewForm.get('message').value){
+        message = this.reviewForm.get('message').value;
+      }
       const reviewObj = {
-            name: this.reviewForm.get('name').value,
-            message: this.reviewForm.get('message').value,
+            name,
+            message,
             capRef: this.cap.capRef,
             rating: this.selectedIndex,
             image: this.cap.imageField1Mobile,
             capName: this.cap.name,
             date: new Date().toISOString().split("T")[0],
-            orderNumber: this.order.orderNumber,
+            orderNumber:this.order ?  this.order.orderNumber : '',
             collectionRef: this.cap.collectionRef,
+            source : this.order ? 'fromEmail' : 'fromQR',
             link: this.cap.collectionRef + '/' + this.cap.nameHyphenated
           }
       

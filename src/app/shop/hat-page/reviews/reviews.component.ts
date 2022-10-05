@@ -23,7 +23,7 @@ export class ReviewsComponent implements OnInit {
 
   constructor(
     private firestore: Firestore,
-    private router: Router
+    private router: Router,
   ) { }
 
   segmentChanged(event: any){
@@ -42,6 +42,9 @@ export class ReviewsComponent implements OnInit {
     querySnapshot.forEach((doc) => {
       this.capReviews.push(doc.data());
     });
+    (window as any).dataLayer.push({
+      'event': 'loaded-reviews'
+     });
     this.loadingCapReviews = false;
   }
 

@@ -11,6 +11,7 @@ import { AdminLoginComponent } from './shared/components/admin-login/admin-login
 // import { MaintenanceComponent } from './shared/components/maintenance/maintenance.component';
 import { MyOrdersComponent } from './shared/components/my-orders/my-orders.component';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
+import { ReviewCapsComponent } from './shared/components/review-caps/review-caps.component';
 import { ThankYouComponent } from './shop/thank-you/thank-you.component';
 
 const routes: Routes = [
@@ -68,6 +69,10 @@ const routes: Routes = [
     path: 'my-orders',
     component: MyOrdersComponent,
   }, 
+  {
+    path: 'add-review',
+    component: ReviewCapsComponent,
+  },
 
   {
     path: '',

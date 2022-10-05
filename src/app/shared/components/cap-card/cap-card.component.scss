@@ -8,9 +8,8 @@ a{
 }
 
 
-
-
-ion-card:hover {
+@media(min-width: 768px) {
+  ion-card:hover {
     transform: scale(1.05);
     animation: scaleUp 0.45s ease forwards;
     -webkit-animation: scaleUp 0.45s ease forwards;
@@ -25,6 +24,9 @@ ion-card:hover {
       -webkit-animation: slideUpBut 0.45s ease forwards;
     }
   }
+}
+
+
 
   .shop-button-hover{
     display:none;

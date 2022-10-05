@@ -138,7 +138,6 @@ export class MyOrdersComponent implements OnInit {
 let n = customerInfo.lastIndexOf('-');
 this.orderNumber = customerInfo.substring(0, customerInfo.lastIndexOf('-'));
 this.customerUnique = customerInfo.substring(n + 1);
-console.log('hello', this.orderNumber, this.customerUnique);
 this.checkIfCustomer();
 
 

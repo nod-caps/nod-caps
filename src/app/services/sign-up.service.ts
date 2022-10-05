@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import { CookieService } from 'ngx-cookie-service';
 import { SignUpHolderComponent } from '../shared/components/sign-up-holder/sign-up-holder.component';
 
 
@@ -10,20 +9,20 @@ import { SignUpHolderComponent } from '../shared/components/sign-up-holder/sign-
 })
 export class SignUpService{
 
+  firstVisit = false;
+
   constructor(
     private modalCtrl: ModalController,
-    private cookie: CookieService,
     private router: Router
   ) {
    }
 
 
    checkSignUp() {
-    const route = this.router.url;
-    const gotCookie =  this.cookie.get('shownPopUp');
-    if (!gotCookie && route.indexOf('cheers') === -1) {
-         this.showSignUp();
-    }
+      if (this.router.url.indexOf('cheers') === -1 && this.firstVisit) {
+           this.showSignUp();
+      }
+    
    }
 
  

@@ -23,6 +23,10 @@ export class SignUpHolderComponent implements OnInit {
     }
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    (window as any).dataLayer.push({
+      'event': 'seen-signup-popup'
+     });
+  }
 
 }

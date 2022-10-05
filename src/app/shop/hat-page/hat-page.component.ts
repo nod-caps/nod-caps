@@ -49,6 +49,7 @@ export class HatPageComponent implements OnInit {
     slidesPerView: 1,
     spaceBetween: 0,
     initialSlide: 0,
+    loop: true,
     pagination: true,
     navigation: {
       nextEl: '.swiper-button-next-hat',

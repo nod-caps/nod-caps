@@ -3,7 +3,6 @@ const stripe = require("stripe")(functions.config().stripe.secret_key);
 const admin = require("firebase-admin");
 // Sendgrid Config
 const sgMail = require("@sendgrid/mail");
-
 const API_KEY = functions.config().sendgrid.key;
 const TEMPLATE_ID = "d-75d3d51077944d4e9093a2d953609e9c";
 
@@ -21,8 +20,8 @@ exports.stripeCheckout = functions.https.onCall(async (data, context) => {
       allowed_countries: ["GB"],
     },
     mode: "payment",
-    success_url: "https://nod-caps.web.app/cheers?on=" + orderNumber,
-    cancel_url: "https://nod-caps.web.app/shop",
+    success_url: "http://localhost:8100/cheers?on=" + orderNumber,
+    cancel_url: "http://localhost:8100/shop",
   });
 
   if (!session.id) {

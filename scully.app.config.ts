@@ -19,6 +19,9 @@ export const config: ScullyConfig = {
     '/my-orders': {
        type: 'ignored',
      },
+     '/add-review': {
+      type: 'ignored',
+    },
     '/control': {
       type: 'ignored',
     },

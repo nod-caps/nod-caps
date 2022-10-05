@@ -31,26 +31,25 @@
 
 
         </ng-template>
-
       </swiper>
 
-      <ion-button class=" swiper-button-prev swiper-button-prev-hat" color="light" ><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
-       <ion-button class=" swiper-button-next swiper-button-next-hat" color="light" ><ion-icon  name="chevron-forward-outline"></ion-icon></ion-button>  
+      <ion-button class=" swiper-button-prev-hat" color="light" ><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
+       <ion-button class=" swiper-button-next-hat" color="light" ><ion-icon  name="chevron-forward-outline"></ion-icon></ion-button>  
 
       <div class="preview-images ion-hide-md-down" *ngIf="cap">
-        <div *ngIf="cap?.imageField1">
+        <div *ngIf="cap?.imageField1 && cap?.imageField1Small" (click)="slideTo(1)">
           <img loading="lazy" [alt]="cap?.name + ' image 1 small | nod caps'" [src]="cap?.imageField1Small">
 
         </div>
-        <div *ngIf="cap?.imageField2">
+        <div *ngIf="cap?.imageField2 && cap?.imageField2Small" (click)="slideTo(2)">
           <img loading="lazy" [alt]="cap?.name + ' image 2 small| nod caps'" [src]="cap?.imageField2Small">
 
         </div>
-        <div *ngIf="cap?.imageField3">
+        <div *ngIf="cap?.imageField3 && cap?.imageField3Small" (click)="slideTo(3)">
           <img loading="lazy" [alt]="cap?.name + ' image 3 small| nod caps'" [src]="cap?.imageField3Small">
 
         </div>
-        <div *ngIf="cap?.imageField4">
+        <div *ngIf="cap?.imageField4 && cap?.imageField4Small" (click)="slideTo(4)">
           <img loading="lazy" [alt]="cap?.name + ' image 4 small| nod caps'" [src]="cap?.imageField4Small">
 
         </div>
@@ -126,7 +125,7 @@
        
 
         <div class="add-basket" *ngIf="cap?.quantity !== 0">
-          <ion-button *ngIf="!alreadyInBasket" shape="round" color="primary" [disabled]="!cap" (click)="addToBasket(cap)">ADD TO BASKET</ion-button>
+          <ion-button *ngIf="!alreadyInBasket"  shape="round" color="primary" [disabled]="!cap" (click)="addToBasket(cap)"><span id="addToBasketTrack">ADD TO BASKET</span></ion-button>
           <ion-button *ngIf="alreadyInBasket" shape="round" color="primary" (click)="openBasket()">VIEW IN BASKET</ion-button>
         </div>
 
@@ -219,7 +218,7 @@
           </div>
           <div class="sec">
             <ion-item lines="none">
-              <ion-icon name="gift-outline"></ion-icon>
+              <img class="small-feather" src="./assets/img/logos/feather-logo-white-40px.png">
               <ion-label>A Feather in your Cap</ion-label>
             </ion-item>
             <p>Our signature feather logo represents our gift to you - we're giving you a feather in your cap. We hope you are proud to wear nod caps and gift to your friends and family. </p>

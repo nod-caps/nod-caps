@@ -46,7 +46,6 @@ export class ThankYouComponent implements OnInit {
       if (result) {
         if (result.data ) {
             this.order = result.data;
-            console.log('hello', this.order);
             this.checkIfExpired();
             // this.checkIfAContact();
             this.markAsSent();
@@ -216,6 +215,9 @@ sendMail(){
   }
 
   markAsSent() {
+    (window as any).dataLayer.push({
+      'event': 'purchased'
+     });
     this.fire.collection('orders').doc(this.order.docRef).update({emailSent: true});
   }
 

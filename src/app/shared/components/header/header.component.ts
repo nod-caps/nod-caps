@@ -45,7 +45,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
           this.checkedPopUp = true;
         }
       }
-    }, 5000)
+    }, 500)
    
   }
   ngOnDestroy(): void {

@@ -32,8 +32,8 @@
     }
   }
 
-  ion-card:hover {
-    transform: scale(1.05);
+  .card:hover {
+    transform: scale(0.98);
     animation: scaleUp 0.45s ease forwards;
     -webkit-animation: scaleUp 0.45s ease forwards;
     .shop-button-hover{
@@ -67,7 +67,7 @@
     bottom: 0px;
     width: 100%;
     background: rgb(0 0 0 / 80%);
-    color: white;
+    color: #f8f9fa;
     text-align: center;
     height: 40px;
     padding-top: 10px;
@@ -76,8 +76,20 @@
    
    }
 
-   ion-card{
+   .card{
     box-shadow: rgb(0 0 0 / 15%) 0px 3px 1px -2px, rgb(0 0 0 / 10%) 0px 2px 2px 0px, rgb(0 0 0 / 5%) 0px 1px 5px 0px;
+    height: 100%;
+    border-radius: 6px;
+
+   img{
+    border-radius: 6px;
+    height: 100%;
+    width:100%;
+    min-height:200px;
+   }
+   div{
+    border-radius: 0px 0px 6px 6px;
+   }
 }   
 
 @keyframes scaleUp {
@@ -113,3 +125,17 @@ swiper {
   margin-bottom: 20px;
 }
 
+.pos-rel{
+  position: relative;
+  padding: 10px 0px;
+  min-height: 220px;
+}
+
+.swiper-button-next{
+  right:-20px;
+}
+
+
+.swiper-button-prev{
+  left:-20px;
+}

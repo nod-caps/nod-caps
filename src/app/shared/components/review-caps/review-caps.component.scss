@@ -17,8 +17,16 @@
         margin-bottom: 15px;
         margin-top: 30px;
     }
- }
+ } 
 
+
+ .no-order{
+    height: 100px;
+    text-align: center;
+    ion-spinner{
+        margin-top: 50px;
+    }
+}
 .review-section {
     margin-top: 30px;
     border-bottom: 1px solid #c4c4c4;
@@ -76,14 +84,6 @@ ion-row{
 }
 
 
-.no-order{
-    height: 100px;
-    text-align: center;
-    ion-spinner{
-        margin-top: 50px;
-    }
-}
-
 @keyframes fadeIn {
     0% {
       opacity:0;
@@ -119,11 +119,4 @@ ion-row{
         max-width: 800px;
         margin-left: auto;
         margin-right: auto;
-  }
-
-  .order-summary{
-    margin-bottom: 30px;
-    strong {
-        font-size: 20px;
-    }
   }

@@ -3,8 +3,8 @@
     <ion-segment-button value="cap">
       <ion-label>{{cap?.name}} <span *ngIf="capReviews">({{capReviews.length}})</span></ion-label>
     </ion-segment-button>
-    <ion-segment-button value="other">
-      <ion-label> Other <span *ngIf="otherReviews">({{otherReviews.length}})</span></ion-label>
+    <ion-segment-button value="other" id="clickedOtherTrack">
+      <ion-label>Other <span *ngIf="otherReviews">({{otherReviews.length}})</span></ion-label>
     </ion-segment-button>
   </ion-segment>
 

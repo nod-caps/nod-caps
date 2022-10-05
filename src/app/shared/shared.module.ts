@@ -36,6 +36,7 @@ import { DeliveryComponent } from '../admin/delivery/delivery.component';
 import { TopCapsComponent } from './components/top-caps/top-caps.component';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ReviewCapsComponent } from './components/review-caps/review-caps.component';
 // import { MaintenanceComponent } from './components/maintenance/maintenance.component';
 
 
@@ -83,6 +84,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
       TermsComponent,
       TopCapsComponent, 
       NotFoundComponent,
+      ReviewCapsComponent
       // MaintenanceComponent
 
   ],
@@ -117,6 +119,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     TermsComponent, 
     TopCapsComponent, 
     NotFoundComponent,
+    ReviewCapsComponent
     // MaintenanceComponent
   ]
 })

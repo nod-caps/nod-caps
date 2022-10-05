@@ -10,7 +10,7 @@ import { SeoService } from '../services/seo.service';
 export class ControlComponent implements OnInit {
 
   collections: any[] = [];
-
+  summaryCaps
 
   constructor(
     private router: Router,
@@ -21,6 +21,8 @@ export class ControlComponent implements OnInit {
   ngOnInit() {
     this.seo.setRobots();
   }
+
+
 
 
   goTo(link: string){

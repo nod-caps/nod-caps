@@ -33,12 +33,12 @@
         </div>
     
         <div class="ion-text-left ion-hide-md-up">
-          <ion-button *ngIf="!item.cap.review" class=" review-button" size="small"  color="tertiary" shape="round" (click)="review(item.cap, i)">REVIEW</ion-button>
+          <ion-button *ngIf="!item.cap.review" class=" review-button" size="small"  color="tertiary" shape="round" (click)="review(item.cap, i)"><span id="openedAddReviewTrack">REVIEW</span></ion-button>
           <ion-button  color="light" shape="round" size="small"   (click)="buyAgain(item.cap)">BUY AGAIN</ion-button>
         </div>
       </ion-col>
       <ion-col size="3" class="ion-text-left ion-hide-md-down">
-        <ion-button *ngIf="!item.cap.review" class=" review-button" size="small" expand="block"  color="tertiary" shape="round" (click)="review(item.cap, i)">SEND REVIEW</ion-button>
+        <ion-button *ngIf="!item.cap.review" class=" review-button" size="small" expand="block"  color="tertiary" shape="round" (click)="review(item.cap, i)"><span id="openedAddReviewTrack">SEND REVIEW</span></ion-button>
         <ion-button  color="light" shape="round" expand="block" size="small"  (click)="buyAgain(item.cap)">BUY AGAIN</ion-button>
       </ion-col>
       

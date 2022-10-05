@@ -36,7 +36,6 @@ form div {
     max-width: 500px;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 20px;
     .error-message {
         margin-left:10px;
     }
@@ -50,6 +49,8 @@ ion-input{
     margin-right: 20px;
 }
 
+
+
 .in-footer{
     ion-item{
         --background: transparent;
@@ -58,14 +59,16 @@ ion-input{
         }
        
     }
+
+    form div{
+        background: #323232;
+    }
     .agree ion-label{
         color: #f8f9fa!important;
     }
 }
 
-@media(max-width: 768px){
     ion-item{
         --padding-start:0px;
         --padding-end:0px;
     }
-}

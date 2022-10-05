@@ -31,7 +31,9 @@
 @import 'swiper/scss/pagination';
 
 
-
+ion-content, div{
+  --ion-text-color: #212529;
+}
 ion-content{
     --margin-top: 60px;
 }
@@ -44,6 +46,9 @@ ion-content{
     h1{
       margin-bottom:30px;
     }
+}
+app-social-slider .swiper-slide{
+ height: auto;
 }
 
 .basket-modal .modal-wrapper{
@@ -58,6 +63,7 @@ ion-content{
     bottom: 0px;
     position: absolute;
     height:50%;
+    width:100%;
     border-radius: 10px 10px 0px 0px;
 }
 
@@ -73,8 +79,7 @@ ion-content{
         width: 100%;
     }
     .cookie-modal .modal-wrapper {
-        height:55%;
-        width: 95%;
+        height:85%;
     }
     .sign-up-modal .modal-wrapper {
         width: 95%;
@@ -222,7 +227,7 @@ width: 95%;
 
   .ion-button-primary {
     background: #22472a!important;
-    color:#fff!important;
+    color:#f8f9fa!important;
 
   }
 
@@ -241,3 +246,9 @@ width: 95%;
   .header-button:hover{
     background:rgba(255,255,255,0.08);
   }
+
+  
+
+  .error-message{
+    color: var(--ion-color-danger);
+}

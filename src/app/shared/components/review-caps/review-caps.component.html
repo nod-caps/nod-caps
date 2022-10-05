@@ -1,0 +1,61 @@
+<ion-content>
+
+
+  <div class="top-holder-section">
+    <div>
+      <h1>Please Add A Review</h1> 
+    </div>
+  </div>
+
+  <div class="middle-container">
+
+  <p>Thanks for your order! Give others a nod in the right direction by leaving us a review. Or maybe you like your cap so much, you want to buy it again to gift to a friend...</p>
+  <p>Please find your cap(s) below and leave a review.</p>
+  <div class="no-order" *ngIf="!caps">
+    <ion-spinner color="tertiary"></ion-spinner>
+  </div>
+
+  <div class="review-section" *ngIf="caps">
+   
+  
+
+    <ion-row *ngFor="let item of caps; let i = index">
+      <ion-col size="2" class="first-col">
+          <img loading="lazy" [alt]="item.name +  '| nod caps'" [src]="item.imageField1Mobile" (click)="buyAgain(item)">
+      </ion-col>
+      <ion-col size="10" size-md="7" class="second-col">
+        <div>
+          <h2 (click)="buyAgain(item)">{{item.name}}</h2>
+          <p class="description ion-hide-md-down">{{item.description}}</p>
+        </div>
+    
+        <div class="ion-text-left ion-hide-md-up">
+          <ion-button *ngIf="!item.review" class=" review-button" size="small"  color="tertiary" shape="round" (click)="review(item, i)"><span id="openedAddReviewTrack">REVIEW</span></ion-button>
+          <ion-button  color="light" shape="round" size="small"   (click)="buyAgain(item)">BUY</ion-button>
+        </div>
+      </ion-col>
+      <ion-col size="3" class="ion-text-left ion-hide-md-down">
+        <ion-button *ngIf="!item.review" class=" review-button" size="small" expand="block"  color="tertiary" shape="round" (click)="review(item, i)"><span id="openedAddReviewTrack">SEND REVIEW</span></ion-button>
+        <ion-button  color="light" shape="round" expand="block" size="small"  (click)="buyAgain(item)">BUY</ion-button>
+      </ion-col>
+      
+     
+      
+        
+    </ion-row>
+  </div>
+
+  <div class="buy-more ion-text-center">
+    <p>Looking to add another nod cap to your wardrobe?  Then head to the Shop.</p>
+    <a class="ion-button ion-button-primary" [routerLink]="'/shop'">BROWSE ALL CAPS</a>
+  </div>
+
+</div>
+
+
+  <div class="socials">
+   <app-social-slider></app-social-slider>
+  </div>
+
+<app-footer></app-footer>
+</ion-content>
