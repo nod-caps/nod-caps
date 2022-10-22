@@ -10,9 +10,9 @@ a{
 
 @media(min-width: 768px) {
   ion-card:hover {
-    transform: scale(1.05);
-    animation: scaleUp 0.45s ease forwards;
-    -webkit-animation: scaleUp 0.45s ease forwards;
+    transform: scale(1.01);
+    animation: scaleUp 0.4s ease forwards;
+    -webkit-animation: scaleUp 0.4s ease forwards;
     .shop-button-hover{
       display:flex;
       text-align: center;
@@ -20,10 +20,22 @@ a{
       top: 50%;
       width: 100px;
       left: calc(50% - 50px);
-      animation: slideUpBut 0.45s ease forwards;
-      -webkit-animation: slideUpBut 0.45s ease forwards;
+       animation: slideUpBut 0.45s ease forwards;
+       -webkit-animation: slideUpBut 0.45s ease forwards;
     }
+    // .cap-skel--1{
+    //   display:none;
+    // }
+    // .cap-skel--2{
+    //   display:block!important;
+    // }
   }
+}
+
+
+
+.cap-skel--2{
+  display: none;
 }
 
 
@@ -34,21 +46,24 @@ a{
 
 
 
-   
+   ion-card.fake{
+    height:auto;
+   }
 ion-card{
     overflow:visible;
+    text-overflow: ellipsis;
     max-width: 275px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom:30px;
+    height:360px;
     ion-icon{
      color: #7ac08e
     }
     img{
       width: 90%;
-      margin-left: 5%;
-      transform: translate(0px, -15px);
-      border-radius: 4px;
+      margin: 5%;
+      border-radius: 4px 4px;
       box-shadow: 0px 2px 4px #01332840;
   }
   }
@@ -101,12 +116,20 @@ ion-card-title{
     display:inline-block;
   }
 
+  .fake .cap-skel{
+   height: 245px;
+  }
+
   .cap-skel{
-    height:100%;
-    min-height: 240px;
+   min-height: 235px;
+   }
+
+  ion-card-header{
+    padding-top:0px;
   }
 
   .image-holder {
+    // height:245px;
     position: relative;
     .out-of-stock{
     position: absolute;

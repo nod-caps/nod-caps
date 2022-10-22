@@ -139,7 +139,8 @@
               </ion-item>
               <div class="ion-padding" slot="content" *ngIf="accordionNumber === 1" [ngClass]="accordionNumber === 1 ? 'active':''">
                 {{preLoadCap.description}} <br><br>
-                With an adjustable rear buckle strap and an embroidered feather logo on the front, it's the perfect accessory to complete any look. 
+                <span *ngIf="!preLoadCap">With an adjustable rear buckle strap and an embroidered feather logo on the front, it's the perfect accessory to complete any look. </span>
+                
               </div>
            
               <ion-item slot="header" button="true"  details="none" (click)="accordion(2)">
@@ -199,7 +200,7 @@
 
       <ion-row class="gift-row">
         <ion-col size="12" size-md="5" class="first-col">
-          <img loading="lazy" src="https://projecttwo-c4839.web.app/assets/img/social-slider/social-slider4.jpeg">
+          <img loading="lazy" [src]="'./assets/img/packaging.png'">
         </ion-col>
         <ion-col size="12" size-md="7">
           <div >
@@ -231,8 +232,8 @@
 
   <app-social-slider class="learn-more"></app-social-slider>
 
-<div class="reviews" id="review-comp">
-  <div class="container">
+<div class="reviews" id="review-comp" *ngIf="capNameHyp">
+  <div class="container" [ngClass]="'review-' + capNameHyp">
 
     <h1 class="ion-text-center">{{cap?.name}} Reviews</h1>
       <div  class="ratings-big">

@@ -3,6 +3,7 @@ User-agent: *
 Disallow: /control/
 Disallow: /admin-login
 Disallow: /cheers
+Disallow: /add-review
 Disallow: /my-orders
 
-Sitemap: https://nodcaps.com/sitemap.xml
+Sitemap: https://www.nodcaps.com/sitemap.xml

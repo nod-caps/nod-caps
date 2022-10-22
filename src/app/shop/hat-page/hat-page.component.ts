@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, ModalController, ToastController } from '@ionic/angular';
 import { BasketService } from 'src/app/services/basket.service';
@@ -22,7 +22,7 @@ SwiperCore.use([Navigation, Autoplay, Keyboard, Pagination, Scrollbar, Zoom, ]);
   templateUrl: './hat-page.component.html',
   styleUrls: ['./hat-page.component.scss'],
 })
-export class HatPageComponent implements OnInit {
+export class HatPageComponent implements OnInit, AfterViewInit {
 
   cap: any;
   preLoadCap: any = {};
@@ -41,6 +41,7 @@ export class HatPageComponent implements OnInit {
   capName = '';
   isMobile = true;
   hasHalf = false;
+  capNameHyp = '';
 
 
   @ViewChild('hatSwiper') swiper: SwiperComponent;
@@ -215,18 +216,15 @@ if (this.cap.quantity < this.capBasketMax) {
     }
 
      this.collectionRef = this.route.snapshot.paramMap.get('collectionRef');
-     const capNameHyp = this.route.snapshot.paramMap.get('capNameHyphenated');
-    this.capName = capNameHyp.replace(/-/g, ' ');
+     this.capNameHyp = this.route.snapshot.paramMap.get('capNameHyphenated');
+    this.capName = this.capNameHyp.replace(/-/g, ' ');
     this.preLoadCap = this.quickCap.getCap(this.capName);
-    console.log('hello', this.preLoadCap);
     if (this.preLoadCap) {
       this.seo.generateTags({title: this.preLoadCap.metaTitle, description: this.preLoadCap.metaDescription, image: this.preLoadCap.imageMobile });
-      this.capRef = this.collectionRef + '_' + capNameHyp;
+      this.capRef = this.collectionRef + '_' + this.capNameHyp;
       this.getCap();
       this.getOtherHats();
       this.checkInBasket();
-      this.checkOnScreen();
-      this.checkOnScreenLearn();
     } else {
         this.showToast('Sorry! There was no cap found, redirecting to shop');
         this.router.navigateByUrl('/shop');
@@ -234,8 +232,13 @@ if (this.cap.quantity < this.capBasketMax) {
     
   }
 
+  ngAfterViewInit(): void {
+      this.checkOnScreen();
+  }
+
+
   checkOnScreen(){
-    const reviews = document.querySelector('.reviews');
+    const reviews = document.querySelector('.review-' + this.capNameHyp);
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.intersectionRatio > 0) {
@@ -247,19 +250,6 @@ if (this.cap.quantity < this.capBasketMax) {
     observer.observe(reviews);
   }
 
-  checkOnScreenLearn(){
-    const learn = document.querySelector('.learn-more');
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.intersectionRatio > 0) {
-          learn.classList.add('slideInLeft');
-          observer.unobserve(entry.target);
-        } 
-      });
-    });
-    observer.observe(learn);
-  }
   
 
     scroll(){

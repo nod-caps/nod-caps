@@ -13,6 +13,8 @@ export class CapCardComponent implements OnInit {
   displayRating  = 5;
   wholeStars = 5;
   hasHalf = false;
+  imgSrc = '';
+  isMobile = false;
   constructor(
     private router: Router
   ) { }
@@ -23,6 +25,12 @@ export class CapCardComponent implements OnInit {
 
     
   ngOnInit() {
+    if (window.innerWidth < 768){
+      this.isMobile=true;
+    }
+    if (this.cap) {
+      this.imgSrc = this.cap.imageField1Mobile
+    }
     if (this.cap?.rating) {
       this.displayRating = Math.round(this.cap.rating*2) / 2;
       this.wholeStars = Math.floor(this.displayRating);

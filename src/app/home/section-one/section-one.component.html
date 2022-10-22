@@ -1,15 +1,16 @@
 <div class="section2">
   <div class="collection-div">
 
-  <h2>The Original Collection</h2>
+  <!-- <h2>The Original Collection</h2> -->
     <app-cap-display [capArray] = "caps"></app-cap-display>
     <app-top-caps *ngIf="caps.length === 0"></app-top-caps>
-</div>
-  
+</div> 
   
 
+<app-boast-banner></app-boast-banner>
 
-<div   [lazyLoad]="'https://projecttwo-c4839.web.app/assets/img/hiking-header.webp'" class="green-info-section">
+
+<div   [lazyLoad]="'./assets/img/banner-background.png'" class="green-info-section">
     <ion-row>
       <ion-col size="12" size-md="4" class="ion-text-center">
         <h2>Why We Started</h2>

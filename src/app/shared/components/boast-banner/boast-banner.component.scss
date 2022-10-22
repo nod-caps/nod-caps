@@ -7,7 +7,15 @@ ion-row {
 }
 
 swiper{
-    padding-bottom: 20px;
+    margin-bottom: 50px;
+}
+
+@media(min-width:768px) {
+    swiper{
+        border-radius:10px;
+        width: 94%;
+    }
+
 }
 
 ion-item{

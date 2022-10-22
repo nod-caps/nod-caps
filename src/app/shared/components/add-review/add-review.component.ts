@@ -133,7 +133,9 @@ export class AddReviewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.reviewForm.get('name').setValue(this.order.customerName)
+    if (this.order) {
+      this.reviewForm.get('name').setValue(this.order.customerName)
+    }
   }
 
 }

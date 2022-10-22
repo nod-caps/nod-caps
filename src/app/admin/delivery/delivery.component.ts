@@ -13,7 +13,7 @@ export class DeliveryComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.seo.generateTags({title: 'Delivery - UK Baseball Caps | nod caps', description:'Free UK Delivery. We aim to deliver your nod cap within 2-4 working days', image: '/assets/img/cap-image.jpg' });
+    this.seo.generateTags({title: 'Delivery - UK Baseball Caps | nod caps', description:'Free UK Delivery. We aim to deliver your nod cap within 2-4 working days' });
 
   }
 

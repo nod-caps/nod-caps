@@ -2,7 +2,7 @@
 
 ion-row{
     background: #323232;
-    padding: 25px 50px;
+    padding: 25px 50px 100px 50px;
 }
 
 ion-col{
@@ -82,7 +82,7 @@ p{
 
 @media(max-width:768px) {
     ion-row{
-        padding: 25px 25px 75px 25px;
+        padding: 25px 25px 150px 25px;
     }
     .sign-up ion-button{
         width:90px!important;

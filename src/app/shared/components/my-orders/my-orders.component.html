@@ -23,18 +23,18 @@
   
 
     <ion-row *ngFor="let item of order?.lineItems; let i = index">
-      <ion-col size="2" class="first-col">
+      <ion-col size="3" size-md="2"  class="first-col">
           <img loading="lazy" [alt]="item.cap.name +  '| nod caps'" [src]="item.cap.imageField1Mobile" (click)="buyAgain(item.cap)">
       </ion-col>
-      <ion-col size="10" size-md="7" class="second-col">
+      <ion-col size="9" size-md="7" class="second-col">
         <div>
           <h2 (click)="buyAgain(item.cap)">{{item.cap.name}}</h2>
           <p class="description ion-hide-md-down">{{item.cap.description}}</p>
         </div>
     
         <div class="ion-text-left ion-hide-md-up">
-          <ion-button *ngIf="!item.cap.review" class=" review-button" size="small"  color="tertiary" shape="round" (click)="review(item.cap, i)"><span id="openedAddReviewTrack">REVIEW</span></ion-button>
-          <ion-button  color="light" shape="round" size="small"   (click)="buyAgain(item.cap)">BUY AGAIN</ion-button>
+          <ion-button *ngIf="!item.cap.review" class=" review-button mob-button" size="small"  color="tertiary" shape="round" (click)="review(item.cap, i)"><span id="openedAddReviewTrack">REVIEW</span></ion-button>
+          <ion-button  color="light" shape="round" size="small"  class="mob-button"  (click)="buyAgain(item.cap)">BUY AGAIN</ion-button>
         </div>
       </ion-col>
       <ion-col size="3" class="ion-text-left ion-hide-md-down">
@@ -45,7 +45,7 @@
      
       
         
-    </ion-row>
+    </ion-row> 
   </div>
 
   <div class="buy-more ion-text-center">

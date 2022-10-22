@@ -50,11 +50,14 @@ changeFocus() {
   this.lostFocus = true;
 }
 signUp () {
- let ask_review = "";
  let orderNumber = ""
+ let customFields = {};
   if (this.orderNumber) {
-    ask_review = 'ask_review';
      orderNumber =this.orderNumber;
+      customFields = {
+      e1_T: 'ask_review',
+      e3_T: this.orderNumber
+     }
   }
 
 
@@ -66,14 +69,15 @@ signUp () {
       var randomNum = Math.floor(Math.random() * 7);
       randomUserNumber = randomUserNumber.slice(0, randomNum) + randomLet + randomUserNumber.slice(randomNum);
     }  
+
+    // to get the custom field id just look at network when you go to the custom fields section of sendgrid
    this.sending = true;
    this.fire
     .collection('contacts')
     .add({
       email: this.signUpForm.get('email').value,
-      line: ask_review,
-      phone_number: orderNumber,
       unique_name: randomUserNumber,
+      custom_fields: customFields
     }).then(async (doc: any)=> {
       if (doc) {
          this.sending = false;

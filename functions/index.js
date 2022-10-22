@@ -1,11 +1,10 @@
 const functions = require("firebase-functions");
-const stripe = require("stripe")(functions.config().stripe.secret_key);
+const stripe = require("stripe")(functions.config().stripe_test.secret_key);
 const admin = require("firebase-admin");
 // Sendgrid Config
 const sgMail = require("@sendgrid/mail");
 const API_KEY = functions.config().sendgrid.key;
 const TEMPLATE_ID = "d-75d3d51077944d4e9093a2d953609e9c";
-
 
 sgMail.setApiKey(API_KEY);
 admin.initializeApp();
@@ -20,8 +19,8 @@ exports.stripeCheckout = functions.https.onCall(async (data, context) => {
       allowed_countries: ["GB"],
     },
     mode: "payment",
-    success_url: "http://localhost:8100/cheers?on=" + orderNumber,
-    cancel_url: "http://localhost:8100/shop",
+    success_url: "http://www.nodcaps.com/cheers?on=" + orderNumber,
+    cancel_url: "http://www.nodcaps.com/shop",
   });
 
   if (!session.id) {
@@ -35,7 +34,7 @@ exports.stripeWebhook = functions.https.onRequest(async (req, res) => {
   let event;
 
   try {
-    const whSec = functions.config().stripe.payment_webhook_secret;
+    const whSec = functions.config().stripe_test.payment_webhook_secret;
 
     event = stripe.webhooks.constructEvent(
         req.rawBody,
@@ -192,7 +191,7 @@ exports.checkIfAContactUniqueName = functions.https.onCall(async (data, context)
       .then( async function(querySnapshot) {
         if (!querySnapshot.empty) {
           querySnapshot.forEach(function(document) {
-            if (document.data().meta.state === "SUCCESS" && document.data().phone_number === orderNumber) {
+            if (document.data().meta.state === "SUCCESS" && document.data().custom_fields.e3_T === orderNumber) {
               emailAddress = document.data().email;
             }
           });
@@ -278,7 +277,12 @@ exports.getOrderWithOrderNumber = functions.https.onCall(async (data, context) =
                       querySnapshot.forEach(function(document) {
                         if (document.data().meta.state === "SUCCESS") {
                           order.showOptIn = false;
-                          document.ref.update({line: "ask_review", phone_number: order.orderNumber});
+                          document.ref.update({
+                            custom_fields: {
+                              e1_T: "ask_review",
+                              e3_T: order.orderNumber,
+                            },
+                          });
                         }
                       });
                     }

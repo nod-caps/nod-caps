@@ -196,9 +196,9 @@ async showError(message: string) {
     }*/
   }
 
-  addReviewToExsistingContact() {
-    this.fire.collection('contacts').doc(this.contactRef).update({line: 'ask_review'});  
-  }
+  // addReviewToExsistingContact() {
+  //   this.fire.collection('contacts').doc(this.contactRef).update({line: 'ask_review'});  
+  // }
 
 sendMail(){
      const functions = getFunctions();
@@ -210,7 +210,7 @@ sendMail(){
         this.showError('There was an error sending your email, please contact us')
       }
     }).catch((err) => {
-      this.showError('There was an error sending your email, please contact us1')
+      this.showError('There was an error sending your email, please contact us')
     });
   }
 

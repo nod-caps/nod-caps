@@ -16,6 +16,10 @@ import { ThankYouComponent } from './shop/thank-you/thank-you.component';
 
 const routes: Routes = [
   {
+    path: '',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+  },
+  {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
@@ -27,19 +31,19 @@ const routes: Routes = [
     path: 'contact',
     loadChildren: () => import('./contact/contact.module').then( m => m.ContactModule)
   },
-  {
+  /*{
     path: 'control',
     canActivate: [ AuthService ],
     loadChildren: () => import('./control/control.module').then( m => m.ControlModule)
-  },
+  },*/
   {
     path: 'terms',
     component: TermsComponent,
   },
-  {
+  /*{
     path: 'admin-login',
     component: AdminLoginComponent,
-  },
+  },*/
   {
     path: 'returns',
     component: ReturnsComponent,
@@ -47,6 +51,10 @@ const routes: Routes = [
   {
   path: 'delivery',
     component: DeliveryComponent,
+  },
+  {
+    path: 'add-review',
+    component: ReviewCapsComponent,
   },
   {
     path: 'privacy',
@@ -69,16 +77,6 @@ const routes: Routes = [
     path: 'my-orders',
     component: MyOrdersComponent,
   }, 
-  {
-    path: 'add-review',
-    component: ReviewCapsComponent,
-  },
-
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
   {path: '**', redirectTo: '/404'},
   // add the below and remove the above for maintenance
 /*

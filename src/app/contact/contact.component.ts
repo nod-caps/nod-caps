@@ -76,7 +76,7 @@ export class ContactComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.seo.generateTags({title: 'Contact Us - UK Baseball Caps | nod caps', description:'Contact nod caps for help with returns, orders, product queries and more.', image: '/assets/img/cap-image.jpg' });
+    this.seo.generateTags({title: 'Contact Us - UK Baseball Caps | nod caps', description:'Contact nod caps for help with returns, orders, product queries and more.' });
 
   }
 

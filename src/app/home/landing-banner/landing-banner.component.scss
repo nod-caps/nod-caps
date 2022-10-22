@@ -1,8 +1,29 @@
 @media (max-width: 768px) {
-  .center-text h1{
-font-size:32px!important;
+  .banner-text{
+    width: 95%!important;
+    text-align: center;
+    margin-left: 2.5%!important;
   }
+  .landing-banner{
+    height:420px!important;
+    img{
+      filter:brightness(0.8);
+    }
+  }
+
+  .text-1{
+    font-size:41px!important;
+  }
+  .text-2{
+    font-size: 34px!important;
+    margin-bottom:10px!important;
+
+  }
+
 }
+
+
+
 
 
 
@@ -13,13 +34,35 @@ font-size:32px!important;
   img{
     object-fit:cover;
     height:100%;
-    width:100%;
+    width:100%;      
+    filter:brightness(0.8);
+
   }
   .banner-text{
     position:absolute;
-    bottom:40px;
-    padding: 0px 25px;
+    top:40px;
+    padding: 0px 45px;
   }
+  .text-1{
+    font-size:61px;
+    color: #F5F5F5;
+    text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    margin-bottom:40px;
+  }
+  .text-2{
+    font-size:41px;
+    color: #F5F5F5;
+    text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    margin-bottom:35px;
+
+  }
+}
+
+h1{
+  font-weight: bold;  
+  font-family:'Bold';
+  color: #f8f9fa;
+
 }
 
 .fancy-button:after {
@@ -141,8 +184,8 @@ a{
   a{
     height: 50px;
     margin-top: 20px;
-    padding: 16px 25px;
-    font-weight: bold;
+    padding: 15px 25px;
+
     //color: #212529;
     /* padding-bottom: 10px; */
    // text-decoration: none;

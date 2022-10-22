@@ -13,7 +13,7 @@ export class PrivacyComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.seo.generateTags({title: 'Privacy Policy - UK Baseball Caps | nod caps', description:'Please read our privacy policy for using nod caps.', image: '/assets/img/cap-image.jpg' });
+    this.seo.generateTags({title: 'Privacy Policy - UK Baseball Caps | nod caps', description:'Please read our privacy policy for using nod caps.' });
 
   }
 

@@ -22,7 +22,7 @@ export class BoastBannerComponent implements OnInit {
     slidesPerView: this.slidesPerView,
     spaceBetween: 0,
     initialSlide: 2,
-    pagination: true,
+    // pagination: true,
     loop: true,
     autoplay: {
       delay: 5000,

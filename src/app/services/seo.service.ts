@@ -16,7 +16,11 @@ export class SeoService {
   }
 
   generateTags({ title = '', description = '', image = '' }) {
-    const url = 'https://projecttwo-c4839.web.app' + this.router.url + '/';
+
+    if (image === '') {
+      image = 'https://www.nodcaps.com/assets/img/nod-caps-share.png'
+    }
+    const url = 'https://www.nodcaps.com/' + this.router.url;
     this.title.setTitle(title);
     // this.meta.updateTag({ name: 'og:url', property:'og:url', content: `https://firestarter.fireship.io${this.router.url}` });
     this.meta.addTag({ name:'og:title', property:'og:title', content: title });
@@ -26,7 +30,7 @@ export class SeoService {
 
     this.meta.addTag({ name:'og:image', property:'og:image', content: image });
     this.meta.addTag({name:'twitter:card', content: "summary_large_image"});
-    this.meta.addTag({name:'twitter:creator', content: "@nodcaps"});
+    this.meta.addTag({name:'twitter:creator', content: "@nod_caps"});
     this.meta.addTag({ name: 'twitter:title', content: title });
     this.meta.addTag({ name: 'twitter:description', content: description });    
     this.meta.addTag({ name: 'twitter:image', content: image });   

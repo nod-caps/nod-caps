@@ -1,9 +1,9 @@
 <ion-content>
 <div class="top-row-new">
-  <img src="/assets/img/hiking-header.webp">
+  <img src="/assets/img/banner-background.png">
   <div class="top-text">
-    <h1>Shop nod caps</h1>
-    <p>The dad cap that's not just for dads. Our caps offer a relaxed and comfortable fit and can be adjusted to fit your style  -  they're designed to fit everyone and anyone!</p>
+    <h1>The Original Collection</h1>
+    <p>The dad cap that's not just for dads. Our caps offer a relaxed fit and are designed for everyone and anyone!</p>
   </div>
 </div>
 
@@ -13,7 +13,7 @@
 
   <!--<h2>{{collection.name}}</h2>-->
   <!--<ion-button color="tertiary" shape="round" (click)="goToCollection(collection)">To Collection</ion-button>-->
-    <h2>The Original Collection</h2>
+    <!-- <h2>The Original Collection</h2> -->
     <app-top-caps *ngIf="caps.length === 0"></app-top-caps>
 
 
@@ -33,12 +33,12 @@
   <ion-row class="starting-with">
     <ion-col size-md="6" size="12">
       <h1>Starting with the original collection</h1>
-      <p>We chose to start simple, we wish that we could go out and manufacture 20 different styles of dad caps, baseball caps, unstructured caps, cotten caps, cord caps.. I could go on. However as we are a small team we are choosing to build up to that stage! (aka couldn't afford to go all out)</p>
+      <p>We chose to start simple, we wish that we could go out and manufacture 20 different styles of dad caps, baseball caps, unstructured caps, cotton caps, cord caps.. I could go on. However as we are a small team we are choosing to build up to that stage! (aka couldn't afford to go all out)</p>
         <p> Hopefully starting with this small but great collection of dad caps we can get the ball rolling and can offer you plenty more designs down the road.</p>
       <a class="ion-button" [routerLink]="['/shop/The-Original-Collection/Down-to-Earth']">Our Favourite</a>
     </ion-col>
     <ion-col class="second-col" size-md="6" size="12">
-      <img loading="lazy" src="https://projecttwo-c4839.web.app/assets/img/social-slider/social-slider4.jpeg">
+      <img loading="lazy" [src]="'./assets/img/our-favourite.png'">
     </ion-col>
   </ion-row>
 

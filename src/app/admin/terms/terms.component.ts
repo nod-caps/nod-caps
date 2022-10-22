@@ -13,7 +13,7 @@ export class TermsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.seo.generateTags({title: 'Terms & Conditions - UK Baseball Caps | nod caps', description:'Discover the full terms and conditions for using nod caps. Detailed information on the terms and conditions for using nod caps.', image: '/assets/img/cap-image.jpg' });
+    this.seo.generateTags({title: 'Terms & Conditions - UK Baseball Caps | nod caps', description:'Discover the full terms and conditions for using nod caps. Detailed information on the terms and conditions for using nod caps.'});
 
   }
 

@@ -5,8 +5,22 @@
 
 @font-face {
   font-family: AppFont;
-  src: url("../assets/fonts/AvenirNext-Medium.otf"); //change url accordingly
+  src: url("../assets/fonts/poppins/Poppins-Regular.ttf"); //change url accordingly
+
+  font-weight: normal;
+  font-style: normal;
+  font-variant:normal;
   }
+
+  @font-face {
+    font-family: 'Bold';
+    src: url("../assets/fonts/poppins/Poppins-SemiBold.ttf"); //change url accordingly
+    font-weight: normal
+    
+    ;
+    font-style: normal;
+    font-variant:normal;}
+
   
 
 :root {

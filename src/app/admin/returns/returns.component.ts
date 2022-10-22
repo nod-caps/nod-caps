@@ -13,7 +13,7 @@ export class ReturnsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.seo.generateTags({title: 'Returns - UK Baseball Caps | nod caps', description:'We happily accept the return of unused and undamaged items within 30 days of purchase.', image: '/assets/img/cap-image.jpg' });
+    this.seo.generateTags({title: 'Returns - UK Baseball Caps | nod caps', description:'We happily accept the return of unused and undamaged items within 30 days of purchase.' });
 
   }
 

@@ -52,12 +52,18 @@ export class ReviewsComponent implements OnInit {
     this.otherReviews = [];
     const q = query(collection(this.firestore, 'reviews'), where("collectionRef", "==", this.cap.collectionRef));
     const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
+    let i = 1;
+    querySnapshot.forEach((doc: any) => {
+
       if (doc.data().capRef !== this.cap.capRef) {
         this.otherReviews.push(doc.data());
+        console.log('hello',doc.data() );
       }
+      if (i === querySnapshot.size){
+        this.loadingOtherReviews = false;
+      }
+      i++
     });
-    this.loadingOtherReviews = false;
 
   }
 
@@ -66,6 +72,7 @@ export class ReviewsComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('hello');
     this.getCapReviews();
   }
 

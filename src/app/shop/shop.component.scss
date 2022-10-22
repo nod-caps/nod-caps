@@ -9,7 +9,10 @@
 
 .starting-with{
     h1{
-        color:#22472A
+        color:#22472A;
+        font-weight: bold;
+        font-family: 'Bold';
+
     }
     ion-col{
         padding: 40px;
@@ -17,7 +20,8 @@
     .second-col{
         text-align: center;
         img {
-            border-radius: 20px;
+            border-radius: 4px;
+            width:400px;
         }
     }
     
@@ -25,7 +29,7 @@
 }
 
 .top-row-new{
-    height:250px;
+    height:240px;
     position: relative;
     img{
       object-fit:cover;
@@ -37,10 +41,19 @@
         width:100%;
         position: absolute;
         bottom: 0px;
-        padding: 50px 25px;
+        padding: 30px 25px;
         text-align: center;
         color: #f8f9fa;
         background: rgba(0,0,0,0.4);
+        h1{
+            font-size:46px;
+            font-weight: bold;
+            font-family: 'Bold';
+
+        }
+        p{
+            font-size:20px;
+        }
     }
 }
 
@@ -79,8 +92,13 @@
 }
 
 @media (max-width: 768px) {
-    .top-row{
-       margin-top:44px;
+    .top-row-new{
+        height:300px!important;
+       h1{
+        font-size:36px!important;
+       }p{
+        font-size:16px!important;
+       }
     };
     .caps-div h2{
         margin-left: 10px;

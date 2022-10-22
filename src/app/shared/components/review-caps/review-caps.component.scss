@@ -6,7 +6,7 @@
         font-size: 18px
     }
     .top-holder-section{
-        margin-top: 44px;
+       // margin-top: 44px;
     }
     .review-button{
         margin-right:10px;
@@ -65,6 +65,10 @@ ion-row{
 }
 
 
+.mob-button{
+    width:85px;
+}
+
 
 
 .description{
@@ -94,7 +98,7 @@ ion-row{
   }
 
   .top-holder-section{
-    background-image: url('/assets/img/hiking-header.jpg');
+    background-image: url('/assets/img/banner-background.png');
     background-position: center;
     background-size: cover;
     height: 130px;
@@ -111,6 +115,9 @@ ion-row{
        display: table-cell;
        text-align: center;
        vertical-align: middle;
+       font-weight: bold;
+       font-family: 'Bold';
+
     }
   }
 

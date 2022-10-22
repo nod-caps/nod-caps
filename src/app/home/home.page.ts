@@ -1,5 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { ScreensizeService } from '../services/screensize.service';
 import { SeoService } from '../services/seo.service';
 
@@ -22,7 +23,8 @@ export class HomePage implements OnInit {
   isTop = true;
  
   constructor(private screensizeService: ScreensizeService,
-    private seo: SeoService) {
+    private seo: SeoService,
+    @Inject(DOCUMENT) private dom) {
     this.screensizeService.isDesktopView().subscribe(isDesktop => {
       this.isDesktop = isDesktop;
     });
@@ -37,7 +39,12 @@ this.isTop=false;
  }
 
   ngOnInit(){
-    this.seo.generateTags({title: 'Quality caps for everyone | nod caps', description:"As the UK's top cap brand, we've got you covered (literally)! We focus exclusively on producing the best baseball caps for anyone to wear. FREE Delivery.", image: '/assets/img/cap-image.jpg' });
-     }
+    this.seo.generateTags({title: 'Quality caps for everyone | nod caps', description:"As the UK's top cap brand, we've got you covered (literally)! We focus exclusively on producing the best baseball caps for anyone to wear. FREE Delivery." });
+    const link: HTMLLinkElement = this.dom.createElement('link');
+    link.setAttribute('rel', 'canonical');
+    this.dom.head.appendChild(link);
+    link.setAttribute('href', 'https://www.nodcaps.com');
+  
+  }
 
 }
