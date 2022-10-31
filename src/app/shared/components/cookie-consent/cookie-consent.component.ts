@@ -15,6 +15,7 @@ export class CookieConsentComponent implements OnInit {
 
   showManageCookies = false;
   acceptAnalytics= true;
+  acceptTargeting= true;
 
   constructor(
     private cookie: CookieService,
@@ -30,11 +31,15 @@ export class CookieConsentComponent implements OnInit {
   toggle(){
    this.acceptAnalytics = !this.acceptAnalytics;
   }
+  toggleTargeting(){
+    this.acceptTargeting = !this.acceptTargeting;
+   }
 
 
  
 
   setCookie() {
+    this.signUpService.checkSignUp();
     this.cookie.set('neccessary-cookies','allowed', 365); 
     this.signUpService.firstVisit = true;
     this.basketService.useLocalStorage = true;
@@ -50,6 +55,13 @@ export class CookieConsentComponent implements OnInit {
       this.addAnalytics.addAnalytics();
     } else {
       this.cookie.set('analytics-cookies','denied', 365); 
+    }
+
+    if (this.acceptTargeting) {
+      this.cookie.set('targeting-cookies','allowed', 365); 
+      this.addAnalytics.addTargeting();
+    } else {
+      this.cookie.set('targeting-cookies','denied', 365); 
     }
 
     this.modalCtrl.dismiss();

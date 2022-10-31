@@ -127,3 +127,10 @@ ion-row{
         margin-left: auto;
         margin-right: auto;
   }
+
+
+  @media(max-width: 768px) {
+    h1{
+        font-size: 36px!important;
+    }
+  }

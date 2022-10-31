@@ -58,6 +58,12 @@ ion-content{
 }
 
 @media(max-width:768px){
+
+    .swiper-button-next-hat, .swiper-button-prev-hat{
+        top:200px!important;
+    }
+        
+
     .add-basket{
       
         ion-button{
@@ -239,7 +245,7 @@ h2{
 }
 
 .other-caps{
-    padding: 30px 60px;
+    padding: 40px 60px 30px 60px;
     margin: 30px 0px 0px 0px;
     background:#f5f5f5;
     h1{
@@ -438,6 +444,9 @@ h1 {
 }
 
 @media (max-width: 768px) {
+    .cap-row{
+        margin-top:0px!important;
+    }
     .container{
         padding:15px 15px 60px 15px;
     }

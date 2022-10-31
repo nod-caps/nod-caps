@@ -1,46 +1,59 @@
-<div class="container">
-  <ion-buttons class="dismiss">
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>
+      Add A Review
+  </ion-title>
+  <ion-buttons slot="end">
     <ion-button color="dark"(click)="dismiss()">
       <ion-icon name="close"></ion-icon>
     </ion-button>
   </ion-buttons>
-  <h1>Add A Review</h1>
-  <p>Please let us (and everyone else) know about your cap and experience with us! Unless it's bad - then just email us...</p>
-
-  <div class="choose-star">
-    <p>Tap a star to select your rating:</p>
-    <ion-icon (click)="selectRating(i)" *ngFor="let star of stars; let i= index" (mouseover)="highlight(i)" (mouseout)="dehighlight()" name="star" [ngClass]= "highlightIndex > i || selectedIndex > i? 'highlight': ''"></ion-icon>
-  </div>
+</ion-toolbar>
+</ion-header>
 
 
-  
-  <form [formGroup]="reviewForm">
 
-    <ion-item lines="none">
-      <ion-label position="stacked">Name</ion-label>
-      <ion-input  formControlName="name" placeholder="Enter your name..."></ion-input>
-    </ion-item>
-    <div *ngFor="let error of errorMessages.name">
-      <ng-container *ngIf="name?.hasError(error.type) && (name?.dirty || name?.touched)">
-        <small class="error-message">{{error.message}}</small>
-      </ng-container>
-    </div>
-    
-
-    <ion-item lines="none">
-      <ion-label position="stacked">Message</ion-label>
-      <ion-textarea  formControlName="message" rows="6" placeholder="Enter your message about how much you love your nod cap..."></ion-textarea>
-    </ion-item>
-    <div *ngFor="let error of errorMessages.message">
-      <ng-container *ngIf="message?.hasError(error.type) && (message?.dirty || message?.touched)">
-        <small class="error-message">{{error.message}}</small>
-      </ng-container>
-    </div>
-    </form>
-
-    <div class="button-holder">
-      <ion-button (click)="addReview()" [disabled]="!reviewForm.valid || !rating" shape="round" color="tertiary" ><span *ngIf="!sending" id="addedReviewTrack">SEND REVIEW</span><ion-spinner *ngIf="sending"></ion-spinner></ion-button>
-    </div>
+<ion-content>
+  <div class="container">
  
+    <p>Please let us (and everyone else) know about your cap and experience with us! Unless it's bad - then just email us...</p>
+  
+    <div class="choose-star">
+      <p>Tap a star to select your rating:</p>
+      <ion-icon (click)="selectRating(i)" *ngFor="let star of stars; let i= index" (mouseover)="highlight(i)" (mouseout)="dehighlight()" name="star" [ngClass]= "highlightIndex > i || selectedIndex > i? 'highlight': ''"></ion-icon>
+    </div>
+  
+  
+    
+    <form [formGroup]="reviewForm">
+  
+      <ion-item lines="none">
+        <ion-label position="stacked">Name</ion-label>
+        <ion-input  formControlName="name" placeholder="Enter your name..."></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.name">
+        <ng-container *ngIf="name?.hasError(error.type) && (name?.dirty || name?.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+      
+  
+      <ion-item lines="none">
+        <ion-label position="stacked">Message</ion-label>
+        <ion-textarea  formControlName="message" rows="6" placeholder="Enter your message about how much you love your nod cap..."></ion-textarea>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.message">
+        <ng-container *ngIf="message?.hasError(error.type) && (message?.dirty || message?.touched)">
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+      </form>
+  
+      <div class="button-holder">
+        <ion-button (click)="addReview()" [disabled]="!reviewForm.valid || !rating" shape="round" color="tertiary" ><span *ngIf="!sending" id="addedReviewTrack">SEND REVIEW</span><ion-spinner *ngIf="sending"></ion-spinner></ion-button>
+      </div>
+   
+  
+  </div>
+</ion-content>
 
-</div>

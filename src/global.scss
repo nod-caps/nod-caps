@@ -31,22 +31,7 @@
 @import 'swiper/scss/pagination';
 
 
-body *{
--webkit-font-smoothing: antialiased!important;
-}
 
-body {
-  -webkit-font-smoothing: antialiased!important;
-  }
-
-  .main-holder{
-    -webkit-font-smoothing: antialiased!important;
-
-  }
-  .main-holder *{
-    -webkit-font-smoothing: antialiased!important;
-
-  }
 ion-content, div{
   --ion-text-color: #212529;
 }
@@ -54,7 +39,7 @@ ion-content{
     --margin-top: 60px;
 }
 .page-container{
-    margin:5% 10%;
+    margin:10%;
     h3{
       margin-top:40px;
     }
@@ -284,4 +269,10 @@ width: 95%;
 
 app-shop app-cap-display ion-row{
   margin-top:0px!important;
+}
+
+
+app-basket .social-icons{
+  justify-content: center;
+  margin-top:10px;;
 }

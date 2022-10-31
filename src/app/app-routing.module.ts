@@ -31,19 +31,19 @@ const routes: Routes = [
     path: 'contact',
     loadChildren: () => import('./contact/contact.module').then( m => m.ContactModule)
   },
-  /*{
+  {
     path: 'control',
     canActivate: [ AuthService ],
     loadChildren: () => import('./control/control.module').then( m => m.ControlModule)
-  },*/
+  },
   {
     path: 'terms',
     component: TermsComponent,
   },
-  /*{
+  {
     path: 'admin-login',
     component: AdminLoginComponent,
-  },*/
+  },
   {
     path: 'returns',
     component: ReturnsComponent,

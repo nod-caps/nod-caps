@@ -11,7 +11,7 @@ export const config: ScullyConfig = {
   projectName: "app",
   // add spsModulePath when using de Scully Platform Server,
   outDir: './dist/static',
-  defaultPostRenderers: [ MinifyHtml, getFlashPreventionPlugin(), 'seoHrefOptimise'],
+  defaultPostRenderers: [ MinifyHtml, getFlashPreventionPlugin()],
   routes: {
     '/control': {
       type: 'ignored',

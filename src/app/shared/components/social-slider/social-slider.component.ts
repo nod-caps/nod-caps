@@ -46,13 +46,9 @@ export class SocialSliderComponent implements OnInit {
    @ViewChild('swiper') swiper: SwiperComponent;
 
   constructor(
-    private router: Router
   ) { }
 
-  goToHat() {
-    console.log('hello');
-    this.router.navigateByUrl('/shop/shalom/hello-there')
-  }
+
 
   ngOnInit() {}
 

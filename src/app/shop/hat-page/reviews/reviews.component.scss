@@ -32,7 +32,10 @@ ion-segment{
     margin-bottom:5px;
     margin-top: 5px;
     display:inline-block;
-    margin-right:10px;
+    span{
+        margin-right:10px;
+
+    }
 }
 .message{
     margin-top:10px;
@@ -42,7 +45,7 @@ ion-segment{
 @media (max-width: 768px) {
    
     .review-box {
-        margin: 15px;
+        margin: 15px 0px;
     }
 }
 
@@ -53,6 +56,10 @@ ion-segment{
 
 .star{
     color:#73B786;
+}
+
+.link{
+    margin-left: 5px;
 }
 
 

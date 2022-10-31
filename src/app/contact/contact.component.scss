@@ -2,9 +2,8 @@
     background:white;
     width:60%;
     margin-left:20%;
-    padding: 1px 30px 30px 30px;
+    padding: 30px 30px 30px 30px;
     border-radius: 2px;
-    margin-top:30px;
 }
 
 ion-button{
@@ -32,7 +31,9 @@ ion-input, ion-textarea{
 @media (max-width: 768px) {
     .form-holder{
         width:100%!important;
-        margin:0%!important;
+        margin-left:0%!important;
+        margin-right:0%!important;
+
     }
 }
 h1{

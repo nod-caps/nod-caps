@@ -56,9 +56,9 @@ export class MyOrdersComponent implements OnInit {
 
 
   async noOrder(){
-    this.router.navigateByUrl('/home');
+    this.router.navigateByUrl('/add-review');
     const toast = await this.toastCtrl.create({
-      message: 'No order found please contact us',
+      message: 'There was an error loading your order, please leave a review below.',
       duration: 3000,
       position: 'top',
       color: 'danger',
@@ -97,19 +97,17 @@ export class MyOrdersComponent implements OnInit {
     const functions = getFunctions();
     const checkContact = httpsCallable(functions, 'checkIfAContactUniqueName');
     checkContact({uniqueName: this.customerUnique, orderNumber: this.orderNumber}).then((result) => {
-      console.log(result);
       if (result) {
         if (result.data) {
-          console.log('hello', result.data);
           this.order = result.data;
           // get back order here from within fucntion
          // this.getInfo();
         } else {
-         // this.noOrder(); 
+         this.noOrder(); 
         }
       }
     }).catch((err) => {
-      //this.noOrder();
+      this.noOrder();
       console.log(err.message);
     });
 

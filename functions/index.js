@@ -1,5 +1,5 @@
 const functions = require("firebase-functions");
-const stripe = require("stripe")(functions.config().stripe_test.secret_key);
+const stripe = require("stripe")(functions.config().stripe.secret_key);
 const admin = require("firebase-admin");
 // Sendgrid Config
 const sgMail = require("@sendgrid/mail");
@@ -34,7 +34,7 @@ exports.stripeWebhook = functions.https.onRequest(async (req, res) => {
   let event;
 
   try {
-    const whSec = functions.config().stripe_test.payment_webhook_secret;
+    const whSec = functions.config().stripe.payment_webhook_secret;
 
     event = stripe.webhooks.constructEvent(
         req.rawBody,

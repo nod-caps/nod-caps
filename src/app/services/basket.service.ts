@@ -35,7 +35,7 @@ export class BasketService{
    }
    checkBasket() {
     this.useLocalStorage = true;
-    if (JSON.parse(localStorage.getItem('basket')) && this.useLocalStorage) {
+    if (JSON.parse(localStorage.getItem('basket')) && this.useLocalStorage ) {
       this.currentBasket = JSON.parse(localStorage.getItem('basket'))
       this.basketSub.next(this.currentBasket);
     } else {
@@ -51,10 +51,11 @@ export class BasketService{
   }
 
   clearBasket() {
+    localStorage.removeItem('basket');
+    this.currentBasket = [];
     this.basketSub.next([]);
-    if (this.useLocalStorage) {
-      localStorage.removeItem('basket');
-    }
+    
+
   }
 
   getBasket(){    

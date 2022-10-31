@@ -253,7 +253,7 @@ if (this.cap.quantity < this.capBasketMax) {
   
 
     scroll(){
-      document.getElementById("review-comp").scrollIntoView();
+      document.querySelector('.review-' + this.capNameHyp).scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
 }

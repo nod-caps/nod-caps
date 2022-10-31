@@ -1,9 +1,19 @@
-  <ion-content>
-  <div class="top-section" id="seenPopUpTrack">
-    <ion-button  class="close" (click)="dismiss()" fill="clear" color="medium"><ion-icon name="close-outline"></ion-icon></ion-button>
-    <p class="fs20">
+ 
+ <ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>
       Be the first to know
-    </p>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="close" (click)="dismiss()" fill="clear" color="medium"><ion-icon name="close-outline"></ion-icon></ion-button>
+
+    </ion-buttons>
+  </ion-toolbar>
+ </ion-header>
+ 
+ 
+ <ion-content>
+  <div class="top-section" id="seenPopUpTrack">
     <p>Don't worry - we won't send too many emails but when we do it will be the things you want to see - discounts and sneak peeks!</p>
   </div>
   <div class="sign-up">
@@ -11,3 +21,5 @@
   </div>
 
 </ion-content>
+
+<ion-footer></ion-footer>

@@ -1,11 +1,17 @@
+ion-title{
+  
+    font-size: 24px;
+    font-family: 'Bold';
+    padding-top: 15px;
+    text-align: left;
+    padding-left: 20px;
+}
+
+
+
 .top-section{
-    .close{
-        position:absolute;
-        top: 5px;
-        font-size:20px;
-        right: -5px;
-    }
-    padding: 20px;
+   
+    padding: 0px 20px 20px 20px;
     text-align: center;
     display: flow-root;
     img{
@@ -15,15 +21,8 @@
     p{
         color: #212529;
         text-align: left;
+        margin-bottom:0px;
     }
-    .fs20{
-        font-size:22px;
-        font-weight: bold;
-        font-family: 'Bold';
-
-        margin-bottom: 10px;
-    }
-
 }
 
 
@@ -40,3 +39,8 @@
 
 }
 
+
+
+ion-buttons ion-button{
+    font-size:20px
+}

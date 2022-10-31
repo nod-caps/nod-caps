@@ -139,7 +139,7 @@ async showError(message: string) {
    const fiveMinsFromPurchase = this.order.date  + (5 * 60 * 1000);
    const currentTime = new Date().getTime();
    if (currentTime > fiveMinsFromPurchase) {
-    // this.router.navigateByUrl('/home');
+    this.router.navigateByUrl('/home');
     const toast = await this.toastCtrl.create({
       message: 'Page has expired 5 mins after purchase',
       duration: 3000,

@@ -32,7 +32,6 @@ constructor(
     this.fb.getCollectionCaps(this.displayCollectionRef).then(data => {
       if(data) {
         this.caps = data
-        console.log('hello', this.caps);
       }
     });
   }

@@ -40,10 +40,10 @@ this.isTop=false;
 
   ngOnInit(){
     this.seo.generateTags({title: 'Quality caps for everyone | nod caps', description:"As the UK's top cap brand, we've got you covered (literally)! We focus exclusively on producing the best baseball caps for anyone to wear. FREE Delivery." });
-    const link: HTMLLinkElement = this.dom.createElement('link');
-    link.setAttribute('rel', 'canonical');
-    this.dom.head.appendChild(link);
-    link.setAttribute('href', 'https://www.nodcaps.com');
+    // const link: HTMLLinkElement = this.dom.createElement('link');
+    // link.setAttribute('rel', 'canonical');
+    // this.dom.head.appendChild(link);
+    // link.setAttribute('href', 'https://www.nodcaps.com');
   
   }
 

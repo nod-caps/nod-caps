@@ -89,12 +89,12 @@ a{
 .fancy-button:after {
     content: "";
     width: 0px;
-    height: 0.5px;
-    background-color: #212529;
+    height: 1px;
+    background-color: #22472a;
     left: 0;
     position: relative;
     display: block;
-    top: 11px;
+    top: 9px;
     -webkit-transition: width 0.5s ease-in-out;
     -moz-transition: width 0.5s ease-in-out;
     -o-transition: width 0.5s ease-in-out;
@@ -102,5 +102,5 @@ a{
   }
   
   .fancy-button:hover:after{
-   width: 214px;
+   width: 235px;
   }

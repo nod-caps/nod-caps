@@ -19,6 +19,7 @@ export class SignUpService{
 
 
    checkSignUp() {
+
       if (this.router.url.indexOf('cheers') === -1 && this.firstVisit) {
            this.showSignUp();
       }

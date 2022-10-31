@@ -1,34 +1,47 @@
+<ion-content>
+  <div class="cookie-container" id="showCookieTrack">
 
-    <div class="cookie-container" id="showCookieTrack">
+    <!--<ion-button fill="clear" color="medium" class="close" (click)="close()"><ion-icon name="close-outline"></ion-icon></ion-button>-->
+    <div *ngIf="!showManageCookies">
+      <h3>
+        You guessed it - this site uses cookies.
+      </h3>
+      <p>Like every other website out there, we use necessary cookies to make our site work. We'd also like to set analytics cookies that help us make improvements by measuring how you use the site and targeting cookies that assist in our marketing efforts. These will be set only if you accept. By clicking 'Accept & Continue' below you accept our use of cookies.
+      </p>
+      <p>For more detailed information about the cookies we use, see our <a [routerLink]="'/privacy'">privacy policy</a>.</p>
+    </div>
+  
+    <div *ngIf="showManageCookies" class="manage-cookies">
+      <ion-item lines ="none">
+        <ion-label>Necessary Cookies</ion-label>
+      </ion-item>
+      <p class="necc-text">These enable core functionality such as security, accessibility and use of the shopping basket. Disabling these in your browser settings may affect how this site functions</p>
+  
+      <ion-item lines="none">
+        <ion-label>Analytics Cookies <ion-toggle class="desktop-toggle" (ionChange)="toggle()" slot="end" color="tertiary" [checked]="true"></ion-toggle>
+        </ion-label>
+        <ion-toggle class="mobile-toggle" (ionChange)="toggle()" slot="end" color="tertiary" [checked]="true"></ion-toggle>
+      </ion-item>
+      <p> We'd like to set Google Analytics cookies to help us improve our website by collecting/reporting information on how you use it. For more information on these cookies please see our 'Privacy Policy'.</p>
+  
 
-  <!--<ion-button fill="clear" color="medium" class="close" (click)="close()"><ion-icon name="close-outline"></ion-icon></ion-button>-->
-  <div *ngIf="!showManageCookies">
-    <h3>
-      You guessed it - this site uses cookies.
-    </h3>
-    <p>Like every other website out there, we use necessary cookies to make our site work. We'd also like to set analytics cookies that help us make improvements by measuring how you use the site. These will be set only if you accept. By clicking 'Accept & Continue' below you accept our use of cookies.
-    </p>
-    <p>For more detailed information about the cookies we use, see our <a [routerLink]="'/privacy'">privacy policy</a>.</p>
+      
+      <ion-item lines="none">
+        <ion-label>Targeting Cookies <ion-toggle class="desktop-toggle" (ionChange)="toggleTargeting()" slot="end" color="tertiary" [checked]="true"></ion-toggle>
+        </ion-label>
+        <ion-toggle class="mobile-toggle" (ionChange)="toggleTargeting()" slot="end" color="tertiary" [checked]="true"></ion-toggle>
+      </ion-item>
+      <p>
+         These cookies may be used by advertising partners to build a profile of your interests and show you relevant adverts on other sites. They do not store directly personal information, but are based on uniquely identifying your browser and internet device. If you do not allow these cookies, you will experience less targeted advertising.
+      </p>
+  
+     
+    </div>
   </div>
+</ion-content>
 
-  <div *ngIf="showManageCookies" class="manage-cookies">
-    <ion-item lines ="none">
-      <ion-label>Necessary Cookies</ion-label>
-    </ion-item>
-    <p class="necc-text">These enable core functionality such as security, accessibility and use of the shopping basket. Disabling these in your browser settings may affect how this site functions</p>
 
-    <ion-item lines="none">
-      <ion-label>Analytics Cookies <ion-toggle class="desktop-toggle" (ionChange)="toggle()" slot="end" color="tertiary" [checked]="true"></ion-toggle>
-      </ion-label>
-      <ion-toggle class="mobile-toggle" (ionChange)="toggle()" slot="end" color="tertiary" [checked]="true"></ion-toggle>
-    </ion-item>
-    <p> We'd like to set Google Analytics cookies to help us improve our website by collecting/reporting information on how you use it. For more information on these cookies please see our 'Privacy Policy'.</p>
-
-   
-  </div>
-</div>
-
-  <ion-footer>
+  <ion-footer class="ion-no-border">
     <ion-toolbar>
       <div class="ion-text-center">
         <ion-button *ngIf="!showManageCookies" color="tertiary" fill="outline" shape="round" (click)="showManageCookies =  true"><span >Manage Cookies</span></ion-button>

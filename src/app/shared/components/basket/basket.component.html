@@ -1,30 +1,32 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>
+      <span *ngIf="basketLength > 1">Your Basket ({{basketLength}} caps) </span>
+      <span *ngIf="basketLength === 1">Your Basket ({{basketLength}} cap) </span>
+      <span *ngIf="basketArray.length < 1">Your basket is empty!</span>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
-<div class="container">
-
-<ion-buttons class="close-menu">
-  <ion-button (click)="close()">
-    <ion-icon name="close-outline"></ion-icon>
-  </ion-button>
-</ion-buttons>
-
-
-<div class="basket-title" [ngClass]="inModal ? 'inModal' : ''">
-  <h1 *ngIf="basketLength > 1">Your Basket ({{basketLength}} caps) </h1>
-  <h1 *ngIf="basketLength === 1">Your Basket ({{basketLength}} cap) </h1>
-  <h1 *ngIf="basketArray.length < 1">Your basket is empty!</h1>
-  <div *ngIf="basketArray.length <1 && outOfStock">
-      Follow us on social media for stock updates.
-      <app-social-buttons></app-social-buttons>
-  </div>
-  <div class="back-to-shop" *ngIf="basketArray.length < 1" >
-    <ion-button  (click)="toShop()"   color="tertiary" shape="round">
-      Back to shop
-    </ion-button>
-  </div>
  
-</div>
+
 
 <ion-content>
+  <div class="container">
+  <div *ngIf="basketArray.length < 1 && outOfStock" class="ion-text-center">
+    Follow us on social media for stock updates
+    <app-social-buttons></app-social-buttons>
+</div>
+<div class="back-to-shop" *ngIf="basketArray.length < 1" >
+  <ion-button  (click)="toShop()"   color="tertiary" shape="round">
+    Back to shop
+  </ion-button>
+</div>
   <div class="basket-container" *ngIf="basketArray .length > 0">
 
     <ion-row class="basket-item" *ngFor="let item of basketArray; index as i">
@@ -68,9 +70,10 @@
     </ion-row>
 
 </div>
+</div>
+
 </ion-content>
 
-</div>
 
 <ion-footer>
   <div >
@@ -88,8 +91,8 @@
 
 <ion-button  [disabled]="basketArray.length < 1" expand="block" shape="round"  color="primary" (click)="checkIfSoldOut()">
   <span *ngIf="!loadingButton" id="checkoutTrack">
-    Checkout
-  </span>
+  Checkout
+    </span>
   <ion-spinner *ngIf="loadingButton"></ion-spinner>
 </ion-button>
 </ion-toolbar>

@@ -7,6 +7,11 @@ ion-button{
     width: 200px;
 }
 
+
+ion-footer{
+        padding-bottom:30px; 
+    
+}
 .close{
     position:absolute;
     top: 5px;
@@ -33,7 +38,6 @@ p{
         margin-top:0px;
     }
     ion-toggle{
-        margin-bottom:-10px;
         float: right;
     }
  }
@@ -56,9 +60,3 @@ p{
     }
  }
 
- ion-toolbar{
-    --border-width: 0px!important;
- }
- ion-footer{
-    padding-bottom: 20px;
- }

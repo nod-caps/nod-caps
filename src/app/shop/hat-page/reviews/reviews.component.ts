@@ -57,7 +57,6 @@ export class ReviewsComponent implements OnInit {
 
       if (doc.data().capRef !== this.cap.capRef) {
         this.otherReviews.push(doc.data());
-        console.log('hello',doc.data() );
       }
       if (i === querySnapshot.size){
         this.loadingOtherReviews = false;
@@ -72,7 +71,6 @@ export class ReviewsComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('hello');
     this.getCapReviews();
   }
 

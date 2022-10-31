@@ -32,7 +32,6 @@ export class LandingBannerComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('hello');
 
     if (this.platform.is('mobile') && window.innerWidth < 768){
       this.isMobile = true;

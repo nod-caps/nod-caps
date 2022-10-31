@@ -8,12 +8,24 @@ ion-content{
     --background: white;
     height:62vh;
 }
-h1{   
-    margin-bottom: 20px;
-    font-family: 'Bold';
 
-
-   
+ion-header ion-toolbar{
+    padding-bottom:0px;
+    padding-right: 0px;
+    padding-left:0px;
+    ion-buttons{
+      //  padding-top:15px;
+        ion-button{
+            font-size: 18px;
+        }
+    }
+}
+ion-title{
+    font-family: Bold;
+    font-size: 24px;
+    padding-top: 25px;
+    padding-left: 20px;
+    text-align: left;
 }
 .basket-title {
     margin-top:20px;
@@ -64,17 +76,9 @@ ion-toolbar{
     padding: 10px 20px;
 }
 ion-footer{
-padding-bottom:10px;
-position: absolute;
-bottom: 0px;
+background: white;
+padding-bottom:20px;
 }
-
-ion-title{
-    color: #F7F8F9;
-    padding:0px;
-    text-align: left;
-}
-
 
 .remove-from-basket{
     text-decoration: underline;
@@ -110,9 +114,7 @@ ion-select{
 }
 
 
-.inModal .basket-container{
-padding:0px 20px;
-}
+
 
 
 
@@ -121,11 +123,8 @@ padding:0px 20px;
 }
 
 @media(max-width: 768px) {
-    .basket-title {
-        margin-top:60px;
-    }
-    .inModal.basket-title{
-        margin-top:30px!important;
+    ion-title{
+        font-size:20px!important;
     }
     ion-content{
       --margin-top:0px;
@@ -146,10 +145,6 @@ padding:0px 20px;
     }
     ion-select {
         font-size:14px;
-    }
-
-    ion-title{
-        text-align: left;
     }
 }
 

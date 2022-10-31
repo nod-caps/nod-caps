@@ -49,7 +49,6 @@ closedCookies = false;
 
 
   ngOnInit() {
-
    const gotCookie =  this.cookie.get('neccessary-cookies');
    if (!gotCookie) {
     this.presentModal();

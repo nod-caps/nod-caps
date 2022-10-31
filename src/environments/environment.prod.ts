@@ -10,6 +10,6 @@ export const environment = {
     measurementId: "G-YJ9L9FMZWV" 
   },
   stripe:{
-    publish: "pk_test_51LbkIcGXUk9OBXxmN7AYLLscvVyrKe2G8zLGZhHR1fmDVVPCHhdYNEjRiUxXvOZ0MbLzOqBLtwbHxRU4bRjpgw7a00y4Qn4UBZ",
+    publish: "pk_live_51LbkIcGXUk9OBXxmGr1ar4ns2bS7DZWDICB1sOvbU6Qg1S3O2ZwQP2ArdqDnP4I9E5DaZk5UWtsUpxkCbP3daaVS00ySrROzdy",
   }
 };
