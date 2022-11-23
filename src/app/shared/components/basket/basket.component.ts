@@ -172,12 +172,6 @@ toShop() {
 
 }
 
-  editBasket() {
-    this.modalCtrl.dismiss();
-    this.router.navigateByUrl('basket');
-  }
-
-
   ngOnInit() {
     //do i need to subscribe here
     this.basket.basketSub.subscribe((data) => {

@@ -43,7 +43,8 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
   ScullyLibModule.forRoot({
     useTransferState: true,
     alwaysMonitor: true,
-  })],
+  }),
+],
   providers: [
    // StatusBar,
    // SplashScreen,

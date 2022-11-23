@@ -26,10 +26,15 @@ export class SeoService {
     if (image === '') {
       image = 'https://www.nodcaps.com/assets/img/nod-caps-share.png'
     }
-    let url = 'https://www.nodcaps.com' + this.router.url.split('?')[0] ;
+    let url = 'https://www.nodcaps.com' + this.router.url.split('?')[0]  ;
     if (url.indexOf('/home') > -1) {
       url = 'https://www.nodcaps.com'
-    } 
+    }  
+
+    if (url.indexOf('https://www.nodcaps.com/') > -1) {
+      url = url + '/';
+    }
+
    
 
     const canId = document.getElementById('canonical');

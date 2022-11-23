@@ -1,6 +1,8 @@
 import { ScullyConfig } from '@scullyio/scully';
  import { MinifyHtml } from 'scully-plugin-minify-html';
  import  { getFlashPreventionPlugin }  from '@scullyio/scully-plugin-flash-prevention';
+ import { myPlugin }  from './scully/plugins/plugin';  
+
 
 
 /** this loads the default render plugin, remove when switching to something else. */
@@ -11,7 +13,7 @@ export const config: ScullyConfig = {
   projectName: "app",
   // add spsModulePath when using de Scully Platform Server,
   outDir: './dist/static',
-  defaultPostRenderers: [ MinifyHtml, getFlashPreventionPlugin()],
+  defaultPostRenderers: [ MinifyHtml, getFlashPreventionPlugin(), myPlugin, 'seoHrefOptimise'],
   routes: {
     '/control': {
       type: 'ignored',

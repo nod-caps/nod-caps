@@ -36,7 +36,7 @@
         <img [alt]="item.cap.name + ' | nod cap item'" [src]="item.cap.imageField1Mobile" (click)="goTo('shop/' + item.cap.collectionRef + '/' + item.cap.nameHyphenated)">
       </ion-col>
       <ion-col   size="9" class="pos-rel col-right">
-        <h2 (click)="goTo('shop/' + item.cap.collectionRef + '/' + item.cap.nameHyphenated)">{{item.cap.name}}</h2>
+        <h2 (click)="goTo('shop/' + item.cap.collectionRef + '/' + item.cap.nameHyphenated + '/')">{{item.cap.name}}</h2>
         <p class="description">{{item.cap.description}}</p>
 
         <!--<ion-item lines="none" class="quantity">

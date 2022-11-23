@@ -19,9 +19,7 @@ export class CapCardComponent implements OnInit {
     private router: Router
   ) { }
 
-  goToHat(cap: any){
-    this.router.navigateByUrl('shop/' + cap.collectionRef + '/' + cap.nameHyphenated);
-    }
+
 
     
   ngOnInit() {

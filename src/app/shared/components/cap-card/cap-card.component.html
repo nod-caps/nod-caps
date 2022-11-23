@@ -1,4 +1,4 @@
-<a [routerLink]="'/shop/' + cap.collectionRef + '/' + cap.nameHyphenated" *ngIf="cap">
+<a [routerLink]="'/shop/' + cap.collectionRef + '/' + cap.nameHyphenated + '/'" *ngIf="cap">
   <ion-card>
     <div class="image-holder">
        <img  class="cap-skel cap-skel--1" [alt]="cap?.name +  ' | nod caps'"  [src]="cap?.imageField1Mobile">

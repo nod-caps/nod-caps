@@ -27,9 +27,6 @@ export class LandingBannerComponent implements OnInit {
     private platform: Platform
   ) { }
 
-  goToShop(){
-    this.router.navigateByUrl('/shop');
-  }
 
   ngOnInit() {
 

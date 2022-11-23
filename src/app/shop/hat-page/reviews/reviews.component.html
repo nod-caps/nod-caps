@@ -41,7 +41,7 @@
 
               <p class="name"><span *ngIf="review.name">{{review.name}}</span><span *ngIf="!review.name">Anonymous</span>             
                   <ion-icon name="star" color="tertiary" *ngFor="let item of [].constructor(review.rating)"></ion-icon> 
-                 <span class="link">- <a [routerLink]="'/shop/' + review.link">{{review.capName}}</a></span>
+                 <span class="link">- <a [routerLink]="'/shop/' + review.link + '/'">{{review.capName}}</a></span>
               </p>
               <p class="message" *ngIf="review.message">"{{review.message}}"</p>
             </div>

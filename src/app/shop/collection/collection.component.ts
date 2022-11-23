@@ -42,7 +42,7 @@ collection: any;
   }
 
 goToHat(cap: any){
-  this.router.navigateByUrl('shop/' + this.collectionRef + '/' + cap.nameHyphenated);
+  this.router.navigateByUrl('shop/' + this.collectionRef + '/' + cap.nameHyphenated );
   }
 
   ngOnInit() {
