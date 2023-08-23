@@ -1,0 +1,18 @@
+How to run app
+- ionic serve
+
+How to put app live
+- ng build --prod
+- npm run scully
+- firebase deploy --only hosting
+
+
+How to update firebase functions
+- firebase deploy --only functions
+
+
+To update pricing
+- Create a new price in stripe
+- copy the id
+- change in caps.priceId and caps.price
+- no need to update the site
