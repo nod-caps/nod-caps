@@ -4,11 +4,14 @@
        <img  class="cap-skel cap-skel--1" [alt]="cap?.name +  ' | nod caps'"  [src]="cap?.imageField1Mobile">
        <!-- <img  *ngIf="!isMobile" class="cap-skel cap-skel--2" [alt]="cap?.name +  ' | nod caps'"  [src]="cap?.imageField2Mobile"> -->
 
-      <div *ngIf="cap.quantity < 10 && cap.quanity > 0" class="out-of-stock">
+      <div *ngIf="lessThan10" class="out-of-stock">
         <span>{{cap?.quantity}} LEFT</span>
       </div> 
-      <div *ngIf="cap.quantity < 1 " class="out-of-stock">
+      <div *ngIf="outOfStock" class="out-of-stock">
         <span>OUT OF STOCK</span>
+      </div>
+      <div *ngIf="isSale" class="sale-sign">
+        <span>SALE</span>
       </div>
     </div>
     <ion-card-header>
@@ -16,7 +19,7 @@
       
   
   
-      <div class="bottom-holder">
+      <div class="bottom-holder" [ngClass]="isSale ? 'sale-bottom' : ''">
         <span class="rating" *ngIf="cap?.rating">
           <ion-icon class="star" name="star" *ngFor="let item of [].constructor(wholeStars); let i = index"></ion-icon>
           <ion-icon *ngIf="hasHalf" name="star-half" class="star"></ion-icon>
@@ -32,8 +35,15 @@
           <ion-icon class="star" name="star"></ion-icon>
   
         </span>
-  
-        <span class="price"> £{{cap?.price}}</span>
+        
+
+        <span class="price" *ngIf="!isSale"> £{{cap?.price}}</span>
+
+        <div class="price" *ngIf="isSale">
+        <span class="new-price">£{{cap?.price}}</span>
+          <br>
+          <span class="original-price">£{{originalPrice}}</span>
+        </div>
       </div>
     </ion-card-header>
     <div class="shop-button-hover ion-text-center">

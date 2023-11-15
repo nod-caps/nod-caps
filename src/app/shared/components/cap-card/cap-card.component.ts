@@ -15,6 +15,10 @@ export class CapCardComponent implements OnInit {
   hasHalf = false;
   imgSrc = '';
   isMobile = false;
+  isSale = true;
+  originalPrice = '25.00';
+  lessThan10 = false;
+  outOfStock = false;
   constructor(
     private router: Router
   ) { }
@@ -28,6 +32,12 @@ export class CapCardComponent implements OnInit {
     }
     if (this.cap) {
       this.imgSrc = this.cap.imageField1Mobile
+      if (this.cap.quantity < 10 && this.cap.quantity > 0){
+        this.lessThan10 = true;
+      } else if (this.cap.quantity < 1){
+        this.outOfStock = true;
+
+      }
     }
     if (this.cap?.rating) {
       this.displayRating = Math.round(this.cap.rating*2) / 2;

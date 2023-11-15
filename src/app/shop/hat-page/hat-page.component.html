@@ -66,29 +66,43 @@
  
     <ion-col size="12" size-md="5" size-lg="5"  class="description-col">
         <h1>{{capName}} Baseball Cap</h1>
-        <div>
-          <h2 class="price">£{{cap?.price}}</h2>
-          <h2 class="free-delivery" *ngIf="cap?.quantity !== 0">FREE UK DELIVERY</h2>
+        <div class="price-row">
+          <ng-container *ngIf="!isSale">
+            <h2 class="price">£{{cap?.price}}</h2>
+          </ng-container>
+          <ng-container *ngIf="isSale" class="sale-price-holder">
+            <h2 class="price sale-price">£{{cap?.price}}</h2>
+            <div class="sale-blob">
+              SAVE {{salePercent}}%
+            </div>
+            <h2 class="price old-price">£{{originalPrice}}</h2>
+          </ng-container>
+
+          
         </div>
 
+<div class="ratings-row">
+  <div (click) = "scroll()" class="ratings">
+    <ion-icon class="star" name="star" *ngFor="let item of [].constructor(wholeStars)"></ion-icon>
+    <ion-icon *ngIf="hasHalf" name="star-half" class="star"></ion-icon>
+    <div *ngIf="!hasHalf" class="empty-star">
+      <ion-icon class="star"  *ngFor="let item of [].constructor(5 - wholeStars)"name="star-outline"></ion-icon>
+    </div>
+    <div *ngIf="hasHalf" class="empty-star">
+      <ion-icon class="star"  *ngFor="let item of [].constructor(4 - wholeStars)"name="star-outline"></ion-icon>
+    </div>
+    <!--<h2 class="review-count">
+      <span  class="rating-no" *ngIf="cap?.numberOfReviews">{{cap?.rating}}</span>
+    </h2>-->
+    <h2 class="review-count">
+      <span *ngIf="cap?.numberOfReviews">({{cap?.numberOfReviews}})</span>
+      <span *ngIf="!cap?.numberOfReviews">(0)</span>
+    </h2>
+  </div>
+  <h2 class="free-delivery" *ngIf="cap?.quantity !== 0">FREE UK DELIVERY</h2>
 
-        <div (click) = "scroll()" class="ratings">
-          <ion-icon class="star" name="star" *ngFor="let item of [].constructor(wholeStars)"></ion-icon>
-          <ion-icon *ngIf="hasHalf" name="star-half" class="star"></ion-icon>
-          <div *ngIf="!hasHalf" class="empty-star">
-            <ion-icon class="star"  *ngFor="let item of [].constructor(5 - wholeStars)"name="star-outline"></ion-icon>
-          </div>
-          <div *ngIf="hasHalf" class="empty-star">
-            <ion-icon class="star"  *ngFor="let item of [].constructor(4 - wholeStars)"name="star-outline"></ion-icon>
-          </div>
-          <!--<h2 class="review-count">
-            <span  class="rating-no" *ngIf="cap?.numberOfReviews">{{cap?.rating}}</span>
-          </h2>-->
-          <h2 class="review-count">
-            <span *ngIf="cap?.numberOfReviews">({{cap?.numberOfReviews}})</span>
-            <span *ngIf="!cap?.numberOfReviews">(0)</span>
-          </h2>
-        </div>
+</div>
+       
 
         <div class="ion-hide-md-down">
         <p class="colour-name">{{cap?.colourName}}</p>

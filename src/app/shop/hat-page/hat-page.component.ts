@@ -42,6 +42,9 @@ export class HatPageComponent implements OnInit, AfterViewInit {
   isMobile = true;
   hasHalf = false;
   capNameHyp = '';
+  isSale = true;
+  originalPrice = '25.00';
+  salePercent = '50';
 
 
   @ViewChild('hatSwiper') swiper: SwiperComponent;
@@ -89,6 +92,7 @@ this.swiper.swiperRef.slideTo(val);
   getCap(){
     this.fb.getSingleCap(this.capRef).then(async data => {
       if (data) {
+        console.log('hello', data);
         this.cap = data;
         if (this.cap.rating) {
           this.displayRating = Math.round(this.cap.rating*2) / 2;

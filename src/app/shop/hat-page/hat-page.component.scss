@@ -5,7 +5,34 @@ ion-content{
     width: 22px!important;
     margin-right: 14px;
 }
+.price-row{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom:20px;
+    .sale-price{
+        color:#e13030;
+        font-weight:bold;
+    }
+    .sale-blob{
+        margin: 0px 18px;
+    background: #e13030;
+    padding: 4px 12px;
+    border-radius: 40px;
+    font-size: 10px;
+    color: white;
+    }
+    .old-price{
+        font-size:17px!important;
+        text-decoration: line-through;
+    }
+}
 
+.ratings-row{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+}
 .swiper-button-next-hat{
     top: 250px;
     height: 40px;
@@ -44,17 +71,15 @@ ion-content{
 }
 
 .free-delivery{
-    float: right;
-    margin-top:10px!important;
+    margin:0px!important;
     font-size:14px!important;
     font-weight: bold;
     font-family: 'Bold';
 
 }
 .price{
-    margin-left: 0px!important;
+    margin: 0px!important;
     font-size: 22px!important;
-    margin-bottom: 20px;
 }
 
 @media(max-width:768px){
@@ -160,6 +185,9 @@ ion-content{
     .review-count{
         color:#212529;
         font-size:14px;
+        margin-bottom: 0px;
+    margin-top: 0px;
+    margin-left: 5px;
     }
     .ratings{
         cursor: pointer;
@@ -257,10 +285,11 @@ h2{
 }
 
 .cap-quantity{
-    color: #ef4040!important;
+    color: #e13030!important;
     float: right;
     font-size: 14px;
     margin-top:20px;
+    font-weight: bold;
 }
 .quantity{
     width:85px;
@@ -324,8 +353,9 @@ h2{
     text-align: center;
 
     p{
-        color:#ef4040!important;
-        font-size: 20px;
+        color:#e13030!important;
+        font-size: 16px;
+    font-weight: bold;
     }
   }
 

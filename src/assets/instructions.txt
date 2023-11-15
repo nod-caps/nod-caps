@@ -16,3 +16,10 @@ To update pricing
 - copy the id
 - change in caps.priceId and caps.price
 - no need to update the site
+
+
+Current Quantities
+- red: 45
+- black: 45
+- green: 35
+- blue: 41
