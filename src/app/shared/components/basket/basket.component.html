@@ -60,7 +60,7 @@
 
      
         <div class="top-right">
-        <span class="item-price">£{{item.itemPrice}}</span>
+        <span class="item-price">£{{ item.itemPrice | number:'1.2-2' }}</span>
         </div>
 
         <ion-button (click)="remove(i)"  class="remove-from-basket" fill="none" color="medium"><ion-icon name="trash-outline"></ion-icon></ion-button>
@@ -83,7 +83,7 @@
     </ion-item>
     <ion-item lines="none">
       <ion-label>Total Price:</ion-label>
-      £{{totalPrice}}
+      £{{ totalPrice | number:'1.2-2' }}
     </ion-item>
     </div>
   

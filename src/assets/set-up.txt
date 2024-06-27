@@ -1,0 +1,25 @@
+NOD CAPS SET UP
+
+I am using old versions of angular, node and ionic. So they all need to be on the write versions
+
+Angular CLI: 12.1.4
+npm install --save-dev @angular/cli@12.1.4
+npx ng --version as it is local
+
+Node: 14.21.3 
+This is the a node version that is compatible with this version of angular. So i must nvm use 14 in order to use this
+Any later versions wont work with this version of ionic and angular
+
+Ionic: 5.4.16
+I have installed this locally in /nod-caps using npm install ionic@5 
+The newer set up is different and installs CLI
+Npx ionic version to check
+You must use npx ionic serve as it is local not global
+
+You must make sure all versions of the above are correct, only then can you run 
+
+Ionic serve
+Ng serve etc. 
+Check instructions.txt in the folder for putting live
+
+

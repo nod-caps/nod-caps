@@ -59,7 +59,7 @@ export class BasketComponent implements OnInit, OnDestroy {
   getTotalPrice() {
     this.totalPrice = 0;
     this.basketArray.forEach((item: any, index: any) => {
-      this.totalPrice += item.itemPrice.toFixed(2);
+      this.totalPrice += item.itemPrice;
     });
   }
 
@@ -179,9 +179,11 @@ toShop() {
       this.totalPrice = 0;
       this.basketArray = data;
       this.basketArray.forEach((item: any, index: any) => {
-        this.basketArray[index].itemPrice = item.quantity * item.cap.price.toFixed(2);
+        this.basketArray[index].itemPrice = item.quantity * item.cap.price; 
         this.basketLength = this.basketLength + item.quantity
-        this.totalPrice += this.basketArray[index].itemPrice.toFixed(2); ;
+        this.totalPrice += this.basketArray[index].itemPrice; 
+        
+
         this.basketArray[index].quantityArray = this.checkQuantity( this.basketArray[index].cap.quantity);
       });
     });

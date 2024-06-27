@@ -91,6 +91,7 @@ ion-card{
   }
   .price {
       font-size:15px; 
+      text-align: right;
   }
 
 ion-card-title{
@@ -146,10 +147,10 @@ ion-card-title{
     bottom: 30px;
     right: 25px;
     background: #e31030;
-    padding: 4px 10px;
-    border-radius: 4px;
-    color: white;
-    font-size: 15px;
+    padding: 4px 12px;
+    border-radius: 40px;
+    color: #fff;
+    font-size: 12px;
   }
 
   .image-holder {
